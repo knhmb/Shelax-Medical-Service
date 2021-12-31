@@ -1,6 +1,19 @@
 <template>
   <el-card class="box-card">
     <img
+      v-if="category === 'latestOffers'"
+      src="https://previews.123rf.com/images/pressmaster/pressmaster1606/pressmaster160601214/59150208-pretty-patient-sitting-in-bed.jpg"
+      style="width: 100%"
+      alt=""
+    />
+    <img
+      v-else-if="category === 'popularClinics'"
+      src="https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1702/wavebreakmediamicro170202630/71205692-portrait-of-smiling-patient-lying-on-bed-in-a-hospital.jpg"
+      style="width: 100%"
+      alt=""
+    />
+    <img
+      v-else-if="category === 'newShelf'"
       src="https://previews.123rf.com/images/pressmaster/pressmaster1606/pressmaster160601214/59150208-pretty-patient-sitting-in-bed.jpg"
       style="width: 100%"
       alt=""
@@ -20,8 +33,9 @@
         :score-template="numberOfRate"
       >
       </el-rate>
+      <small class="discount">{{ discount }}</small>
       <p class="latest-offers-price">
-        {{ price }} <small>{{ discount }}</small>
+        {{ price }}
       </p>
     </div>
   </el-card>
@@ -38,7 +52,7 @@ export default {
     "discount",
     "rate",
     "numberOfRate",
-    "productName",
+    "category",
   ],
   setup(props) {
     const value = ref(props.rate);
@@ -55,77 +69,114 @@ export default {
 </script>
 
 <style>
-.latest-offers .box-card {
+.latest-offers .box-card,
+.popular-clinics .box-card,
+.new-shelf .box-card {
   border-radius: 12px !important;
   height: 100% !important;
 }
 
-.latest-offers p {
+.latest-offers p,
+.popular-clinics p,
+.new-shelf p {
   margin: 0;
 }
 
-.latest-offers .content {
+.latest-offers .content,
+.popular-clinics .content,
+.new-shelf .content {
   padding: 0.5rem 1rem;
 }
 
-.latest-offers .latest-offers-img-text {
+.latest-offers .latest-offers-img-text,
+.popular-clinics .latest-offers-img-text,
+.new-shelf .latest-offers-img-text {
   font-size: 12px;
   color: #ea3e3e;
   margin-bottom: 0.1rem;
 }
 
-.latest-offers .latest-offers-desc {
+.latest-offers .latest-offers-desc,
+.popular-clinics .latest-offers-desc,
+.new-shelf .latest-offers-desc {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
   margin-bottom: 0.1rem;
 }
 
-.latest-offers .el-rate .el-rate__text {
+.latest-offers .el-rate .el-rate__text,
+.popular-clinics .el-rate .el-rate__text,
+.new-shelf .el-rate .el-rate__text {
   font-size: 10px !important;
   color: #7e7e7e !important;
 }
 
-.latest-offers .el-rate .el-icon.el-rate__icon {
-  /* color: #7690da !important; */
+.latest-offers .el-rate,
+.popular-clinics .el-rate,
+.new-shelf .el-rate {
+  margin-bottom: 2rem;
 }
 
-.latest-offers .latest-offers-price {
+.latest-offers .discount,
+.popular-clinics .discount,
+.new-shelf .discount {
+  text-decoration: line-through;
+  color: #8d8d8d;
+  font-size: 12px;
+}
+
+.latest-offers .latest-offers-price,
+.popular-clinics .latest-offers-price,
+.new-shelf .latest-offers-price {
   font-size: 16px;
   font-weight: bold;
-  color: #7a3d87;
-  margin-top: 2rem;
+  /* color: #7a3d87; */
 }
 
-.latest-offers .latest-offers-price small {
+.latest-offers .latest-offers-price small,
+.popular-clinics .latest-offers-price small,
+.new-shelf .latest-offers-price small {
   font-size: 12px;
   color: #7e7e7e;
 }
 
-.latest-offers .el-carousel__arrow {
+.latest-offers .el-carousel__arrow,
+.popular-clinics .el-carousel__arrow,
+.new-shelf .el-carousel__arrow {
   background-color: #fff !important;
   color: black !important;
 }
 
-.latest-offers .el-carousel__arrow.el-carousel__arrow--left {
+.latest-offers .el-carousel__arrow.el-carousel__arrow--left,
+.popular-clinics .el-carousel__arrow.el-carousel__arrow--left,
+.new-shelf .el-carousel__arrow.el-carousel__arrow--left {
   left: 140px !important;
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.33);
 }
 
-.latest-offers .el-carousel__arrow.el-carousel__arrow--left:hover {
+.latest-offers .el-carousel__arrow.el-carousel__arrow--left:hover,
+.popular-clinics .el-carousel__arrow.el-carousel__arrow--left:hover,
+.new-shelf .el-carousel__arrow.el-carousel__arrow--left:hover {
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.898);
 }
 
-.latest-offers .el-carousel__arrow.el-carousel__arrow--right {
+.latest-offers .el-carousel__arrow.el-carousel__arrow--right,
+.popular-clinics .el-carousel__arrow.el-carousel__arrow--right,
+.new-shelf .el-carousel__arrow.el-carousel__arrow--right {
   right: 140px !important;
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.33);
 }
 
-.latest-offers .el-carousel__arrow.el-carousel__arrow--right:hover {
+.latest-offers .el-carousel__arrow.el-carousel__arrow--right:hover,
+.popular-clinics .el-carousel__arrow.el-carousel__arrow--right:hover,
+.new-shelf .el-carousel__arrow.el-carousel__arrow--right:hover {
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.898);
 }
 
-.latest-offers .el-card__body {
+.latest-offers .el-card__body,
+.popular-clinics .el-card__body,
+.new-shelf .el-card__body {
   padding: 0;
 }
 </style>

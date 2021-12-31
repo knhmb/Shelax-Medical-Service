@@ -1,8 +1,8 @@
 <template>
-  <div class="latest-offers">
-    <section class="latest-offers-content">
+  <div class="popular-clinics">
+    <section class="popular-clinics-content">
       <base-content-container>
-        <h2 class="title">最新優惠</h2>
+        <h2 class="title">熱門診所</h2>
       </base-content-container>
 
       <el-carousel
@@ -32,7 +32,7 @@
           <!-- </base-container> -->
         </el-carousel-item>
       </el-carousel>
-      <div class="latest-offers-btn">
+      <div class="popular-clinics-btn">
         <el-button class="btn">顯示全部</el-button>
       </div>
     </section>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import LatestOffersCard from "./LatestOffersCard.vue";
+import LatestOffersCard from "../LatestOffersCard.vue";
 
 export default {
   components: {
@@ -57,7 +57,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          productCategory: "popularClinics",
         },
         {
           id: 2,
@@ -67,7 +67,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          productCategory: "popularClinics",
         },
         {
           id: 3,
@@ -77,7 +77,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          productCategory: "popularClinics",
         },
         {
           id: 4,
@@ -87,7 +87,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          productCategory: "popularClinics",
         },
       ],
     };
@@ -96,8 +96,8 @@ export default {
 </script>
 
 <style scoped>
-.latest-offers {
-  background-color: #e5e5e5;
+.popular-clinics {
+  background-color: #e6eaf0;
   padding: 2rem 0;
 }
 
@@ -111,7 +111,7 @@ export default {
   /* margin-bottom: 2rem; */
 }
 
-.latest-offers-btn {
+.popular-clinics-btn {
   text-align: center;
 }
 

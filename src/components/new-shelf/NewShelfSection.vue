@@ -1,8 +1,8 @@
 <template>
-  <div class="latest-offers">
-    <section class="latest-offers-content">
+  <div class="new-shelf">
+    <section class="new-shelf-content">
       <base-content-container>
-        <h2 class="title">最新優惠</h2>
+        <h2 class="title">全新上架</h2>
       </base-content-container>
 
       <el-carousel
@@ -32,7 +32,7 @@
           <!-- </base-container> -->
         </el-carousel-item>
       </el-carousel>
-      <div class="latest-offers-btn">
+      <div class="new-shelf-btn">
         <el-button class="btn">顯示全部</el-button>
       </div>
     </section>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import LatestOffersCard from "./LatestOffersCard.vue";
+import LatestOffersCard from "../LatestOffersCard.vue";
 
 export default {
   components: {
@@ -57,7 +57,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          productCategory: "newShelf",
         },
         {
           id: 2,
@@ -67,7 +67,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          productCategory: "newShelf",
         },
         {
           id: 3,
@@ -77,7 +77,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          productCategory: "newShelf",
         },
         {
           id: 4,
@@ -87,7 +87,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          productCategory: "newShelf",
         },
       ],
     };
@@ -96,7 +96,7 @@ export default {
 </script>
 
 <style scoped>
-.latest-offers {
+.new-shelf {
   background-color: #e5e5e5;
   padding: 2rem 0;
 }
@@ -111,7 +111,7 @@ export default {
   /* margin-bottom: 2rem; */
 }
 
-.latest-offers-btn {
+.new-shelf-btn {
   text-align: center;
 }
 
@@ -121,6 +121,7 @@ export default {
   border-radius: 8px;
   border: 1px solid #4b4b4b;
   margin-top: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 /* @media only screen and (max-width: 1139px) {
