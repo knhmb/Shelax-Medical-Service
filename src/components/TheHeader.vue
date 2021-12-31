@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <header class="header">
     <base-container>
       <el-row>
         <el-col :span="12">
@@ -24,7 +24,7 @@
             <el-menu-item index="3">登入</el-menu-item>
             <li class="login-btn">
               <!-- <el-button class="my-login-btn" type="primary">Login</el-button> -->
-              <button class="my-login-btn">註冊</button>
+              <button @click="openDialog" class="my-login-btn">註冊</button>
             </li>
           </el-menu>
         </el-col>
@@ -55,8 +55,39 @@
       </el-menu>
     </div>
     <!-- </base-container> -->
-  </div>
+  </header>
+  <Register @dialogClosed="closingDialog" :dialogVisible="dialogVisible" />
 </template>
+
+<script>
+import Register from "./register/Register.vue";
+
+export default {
+  components: {
+    Register,
+  },
+  data() {
+    return {
+      dialogVisible: false,
+    };
+  },
+  provide() {
+    return {
+      dialogVisible: this.dialogVisible,
+    };
+  },
+  methods: {
+    openDialog() {
+      this.dialogVisible = true;
+      console.log(this.dialogVisible);
+    },
+    closingDialog(event) {
+      this.dialogVisible = false;
+      console.log(event);
+    },
+  },
+};
+</script>
 
 <style>
 .header {
