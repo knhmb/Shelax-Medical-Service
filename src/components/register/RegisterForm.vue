@@ -91,6 +91,18 @@ export default {
 </script>
 
 <style>
+.register-form .el-input .el-input__inner:focus {
+  border-color: #7690da;
+}
+
+.register-form
+  .el-input
+  .el-input__inner:focus
+  + .el-input__prefix
+  .el-input__prefix-inner
+  .el-input__icon.el-icon {
+  color: #7690da;
+}
 .register-form .el-checkbox .el-checkbox__label {
   white-space: normal;
   color: #a8a8a8;
@@ -106,6 +118,10 @@ export default {
   width: 100%;
   background-color: #7690da;
   color: #fff;
+}
+
+.register-form .el-button:hover {
+  background-color: #7691dae7;
 }
 
 .register-form .el-divider.el-divider--horizontal {

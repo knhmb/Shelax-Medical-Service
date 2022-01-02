@@ -9,7 +9,7 @@
       <el-tabs v-model="activeName" :stretch="true">
         <el-tab-pane label="電郵地址" name="first">
           <template #label>
-            <span class="label">
+            <span @click="selectedTab('email')" class="label">
               <img :src="emailTab" style="width: 20px" alt="" />
               <!-- <img
                 v-else
@@ -24,13 +24,9 @@
         </el-tab-pane>
         <el-tab-pane label="手機號碼" name="second">
           <template #label>
-            <span class="label">
+            <span @click="selectedTab('phone')" class="label">
               <!-- <font-awesome-icon class="login-icons" icon="user-secret" /> -->
-              <img
-                src="../../assets/icon-phone-off@2x.png"
-                style="width: 20px"
-                alt=""
-              />
+              <img :src="phoneTab" style="width: 20px" alt="" />
               手機號碼
             </span> </template
           >Config</el-tab-pane
@@ -58,7 +54,8 @@ export default {
   data() {
     return {
       emailTab: require("../../assets/icon-email-on@2x.png"),
-      element: document.getElementById("tab-first"),
+      phoneTab: require("../../assets/icon-phone-off@2x.png"),
+      activeName: "first",
     };
   },
   computed: {
@@ -77,6 +74,15 @@ export default {
     },
     closeDialog() {
       this.$emit("dialogClosed", false);
+    },
+    selectedTab(option) {
+      if (option === "email") {
+        this.emailTab = require("../../assets/icon-email-on@2x.png");
+        this.phoneTab = require("../../assets/icon-phone-off@2x.png");
+      } else if (option === "phone") {
+        this.emailTab = require("../../assets/icon-email-off@2x.png");
+        this.phoneTab = require("../../assets/icon-phone-on@2x.png");
+      }
     },
   },
   //   watch: {
