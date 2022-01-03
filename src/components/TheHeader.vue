@@ -3,7 +3,12 @@
     <base-container>
       <el-row>
         <el-col :span="12">
-          <img src="../assets/brand-logo@2x.png" class="logo" alt="" />
+          <img
+            src="../assets/brand-logo@2x.png"
+            @click="$router.push('/')"
+            class="logo"
+            alt=""
+          />
         </el-col>
         <el-col :span="12">
           <el-menu
@@ -123,6 +128,7 @@ export default {
 
 .header .logo {
   width: 60px;
+  cursor: pointer;
 }
 
 .header hr {
