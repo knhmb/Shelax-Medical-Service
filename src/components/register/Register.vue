@@ -2,7 +2,7 @@
   <section class="dialog">
     <el-dialog
       v-model="dialogVisibleIsOpen"
-      title="登入"
+      :title="authTitle"
       width="30%"
       :before-close="handleClose"
     >
@@ -20,7 +20,16 @@
               電郵地址
             </span>
           </template>
-          <register-form></register-form>
+          <register-form
+            v-if="selectedAuthOption === 'register'"
+            @authChanged="changedAuth"
+            :auth-option="selectedAuthOption"
+          ></register-form>
+          <login-form
+            v-if="selectedAuthOption === 'login'"
+            @authChanged="changedAuth"
+            :auth-option="selectedAuthOption"
+          ></login-form>
         </el-tab-pane>
         <el-tab-pane label="手機號碼" name="second">
           <template #label>
@@ -28,34 +37,32 @@
               <!-- <font-awesome-icon class="login-icons" icon="user-secret" /> -->
               <img :src="phoneTab" style="width: 20px" alt="" />
               手機號碼
-            </span> </template
-          >Config</el-tab-pane
+            </span>
+          </template></el-tab-pane
         >
       </el-tabs>
-      <!-- <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="closeDialog">Cancel</el-button>
-          <el-button type="primary" @click="closeDialog">Confirm</el-button>
-        </span>
-      </template> -->
     </el-dialog>
   </section>
 </template>
 
 <script>
 import RegisterForm from "./RegisterForm.vue";
+import LoginForm from "../login/LoginForm.vue";
 
 export default {
   props: ["dialogVisible"],
   emits: ["dialogClosed"],
   components: {
     RegisterForm,
+    LoginForm,
   },
   data() {
     return {
       emailTab: require("../../assets/icon-email-on@2x.png"),
       phoneTab: require("../../assets/icon-phone-off@2x.png"),
       activeName: "first",
+      selectedAuthOption: "register",
+      authTitle: "註冊",
     };
   },
   computed: {
@@ -84,12 +91,16 @@ export default {
         this.phoneTab = require("../../assets/icon-phone-on@2x.png");
       }
     },
+    changedAuth(event) {
+      if (event.changedAuthOption === "register") {
+        this.selectedAuthOption = event.changedAuthOption;
+        this.authTitle = event.authTitle;
+      } else if (event.changedAuthOption === "login") {
+        this.selectedAuthOption = event.changedAuthOption;
+        this.authTitle = event.authTitle;
+      }
+    },
   },
-  //   watch: {
-  //     dialogIsOpen() {
-  //       this.dialogIsOpen = this.$props.dialogVisible;
-  //     },
-  //   },
 };
 </script>
 

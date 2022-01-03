@@ -1,5 +1,5 @@
 <template>
-  <div class="register-form">
+  <div class="login-form">
     <el-form>
       <el-row>
         <el-col :span="24">
@@ -25,24 +25,26 @@
       </el-row>
 
       <el-row>
-        <el-col>
+        <el-col :span="12">
           <el-form-item>
-            <el-checkbox
-              label="是的！我願意接收有關Shelax的最新優惠及其他資訊，並了解我可以隨時取消訂閱。"
-              size="large"
-            ></el-checkbox>
+            <el-checkbox label="記住我" size="large"></el-checkbox>
           </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <p class="forgot-pass">忘記密碼?</p>
         </el-col>
       </el-row>
 
       <el-row>
         <el-col>
-          <el-button>註冊</el-button>
+          <el-button>登入</el-button>
         </el-col>
       </el-row>
 
       <el-divider content-position="center">或快速登入</el-divider>
-      <p>如以已登記的電話號碼或第三方帳戶登記，將自動登入你的Shelax帳戶</p>
+      <p>
+        如以未登記的電話號碼或第三方帳戶登入，將自動為你建立一個新的Shelax 帳戶
+      </p>
       <el-row :gutter="15">
         <el-col :span="12">
           <el-button type="primary">
@@ -67,9 +69,9 @@
       </el-row>
       <el-row>
         <el-col>
-          <p class="register">
-            已有Shelax帳號?
-            <span @click="changeAuthOption" class="register-link">登入</span>
+          <p class="login">
+            未有Shelax帳號?
+            <span @click="changeAuthOption" class="login-link">現在註冊</span>
           </p>
         </el-col>
       </el-row>
@@ -92,8 +94,8 @@ export default {
   methods: {
     changeAuthOption() {
       this.$emit("authChanged", {
-        changedAuthOption: "login",
-        authTitle: "登入",
+        changedAuthOption: "register",
+        authTitle: "註冊",
       });
     },
   },
@@ -101,11 +103,11 @@ export default {
 </script>
 
 <style>
-.register-form .el-input .el-input__inner:focus {
+.login-form .el-input .el-input__inner:focus {
   border-color: #7690da;
 }
 
-.register-form
+.login-form
   .el-input
   .el-input__inner:focus
   + .el-input__prefix
@@ -113,66 +115,73 @@ export default {
   .el-input__icon.el-icon {
   color: #7690da;
 }
-.register-form .el-checkbox .el-checkbox__label {
+.login-form .el-checkbox .el-checkbox__label {
   white-space: normal;
   color: #a8a8a8;
   line-height: 18px;
 }
 
-.register-form .el-checkbox .el-checkbox__input.is-checked .el-checkbox__inner {
+.login-form .el-checkbox .el-checkbox__input.is-checked .el-checkbox__inner {
   background-color: #7690da;
   border-color: #7690da;
 }
 
-.register-form .el-button {
+.login-form .el-button {
   width: 100%;
   background-color: #7690da;
   color: #fff;
 }
 
-.register-form .el-button:hover {
+.login-form .el-button:hover {
   background-color: #7691dae7;
 }
 
-.register-form .el-divider.el-divider--horizontal {
+.login-form .el-divider.el-divider--horizontal {
   border-top-color: #a8a8a8;
   margin-top: 2rem;
 }
 
-.register-form .el-divider.el-divider--horizontal .el-divider__text {
+.login-form .el-divider.el-divider--horizontal .el-divider__text {
   color: #a8a8a8;
   padding: 0 0.5rem;
 }
 
-.register-form p {
+.login-form p {
   color: #a8a8a8;
   font-size: 12px;
 }
 
-.register-form .el-button.el-button--primary {
+.login-form .el-button.el-button--primary {
   background-color: #fff;
   border-color: #eee;
 }
 
-.register-form .el-button.el-button--primary p {
+.login-form .el-button.el-button--primary p {
   color: #6f6f6f;
   margin: 0;
   margin-top: 0.5rem;
 }
 
-.register-form .register {
+.login-form .login {
   font-size: 14px;
   text-align: center;
   margin-top: 3rem;
   margin-bottom: 0;
 }
 
-.register-form .register-link {
+.login-form .login-link {
   color: #7690da;
   cursor: pointer;
 }
 
-.register-form .register-link:hover {
+.login-form .login-link:hover {
   text-decoration: underline;
+}
+
+.login-form .forgot-pass {
+  text-align: end;
+  font-size: 14px;
+  margin: 0;
+  margin-top: 0.6rem;
 }
 </style>
