@@ -12,12 +12,14 @@ import BaseContainer from "./ui/BaseContainer.vue";
 import BaseContentContainer from "./ui/BaseContentContainer.vue";
 
 import Home from "./pages/Home.vue";
+import Search from "./pages/Search.vue";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: "/", redirect: "/home" },
     { path: "/home", component: Home },
+    { path: "/search", component: Search },
   ],
 });
 const app = createApp(App);
