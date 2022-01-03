@@ -10,7 +10,7 @@
         trigger="click"
         arrow="always"
         indicator-position="none"
-        height="330px"
+        height="350px"
       >
         <el-carousel-item>
           <!-- <base-container> -->
