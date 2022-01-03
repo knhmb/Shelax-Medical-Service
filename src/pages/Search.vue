@@ -79,6 +79,80 @@
               </el-row>
             </div>
           </div>
+          <div class="customer-review">
+            <h3>顧客評價</h3>
+            <el-checkbox size="large">
+              <el-rate
+                class="five-stars"
+                v-model="fiveStarRating"
+                disabled
+                text-color="#ff9900"
+              >
+              </el-rate>
+            </el-checkbox>
+            <el-checkbox size="large">
+              <el-rate
+                class="four-stars"
+                v-model="fourStarRating"
+                disabled
+                text-color="#ff9900"
+              >
+              </el-rate>
+            </el-checkbox>
+            <el-checkbox size="large">
+              <el-rate
+                class="three-stars"
+                v-model="threeStarRating"
+                disabled
+                text-color="#ff9900"
+              >
+              </el-rate>
+            </el-checkbox>
+            <el-checkbox size="large">
+              <el-rate
+                class="two-stars"
+                v-model="twoStarRating"
+                disabled
+                text-color="#ff9900"
+              >
+              </el-rate>
+            </el-checkbox>
+          </div>
+          <div class="area">
+            <h3>區域</h3>
+            <div class="single-area">
+              <p>香港區</p>
+              <el-checkbox-group v-model="checkList">
+                <el-checkbox label="中西區" />
+                <el-checkbox label="東區" />
+                <el-checkbox label="南區" />
+                <el-checkbox label="灣仔區" />
+              </el-checkbox-group>
+            </div>
+            <div class="single-area">
+              <p>九龍區</p>
+              <el-checkbox-group v-model="checkList">
+                <el-checkbox label="觀塘區" />
+                <el-checkbox label="深水埗區" />
+                <el-checkbox label="黃大仙區" />
+                <el-checkbox label="油尖旺區" />
+              </el-checkbox-group>
+            </div>
+            <div class="single-area">
+              <p>新界區</p>
+              <el-checkbox-group v-model="checkList">
+                <el-checkbox label="離島區" />
+                <el-checkbox label="葵青區" />
+                <el-checkbox label="北區" />
+                <el-checkbox label="西貢區" />
+                <el-checkbox label="沙田區" />
+                <el-checkbox label="大埔區" />
+                <el-checkbox label="荃灣區" />
+                <el-checkbox label="屯門區" />
+                <el-checkbox label="元朗區" />
+              </el-checkbox-group>
+            </div>
+          </div>
         </el-col>
         <el-col :span="12"> </el-col>
       </el-row>
@@ -102,6 +176,11 @@ export default {
       date: null,
       time: null,
       value: [4, 8],
+      fiveStarRating: 5,
+      fourStarRating: 4,
+      threeStarRating: 3,
+      twoStarRating: 2,
+      checkList: [],
     };
   },
 };
@@ -235,6 +314,75 @@ export default {
   color: #c6c6c6;
   letter-spacing: 0.03rem;
   /* margin-top: 1rem; */
+}
+
+.content .slider {
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.content .five-stars .el-rate__item .el-rate__icon svg,
+.content .four-stars .el-rate__item:first-of-type .el-rate__icon svg,
+.content .four-stars .el-rate__item:nth-of-type(2) .el-rate__icon svg,
+.content .four-stars .el-rate__item:nth-of-type(3) .el-rate__icon svg,
+.content .four-stars .el-rate__item:nth-of-type(4) .el-rate__icon svg,
+.content .three-stars .el-rate__item:nth-of-type(1) .el-rate__icon svg,
+.content .three-stars .el-rate__item:nth-of-type(2) .el-rate__icon svg,
+.content .three-stars .el-rate__item:nth-of-type(3) .el-rate__icon svg,
+.content .two-stars .el-rate__item:nth-of-type(1) .el-rate__icon svg,
+.content .two-stars .el-rate__item:nth-of-type(2) .el-rate__icon svg {
+  color: #7690da;
+}
+
+.content .four-stars .el-rate__item:nth-of-type(5) .el-rate__icon svg,
+.content .three-stars .el-rate__item:nth-of-type(4) .el-rate__icon svg,
+.content .three-stars .el-rate__item:nth-of-type(5) .el-rate__icon svg,
+.content .two-stars .el-rate__item:nth-of-type(3) .el-rate__icon svg,
+.content .two-stars .el-rate__item:nth-of-type(4) .el-rate__icon svg,
+.content .two-stars .el-rate__item:nth-of-type(5) .el-rate__icon svg {
+  color: #fff;
+}
+
+.content .customer-review .el-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.content .customer-review {
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.content .area .single-area p {
+  color: #8d8d8d;
+  margin-bottom: 0;
+}
+
+.content .area .single-area .el-checkbox-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.content .customer-review .el-checkbox.is-checked .el-checkbox__inner,
+.content
+  .area
+  .single-area
+  .el-checkbox-group
+  .el-checkbox.is-checked
+  .el-checkbox__inner {
+  background-color: #7690da;
+  border-color: #7690da;
+}
+
+.content .customer-review .el-checkbox.is-checked .el-checkbox__label,
+.content
+  .area
+  .single-area
+  .el-checkbox-group
+  .el-checkbox.is-checked
+  .el-checkbox__label {
+  color: #7690da;
 }
 
 /* .content .google-maps::before {
