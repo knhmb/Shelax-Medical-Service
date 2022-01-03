@@ -49,8 +49,8 @@
   <section class="content">
     <base-content-container>
       <h2>身體檢查</h2>
-      <el-row>
-        <el-col :span="9">
+      <el-row :gutter="10">
+        <el-col :span="7">
           <div class="google-maps">
             <img
               src="../assets/img-google-map@2x.png"
@@ -154,7 +154,9 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="12"> </el-col>
+        <el-col :span="17">
+          <search-right-section></search-right-section>
+        </el-col>
       </el-row>
     </base-content-container>
   </section>
@@ -164,11 +166,13 @@
 <script>
 import TheHeader from "../components/TheHeader.vue";
 import TheFooter from "../components/TheFooter.vue";
+import SearchRightSection from "../components/search/SearchRightSection.vue";
 
 export default {
   components: {
     TheHeader,
     TheFooter,
+    SearchRightSection,
   },
   data() {
     return {
@@ -257,7 +261,7 @@ export default {
 
 .content .google-maps {
   position: relative;
-  width: 360px;
+  /* width: 280px; */
 }
 
 .content .google-maps-img {
