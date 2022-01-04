@@ -76,11 +76,11 @@ export default {
       dialogVisible: false,
     };
   },
-  provide() {
-    return {
-      dialogVisible: this.dialogVisible,
-    };
-  },
+  // provide() {
+  //   return {
+  //     dialogVisible: this.dialogVisible,
+  //   };
+  // },
   methods: {
     openDialog() {
       this.dialogVisible = true;
@@ -97,6 +97,8 @@ export default {
 <style>
 .header {
   background-color: #fff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0px -1px 0px rgba(0, 0, 0, 0.08);
 }
 
 .header .el-row {
