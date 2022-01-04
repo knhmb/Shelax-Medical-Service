@@ -1,7 +1,7 @@
 <template>
   <h3>選擇預約日期及時間</h3>
   <div class="content">
-    <el-row>
+    <el-row :gutter="20">
       <el-col :span="12">
         <p>選擇日期</p>
         <div class="date-content">
