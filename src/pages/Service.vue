@@ -19,6 +19,11 @@
         </el-row>
       </div>
     </base-content-container>
+    <div class="appointment-section">
+      <base-content-container>
+        <Appointment />
+      </base-content-container>
+    </div>
   </section>
   <the-footer></the-footer>
 </template>
@@ -30,6 +35,8 @@ import TheHeader from "../components/TheHeader.vue";
 import TheFooter from "../components/TheFooter.vue";
 import ServiceCarousel from "../components/service/ServiceCarousel.vue";
 import Package from "../components/service/Package.vue";
+import BaseContentContainer from "../ui/BaseContentContainer.vue";
+import Appointment from "../components/service/Appointment.vue";
 
 export default {
   components: {
@@ -37,6 +44,8 @@ export default {
     TheFooter,
     ServiceCarousel,
     Package,
+    BaseContentContainer,
+    Appointment,
   },
   data() {
     return {
@@ -57,5 +66,10 @@ export default {
 
 .service .service-carousel {
   margin-bottom: 1rem;
+}
+
+.service .appointment-section {
+  background-color: #f5f7fa;
+  padding: 2rem 0;
 }
 </style>
