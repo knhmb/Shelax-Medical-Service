@@ -4,6 +4,23 @@
     <el-row :gutter="20">
       <el-col :span="12">
         <p>選擇日期</p>
+        <!-- <el-date-picker
+          v-model="value"
+          type="date"
+          placeholder="Pick a day"
+          format="YYYY/MM/DD"
+          value-format="YYYY-MM-DD"
+        >
+          <template #default="cell">
+            <div class="cell" :class="{ current: cell.isCurrent }">
+              <span class="holiday"
+                >{{ cell.text }}
+                <p style="margin: 0">570 起</p>
+              </span>
+              <span v-if="isHoliday(cell)" class="holiday"></span>
+            </div>
+          </template>
+        </el-date-picker> -->
         <div class="date-content">
           <div class="date-header">
             <el-row>
@@ -16,7 +33,6 @@
               </el-col>
             </el-row>
           </div>
-          <!-- <hr /> -->
           <div class="date-body">
             <el-row :gutter="10" justify="space-between" class="week-days">
               <el-col :span="3">
@@ -307,7 +323,6 @@
               <el-col :span="3">
                 <div>
                   <p class="holiday">31</p>
-                  <!-- <p class="price">570 起</p> -->
                 </div>
               </el-col>
               <el-col :span="3">
@@ -337,9 +352,32 @@
 </template>
 
 <script>
+import { ref } from "vue";
+
 import Time from "./Time.vue";
 
 export default {
+  setup() {
+    const value = ref("2021-10-29");
+    const holidays = [
+      "2021-10-01",
+      "2021-10-02",
+      "2021-10-03",
+      "2021-10-04",
+      "2021-10-05",
+      "2021-10-06",
+      "2021-10-07",
+    ];
+    const isHoliday = ({ dayjs }) => {
+      return holidays.includes(dayjs.format("YYYY-MM-DD"));
+    };
+
+    return {
+      value,
+      holidays,
+      isHoliday,
+    };
+  },
   components: {
     Time,
   },
@@ -428,7 +466,7 @@ export default {
 }
 
 .service .appointment-section .content .date-content .date-body {
-  padding: 5px 30px;
+  padding: 5px 30px 25px 30px;
   border-radius: 0 0 8px 8px;
   background-color: #fff;
   border: 0.8px solid #e0e0e0;
@@ -511,6 +549,31 @@ export default {
   .selected
   p {
   color: #fff;
+}
+
+.holiday {
+  /* color: red; */
+}
+
+.el-picker-panel__content .el-date-table__row .prev-month .holiday,
+.el-picker-panel__content
+  .el-date-table__row
+  .available:nth-of-type(1)
+  .holiday,
+.el-picker-panel__content .el-date-table__row .next-month .holiday {
+  color: #ddd;
+  text-decoration: line-through;
+}
+
+.el-picker-panel__content .el-date-table__row .prev-month .holiday p,
+.el-picker-panel__content .el-date-table__row .next-month .holiday p,
+.el-picker-panel__content
+  .el-date-table__row
+  .available:nth-of-type(1)
+  .holiday
+  p {
+  display: none;
+  margin: 0;
 }
 
 /* .service .appointment-section .content .date-content .date-header span {
