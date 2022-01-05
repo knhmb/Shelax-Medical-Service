@@ -9,7 +9,7 @@
   >
     <el-carousel-item v-for="item in 4" :key="item">
       <img
-        src="https://assets.hillrom.com/is/image/hillrom/Med-Surg_1162-content-carousel?$quoteCarousal$"
+        src="https://www.wirelessnursecall.com/application/files/3414/4723/9076/l1.png"
         style="height: 100%; width: 100%"
         alt=""
       />

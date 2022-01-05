@@ -352,32 +352,32 @@
 </template>
 
 <script>
-import { ref } from "vue";
+// import { ref } from "vue";
 
 import Time from "./Time.vue";
 
 export default {
-  setup() {
-    const value = ref("2021-10-29");
-    const holidays = [
-      "2021-10-01",
-      "2021-10-02",
-      "2021-10-03",
-      "2021-10-04",
-      "2021-10-05",
-      "2021-10-06",
-      "2021-10-07",
-    ];
-    const isHoliday = ({ dayjs }) => {
-      return holidays.includes(dayjs.format("YYYY-MM-DD"));
-    };
+  //   setup() {
+  //     const value = ref("2021-10-29");
+  //     const holidays = [
+  //       "2021-10-01",
+  //       "2021-10-02",
+  //       "2021-10-03",
+  //       "2021-10-04",
+  //       "2021-10-05",
+  //       "2021-10-06",
+  //       "2021-10-07",
+  //     ];
+  //     const isHoliday = ({ dayjs }) => {
+  //       return holidays.includes(dayjs.format("YYYY-MM-DD"));
+  //     };
 
-    return {
-      value,
-      holidays,
-      isHoliday,
-    };
-  },
+  //     return {
+  //       value,
+  //       holidays,
+  //       isHoliday,
+  //     };
+  //   },
   components: {
     Time,
   },

@@ -24,6 +24,9 @@
         <Appointment />
       </base-content-container>
     </div>
+    <div class="faq">
+      <Faq />
+    </div>
   </section>
   <the-footer></the-footer>
 </template>
@@ -37,6 +40,7 @@ import ServiceCarousel from "../components/service/ServiceCarousel.vue";
 import Package from "../components/service/Package.vue";
 import BaseContentContainer from "../ui/BaseContentContainer.vue";
 import Appointment from "../components/service/Appointment.vue";
+import Faq from "../components/service/Faq.vue";
 
 export default {
   components: {
@@ -46,6 +50,7 @@ export default {
     Package,
     BaseContentContainer,
     Appointment,
+    Faq,
   },
   data() {
     return {
