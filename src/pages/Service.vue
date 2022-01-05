@@ -27,6 +27,9 @@
     <div class="faq">
       <Faq />
     </div>
+    <div class="recommended-services">
+      <recommended-services></recommended-services>
+    </div>
   </section>
   <the-footer></the-footer>
 </template>
@@ -41,6 +44,7 @@ import Package from "../components/service/Package.vue";
 import BaseContentContainer from "../ui/BaseContentContainer.vue";
 import Appointment from "../components/service/Appointment.vue";
 import Faq from "../components/service/Faq.vue";
+import RecommendedServices from "../components/service/RecommendedServices.vue";
 
 export default {
   components: {
@@ -51,6 +55,7 @@ export default {
     BaseContentContainer,
     Appointment,
     Faq,
+    RecommendedServices,
   },
   data() {
     return {

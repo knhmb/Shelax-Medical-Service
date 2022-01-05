@@ -52,6 +52,10 @@
             score-template="2021/12/20"
           >
           </el-rate>
+          <Comment />
+          <div class="submit-review-btn">
+            <el-button>顯示更多</el-button>
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -59,7 +63,12 @@
 </template>
 
 <script>
+import Comment from "./Comment.vue";
+
 export default {
+  components: {
+    Comment,
+  },
   data() {
     return {
       value: 4,
@@ -137,5 +146,18 @@ export default {
 
 #customer-reviews .bottom-section .avatar-name {
   margin: 0;
+}
+
+#customer-reviews .submit-review-btn {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+#customer-reviews .el-button {
+  /* width: 100%; */
+  padding: 0 8rem;
+  border-radius: 8px;
+  border-color: #525252;
+  margin-bottom: 2rem;
 }
 </style>

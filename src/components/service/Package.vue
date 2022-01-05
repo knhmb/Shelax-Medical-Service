@@ -4,7 +4,13 @@
       <h3>綜合個人健康體檢套餐</h3>
     </el-col>
     <el-col class="wishlist" :span="12">
-      <img src="../../assets/icon-wish-off@2x.png" alt="" />
+      <img
+        @mouseleave="imgLeave"
+        @mouseover="imgHover"
+        @click="imgSelected"
+        :src="wishIcon"
+        alt=""
+      />
       <span>加入願望清單</span>
     </el-col>
   </el-row>
@@ -67,6 +73,42 @@
   </el-row>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      wishIcon: require("../../assets/icon-wish-off@2x.png"),
+    };
+  },
+  methods: {
+    imgHover() {
+      if (this.wishIcon === require("../../assets/icon-wish-on@2x.png")) {
+        return;
+      } else {
+        this.wishIcon = require("../../assets/icon-wish-hover@2x.png");
+      }
+    },
+    imgLeave() {
+      if (this.wishIcon === require("../../assets/icon-wish-on@2x.png")) {
+        return;
+      } else {
+        this.wishIcon = require("../../assets/icon-wish-off@2x.png");
+      }
+    },
+    imgSelected() {
+      if (this.wishIcon === require("../../assets/icon-wish-on@2x.png")) {
+        this.wishIcon = require("../../assets/icon-wish-off@2x.png");
+      } else if (
+        this.wishIcon === require("../../assets/icon-wish-off@2x.png") ||
+        this.wishIcon === require("../../assets/icon-wish-hover@2x.png")
+      ) {
+        this.wishIcon = require("../../assets/icon-wish-on@2x.png");
+      }
+    },
+  },
+};
+</script>
+
 <style scoped>
 .service .checkup-package .wishlist-header {
   align-items: baseline;
@@ -87,6 +129,7 @@
 .service .checkup-package .wishlist img {
   width: 24px;
   margin-right: 0.3rem;
+  cursor: pointer;
 }
 
 .service .checkup-package .wishlist-text {
