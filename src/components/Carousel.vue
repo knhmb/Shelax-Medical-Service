@@ -22,6 +22,10 @@
 </template>
 
 <style>
+.carousel {
+  min-width: 387px;
+}
+
 .carousel .carousel-img {
   width: 100%;
   /* height: fit-content; */

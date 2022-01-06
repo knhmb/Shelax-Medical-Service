@@ -125,6 +125,7 @@ export default {
 .latest-offers {
   background-color: #e5e5e5;
   padding: 2rem 0;
+  min-width: 387px;
 }
 
 /* .yahoo {

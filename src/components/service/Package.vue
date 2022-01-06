@@ -15,25 +15,25 @@
     </el-col>
   </el-row>
   <el-row class="wishlist-text">
-    <el-col>
+    <el-col class="border">
       <img src="../../assets/icon-shop@2x.png" alt="" />
       <span>ＸＸＸＸ健康中心</span>
     </el-col>
-    <el-col>
+    <el-col class="border">
       <img src="../../assets/icon-location@2x.png" alt="" />
       <span>香港九龍城區九龍仔聯福道17號</span>
     </el-col>
     <el-col :span="24">
       <el-row>
-        <el-col :sm="24" :md="8" :lg="8">
+        <el-col class="border" :sm="24" :md="8" :lg="8">
           <img src="../../assets/icon-time@2x.png" alt="" />
           <span>服務時間 10 小時</span>
         </el-col>
-        <el-col :sm="24" :md="7" :lg="7">
+        <el-col class="border" :sm="24" :md="7" :lg="7">
           <img src="../../assets/icon-refund@2x.png" alt="" />
           <span>免費取消</span>
         </el-col>
-        <el-col class="no-border" :sm="24" :md="9" :lg="9">
+        <el-col class="border" :sm="24" :md="9" :lg="9">
           <img src="../../assets/icon-qrcode@2x.png" alt="" />
           <span>現場請出示電子憑證與護照正本</span>
         </el-col>
@@ -137,7 +137,7 @@ export default {
   align-items: center;
 }
 
-.service .checkup-package .wishlist-text .el-col-24 {
+.service .checkup-package .wishlist-text .border {
   /* display: flex;
   align-items: center; */
   border-bottom: 1px solid #e0e0e0;
@@ -167,6 +167,16 @@ export default {
   padding-left: 1.5rem;
 }
 
+@media screen and (max-width: 1024px) {
+  .service .checkup-package .wishlist-text .el-col-24 .border {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .service .checkup-package .wishlist-text .el-col-24:last-child {
+    /* border-bottom: none; */
+  }
+}
+
 @media screen and (max-width: 414px) {
   .service .checkup-package .wishlist {
     justify-content: flex-start;
@@ -182,7 +192,7 @@ export default {
     border-bottom: none;
   }
 
-  .service .checkup-package .wishlist-text .el-col-24 .no-border {
+  .service .checkup-package .wishlist-text .el-col-24 .border {
     border-bottom: 1px solid #e0e0e0;
   }
 

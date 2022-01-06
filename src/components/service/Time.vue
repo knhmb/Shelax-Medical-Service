@@ -28,46 +28,46 @@
     <div class="pm">
       <p class="divider"><span>下午</span></p>
       <el-row :gutter="10">
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>12:00</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>12:30</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>13:00</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>13:30</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>14:00</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>14:30</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>15:00</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>15:30</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>16:00</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>16:30</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>17:00</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>17:30</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>18:00</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>18:30</base-button>
         </el-col>
       </el-row>
@@ -119,6 +119,7 @@
 .time-section + .el-row .el-button {
   padding: 12px 42px;
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .time-section + .el-row .el-button--primary {
@@ -129,5 +130,16 @@
 .time-section + .el-row .el-button--success {
   background-color: #7690da;
   border-color: #7690da;
+}
+
+@media screen and (max-width: 414px) {
+  .time-section + .el-row .btns {
+    text-align: center;
+  }
+
+  .time-section + .el-row .el-button {
+    padding: 12px 20px;
+    /* margin-bottom: 0.5rem; */
+  }
 }
 </style>

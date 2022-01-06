@@ -6,11 +6,37 @@
       </base-content-container>
 
       <el-carousel
+        trigger="click"
+        arrow="always"
+        indicator-position="none"
+        class="hidden-sm-and-up"
+      >
+        <el-carousel-item v-for="product in products" :key="product.id">
+          <base-content-container>
+            <el-row :gutter="12">
+              <el-col :sm="6" :lg="6">
+                <latest-offers-card
+                  :name="product.name"
+                  :description="product.description"
+                  :price="product.price"
+                  :rate="product.rate"
+                  :image="product.image"
+                  :number-of-rate="product.numberOfRate"
+                  :discount="product.discountPrice"
+                ></latest-offers-card>
+              </el-col>
+            </el-row>
+          </base-content-container>
+        </el-carousel-item>
+      </el-carousel>
+
+      <el-carousel
         :interval="5000"
         trigger="click"
         arrow="always"
         indicator-position="none"
-        height="350px"
+        height="420px"
+        class="hide"
       >
         <el-carousel-item>
           <base-content-container>
@@ -21,7 +47,7 @@
                   :description="product.description"
                   :price="product.price"
                   :rate="product.rate"
-                  :category="product.productCategory"
+                  :image="product.image"
                   :number-of-rate="product.numberOfRate"
                   :discount="product.discountPrice"
                 ></latest-offers-card>
@@ -52,7 +78,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          image: require("../../assets/Rectangle-77.png"),
         },
         {
           id: 2,
@@ -62,7 +88,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          image: require("../../assets/Rectangle-77-1.png"),
         },
         {
           id: 3,
@@ -72,7 +98,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          image: require("../../assets/Rectangle-77-3.png"),
         },
         {
           id: 4,
@@ -82,7 +108,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "latestOffers",
+          image: require("../../assets/Rectangle-77-2.png"),
         },
       ],
     };
@@ -90,15 +116,64 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .recommended-services {
   background-color: #e5e5e5;
   padding: 2rem 0;
+  min-width: 387px;
 }
 
-.title {
+.recommended-services .title {
   font-weight: 700;
   font-size: 32px;
   text-align: center;
+}
+
+@media screen and (min-width: 591px) and (max-width: 767px) {
+  .recommended-services
+    .el-carousel.el-carousel--horizontal
+    .el-carousel__container {
+    height: 750px !important;
+  }
+}
+
+@media screen and (min-width: 541px) and (max-width: 590px) {
+  .recommended-services
+    .el-carousel.el-carousel--horizontal
+    .el-carousel__container {
+    height: 650px !important;
+  }
+}
+
+@media screen and (min-width: 486px) and (max-width: 540px) {
+  .recommended-services
+    .el-carousel.el-carousel--horizontal
+    .el-carousel__container {
+    height: 620px !important;
+  }
+}
+
+@media screen and (min-width: 441px) and (max-width: 485px) {
+  .recommended-services
+    .el-carousel.el-carousel--horizontal
+    .el-carousel__container {
+    height: 530px !important;
+  }
+}
+
+@media screen and (min-width: 361px) and (max-width: 440px) {
+  .recommended-services
+    .el-carousel.el-carousel--horizontal
+    .el-carousel__container {
+    height: 500px !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .recommended-services
+    .el-carousel.el-carousel--horizontal
+    .el-carousel__container {
+    height: 450px !important;
+  }
 }
 </style>

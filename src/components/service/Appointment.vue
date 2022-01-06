@@ -540,6 +540,20 @@ export default {
   padding: 2px;
 }
 
+@media screen and (max-width: 414px) {
+  .service
+    .appointment-section
+    .content
+    .date-content
+    .date-body
+    .days
+    .selected {
+    border-radius: 4px;
+    padding-right: 23px;
+    padding-left: 2px;
+  }
+}
+
 .service
   .appointment-section
   .content
@@ -549,10 +563,6 @@ export default {
   .selected
   p {
   color: #fff;
-}
-
-.holiday {
-  /* color: red; */
 }
 
 .el-picker-panel__content .el-date-table__row .prev-month .holiday,

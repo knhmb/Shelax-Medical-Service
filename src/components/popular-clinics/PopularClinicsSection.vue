@@ -128,6 +128,7 @@ export default {
 .popular-clinics {
   background-color: #e6eaf0;
   padding: 2rem 0;
+  min-width: 387px;
 }
 
 /* .yahoo {

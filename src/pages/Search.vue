@@ -193,6 +193,7 @@ export default {
 <style>
 .search-section {
   background-color: #4e68b2;
+  min-width: 387px;
 }
 
 .search-section .el-form {

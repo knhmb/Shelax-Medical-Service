@@ -45,7 +45,7 @@
           <cancellation-policy></cancellation-policy>
           <customer-reviews></customer-reviews>
         </el-col>
-        <el-col class="hidden-sm-and-down" :span="6">
+        <el-col class="hidden-md-and-down" :span="6">
           <a
             href="#service-description"
             @click="setFaq('service-description')"
