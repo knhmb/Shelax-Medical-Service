@@ -2,11 +2,16 @@
   <div class="all-content">
     <base-content-container>
       <section class="medication">
-        <el-carousel trigger="click" height="150px" arrow="always">
+        <el-carousel
+          trigger="click"
+          height="150px"
+          arrow="always"
+          class="hidden-sm-and-up"
+        >
           <el-carousel-item>
             <div class="slider">
               <el-row justify="space-around">
-                <el-col :span="5">
+                <el-col :sm="24" :md="5" :lg="5">
                   <img
                     src="../assets/icon-product-a@2x.png"
                     class="product-img"
@@ -14,7 +19,85 @@
                   />
                   <p>抗疫產品</p>
                 </el-col>
-                <el-col :span="5">
+              </el-row>
+            </div>
+          </el-carousel-item>
+          <el-carousel-item>
+            <div class="slider">
+              <el-row justify="space-around">
+                <el-col :sm="24" :md="5" :lg="5">
+                  <img
+                    src="../assets/icon-product-b@2x.png"
+                    class="product-img"
+                    alt=""
+                  />
+                  <p>抗疫產品</p>
+                </el-col>
+              </el-row>
+            </div>
+          </el-carousel-item>
+          <el-carousel-item>
+            <div class="slider">
+              <el-row justify="space-around">
+                <el-col :sm="24" :md="5" :lg="5">
+                  <img
+                    src="../assets/icon-product-c@2x.png"
+                    class="product-img"
+                    alt=""
+                  />
+                  <p>抗疫產品</p>
+                </el-col>
+              </el-row>
+            </div>
+          </el-carousel-item>
+          <el-carousel-item>
+            <div class="slider">
+              <el-row justify="space-around">
+                <el-col :sm="24" :md="5" :lg="5">
+                  <img
+                    src="../assets/icon-product-d@2x.png"
+                    class="product-img"
+                    alt=""
+                  />
+                  <p>抗疫產品</p>
+                </el-col>
+              </el-row>
+            </div>
+          </el-carousel-item>
+          <el-carousel-item>
+            <div class="slider">
+              <el-row justify="space-around">
+                <el-col :sm="24" :md="5" :lg="5">
+                  <img
+                    src="../assets/icon-product-e@2x.png"
+                    class="product-img"
+                    alt=""
+                  />
+                  <p>抗疫產品</p>
+                </el-col>
+              </el-row>
+            </div>
+          </el-carousel-item>
+        </el-carousel>
+
+        <el-carousel
+          class="hidden-xs-only"
+          trigger="click"
+          height="150px"
+          arrow="always"
+        >
+          <el-carousel-item>
+            <div class="slider">
+              <el-row justify="space-around">
+                <el-col :sm="24" :md="5" :lg="5">
+                  <img
+                    src="../assets/icon-product-a@2x.png"
+                    class="product-img"
+                    alt=""
+                  />
+                  <p>抗疫產品</p>
+                </el-col>
+                <el-col :sm="24" :md="5" :lg="5">
                   <img
                     src="../assets/icon-product-b@2x.png"
                     class="product-img"
@@ -22,7 +105,7 @@
                   />
                   <p>健康營養</p>
                 </el-col>
-                <el-col :span="5">
+                <el-col :sm="24" :md="5" :lg="5">
                   <img
                     src="../assets/icon-product-c@2x.png"
                     class="product-img"
@@ -30,7 +113,7 @@
                   />
                   <p>復康保健</p>
                 </el-col>
-                <el-col :span="5">
+                <el-col :sm="24" :md="5" :lg="5">
                   <img
                     src="../assets/icon-product-d@2x.png"
                     class="product-img"
@@ -38,7 +121,7 @@
                   />
                   <p>舒緩痛症</p>
                 </el-col>
-                <el-col :span="4">
+                <el-col :sm="24" :md="4" :lg="4">
                   <img
                     src="../assets/icon-product-e@2x.png"
                     class="product-img"
@@ -58,12 +141,15 @@
 <style>
 .all-content {
   background-color: #e5e5e5;
+  /* min-width: 100vh; */
   padding: 2rem 0;
 }
 .all-content .medication {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
   background-color: #fff;
   border-radius: 16px;
+  min-width: 220px;
+  /* text-align: center; */
   /* margin-top: 1rem; */
 }
 
@@ -71,11 +157,39 @@
   width: 78px;
 }
 
+/* .all-content .product-img + p {
+  margin: 2rem 0;
+} */
+
+.all-content .slider .el-col {
+  margin: 1rem 0;
+}
+
 .all-content .slider {
   /* text-align: center; */
   /* display: flex;
   justify-content: ; */
   padding: 1rem 0 1rem 4rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .all-content .slider {
+    padding: 1rem 4rem 1rem 4rem;
+  }
+
+  /* .all-content .product-img {
+    width: 58px;
+  } */
+}
+
+@media screen and (max-width: 600px) {
+  .all-content .medication {
+    text-align: center;
+  }
+
+  .all-content .slider {
+    padding: 0;
+  }
 }
 
 .all-content .el-carousel.el-carousel--horizontal .el-carousel__item {

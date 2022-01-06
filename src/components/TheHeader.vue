@@ -2,7 +2,7 @@
   <header class="header">
     <base-container>
       <el-row>
-        <el-col :span="12">
+        <el-col :sm="24" :md="12" :lg="12">
           <img
             src="../assets/brand-logo@2x.png"
             @click="$router.push('/')"
@@ -10,7 +10,7 @@
             alt=""
           />
         </el-col>
-        <el-col :span="12">
+        <el-col :sm="24" :md="12" :lg="12">
           <el-menu
             class="el-menu-demo top-header"
             mode="horizontal"
@@ -133,6 +133,22 @@ export default {
   cursor: pointer;
 }
 
+@media screen and (max-width: 540px) {
+  .header .el-menu--horizontal.top-header {
+    justify-content: flex-start;
+  }
+
+  .header .el-menu--horizontal.top-header .el-menu-item,
+  .header .el-menu--horizontal.top-header .el-sub-menu .el-sub-menu__title {
+    padding: 0 1rem 0 0;
+  }
+
+  .header .logo {
+    margin: 1rem auto;
+    display: block;
+  }
+}
+
 .header hr {
   border-top: 1px solid #eee;
   margin: 0;
@@ -156,6 +172,7 @@ export default {
   align-items: center;
   height: 60px;
   margin: 0;
+  min-width: fit-content;
 }
 
 .header .bottom-container {

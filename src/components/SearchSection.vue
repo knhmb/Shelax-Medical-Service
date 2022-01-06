@@ -3,19 +3,19 @@
     <base-content-container>
       <div class="search-content">
         <el-row justify="space-between">
-          <el-col :span="5">
+          <el-col :sm="24" :md="5" :lg="5">
             <p class="title">選擇服務</p>
             <p>身體檢查</p>
           </el-col>
-          <el-col :span="5">
+          <el-col :sm="24" :md="5" :lg="5">
             <p class="title">預約日期</p>
             <p>2021/12/20</p>
           </el-col>
-          <el-col :span="5">
+          <el-col :sm="24" :md="5" :lg="5">
             <p class="title">預約時間</p>
             <p>上午 10:00</p>
           </el-col>
-          <el-col :span="5">
+          <el-col :sm="24" :md="5" :lg="5">
             <button>
               <img
                 src="../assets/icon-search@2x.png"
@@ -72,11 +72,25 @@ export default {
 .search .search-content {
   background-color: #fff;
   border-radius: 128px;
-  padding: 8px 8px 8px 12px;
+  padding: 8px 8px 8px 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
   margin-top: -70px;
   position: relative;
   z-index: 1;
+  min-width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .search .search-content {
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 0;
+    padding-left: 8px;
+  }
+
+  .search .search-content .title + p {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .search .el-button.el-button--primary {

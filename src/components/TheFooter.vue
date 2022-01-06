@@ -3,7 +3,7 @@
     <div class="upper-footer">
       <base-content-container>
         <el-row justify="space-between">
-          <el-col :span="5">
+          <el-col :sm="24" :md="5">
             <img
               src="../assets/brand-logo@2x.png"
               style="width: 108px"
@@ -47,7 +47,7 @@
               />
             </span>
           </el-col>
-          <el-col :span="5">
+          <el-col :sm="24" :md="5">
             <p>認識Shelax</p>
             <ul>
               <li>關於Shelax</li>
@@ -55,7 +55,7 @@
               <li>常見問題</li>
             </ul>
           </el-col>
-          <el-col :span="5">
+          <el-col :sm="24" :md="5">
             <p>加入我們</p>
             <ul>
               <li>商戶合作</li>
@@ -63,31 +63,31 @@
               <li>商戶登入</li>
             </ul>
           </el-col>
-          <el-col :span="5">
+          <el-col :sm="24" :md="5">
             <p>網站條款</p>
             <ul>
               <li>使用條款</li>
               <li>私隱條例</li>
             </ul>
           </el-col>
-          <el-col :span="4">
+          <el-col :sm="24" :md="4">
             <p class="payment-title">支付方式</p>
             <el-row>
-              <el-col :span="12">
+              <el-col :sm="24" :md="12">
                 <img
                   src="../assets/payment-visa@2x.png"
                   class="payment"
                   alt=""
                 />
               </el-col>
-              <el-col class="american-express" :span="12">
+              <el-col :sm="24" :md="12">
                 <img
                   src="../assets/payment-master@2x.png"
-                  class="payment"
+                  class="payment american-express"
                   alt=""
                 />
               </el-col>
-              <el-col :span="12">
+              <el-col :sm="24" :md="12">
                 <img
                   src="../assets/payment-american@2x.png"
                   class="payment"
@@ -152,6 +152,12 @@ export default {
   /* align-items: center; */
 }
 
+@media screen and (max-width: 991px) {
+  .el-col:not(:first-of-type) {
+    align-items: center;
+  }
+}
+
 .el-col:last-of-type {
   /* align-items: flex-start; */
 }
@@ -173,6 +179,13 @@ export default {
     from(#fff),
     to(#5d6478)
   ); */
+}
+
+@media screen and (max-width: 991px) {
+  .fade-effect {
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
 }
 
 ul {
@@ -197,6 +210,12 @@ p {
   color: #fff;
 }
 
+@media screen and (max-width: 991px) {
+  p {
+    margin-top: 1rem;
+  }
+}
+
 .payment {
   width: 60px;
 }
@@ -206,7 +225,37 @@ p {
 }
 
 .american-express {
-  margin-left: -15px;
+  /* margin-left: -15px; */
+  /* align-items: center; */
+}
+@media screen and (min-width: 1126px) {
+  .american-express {
+    margin-left: -15px;
+  }
+}
+/* @media screen and (min-width: 992px) and (max-width: 1125px) {
+  .american-express {
+    margin-left: 1rem;
+  }
+} */
+
+@media screen and (max-width: 1280px) {
+  .american-express {
+    margin-left: 0.1rem;
+  }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1124px) {
+  .american-express {
+    margin-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .american-express {
+    margin-left: 0;
+    margin-bottom: 0.3rem;
+  }
 }
 
 .social-media-icon {
@@ -219,6 +268,13 @@ p {
 .upper-footer {
   border-bottom: 0.5px solid #999999;
   padding-bottom: 3rem;
+  /* text-align: center; */
+}
+
+@media screen and (max-width: 991px) {
+  .upper-footer {
+    text-align: center;
+  }
 }
 
 .copyright {

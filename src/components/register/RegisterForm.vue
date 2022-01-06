@@ -158,6 +158,7 @@ export default {
   color: #6f6f6f;
   margin: 0;
   margin-top: 0.5rem;
+  white-space: normal;
 }
 
 .register-form .register {

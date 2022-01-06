@@ -75,6 +75,8 @@ export default {
 .recommended-services .box-card {
   border-radius: 12px !important;
   height: 100% !important;
+  object-fit: contain;
+  /* min-width: 400px; */
 }
 
 .latest-offers p,
@@ -164,7 +166,9 @@ export default {
 .popular-clinics .el-carousel__arrow.el-carousel__arrow--left,
 .new-shelf .el-carousel__arrow.el-carousel__arrow--left,
 .recommended-services .el-carousel__arrow.el-carousel__arrow--left {
-  left: 140px !important;
+  /* left: 140px !important; */
+  left: 10% !important;
+
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.33);
 }
 
@@ -179,7 +183,7 @@ export default {
 .popular-clinics .el-carousel__arrow.el-carousel__arrow--right,
 .new-shelf .el-carousel__arrow.el-carousel__arrow--right,
 .recommended-services .el-carousel__arrow.el-carousel__arrow--right {
-  right: 140px !important;
+  right: 10% !important;
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.33);
 }
 
@@ -195,5 +199,54 @@ export default {
 .new-shelf .el-card__body,
 .recommended-services .el-card__body {
   padding: 0;
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 1024px) {
+  .latest-offers .latest-offers-desc,
+  .popular-clinics .latest-offers-desc,
+  .new-shelf .latest-offers-desc,
+  .recommended-services .latest-offers-desc {
+    font-size: 10px;
+  }
+
+  .latest-offers .el-rate .el-icon.el-rate__icon,
+  .popular-clinics .el-rate .el-icon.el-rate__icon,
+  .new-shelf .el-rate .el-icon.el-rate__icon,
+  .recommended-services .el-rate .el-icon.el-rate__icon {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .latest-offers .el-carousel__arrow.el-carousel__arrow--right,
+  .popular-clinics .el-carousel__arrow.el-carousel__arrow--right,
+  .new-shelf .el-carousel__arrow.el-carousel__arrow--right,
+  .recommended-services .el-carousel__arrow.el-carousel__arrow--right {
+    right: 1% !important;
+  }
+
+  .latest-offers .el-carousel__arrow.el-carousel__arrow--left,
+  .popular-clinics .el-carousel__arrow.el-carousel__arrow--left,
+  .new-shelf .el-carousel__arrow.el-carousel__arrow--left,
+  .recommended-services .el-carousel__arrow.el-carousel__arrow--left {
+    left: 1% !important;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 991px) {
+  .latest-offers .el-carousel__arrow.el-carousel__arrow--right,
+  .popular-clinics .el-carousel__arrow.el-carousel__arrow--right,
+  .new-shelf .el-carousel__arrow.el-carousel__arrow--right,
+  .recommended-services .el-carousel__arrow.el-carousel__arrow--right {
+    right: 1% !important;
+  }
+
+  .latest-offers .el-carousel__arrow.el-carousel__arrow--left,
+  .popular-clinics .el-carousel__arrow.el-carousel__arrow--left,
+  .new-shelf .el-carousel__arrow.el-carousel__arrow--left,
+  .recommended-services .el-carousel__arrow.el-carousel__arrow--left {
+    left: 1% !important;
+  }
 }
 </style>

@@ -4,7 +4,7 @@
     <base-content-container>
       <el-form label-position="top">
         <el-row :gutter="10">
-          <el-col :span="6">
+          <el-col :sm="24" :lg="6">
             <el-form-item>
               <el-input
                 placeholder="身體檢查"
@@ -13,7 +13,7 @@
               ></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :sm="24" :lg="6">
             <el-form-item>
               <el-input
                 type="date"
@@ -22,7 +22,7 @@
               ></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :sm="24" :lg="6">
             <el-form-item>
               <el-input
                 type="time"
@@ -31,7 +31,7 @@
               ></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :sm="24" :lg="6">
             <button>
               <img
                 src="../assets/icon-search@2x.png"
@@ -50,7 +50,7 @@
     <base-content-container>
       <h2>身體檢查</h2>
       <el-row :gutter="10">
-        <el-col :span="8">
+        <el-col :sm="24" :lg="6">
           <div class="google-maps">
             <img
               src="../assets/img-google-map@2x.png"
@@ -154,7 +154,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="16">
+        <el-col :sm="24" :lg="18">
           <search-right-section></search-right-section>
         </el-col>
       </el-row>
@@ -253,6 +253,7 @@ export default {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 0.5rem;
 }
 
 .search-section .icon-search {

@@ -72,12 +72,12 @@ export default {
   },
   methods: {
     handleClose(done) {
-      this.$confirm("Are you sure to close this dialog?")
-        .then(() => {
-          done();
-          this.$emit("dialogClosed", false);
-        })
-        .catch(() => {});
+      // this.$confirm("Are you sure to close this dialog?")
+      // .then(() => {
+      done();
+      this.$emit("dialogClosed", false);
+      // })
+      // .catch(() => {});
     },
     closeDialog() {
       this.$emit("dialogClosed", false);
@@ -107,6 +107,13 @@ export default {
 <style>
 .dialog .el-dialog {
   border-radius: 24px;
+  min-width: 405px;
+}
+
+@media screen and (max-width: 540px) {
+  .dialog .el-dialog {
+    min-width: 320px;
+  }
 }
 
 .dialog .el-dialog__title {

@@ -8,4 +8,10 @@
 .content-container {
   padding: 0 12rem;
 }
+
+@media screen and (max-width: 991px) {
+  .content-container {
+    padding: 0 3rem;
+  }
+}
 </style>

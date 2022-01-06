@@ -1,13 +1,9 @@
 <template>
   <el-row>
-    <el-col :span="6">
-      <img
-        src="https://previews.123rf.com/images/pressmaster/pressmaster1606/pressmaster160601214/59150208-pretty-patient-sitting-in-bed.jpg"
-        class="card-img"
-        alt=""
-      />
+    <el-col :sm="24" :lg="6" class="card-img">
+      <!-- <img src="../../assets/Rectangle-77.png" class="card-img" alt="" /> -->
     </el-col>
-    <el-col :span="13">
+    <el-col :sm="24" :lg="12">
       <div class="card-content">
         <h4>{{ name }}</h4>
         <p>{{ description }}</p>
@@ -27,7 +23,7 @@
         </div>
       </div>
     </el-col>
-    <el-col class="pricing" :span="5">
+    <el-col class="pricing" :sm="24" :lg="6">
       <div>
         <p>{{ discountPrice }}</p>
         <h6>{{ price }}</h6>
@@ -67,8 +63,27 @@ export default {
 
 .right-section .box-card .card-img {
   /* width: 190px; */
-  width: 100%;
+  /* width: 100%;
   height: 100%;
+  object-fit: contain; */
+  background-image: url("../../assets/Rectangle-77.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* object-fit: contain; */
+  /* width: 180px; */
+  /* height: 200px; */
+}
+
+@media screen and (max-width: 1024px) {
+  .right-section .box-card .card-img {
+    height: 500px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .right-section .box-card .card-img {
+    height: 250px;
+  }
 }
 
 .right-section .box-card .card-content {
