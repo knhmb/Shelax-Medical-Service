@@ -3,16 +3,12 @@
     <div class="el-col"> -->
   <el-carousel
     trigger="click"
-    height="300px"
+    height="390px"
     arrow="always"
     indicator-position="none"
   >
     <el-carousel-item v-for="item in 4" :key="item">
-      <img
-        src="https://www.wirelessnursecall.com/application/files/3414/4723/9076/l1.png"
-        style="height: 100%; width: 100%"
-        alt=""
-      />
+      <img src="../../assets/Rectangle-36.png" alt="" />
     </el-carousel-item>
   </el-carousel>
   <!-- </div>
@@ -53,5 +49,26 @@
 
 .service .service-carousel .el-carousel .el-carousel__item img {
   border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 1024px) {
+  .service .service-carousel .el-carousel .el-carousel__container {
+    height: 256px !important;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .service .service-carousel .el-carousel .el-carousel__container {
+    height: 176px !important;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .service .service-carousel .el-carousel .el-carousel__container {
+    height: 127px !important;
+  }
 }
 </style>

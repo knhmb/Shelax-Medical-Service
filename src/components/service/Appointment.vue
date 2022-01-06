@@ -2,7 +2,7 @@
   <h3>選擇預約日期及時間</h3>
   <div class="content">
     <el-row :gutter="20">
-      <el-col :span="12">
+      <el-col :sm="24" :lg="12">
         <p>選擇日期</p>
         <!-- <el-date-picker
           v-model="value"
@@ -344,7 +344,7 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="12">
+      <el-col :sm="24" :lg="12">
         <Time />
       </el-col>
     </el-row>

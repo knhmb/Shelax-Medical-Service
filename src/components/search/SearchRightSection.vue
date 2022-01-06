@@ -11,6 +11,7 @@
         :time="service.time"
         :discountPrice="service.discountPrice"
         :price="service.price"
+        :image="service.image"
       ></search-card>
     </el-card>
   </div>
@@ -37,6 +38,7 @@ export default {
           time: "12:30",
           discountPrice: "HK$ 800",
           price: "HKD 570",
+          image: require("../../assets/Rectangle-77.png"),
         },
         {
           id: 2,
@@ -49,6 +51,7 @@ export default {
           time: "12:30",
           discountPrice: "HK$ 800",
           price: "HKD 570",
+          image: require("../../assets/Rectangle-77-1.png"),
         },
         {
           id: 3,
@@ -61,6 +64,7 @@ export default {
           time: "12:30",
           discountPrice: "HK$ 800",
           price: "HKD 570",
+          image: require("../../assets/Rectangle-77-2.png"),
         },
         {
           id: 4,
@@ -73,6 +77,7 @@ export default {
           time: "12:30",
           discountPrice: "HK$ 800",
           price: "HKD 570",
+          image: require("../../assets/Rectangle-77-3.png"),
         },
         {
           id: 5,
@@ -85,6 +90,7 @@ export default {
           time: "12:30",
           discountPrice: "HK$ 800",
           price: "HKD 570",
+          image: require("../../assets/Rectangle-77.png"),
         },
         {
           id: 6,
@@ -97,6 +103,7 @@ export default {
           time: "12:30",
           discountPrice: "HK$ 800",
           price: "HKD 570",
+          image: require("../../assets/Rectangle-77-1.png"),
         },
         {
           id: 7,
@@ -109,6 +116,7 @@ export default {
           time: "12:30",
           discountPrice: "HK$ 800",
           price: "HKD 570",
+          image: require("../../assets/Rectangle-77-2.png"),
         },
         {
           id: 8,
@@ -121,6 +129,7 @@ export default {
           time: "12:30",
           discountPrice: "HK$ 800",
           price: "HKD 570",
+          image: require("../../assets/Rectangle-77-3.png"),
         },
         {
           id: 9,
@@ -133,6 +142,7 @@ export default {
           time: "12:30",
           discountPrice: "HK$ 800",
           price: "HKD 570",
+          image: require("../../assets/Rectangle-77.png"),
         },
         {
           id: 10,
@@ -145,6 +155,7 @@ export default {
           time: "12:30",
           discountPrice: "HK$ 800",
           price: "HKD 570",
+          image: require("../../assets/Rectangle-77-1.png"),
         },
       ],
     };

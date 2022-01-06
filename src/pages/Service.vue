@@ -12,10 +12,10 @@
       </div>
       <div class="checkup-package">
         <el-row>
-          <el-col :span="16">
+          <el-col :sm="24" :lg="16">
             <Package />
           </el-col>
-          <el-col :span="8"></el-col>
+          <el-col :sm="24" :lg="8"></el-col>
         </el-row>
       </div>
     </base-content-container>
@@ -81,5 +81,11 @@ export default {
 .service .appointment-section {
   background-color: #f5f7fa;
   padding: 2rem 0;
+}
+
+@media screen and (max-width: 414px) {
+  .service .el-breadcrumb .el-breadcrumb__item {
+    font-size: 12px;
+  }
 }
 </style>

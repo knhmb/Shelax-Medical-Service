@@ -20,7 +20,7 @@
                   :description="product.description"
                   :price="product.price"
                   :rate="product.rate"
-                  :category="product.productCategory"
+                  :image="product.image"
                   :number-of-rate="product.numberOfRate"
                   :discount="product.discountPrice"
                 ></latest-offers-card>
@@ -35,7 +35,7 @@
         trigger="click"
         arrow="always"
         indicator-position="none"
-        height="320px"
+        height="350px"
         class="hide"
       >
         <el-carousel-item>
@@ -52,7 +52,7 @@
                   :description="product.description"
                   :price="product.price"
                   :rate="product.rate"
-                  :category="product.productCategory"
+                  :image="product.image"
                   :number-of-rate="product.numberOfRate"
                   :discount="product.discountPrice"
                 ></latest-offers-card>
@@ -86,7 +86,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "popularClinics",
+          image: require("../../assets/unsplash_HuWm7malJ18.png"),
         },
         {
           id: 2,
@@ -96,7 +96,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "popularClinics",
+          image: require("../../assets/unsplash_e7MJLM5VGjY.png"),
         },
         {
           id: 3,
@@ -106,7 +106,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "popularClinics",
+          image: require("../../assets/unsplash_XJptUS8nbhs.png"),
         },
         {
           id: 4,
@@ -116,7 +116,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "popularClinics",
+          image: require("../../assets/unsplash_vVKh9xeLub4.png"),
         },
       ],
     };
@@ -156,7 +156,7 @@ export default {
   /* min-width: 800px !important; */
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 591px) and (max-width: 767px) {
   .popular-clinics
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {
@@ -164,7 +164,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (min-width: 541px) and (max-width: 590px) {
   .popular-clinics
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {
@@ -172,15 +172,15 @@ export default {
   }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (min-width: 486px) and (max-width: 540px) {
   .popular-clinics
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {
-    height: 470px !important;
+    height: 490px !important;
   }
 }
 
-@media screen and (max-width: 485px) {
+@media screen and (min-width: 441px) and (max-width: 485px) {
   .popular-clinics
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {
@@ -188,7 +188,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (min-width: 361px) and (max-width: 440px) {
   .popular-clinics
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {
@@ -196,7 +196,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (min-width: 321px) and (max-width: 360px) {
   .popular-clinics
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {

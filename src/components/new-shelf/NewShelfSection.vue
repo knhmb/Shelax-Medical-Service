@@ -20,7 +20,7 @@
                   :description="product.description"
                   :price="product.price"
                   :rate="product.rate"
-                  :category="product.productCategory"
+                  :image="product.image"
                   :number-of-rate="product.numberOfRate"
                   :discount="product.discountPrice"
                 ></latest-offers-card>
@@ -35,7 +35,7 @@
         trigger="click"
         arrow="always"
         indicator-position="none"
-        height="320px"
+        height="420px"
         class="hide"
       >
         <el-carousel-item>
@@ -48,7 +48,7 @@
                   :description="product.description"
                   :price="product.price"
                   :rate="product.rate"
-                  :category="product.productCategory"
+                  :image="product.image"
                   :number-of-rate="product.numberOfRate"
                   :discount="product.discountPrice"
                 ></latest-offers-card>
@@ -83,7 +83,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "newShelf",
+          image: require("../../assets/Rectangle-77.png"),
         },
         {
           id: 2,
@@ -93,7 +93,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "newShelf",
+          image: require("../../assets/Rectangle-77-1.png"),
         },
         {
           id: 3,
@@ -103,7 +103,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "newShelf",
+          image: require("../../assets/Rectangle-77-3.png"),
         },
         {
           id: 4,
@@ -113,7 +113,7 @@ export default {
           description: "綜合個人健康體檢套餐",
           rate: 4,
           numberOfRate: "(138,370)",
-          productCategory: "newShelf",
+          image: require("../../assets/Rectangle-77-2.png"),
         },
       ],
     };
@@ -150,47 +150,47 @@ export default {
   margin-bottom: 2rem;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 591px) and (max-width: 767px) {
+  .new-shelf .el-carousel.el-carousel--horizontal .el-carousel__container {
+    height: 750px !important;
+  }
+}
+
+@media screen and (min-width: 541px) and (max-width: 590px) {
   .new-shelf .el-carousel.el-carousel--horizontal .el-carousel__container {
     height: 650px !important;
   }
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (min-width: 486px) and (max-width: 540px) {
   .new-shelf .el-carousel.el-carousel--horizontal .el-carousel__container {
-    height: 550px !important;
+    height: 620px !important;
   }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (min-width: 441px) and (max-width: 485px) {
   .new-shelf .el-carousel.el-carousel--horizontal .el-carousel__container {
-    height: 470px !important;
+    height: 530px !important;
   }
 }
 
-@media screen and (max-width: 485px) {
+@media screen and (min-width: 361px) and (max-width: 440px) {
   .new-shelf .el-carousel.el-carousel--horizontal .el-carousel__container {
-    height: 430px !important;
-  }
-}
-
-@media screen and (max-width: 440px) {
-  .new-shelf .el-carousel.el-carousel--horizontal .el-carousel__container {
-    height: 400px !important;
+    height: 500px !important;
   }
 }
 
 @media screen and (max-width: 360px) {
   .new-shelf .el-carousel.el-carousel--horizontal .el-carousel__container {
-    height: 350px !important;
+    height: 450px !important;
   }
 }
 
-@media screen and (max-width: 320px) {
+/* @media screen and (max-width: 320px) {
   .new-shelf .el-carousel.el-carousel--horizontal .el-carousel__container {
-    height: 350px !important;
+    height: 450px !important;
   }
-}
+} */
 
 @media screen and (max-width: 767px) {
   .hide {

@@ -1,9 +1,9 @@
 <template>
   <el-row class="wishlist-header">
-    <el-col :span="12">
+    <el-col :sm="24" :md="12" :lg="12">
       <h3>綜合個人健康體檢套餐</h3>
     </el-col>
-    <el-col class="wishlist" :span="12">
+    <el-col class="wishlist" :sm="24" :md="12" :lg="12">
       <img
         @mouseleave="imgLeave"
         @mouseover="imgHover"
@@ -25,15 +25,15 @@
     </el-col>
     <el-col :span="24">
       <el-row>
-        <el-col :span="8">
+        <el-col :sm="24" :md="8" :lg="8">
           <img src="../../assets/icon-time@2x.png" alt="" />
           <span>服務時間 10 小時</span>
         </el-col>
-        <el-col :span="7">
+        <el-col :sm="24" :md="7" :lg="7">
           <img src="../../assets/icon-refund@2x.png" alt="" />
           <span>免費取消</span>
         </el-col>
-        <el-col :span="9">
+        <el-col class="no-border" :sm="24" :md="9" :lg="9">
           <img src="../../assets/icon-qrcode@2x.png" alt="" />
           <span>現場請出示電子憑證與護照正本</span>
         </el-col>
@@ -165,5 +165,30 @@ export default {
 .service .checkup-package .wishlist-p .el-col ul {
   padding: 0;
   padding-left: 1.5rem;
+}
+
+@media screen and (max-width: 414px) {
+  .service .checkup-package .wishlist {
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .service .checkup-package h3 {
+    /* font-size: 12px; */
+    /* text-align: center; */
+  }
+
+  .service .checkup-package .wishlist-text .el-col-24:last-child {
+    border-bottom: none;
+  }
+
+  .service .checkup-package .wishlist-text .el-col-24 .no-border {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .service .checkup-package .wishlist-p .el-col p,
+  .service .checkup-package .wishlist-p .el-col ul li {
+    font-size: 10px;
+  }
 }
 </style>

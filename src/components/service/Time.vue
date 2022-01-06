@@ -4,22 +4,22 @@
     <div class="am">
       <p class="divider"><span>上午</span></p>
       <el-row :gutter="10">
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>9:00</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>9:30</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>10:00</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>10:30</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>11:00</base-button>
         </el-col>
-        <el-col :span="6">
+        <el-col :sm="24" :md="6" :lg="6">
           <base-button>11:30</base-button>
         </el-col>
       </el-row>

@@ -1,23 +1,6 @@
 <template>
   <el-card class="box-card">
-    <img
-      v-if="category === 'latestOffers'"
-      src="https://previews.123rf.com/images/pressmaster/pressmaster1606/pressmaster160601214/59150208-pretty-patient-sitting-in-bed.jpg"
-      style="width: 100%"
-      alt=""
-    />
-    <img
-      v-else-if="category === 'popularClinics'"
-      src="https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1702/wavebreakmediamicro170202630/71205692-portrait-of-smiling-patient-lying-on-bed-in-a-hospital.jpg"
-      style="width: 100%"
-      alt=""
-    />
-    <img
-      v-else-if="category === 'newShelf'"
-      src="https://previews.123rf.com/images/pressmaster/pressmaster1606/pressmaster160601214/59150208-pretty-patient-sitting-in-bed.jpg"
-      style="width: 100%"
-      alt=""
-    />
+    <img :src="image" style="width: 100%" alt="" />
     <div class="content">
       <p class="latest-offers-img-text">{{ name }}</p>
       <p class="latest-offers-desc">
@@ -52,7 +35,7 @@ export default {
     "discount",
     "rate",
     "numberOfRate",
-    "category",
+    "image",
   ],
   setup(props) {
     const value = ref(props.rate);

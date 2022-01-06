@@ -2,7 +2,7 @@
   <div class="faq-content">
     <base-content-container>
       <el-row :gutter="20">
-        <el-col :span="18">
+        <el-col :sm="24" :lg="18">
           <div id="service-description">
             <h4>服務說明</h4>
             <p>
@@ -45,7 +45,7 @@
           <cancellation-policy></cancellation-policy>
           <customer-reviews></customer-reviews>
         </el-col>
-        <el-col :span="6">
+        <el-col class="hidden-sm-and-down" :span="6">
           <a
             href="#service-description"
             @click="setFaq('service-description')"
@@ -158,6 +158,13 @@ export default {
   line-height: 20px;
   letter-spacing: 0.1px;
   color: #525252;
+}
+
+@media screen and (max-width: 414px) {
+  .faq-content p,
+  .faq-content ul li {
+    font-size: 10px;
+  }
 }
 
 .faq-content .faq-navigation {

@@ -1,6 +1,11 @@
 <template>
   <el-row>
-    <el-col :sm="24" :lg="6" class="card-img">
+    <el-col
+      :sm="24"
+      :lg="6"
+      class="card-img"
+      :style="{ 'background-image': 'url(' + image + ')' }"
+    >
       <!-- <img src="../../assets/Rectangle-77.png" class="card-img" alt="" /> -->
     </el-col>
     <el-col :sm="24" :lg="12">
@@ -45,6 +50,7 @@ export default {
     "date",
     "discountPrice",
     "price",
+    "image",
   ],
   data() {
     return {
@@ -66,7 +72,7 @@ export default {
   /* width: 100%;
   height: 100%;
   object-fit: contain; */
-  background-image: url("../../assets/Rectangle-77.png");
+  /* background-image: url("../../assets/Rectangle-77.png"); */
   background-repeat: no-repeat;
   background-size: cover;
   /* object-fit: contain; */
