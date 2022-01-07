@@ -143,7 +143,7 @@
   background-color: #e5e5e5;
   /* min-width: 100vh; */
   padding: 2rem 0;
-  min-width: 387px;
+  /* min-width: 320px; */
 }
 .all-content .medication {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);

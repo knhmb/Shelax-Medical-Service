@@ -144,7 +144,7 @@ export default {
 .footer {
   background-color: #5d6478;
   padding: 2rem 0 1rem 0;
-  min-width: 387px;
+  /* min-width: 320px; */
 }
 
 .el-col:not(:first-of-type) {

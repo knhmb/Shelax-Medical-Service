@@ -128,7 +128,7 @@ export default {
 .popular-clinics {
   background-color: #e6eaf0;
   padding: 2rem 0;
-  min-width: 387px;
+  /* min-width: 320px; */
 }
 
 /* .yahoo {
@@ -201,7 +201,7 @@ export default {
   .popular-clinics
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {
-    height: 350px !important;
+    height: 370px !important;
   }
 }
 
@@ -209,7 +209,7 @@ export default {
   .popular-clinics
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {
-    height: 350px !important;
+    height: 370px !important;
   }
 }
 

@@ -173,7 +173,7 @@ export default {
   .recommended-services
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {
-    height: 450px !important;
+    height: 480px !important;
   }
 }
 </style>

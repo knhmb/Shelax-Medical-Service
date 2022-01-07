@@ -27,7 +27,7 @@
     <div class="faq">
       <Faq />
     </div>
-    <div class="recommended-services">
+    <div class="recommended-services-section">
       <recommended-services></recommended-services>
     </div>
   </section>
@@ -81,7 +81,7 @@ export default {
 .service .appointment-section {
   background-color: #f5f7fa;
   padding: 2rem 0;
-  min-width: 386px;
+  /* min-width: 386px; */
 }
 
 @media screen and (max-width: 414px) {

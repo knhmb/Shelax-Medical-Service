@@ -16,5 +16,8 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Noto Sans HK", sans-serif;
+  position: absolute;
+  /* overflow-x: hidden; */
+  min-width: 100%;
 }
 </style>

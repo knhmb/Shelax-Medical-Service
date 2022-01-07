@@ -99,7 +99,7 @@ export default {
   background-color: #fff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08),
     inset 0px -1px 0px rgba(0, 0, 0, 0.08);
-  min-width: 387px;
+  /* min-width: 320px; */
 }
 
 .header .el-row {

@@ -23,7 +23,7 @@
 
 <style>
 .carousel {
-  min-width: 387px;
+  /* min-width: 320px; */
 }
 
 .carousel .carousel-img {

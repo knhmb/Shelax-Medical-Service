@@ -160,4 +160,10 @@ export default {
   border-color: #7690da;
   color: #fff;
 }
+
+@media screen and (max-width: 1024px) {
+  .right-section .box-card .card-content::after {
+    display: none;
+  }
+}
 </style>
