@@ -18,6 +18,6 @@ body {
   font-family: "Noto Sans HK", sans-serif;
   position: absolute;
   /* overflow-x: hidden; */
-  min-width: 100%;
+  width: 100%;
 }
 </style>

@@ -172,4 +172,11 @@ export default {
     text-align: center;
   }
 }
+
+@media screen and (max-width: 414px) {
+  #customer-reviews .el-button {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
 </style>
