@@ -51,7 +51,7 @@
             <div class="contact-method">
               <el-row>
                 <el-col :span="4">
-                  <img src="../assets/icon-contact-map@2x.png" alt="" />
+                  <img src="../assets/icon-contact-time@2x.png" alt="" />
                 </el-col>
                 <el-col :span="20">
                   <h3>辦公時間</h3>
