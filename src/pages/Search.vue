@@ -1,5 +1,5 @@
 <template>
-  <the-header></the-header>
+  <!-- <the-header></the-header> -->
   <section class="search-section">
     <base-content-container>
       <el-form label-position="top">
@@ -160,18 +160,18 @@
       </el-row>
     </base-content-container>
   </section>
-  <the-footer></the-footer>
+  <!-- <the-footer></the-footer> -->
 </template>
 
 <script>
-import TheHeader from "../components/TheHeader.vue";
-import TheFooter from "../components/TheFooter.vue";
+// import TheHeader from "../components/TheHeader.vue";
+// import TheFooter from "../components/TheFooter.vue";
 import SearchRightSection from "../components/search/SearchRightSection.vue";
 
 export default {
   components: {
-    TheHeader,
-    TheFooter,
+    // TheHeader,
+    // TheFooter,
     SearchRightSection,
   },
   data() {

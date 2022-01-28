@@ -1,5 +1,5 @@
 <template>
-  <the-header></the-header>
+  <!-- <the-header></the-header> -->
   <section class="service">
     <base-content-container>
       <el-breadcrumb :separator-icon="ArrowRight">
@@ -31,14 +31,14 @@
       <recommended-services></recommended-services>
     </div>
   </section>
-  <the-footer></the-footer>
+  <!-- <the-footer></the-footer> -->
 </template>
 
 <script>
 import { ArrowRight } from "@element-plus/icons-vue";
 
-import TheHeader from "../components/TheHeader.vue";
-import TheFooter from "../components/TheFooter.vue";
+// import TheHeader from "../components/TheHeader.vue";
+// import TheFooter from "../components/TheFooter.vue";
 import ServiceCarousel from "../components/service/ServiceCarousel.vue";
 import Package from "../components/service/Package.vue";
 import BaseContentContainer from "../ui/BaseContentContainer.vue";
@@ -48,8 +48,8 @@ import RecommendedServices from "../components/service/RecommendedServices.vue";
 
 export default {
   components: {
-    TheHeader,
-    TheFooter,
+    // TheHeader,
+    // TheFooter,
     ServiceCarousel,
     Package,
     BaseContentContainer,
