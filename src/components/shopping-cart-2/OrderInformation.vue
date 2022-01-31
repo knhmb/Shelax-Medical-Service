@@ -4,39 +4,39 @@
     <p>如訂單有什何變動，我們會通知你</p>
     <el-form label-position="top">
       <el-row :gutter="10">
-        <el-col :span="6">
+        <el-col :sm="24" :md="6">
           <el-form-item label="稱謂">
             <el-select placeholder="選擇稱謂"></el-select>
           </el-form-item>
         </el-col>
 
-        <el-col :span="9">
+        <el-col :sm="24" :md="9">
           <el-form-item label="姓氏">
             <el-input placeholder="請輸入姓氏"></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="9">
+        <el-col :sm="24" :md="9">
           <el-form-item label="名字">
             <el-input placeholder="請輸入名字"></el-input>
           </el-form-item>
         </el-col>
 
-        <el-col :span="6">
+        <el-col :sm="24" :md="6">
           <el-form-item label="電話區號">
             <el-select placeholder="選擇電話區號"></el-select>
           </el-form-item>
         </el-col>
-        <el-col :span="9">
+        <el-col :sm="24" :md="9">
           <el-form-item label="電話號碼">
             <el-input placeholder="請輸入電話號碼"></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="9">
+        <el-col :sm="24" :md="9">
           <el-form-item label="電郵地址">
             <el-input placeholder="請輸入電郵地址"></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="12">
+        <el-col :sm="24" :md="12">
           <el-form-item label="居住國家 / 城市">
             <el-select
               class="email-input"
@@ -44,7 +44,7 @@
             ></el-select>
           </el-form-item>
         </el-col>
-        <el-col :span="24">
+        <el-col :sm="24" :md="24">
           <el-checkbox label="同時更新會員資料"></el-checkbox>
         </el-col>
       </el-row>
@@ -99,7 +99,7 @@
   .left-section-cart
   .order-information
   .el-form
-  .el-select.email-input {
+  .el-select {
   width: 100%;
 }
 

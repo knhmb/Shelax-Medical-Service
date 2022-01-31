@@ -2,18 +2,18 @@
   <div class="promo-code">
     <h3>優惠碼</h3>
     <el-row :gutter="10">
-      <el-col :span="7">
+      <el-col :sm="24" :md="7">
         <el-input placeholder="請輸入優惠碼"></el-input>
       </el-col>
-      <el-col :span="5">
+      <el-col :sm="24" :md="5">
         <el-button>添加優惠碼</el-button>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :span="16">
+      <el-col :sm="24" :md="16">
         <p>點擊按鈕後，你的訂單將會自動提交。請在下一頁選選擇付款方式</p>
       </el-col>
-      <el-col :span="8">
+      <el-col :sm="24" :md="8">
         <el-button type="primary">付款</el-button>
       </el-col>
     </el-row>
@@ -84,5 +84,11 @@
   line-height: 24px;
   letter-spacing: 0.4px;
   color: #fff;
+}
+
+@media screen and (max-width: 991px) {
+  .promo-code .el-button {
+    margin-top: 1rem;
+  }
 }
 </style>

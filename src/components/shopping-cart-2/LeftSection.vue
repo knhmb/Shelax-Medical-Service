@@ -90,4 +90,10 @@ export default {
   transform: translateY(-50%);
   width: 70%;
 }
+
+@media screen and (max-width: 991px) {
+  .shopping-cart-step-2 .left-section-cart::after {
+    bottom: 7rem;
+  }
+}
 </style>
