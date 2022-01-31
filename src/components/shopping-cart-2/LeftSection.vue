@@ -7,6 +7,7 @@
       <p class="body-title">預訂資料</p>
       <Form />
       <order-information></order-information>
+      <promo-code></promo-code>
     </div>
   </div>
 </template>
@@ -14,11 +15,13 @@
 <script>
 import Form from "./Form.vue";
 import OrderInformation from "./OrderInformation.vue";
+import PromoCode from "./PromoCode.vue";
 
 export default {
   components: {
     Form,
     OrderInformation,
+    PromoCode,
   },
 };
 </script>
@@ -72,6 +75,6 @@ export default {
   left: -1rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 50%;
+  width: 70%;
 }
 </style>

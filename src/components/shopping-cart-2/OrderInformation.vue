@@ -73,7 +73,7 @@
   left: -1rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 50%;
+  width: 70%;
 }
 
 .shopping-cart-step-2 .left-section-cart .order-information .el-form {
