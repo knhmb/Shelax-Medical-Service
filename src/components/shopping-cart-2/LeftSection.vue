@@ -54,6 +54,19 @@ export default {
   margin: 1rem;
 }
 
+.shopping-cart-step-2 .left-section-cart {
+  position: relative;
+}
+
+.shopping-cart-step-2 .left-section-cart::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #e0e0e0;
+  bottom: 5rem;
+}
+
 .shopping-cart-step-2 .left-section-cart .body .body-title {
   font-weight: 500;
   font-size: 18px;

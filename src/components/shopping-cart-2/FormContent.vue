@@ -23,7 +23,7 @@
               />
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :sm="24" :md="6">
             <el-form-item label="稱謂">
               <el-select
                 v-model="item.title"
@@ -32,7 +32,7 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="9">
+          <el-col :sm="24" :md="9">
             <el-form-item label="姓氏">
               <el-input
                 v-model="item.lastName"
@@ -40,7 +40,7 @@
               ></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="9">
+          <el-col :sm="24" :md="9">
             <el-form-item label="名字">
               <el-input
                 v-model="item.firstName"
@@ -49,7 +49,7 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="6">
+          <el-col :sm="24" :md="6">
             <el-form-item label="電話區號">
               <el-select
                 v-model="item.areaCode"
@@ -57,7 +57,7 @@
               ></el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="9">
+          <el-col :sm="24" :md="9">
             <el-form-item label="電話號碼">
               <el-input
                 v-model="item.phoneNumber"
@@ -65,7 +65,7 @@
               ></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="9">
+          <el-col :sm="24" :md="9">
             <el-form-item label="電郵地址">
               <el-input
                 v-model="item.emailAddress"
@@ -73,7 +73,7 @@
               ></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
+          <el-col :sm="24" :md="12">
             <el-form-item label="居住國家 / 城市">
               <el-select
                 v-model="item.cityOfResidence"
@@ -82,7 +82,7 @@
               ></el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
+          <el-col :sm="24" :md="12">
             <div class="form-btn">
               <el-form-item>
                 <el-button @click="addItem" :icon="Plus"
@@ -197,6 +197,14 @@ export default {
   .left-section-cart
   .shopping-cart-form
   .form-content
+  .el-select.avatar {
+  width: 50%;
+}
+
+.shopping-cart-step-2
+  .left-section-cart
+  .shopping-cart-form
+  .form-content
   .el-select
   .el-input__inner::placeholder {
   font-family: Noto Sans HK;
@@ -273,7 +281,7 @@ export default {
   .left-section-cart
   .shopping-cart-form
   .form-content
-  .el-select.email-input {
+  .el-select {
   width: 100%;
 }
 
@@ -309,5 +317,15 @@ export default {
   letter-spacing: 0.1px;
   color: #262626;
   margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 650px) {
+  .shopping-cart-step-2
+    .left-section-cart
+    .shopping-cart-form
+    .form-content
+    .el-select.avatar {
+    width: 100%;
+  }
 }
 </style>

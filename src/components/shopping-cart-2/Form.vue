@@ -2,10 +2,10 @@
   <div class="shopping-cart-form">
     <div class="form-header">
       <el-row :gutter="12">
-        <el-col :span="3">
+        <el-col :sm="24" :md="3">
           <img src="../../assets/Rectangle-77.png" alt="" />
         </el-col>
-        <el-col :span="21">
+        <el-col :sm="24" :md="21">
           <h3>綜合個人健康體檢套餐</h3>
           <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
           <p>預約日期及時間: 2022年1月21日 - 14:30</p>
@@ -19,10 +19,10 @@
   <div class="shopping-cart-form">
     <div class="form-header">
       <el-row :gutter="12">
-        <el-col :span="3">
+        <el-col :sm="24" :md="3">
           <img src="../../assets/Rectangle-77-1.png" alt="" />
         </el-col>
-        <el-col :span="21">
+        <el-col :sm="24" :md="21">
           <h3>綜合個人健康體檢套餐</h3>
           <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
           <p>預約日期及時間: 2022年1月21日 - 14:30</p>

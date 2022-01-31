@@ -9,6 +9,14 @@
         <el-button>添加優惠碼</el-button>
       </el-col>
     </el-row>
+    <el-row>
+      <el-col :span="16">
+        <p>點擊按鈕後，你的訂單將會自動提交。請在下一頁選選擇付款方式</p>
+      </el-col>
+      <el-col :span="8">
+        <el-button type="primary">付款</el-button>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -51,5 +59,30 @@
   border-color: #2d99a0;
   padding: 0;
   width: 100%;
+}
+
+.promo-code .el-row:last-of-type {
+  margin-top: 3.5rem;
+  align-items: center;
+}
+
+.promo-code p {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #000000;
+}
+
+.promo-code .el-button--primary {
+  background: #7690da;
+  border-radius: 4px;
+  border-color: #7690da;
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #fff;
 }
 </style>
