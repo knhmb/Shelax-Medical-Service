@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import router from "./route.js";
+import store from "./store/store.js";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -26,6 +27,7 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.use(ElementPlus);
 app.use(router);
+app.use(store);
 
 app.component("base-container", BaseContainer);
 app.component("base-content-container", BaseContentContainer);

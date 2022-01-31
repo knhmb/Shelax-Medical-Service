@@ -41,7 +41,11 @@
     <hr />
     <!-- <base-container> -->
     <div class="bottom-container">
-      <el-menu class="el-menu-demo bottom-header" mode="horizontal">
+      <el-menu
+        v-if="!isSteps"
+        class="el-menu-demo bottom-header"
+        mode="horizontal"
+      >
         <el-menu-item index="1">HPV疫苗</el-menu-item>
         <el-menu-item index="2">四痘混合疫苗</el-menu-item>
         <el-menu-item index="3">兒童疫苗</el-menu-item>
@@ -58,6 +62,13 @@
         </el-sub-menu>
         <el-menu-item index="10">兒科檢查</el-menu-item>
       </el-menu>
+      <div v-else class="steps">
+        <el-steps :active="step" finish-status="success">
+          <el-step title="選擇訂單"></el-step>
+          <el-step title="填寫資料"></el-step>
+          <el-step title="付款"></el-step>
+        </el-steps>
+      </div>
     </div>
     <!-- </base-container> -->
   </header>
@@ -75,6 +86,14 @@ export default {
     return {
       dialogVisible: false,
     };
+  },
+  computed: {
+    isSteps() {
+      return this.$store.getters.isSteps;
+    },
+    step() {
+      return this.$store.getters.step;
+    },
   },
   // provide() {
   //   return {
@@ -180,6 +199,38 @@ export default {
   padding: 0 2rem;
 }
 
+.header .bottom-container .steps {
+  padding: 0 20rem;
+  margin-top: 0.5rem;
+}
+
+.header .bottom-container .steps .el-step__head.is-process {
+  color: #7690da;
+  border-color: #7690da;
+}
+
+.header .bottom-container .steps .el-step__head.is-success {
+  color: #7690da;
+  border-color: #7690da;
+}
+
+.header
+  .bottom-container
+  .steps
+  .el-step__head.is-success
+  .el-step__icon.is-text {
+  background-color: #7690da;
+}
+
+.header .bottom-container .steps .el-icon.el-step__icon-inner.is-status {
+  color: #fff;
+}
+
+.header .bottom-container .steps .el-step__title.is-success,
+.header .bottom-container .steps .el-step__title.is-process {
+  color: #262626;
+}
+
 .header .my-login-btn {
   padding: 8px 16px;
   border-radius: 100px;
@@ -200,5 +251,17 @@ export default {
 .header .cart-icon {
   width: 15px;
   margin-right: 0.2rem;
+}
+
+@media screen and (max-width: 865px) {
+  .header .bottom-container .steps {
+    padding: 0 7rem;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .header .bottom-container .steps {
+    padding: 0 2rem;
+  }
 }
 </style>

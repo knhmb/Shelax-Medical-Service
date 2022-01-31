@@ -22,6 +22,18 @@ export default {
     LeftSection,
     RightSection,
   },
+  computed: {
+    isSteps() {
+      return this.$store.getters.isStep;
+    },
+  },
+  created() {
+    this.$store.dispatch("toggleSteps", true);
+    this.$store.dispatch("setStep", 1);
+  },
+  beforeUnmount() {
+    this.$store.dispatch("toggleSteps", false);
+  },
 };
 </script>
 

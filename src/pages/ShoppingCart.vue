@@ -28,6 +28,13 @@ export default {
     PersonalHealthPackage,
     TotalActivities,
   },
+  created() {
+    this.$store.dispatch("toggleSteps", true);
+    this.$store.dispatch("setStep", 0);
+  },
+  beforeUnmount() {
+    this.$store.dispatch("toggleSteps", false);
+  },
 };
 </script>
 
