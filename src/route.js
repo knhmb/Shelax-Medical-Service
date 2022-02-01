@@ -6,6 +6,7 @@ import Service from "./pages/Service.vue";
 import ContactUs from "./pages/ContactUs.vue";
 import ShoppingCart from "./pages/ShoppingCart.vue";
 import ShoppingCart2 from "./pages/ShoppingCart2.vue";
+import PrivacyAndPolicy from "./pages/PrivacyAndPolicy.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,6 +18,7 @@ const router = createRouter({
     { path: "/contact-us", component: ContactUs },
     { path: "/shopping-cart", component: ShoppingCart },
     { path: "/shopping-cart-step-2", component: ShoppingCart2 },
+    { path: "/privacy-and-policy", component: PrivacyAndPolicy },
   ],
 });
 
