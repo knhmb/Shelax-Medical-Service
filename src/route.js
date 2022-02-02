@@ -8,6 +8,7 @@ import ShoppingCart from "./pages/ShoppingCart.vue";
 import ShoppingCart2 from "./pages/ShoppingCart2.vue";
 import PrivacyAndPolicy from "./pages/PrivacyAndPolicy.vue";
 import TC from "./pages/T&C.vue";
+import QAndA from "./pages/Q&A.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -21,6 +22,7 @@ const router = createRouter({
     { path: "/shopping-cart-step-2", component: ShoppingCart2 },
     { path: "/privacy-and-policy", component: PrivacyAndPolicy },
     { path: "/terms-and-conditions", component: TC },
+    { path: "/questions-and-answers", component: QAndA },
   ],
 });
 
