@@ -1,5 +1,5 @@
 <template>
-  <div class="second-section">
+  <div class="fourth-section">
     <base-content-container>
       <el-row :gutter="40">
         <el-col :sm="24" :md="12">
@@ -18,23 +18,23 @@
 </template>
 
 <style scoped>
-.second-section {
+.fourth-section {
   padding: 4rem 0;
   background-color: #e6eaf0;
 }
 
-.second-section .el-row {
+.fourth-section .el-row {
   align-items: center;
 }
 
-.second-section div.img {
+.fourth-section div.img {
   background: #bec6de;
   border-radius: 16px;
   width: 100%;
   height: 270px;
 }
 
-.second-section h4 {
+.fourth-section h4 {
   font-weight: 500;
   font-size: 32px;
   line-height: 40px;
@@ -42,7 +42,7 @@
   margin-bottom: 1.5rem;
 }
 
-.second-section p {
+.fourth-section p {
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
@@ -51,7 +51,7 @@
 }
 
 @media screen and (max-width: 991px) {
-  .second-section div.img {
+  .fourth-section div.img {
     margin-bottom: 1.5rem;
   }
 }

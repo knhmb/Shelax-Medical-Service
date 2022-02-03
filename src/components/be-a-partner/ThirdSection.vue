@@ -1,10 +1,7 @@
 <template>
-  <div class="second-section">
+  <div class="third-section">
     <base-content-container>
       <el-row :gutter="40">
-        <el-col :sm="24" :md="12">
-          <div class="img"></div>
-        </el-col>
         <el-col :sm="24" :md="12">
           <h4>即南助乞門</h4>
           <p>
@@ -12,29 +9,32 @@
             木洋習雨來尾汁布三牛金衣四道南入嗎我「以來它五」貝蝶綠哥平叫。由南細斗父條免海片記怎冬只！又會今蛋壯那波青高止像？同太刃雞菜乾原原石字牙貓叫！吉米爸家間小高冒北几百片小。
           </p>
         </el-col>
+        <el-col :sm="24" :md="12">
+          <div class="img"></div>
+        </el-col>
       </el-row>
     </base-content-container>
   </div>
 </template>
 
 <style scoped>
-.second-section {
+.third-section {
   padding: 4rem 0;
-  background-color: #e6eaf0;
+  /* background-color: #e6eaf0; */
 }
 
-.second-section .el-row {
+.third-section .el-row {
   align-items: center;
 }
 
-.second-section div.img {
+.third-section div.img {
   background: #bec6de;
   border-radius: 16px;
   width: 100%;
   height: 270px;
 }
 
-.second-section h4 {
+.third-section h4 {
   font-weight: 500;
   font-size: 32px;
   line-height: 40px;
@@ -42,7 +42,7 @@
   margin-bottom: 1.5rem;
 }
 
-.second-section p {
+.third-section p {
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
@@ -51,8 +51,8 @@
 }
 
 @media screen and (max-width: 991px) {
-  .second-section div.img {
-    margin-bottom: 1.5rem;
+  .third-section div.img {
+    margin-top: 1.5rem;
   }
 }
 </style>
