@@ -9,6 +9,8 @@ import ShoppingCart2 from "./pages/ShoppingCart2.vue";
 import PrivacyAndPolicy from "./pages/PrivacyAndPolicy.vue";
 import TC from "./pages/T&C.vue";
 import QAndA from "./pages/Q&A.vue";
+import AboutUs from "./pages/AboutUs.vue";
+import BeAPartner from "./pages/BeAPartner.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -23,6 +25,8 @@ const router = createRouter({
     { path: "/privacy-and-policy", component: PrivacyAndPolicy },
     { path: "/terms-and-conditions", component: TC },
     { path: "/questions-and-answers", component: QAndA },
+    { path: "/about-us", component: AboutUs },
+    { path: "/become-a-partner", component: BeAPartner },
   ],
 });
 
