@@ -18,15 +18,6 @@
         </el-col>
       </el-row>
     </base-content-container>
-    <!-- <el-tabs
-      stretch
-      v-model="activeName"
-      class="demo-tabs"
-      @tab-click="handleClick"
-    >
-      <el-tab-pane label="User" name="about-us"></el-tab-pane>
-      <el-tab-pane label="Config" name="be-a-partner"></el-tab-pane>
-    </el-tabs> -->
   </div>
 </template>
 

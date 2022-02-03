@@ -1,15 +1,24 @@
 <template>
-  <img src="../assets/banner-partner.jpg" alt="" />
-  <Tab />
-  <h1>partner</h1>
+  <section class="be-a-partner">
+    <Banner />
+    <Tab />
+    <first-section></first-section>
+    <second-section></second-section>
+  </section>
 </template>
 
 <script>
 import Tab from "../components/Tab.vue";
+import Banner from "../components/be-a-partner/Banner.vue";
+import FirstSection from "../components/be-a-partner/FirstSection.vue";
+import SecondSection from "../components/be-a-partner/SecondSection.vue";
 
 export default {
   components: {
     Tab,
+    Banner,
+    FirstSection,
+    SecondSection,
   },
 };
 </script>
