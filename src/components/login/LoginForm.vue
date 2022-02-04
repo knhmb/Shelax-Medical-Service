@@ -42,7 +42,7 @@
       </el-row>
 
       <el-divider content-position="center">或快速登入</el-divider>
-      <p>
+      <p class="divider">
         如以未登記的電話號碼或第三方帳戶登入，將自動為你建立一個新的Shelax 帳戶
       </p>
       <el-row :gutter="15">
@@ -63,7 +63,27 @@
               style="width: 24px"
               alt=""
             />
-            <p>使用 Facebook 登入</p>
+            <p>使用 Google 登入</p>
+          </el-button>
+        </el-col>
+        <el-col :span="12">
+          <el-button type="primary">
+            <img
+              src="../../assets/icon-google@2x.png"
+              style="width: 24px"
+              alt=""
+            />
+            <p>使用 WeChat 登入</p>
+          </el-button>
+        </el-col>
+        <el-col :span="12">
+          <el-button type="primary">
+            <img
+              src="../../assets/icon-google@2x.png"
+              style="width: 24px"
+              alt=""
+            />
+            <p>使用 Apple 登入</p>
           </el-button>
         </el-col>
       </el-row>
@@ -119,6 +139,7 @@ export default {
   white-space: normal;
   color: #a8a8a8;
   line-height: 18px;
+  font-size: 12px;
 }
 
 .login-form .el-checkbox .el-checkbox__input.is-checked .el-checkbox__inner {
@@ -130,6 +151,12 @@ export default {
   width: 100%;
   background-color: #7690da;
   color: #fff;
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
 }
 
 .login-form .el-button:hover {
@@ -154,6 +181,7 @@ export default {
 .login-form .el-button.el-button--primary {
   background-color: #fff;
   border-color: #eee;
+  margin-top: 1rem;
 }
 
 .login-form .el-button.el-button--primary p {
@@ -161,6 +189,12 @@ export default {
   margin: 0;
   margin-top: 0.5rem;
   white-space: normal;
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: normal;
+  /* font-size: 14px; */
+  line-height: 20px;
+  letter-spacing: 0.1px;
 }
 
 .login-form .login {
@@ -184,5 +218,18 @@ export default {
   font-size: 14px;
   margin: 0;
   margin-top: 0.6rem;
+}
+
+.login-form .divider {
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1px;
+  color: #a8a8a8;
+  font-size: 12px;
 }
 </style>

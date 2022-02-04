@@ -64,6 +64,26 @@
             <p>使用 Facebook 登入</p>
           </el-button>
         </el-col>
+        <el-col :span="12">
+          <el-button type="primary">
+            <img
+              src="../../assets/icon-google@2x.png"
+              style="width: 24px"
+              alt=""
+            />
+            <p>使用 WeChat 登入</p>
+          </el-button>
+        </el-col>
+        <el-col :span="12">
+          <el-button type="primary">
+            <img
+              src="../../assets/icon-google@2x.png"
+              style="width: 24px"
+              alt=""
+            />
+            <p>使用 Apple 登入</p>
+          </el-button>
+        </el-col>
       </el-row>
       <el-row>
         <el-col>
@@ -117,6 +137,7 @@ export default {
   white-space: normal;
   color: #a8a8a8;
   line-height: 18px;
+  font-size: 12px;
 }
 
 .register-form .el-checkbox .el-checkbox__input.is-checked .el-checkbox__inner {
@@ -128,6 +149,12 @@ export default {
   width: 100%;
   background-color: #7690da;
   color: #fff;
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
 }
 
 .register-form .el-button:hover {
@@ -152,6 +179,14 @@ export default {
 .register-form .el-button.el-button--primary {
   background-color: #fff;
   border-color: #eee;
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #6f6f6f;
+  margin-top: 1rem;
 }
 
 .register-form .el-button.el-button--primary p {
