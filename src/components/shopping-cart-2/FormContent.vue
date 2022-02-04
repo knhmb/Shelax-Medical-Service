@@ -13,7 +13,7 @@
               <el-select
                 v-model="item.avatarSelect"
                 class="avatar"
-                placeholder="Chan Tai Man"
+                placeholder="請選擇常用成員"
                 size="large"
               >
               </el-select>
@@ -35,7 +35,7 @@
           <el-col :sm="24" :md="9">
             <el-form-item label="姓氏">
               <el-input
-                v-model="item.lastName"
+                v-model="item.firstName"
                 placeholder="請輸入姓氏"
               ></el-input>
             </el-form-item>
@@ -43,7 +43,7 @@
           <el-col :sm="24" :md="9">
             <el-form-item label="名字">
               <el-input
-                v-model="item.firstName"
+                v-model="item.lastName"
                 placeholder="請輸入名字"
               ></el-input>
             </el-form-item>
@@ -133,14 +133,14 @@ export default {
           {
             name: "",
             phone: "",
-            avatarSelect: "",
-            title: "",
-            lastName: "",
-            firstName: "",
-            areaCode: "",
-            phoneNumber: "",
-            emailAddress: "",
-            cityOfResidence: "",
+            avatarSelect: "Chan Tai Man",
+            title: "Mr.",
+            lastName: "Tai Man",
+            firstName: "Chan",
+            areaCode: "香港(+852)",
+            phoneNumber: "6123 4567",
+            emailAddress: "chantaiman@email.com",
+            cityOfResidence: "香港",
           },
         ],
       },
