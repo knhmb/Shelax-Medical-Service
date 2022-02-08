@@ -69,7 +69,7 @@
         <el-col :span="12">
           <el-button type="primary">
             <img
-              src="../../assets/icon-google@2x.png"
+              src="../../assets/icon-wechat@2x.png"
               style="width: 24px"
               alt=""
             />
@@ -79,7 +79,7 @@
         <el-col :span="12">
           <el-button type="primary">
             <img
-              src="../../assets/icon-google@2x.png"
+              src="../../assets/icon-apple@2x.png"
               style="width: 24px"
               alt=""
             />
