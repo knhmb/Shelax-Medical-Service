@@ -143,6 +143,20 @@ export default {
   background: transparent;
 }
 
+.el-menu--horizontal > .el-menu-item {
+  border: none !important;
+}
+
+.header .el-menu--horizontal > .el-menu-item.is-active {
+  color: #303133 !important;
+  border: none !important;
+}
+
+/* .header .el-menu--horizontal .el-menu-item.is-active {
+  color: #303133;
+  border: none;
+} */
+
 .header .el-menu--horizontal .el-menu-item,
 .header .el-menu--horizontal .el-sub-menu .el-sub-menu__title {
   padding: 0 1rem;
