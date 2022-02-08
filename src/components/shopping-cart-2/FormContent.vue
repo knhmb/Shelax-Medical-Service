@@ -119,8 +119,6 @@ export default {
       Plus,
       otherInformation: "請輸入",
       form: {
-        name: "",
-        phone: "",
         avatarSelect: "",
         title: "",
         lastName: "",
@@ -131,8 +129,6 @@ export default {
         cityOfResidence: "",
         dynamicItem: [
           {
-            name: "",
-            phone: "",
             avatarSelect: "Chan Tai Man",
             title: "Mr.",
             lastName: "Tai Man",
@@ -149,8 +145,6 @@ export default {
   methods: {
     addItem() {
       this.form.dynamicItem.push({
-        name: "",
-        phone: "",
         avatarSelect: "",
         title: "",
         lastName: "",

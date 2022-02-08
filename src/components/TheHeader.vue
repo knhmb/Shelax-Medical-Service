@@ -18,11 +18,10 @@
           >
             <el-sub-menu index="1">
               <template #title>繁體中文</template>
-              <el-menu-item index="1-1">item one</el-menu-item>
-              <el-menu-item index="1-2">item two</el-menu-item>
-              <el-menu-item index="1-3">item three</el-menu-item>
+              <el-menu-item index="1-1">简体中文</el-menu-item>
+              <el-menu-item index="1-2">Eng</el-menu-item>
             </el-sub-menu>
-            <el-menu-item index="2">
+            <el-menu-item index="2" v-if="loggedIn">
               <img src="../assets/icon-cart@2x.png" class="cart-icon" alt="" />
               購物車
             </el-menu-item>
@@ -56,9 +55,8 @@
         <el-menu-item index="8">身體檢查</el-menu-item>
         <el-sub-menu index="9">
           <template #title>基因檢查</template>
-          <el-menu-item index="9-1">item one</el-menu-item>
-          <el-menu-item index="9-2">item two</el-menu-item>
-          <el-menu-item index="9-3">item three</el-menu-item>
+          <el-menu-item index="9-1">DNA基因檢查</el-menu-item>
+          <el-menu-item index="9-2">腫瘤基因檢查</el-menu-item>
         </el-sub-menu>
         <el-menu-item index="10">兒科檢查</el-menu-item>
       </el-menu>
@@ -85,6 +83,7 @@ export default {
   data() {
     return {
       dialogVisible: false,
+      loggedIn: false,
     };
   },
   computed: {

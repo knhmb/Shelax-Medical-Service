@@ -6,34 +6,43 @@
       <el-row :gutter="10">
         <el-col :sm="24" :md="6">
           <el-form-item label="稱謂">
-            <el-select placeholder="選擇稱謂"></el-select>
+            <el-select v-model="title" placeholder="選擇稱謂"></el-select>
           </el-form-item>
         </el-col>
 
         <el-col :sm="24" :md="9">
           <el-form-item label="姓氏">
-            <el-input placeholder="請輸入姓氏"></el-input>
+            <el-input v-model="firstName" placeholder="請輸入姓氏"></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
           <el-form-item label="名字">
-            <el-input placeholder="請輸入名字"></el-input>
+            <el-input v-model="lastName" placeholder="請輸入名字"></el-input>
           </el-form-item>
         </el-col>
 
         <el-col :sm="24" :md="6">
           <el-form-item label="電話區號">
-            <el-select placeholder="選擇電話區號"></el-select>
+            <el-select
+              v-model="areaCode"
+              placeholder="選擇電話區號"
+            ></el-select>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
           <el-form-item label="電話號碼">
-            <el-input placeholder="請輸入電話號碼"></el-input>
+            <el-input
+              v-model="phoneNumber"
+              placeholder="請輸入電話號碼"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
           <el-form-item label="電郵地址">
-            <el-input placeholder="請輸入電郵地址"></el-input>
+            <el-input
+              v-model="emailAddress"
+              placeholder="請輸入電郵地址"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="12">
@@ -41,16 +50,33 @@
             <el-select
               class="email-input"
               placeholder="請輸入電郵地址"
+              v-model="cityOfResidence"
             ></el-select>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="24">
-          <el-checkbox label="同時更新會員資料"></el-checkbox>
+          <el-checkbox checked label="同時更新會員資料"></el-checkbox>
         </el-col>
       </el-row>
     </el-form>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      title: "Mr.",
+      lastName: "Tai Man",
+      firstName: "Chan",
+      areaCode: "香港(+852)",
+      phoneNumber: "6123 4567",
+      emailAddress: "chantaiman@email.com",
+      cityOfResidence: "香港",
+    };
+  },
+};
+</script>
 
 <style>
 .shopping-cart-step-2 .left-section-cart .order-information h3 {

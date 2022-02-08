@@ -31,15 +31,14 @@
             :auth-option="selectedAuthOption"
           ></login-form>
         </el-tab-pane>
-        <el-tab-pane label="手機號碼" name="second">
+        <!-- <el-tab-pane label="手機號碼" name="second">
           <template #label>
             <span @click="selectedTab('phone')" class="label">
-              <!-- <font-awesome-icon class="login-icons" icon="user-secret" /> -->
               <img :src="phoneTab" style="width: 20px" alt="" />
               手機號碼
             </span>
           </template></el-tab-pane
-        >
+        > -->
       </el-tabs>
     </el-dialog>
   </section>
