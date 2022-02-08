@@ -21,14 +21,12 @@
             </span>
           </template>
           <register-form
-            v-if="selectedAuthOption === 'register'"
+            v-if="selectedOption === 'register'"
             @authChanged="changedAuth"
-            :auth-option="selectedAuthOption"
           ></register-form>
           <login-form
-            v-if="selectedAuthOption === 'login'"
+            v-if="selectedOption === 'login'"
             @authChanged="changedAuth"
-            :auth-option="selectedAuthOption"
           ></login-form>
         </el-tab-pane>
         <!-- <el-tab-pane label="手機號碼" name="second">
@@ -49,7 +47,7 @@ import RegisterForm from "./RegisterForm.vue";
 import LoginForm from "../login/LoginForm.vue";
 
 export default {
-  props: ["dialogVisible"],
+  props: ["dialogVisible", "selectedOption"],
   emits: ["dialogClosed"],
   components: {
     RegisterForm,
@@ -61,8 +59,17 @@ export default {
       phoneTab: require("../../assets/icon-phone-off@2x.png"),
       activeName: "first",
       selectedAuthOption: "register",
-      authTitle: "註冊",
+      authTitle: "登入",
     };
+  },
+  watch: {
+    selectedOption() {
+      if (this.selectedOption === "register") {
+        this.authTitle = "註冊";
+      } else {
+        this.authTitle = "登入";
+      }
+    },
   },
   computed: {
     dialogVisibleIsOpen() {
@@ -92,12 +99,15 @@ export default {
     },
     changedAuth(event) {
       if (event.changedAuthOption === "register") {
-        this.selectedAuthOption = event.changedAuthOption;
+        // this.selectedAuthOption = event.changedAuthOption;
+        this.$emit("toggleAuth", event.changedAuthOption);
         this.authTitle = event.authTitle;
       } else if (event.changedAuthOption === "login") {
-        this.selectedAuthOption = event.changedAuthOption;
+        // this.selectedAuthOption = event.changedAuthOption;
+        this.$emit("toggleAuth", event.changedAuthOption);
         this.authTitle = event.authTitle;
       }
+      console.log("changed");
     },
   },
 };
@@ -106,7 +116,7 @@ export default {
 <style>
 .dialog .el-dialog {
   border-radius: 24px;
-  min-width: 405px;
+  min-width: 490px;
 }
 
 @media screen and (max-width: 540px) {

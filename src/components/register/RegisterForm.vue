@@ -101,7 +101,7 @@
 import { Message, Lock } from "@element-plus/icons-vue";
 
 export default {
-  props: ["authOption"],
+  // props: ["authOption"],
   emits: ["authChanged"],
   data() {
     return {

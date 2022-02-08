@@ -25,10 +25,14 @@
               <img src="../assets/icon-cart@2x.png" class="cart-icon" alt="" />
               購物車
             </el-menu-item>
-            <el-menu-item index="3">登入</el-menu-item>
+            <el-menu-item index="3" @click="openDialog('login')"
+              >登入</el-menu-item
+            >
             <li class="login-btn">
               <!-- <el-button class="my-login-btn" type="primary">Login</el-button> -->
-              <button @click="openDialog" class="my-login-btn">註冊</button>
+              <button @click="openDialog('register')" class="my-login-btn">
+                註冊
+              </button>
             </li>
           </el-menu>
         </el-col>
@@ -70,7 +74,12 @@
     </div>
     <!-- </base-container> -->
   </header>
-  <Register @dialogClosed="closingDialog" :dialogVisible="dialogVisible" />
+  <Register
+    @dialogClosed="closingDialog"
+    @toggleAuth="changeAuth"
+    :selectedOption="selectedOption"
+    :dialogVisible="dialogVisible"
+  />
 </template>
 
 <script>
@@ -84,6 +93,7 @@ export default {
     return {
       dialogVisible: false,
       loggedIn: false,
+      selectedOption: "login",
     };
   },
   computed: {
@@ -100,13 +110,17 @@ export default {
   //   };
   // },
   methods: {
-    openDialog() {
+    openDialog(value) {
+      this.selectedOption = value;
       this.dialogVisible = true;
       console.log(this.dialogVisible);
     },
     closingDialog(event) {
       this.dialogVisible = false;
       console.log(event);
+    },
+    changeAuth(event) {
+      this.selectedOption = event;
     },
   },
 };
