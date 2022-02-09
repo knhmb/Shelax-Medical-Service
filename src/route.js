@@ -11,6 +11,7 @@ import TC from "./pages/T&C.vue";
 import QAndA from "./pages/Q&A.vue";
 import AboutUs from "./pages/AboutUs.vue";
 import BeAPartner from "./pages/BeAPartner.vue";
+import ProductDetail from "./pages/ProductDetail.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -27,6 +28,7 @@ const router = createRouter({
     { path: "/questions-and-answers", component: QAndA },
     { path: "/about-us", component: AboutUs },
     { path: "/become-a-partner", component: BeAPartner },
+    { path: "/product-detail", component: ProductDetail },
   ],
 });
 

@@ -158,13 +158,7 @@ export default {
   line-height: 20px;
   letter-spacing: 0.1px;
   color: #525252;
-}
-
-@media screen and (max-width: 414px) {
-  .faq-content p,
-  .faq-content ul li {
-    font-size: 10px;
-  }
+  margin-top: 1rem;
 }
 
 .faq-content .faq-navigation {
@@ -176,7 +170,7 @@ export default {
   cursor: pointer;
   position: relative;
   display: block;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
   text-decoration: none;
 }
 
@@ -201,5 +195,12 @@ export default {
   top: 4px;
   background-color: #7690da;
   display: block;
+}
+
+@media screen and (max-width: 414px) {
+  .faq-content p,
+  .faq-content ul li {
+    font-size: 10px;
+  }
 }
 </style>

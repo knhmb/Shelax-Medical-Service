@@ -32,6 +32,6 @@ body {
   position: absolute;
   /* overflow-x: hidden; */
   width: 100%;
-  background-color: #f5f7fa;
+  /* background-color: #f5f7fa; */
 }
 </style>
