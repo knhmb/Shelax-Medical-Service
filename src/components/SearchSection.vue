@@ -87,8 +87,102 @@
           </el-col>
           <el-col :sm="24" :md="5" :lg="5">
             <p class="title">預約時間</p>
-            <el-time-picker v-model="timePicker" placeholder="Arbitrary time">
-            </el-time-picker>
+            <el-select
+              popper-class="time-dropdown"
+              v-model="timePicker"
+              placeholder="pick a time"
+            >
+              <h5>選擇時段</h5>
+              <el-row justify="space-between">
+                <el-col :span="24" class="time-card">
+                  <el-option value="任何時間">
+                    <p>任何時間</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="24" class="time-card">
+                  <el-option value="上午">
+                    <p>上午</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="7:00">
+                    <p>7:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="7:30">
+                    <p>7:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="8:00">
+                    <p>8:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="8:30">
+                    <p>8:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="9:00">
+                    <p>9:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="9:30">
+                    <p>9:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="10:00">
+                    <p>10:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="10:30">
+                    <p>10:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="11:00">
+                    <p>11:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="11:30">
+                    <p>11:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5"> </el-col>
+                <el-col :span="5"> </el-col>
+                <el-col :span="24" class="time-card">
+                  <el-option value="下午">
+                    <p>下午</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="12:00">
+                    <p>12:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="12:30">
+                    <p>12:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="13:00">
+                    <p>13:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="13:30">
+                    <p>13:30</p>
+                  </el-option>
+                </el-col>
+              </el-row>
+            </el-select>
             <!-- <p>上午 10:00</p> -->
           </el-col>
           <el-col :sm="24" :md="5" :lg="5">
@@ -191,7 +285,8 @@ export default {
   line-height: 28px;
 }
 
-.el-select__popper.service-dropdown.el-popper.is-pure {
+.el-select__popper.service-dropdown.el-popper.is-pure,
+.el-select__popper.time-dropdown.el-popper.is-pure {
   /* min-width: 630px; */
   max-width: 640px;
   border-radius: 24px;
@@ -221,7 +316,8 @@ export default {
   font-weight: normal;
 }
 
-.service-dropdown h5 {
+.service-dropdown h5,
+.time-dropdown h5 {
   font-family: Noto Sans HK;
   font-style: normal;
   font-weight: 500;
@@ -241,6 +337,23 @@ export default {
 .search .el-select .el-icon.el-select__caret.el-input__icon,
 .search .el-input .el-input__prefix {
   display: none;
+}
+
+.el-select-dropdown.time-dropdown .el-scrollbar .time-card {
+  background: #ffffff;
+  border: 0.8px solid #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  /* margin-right: 1rem; */
+}
+
+.el-select-dropdown.time-dropdown .el-scrollbar .time-card p {
+  text-align: center;
+}
+
+.time-dropdown
+  .el-select-dropdown__wrap.el-scrollbar__wrap.el-scrollbar__wrap--hidden-default {
+  max-height: 100%;
 }
 
 @media screen and (max-width: 768px) {
