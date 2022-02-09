@@ -13,6 +13,7 @@
     </base-content-container>
     <quantity-selection></quantity-selection>
     <Faq />
+    <recommended-services></recommended-services>
   </section>
 </template>
 
@@ -22,6 +23,7 @@ import ProductName from "../components/product-detail/ProductName.vue";
 import QuantitySelection from "../components/product-detail/QuantitySelection.vue";
 import Offer from "../components/product-detail/Offer.vue";
 import Faq from "../components/service/Faq.vue";
+import RecommendedServices from "../components/service/RecommendedServices.vue";
 
 export default {
   components: {
@@ -30,6 +32,7 @@ export default {
     QuantitySelection,
     Offer,
     Faq,
+    RecommendedServices,
   },
 };
 </script>
