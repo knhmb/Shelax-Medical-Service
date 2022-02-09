@@ -181,6 +181,66 @@
                     <p>13:30</p>
                   </el-option>
                 </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="14:00">
+                    <p>14:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="14:30">
+                    <p>14:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="15:00">
+                    <p>15:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="15:30">
+                    <p>15:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="16:00">
+                    <p>16:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="16:30">
+                    <p>16:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="17:00">
+                    <p>17:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="17:30">
+                    <p>17:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="18:00">
+                    <p>18:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="18:30">
+                    <p>18:30</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="19:00">
+                    <p>19:00</p>
+                  </el-option>
+                </el-col>
+                <el-col :span="5" class="time-card">
+                  <el-option value="19:30">
+                    <p>19:30</p>
+                  </el-option>
+                </el-col>
               </el-row>
             </el-select>
             <!-- <p>上午 10:00</p> -->
