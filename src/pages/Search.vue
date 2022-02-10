@@ -51,7 +51,7 @@
       <h2>身體檢查</h2>
       <el-row :gutter="10">
         <el-col :sm="24" :lg="6">
-          <div class="google-maps">
+          <!-- <div class="google-maps">
             <img
               src="../assets/img-google-map@2x.png"
               class="google-maps-img"
@@ -61,7 +61,7 @@
               <img src="../assets/icon-location@2x-1.png" alt="" />
               <p>查看地圖</p>
             </div>
-          </div>
+          </div> -->
           <div class="slider">
             <h3>價錢</h3>
             <el-slider v-model="value" range show-stops :max="10"> </el-slider>
@@ -79,7 +79,7 @@
               </el-row>
             </div>
           </div>
-          <div class="customer-review">
+          <!-- <div class="customer-review">
             <h3>顧客評價</h3>
             <el-checkbox size="large">
               <el-rate
@@ -117,7 +117,7 @@
               >
               </el-rate>
             </el-checkbox>
-          </div>
+          </div> -->
           <div class="area">
             <h3>區域</h3>
             <div class="single-area">
@@ -132,6 +132,7 @@
             <div class="single-area">
               <p>九龍區</p>
               <el-checkbox-group v-model="checkList">
+                <el-checkbox label="九龍城區" />
                 <el-checkbox label="觀塘區" />
                 <el-checkbox label="深水埗區" />
                 <el-checkbox label="黃大仙區" />
@@ -262,6 +263,14 @@ export default {
   margin-right: 0.2rem;
 }
 
+.content {
+  margin-top: 2rem;
+}
+
+.content h2 {
+  margin-bottom: 1.5rem;
+}
+
 .content .google-maps {
   position: relative;
   /* width: 280px; */
@@ -339,7 +348,7 @@ export default {
   margin-bottom: 1rem;
 }
 
-.content .five-stars .el-rate__item .el-rate__icon svg,
+/* .content .five-stars .el-rate__item .el-rate__icon svg,
 .content .four-stars .el-rate__item:first-of-type .el-rate__icon svg,
 .content .four-stars .el-rate__item:nth-of-type(2) .el-rate__icon svg,
 .content .four-stars .el-rate__item:nth-of-type(3) .el-rate__icon svg,
@@ -350,16 +359,16 @@ export default {
 .content .two-stars .el-rate__item:nth-of-type(1) .el-rate__icon svg,
 .content .two-stars .el-rate__item:nth-of-type(2) .el-rate__icon svg {
   color: #7690da;
-}
+} */
 
-.content .four-stars .el-rate__item:nth-of-type(5) .el-rate__icon svg,
+/* .content .four-stars .el-rate__item:nth-of-type(5) .el-rate__icon svg,
 .content .three-stars .el-rate__item:nth-of-type(4) .el-rate__icon svg,
 .content .three-stars .el-rate__item:nth-of-type(5) .el-rate__icon svg,
 .content .two-stars .el-rate__item:nth-of-type(3) .el-rate__icon svg,
 .content .two-stars .el-rate__item:nth-of-type(4) .el-rate__icon svg,
 .content .two-stars .el-rate__item:nth-of-type(5) .el-rate__icon svg {
   color: #fff;
-}
+} */
 
 .content .customer-review .el-checkbox {
   display: flex;
@@ -368,6 +377,15 @@ export default {
 
 .content .customer-review {
   border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.content .area {
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.content .area h3 {
   margin-bottom: 1rem;
 }
 
