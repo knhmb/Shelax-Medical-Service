@@ -13,6 +13,7 @@ import AboutUs from "./pages/AboutUs.vue";
 import BeAPartner from "./pages/BeAPartner.vue";
 import ProductDetail from "./pages/ProductDetail.vue";
 import ProductSearch from "./pages/ProductSearch.vue";
+import VendorRegistration from "./pages/VendorRegistration.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -31,6 +32,7 @@ const router = createRouter({
     { path: "/become-a-partner", component: BeAPartner },
     { path: "/product-detail", component: ProductDetail },
     { path: "/product-search", component: ProductSearch },
+    { path: "/vendor-registration", component: VendorRegistration },
   ],
 });
 

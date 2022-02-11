@@ -1,0 +1,45 @@
+<template>
+  <div class="completed">
+    <h3>商戶合作申請</h3>
+    <p>我們已經收到您的商戶合作申請，本公司將有專人與閣下聯絡跟進。</p>
+    <el-button>完成</el-button>
+  </div>
+</template>
+
+<style scoped>
+.completed {
+  text-align: center;
+}
+
+.completed h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28px;
+  text-align: center;
+  color: #262626;
+}
+
+.completed p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.1px;
+  color: #525252;
+}
+
+.completed .el-button {
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+  width: 100%;
+  background: #7690da;
+  border-radius: 4px;
+}
+</style>

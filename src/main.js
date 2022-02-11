@@ -17,6 +17,7 @@ import "element-plus/theme-chalk/display.css";
 import BaseContainer from "./ui/BaseContainer.vue";
 import BaseContentContainer from "./ui/BaseContentContainer.vue";
 import BaseButton from "./ui/BaseButton.vue";
+import BaseCard from "./ui/BaseCard.vue";
 
 // import lang from "element-plus/lib/locale/lang/zh-cn";
 
@@ -32,5 +33,6 @@ app.use(store);
 app.component("base-container", BaseContainer);
 app.component("base-content-container", BaseContentContainer);
 app.component("base-button", BaseButton);
+app.component("base-card", BaseCard);
 
 app.mount("#app");

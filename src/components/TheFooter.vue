@@ -1,5 +1,5 @@
 <template>
-  <section class="footer">
+  <section class="footer" v-if="$route.path !== '/vendor-registration'">
     <div class="upper-footer">
       <base-content-container>
         <el-row justify="space-between">
