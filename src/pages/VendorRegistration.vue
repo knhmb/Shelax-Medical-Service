@@ -47,7 +47,8 @@ export default {
 .vendor-registration {
   background: blue;
   padding: 2rem 0;
-  height: 100%;
+  min-height: calc(100vh - 60px);
+  /* height: 100vh; */
 }
 
 .vendor-registration h3 {

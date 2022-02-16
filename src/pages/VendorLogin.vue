@@ -65,16 +65,8 @@ export default {
   width: 100%;
   letter-spacing: 0.4px;
   margin-bottom: 0.5rem;
-}
-
-.vendor-login .el-form .el-button.next {
   background: #7690da;
   color: #ffffff;
-}
-
-.vendor-login .el-form .el-button.return {
-  color: #7690da;
-  border-color: #7690da;
 }
 
 .vendor-login .el-form .el-button.verification-code {

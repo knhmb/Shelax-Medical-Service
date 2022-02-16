@@ -23,18 +23,31 @@
             </el-sub-menu>
             <el-menu-item
               index="2"
-              v-if="loggedIn && $route.path !== '/vendor-registration'"
+              v-if="
+                loggedIn &&
+                $route.path !== '/vendor-registration' &&
+                $route.path !== '/vendor-forgot-password'
+              "
             >
               <img src="../assets/icon-cart@2x.png" class="cart-icon" alt="" />
               購物車
             </el-menu-item>
             <el-menu-item
-              v-if="$route.path !== '/vendor-registration'"
+              v-if="
+                $route.path !== '/vendor-registration' &&
+                $route.path !== '/vendor-forgot-password'
+              "
               index="3"
               @click="openDialog('login')"
               >登入</el-menu-item
             >
-            <li class="login-btn" v-if="$route.path !== '/vendor-registration'">
+            <li
+              class="login-btn"
+              v-if="
+                $route.path !== '/vendor-registration' &&
+                $route.path !== '/vendor-forgot-password'
+              "
+            >
               <!-- <el-button class="my-login-btn" type="primary">Login</el-button> -->
               <button @click="openDialog('register')" class="my-login-btn">
                 註冊
@@ -49,7 +62,13 @@
     </base-container>
     <hr />
     <!-- <base-container> -->
-    <div class="bottom-container" v-if="$route.path !== '/vendor-registration'">
+    <div
+      class="bottom-container"
+      v-if="
+        $route.path !== '/vendor-registration' &&
+        $route.path !== '/vendor-forgot-password'
+      "
+    >
       <el-menu
         v-if="!isSteps"
         class="el-menu-demo bottom-header"

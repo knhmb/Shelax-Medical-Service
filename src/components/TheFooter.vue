@@ -1,5 +1,8 @@
 <template>
-  <section class="footer" v-if="$route.path !== '/vendor-registration'">
+  <section
+    class="footer"
+    v-if="!isVendorRegistrationPath && !isVendorForgotPassPath"
+  >
     <div class="upper-footer">
       <base-content-container>
         <el-row justify="space-between">
@@ -112,6 +115,14 @@ export default {
       twitterImg: require("../assets/socialmedia-twitter-default@2x.png"),
       instagramImg: require("../assets/socialmedia-ig-default@2x.png"),
     };
+  },
+  computed: {
+    isVendorRegistrationPath() {
+      return this.$route.path === "/vendor-registration";
+    },
+    isVendorForgotPassPath() {
+      return this.$route.path === "/vendor-forgot-password";
+    },
   },
   methods: {
     changeImg(data) {

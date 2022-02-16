@@ -1,97 +1,135 @@
 <template>
   <section class="contact-us">
-    <Banner />
-    <div class="contact-us-content">
-      <base-content-container>
-        <h2>聯絡我們</h2>
-        <el-row :gutter="20">
-          <el-col :sm="24" :lg="12">
-            <div class="contact-method">
-              <el-row>
-                <el-col :span="4">
-                  <img src="../assets/icon-contact-phone@2x.png" alt="" />
-                </el-col>
-                <el-col :span="20">
-                  <h3>客戶服務熱線</h3>
-                  <p>公司電話: (852) 1234 5678</p>
-                  <p>Whatspp: (852) 1234 5678</p>
-                </el-col>
-              </el-row>
-            </div>
-          </el-col>
-          <el-col :sm="24" :lg="12">
-            <div class="contact-method">
-              <el-row>
-                <el-col :span="4">
-                  <img src="../assets/icon-contact-email@2x.png" alt="" />
-                </el-col>
-                <el-col :span="20">
-                  <h3>公司電郵</h3>
-                  <p>公司電郵: info@shelax.com</p>
-                </el-col>
-              </el-row>
-            </div>
-          </el-col>
-          <el-col :sm="24" :lg="12">
-            <div class="contact-method">
-              <el-row>
-                <el-col :span="4">
-                  <img src="../assets/icon-contact-map@2x.png" alt="" />
-                </el-col>
-                <el-col :span="20">
-                  <h3>辦公室地址</h3>
-                  <p>
-                    方比水朱員東少常綠十國連飽要牙蝶弟頁借寫服工十王像了哭買
-                  </p>
-                </el-col>
-              </el-row>
-            </div>
-          </el-col>
-          <el-col :sm="24" :lg="12">
-            <div class="contact-method">
-              <el-row>
-                <el-col :span="4">
-                  <img src="../assets/icon-contact-time@2x.png" alt="" />
-                </el-col>
-                <el-col :span="20">
-                  <h3>辦公時間</h3>
-                  <p>星期一至五: 09:00 - 17:00</p>
-                  <p>星期六: 09:00 - 17:00</p>
-                  <p>公眾假期休息</p>
-                </el-col>
-              </el-row>
-            </div>
-          </el-col>
-        </el-row>
-      </base-content-container>
-    </div>
+    <el-row :gutter="20">
+      <el-col :sm="24" :md="12">
+        <div class="contact-us-content">
+          <h2>聯絡我們</h2>
+          <el-form label-position="top">
+            <el-row :gutter="20">
+              <el-col :sm="12" :md="9">
+                <el-form-item label="稱謂">
+                  <el-select placeholder="選擇稱謂"></el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :sm="12" :md="15">
+                <el-form-item label="姓名">
+                  <el-input placeholder="請輸入姓名"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :sm="12" :md="9">
+                <el-form-item label="電話區號">
+                  <el-select placeholder="選擇電話區號"></el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :sm="12" :md="15">
+                <el-form-item label="電話號碼">
+                  <el-input placeholder="請輸入電話號碼"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :sm="12" :md="24">
+                <el-form-item label="電郵地址">
+                  <el-input placeholder="請輸入電郵地址"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :sm="12" :md="24">
+                <el-form-item label="你的訊息">
+                  <el-input
+                    type="textarea"
+                    rows="7"
+                    placeholder="請輸入訊息內容"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col>
+                <el-form-item>
+                  <el-button>送出</el-button>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-form>
+        </div>
+      </el-col>
+      <el-col :sm="24" :md="12">
+        <!-- <Banner /> -->
+        <img src="../assets/asian-woman-call-center-2.png" alt="" />
+      </el-col>
+    </el-row>
   </section>
 </template>
 
 <script>
-import Banner from "../components/contact-us/Banner.vue";
+// import Banner from "../components/contact-us/Banner.vue";
 
 export default {
   components: {
-    Banner,
+    // Banner,
   },
 };
 </script>
 
-<style scoped>
+<style>
 .contact-us .contact-us-content {
-  background-color: #f5f7fa;
+  /* background-color: #f5f7fa; */
   margin-top: -0.3rem;
-  padding: 2rem 0;
+  padding: 1rem 0;
+  padding-left: 13rem;
 }
 .contact-us h2 {
-  text-align: center;
+  /* text-align: center; */
   color: #4e68b2;
   font-size: 32px;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
-.contact-us .contact-method {
+.contact-us .contact-us-content .el-form .el-form-item {
+  margin-bottom: 10px;
+}
+
+.contact-us .contact-us-content .el-form .el-form-item__label {
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #262626;
+  padding-bottom: 0.5rem;
+}
+
+.contact-us .contact-us-content .el-form .el-select {
+  width: 100%;
+}
+
+.contact-us .contact-us-content .el-form .el-button {
+  background: #7690da;
+  border-radius: 4px;
+  width: 100%;
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+}
+
+.contact-us img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 991px) {
+  .contact-us .contact-us-content {
+    padding: 0 5rem;
+  }
+
+  .contact-us h2 {
+    margin-top: 1rem;
+  }
+}
+
+/* .contact-us .contact-method {
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
   border-radius: 16px;
@@ -139,5 +177,5 @@ export default {
   .contact-us .contact-method p {
     margin-left: 0.5;
   }
-}
+} */
 </style>

@@ -2,7 +2,9 @@
   <div class="last-section">
     <h2>商戶合作</h2>
     <p>你發位王珠借立乍村文遠前把石象</p>
-    <el-button>立即申請成為合作伙伴</el-button>
+    <el-button @click="$router.push('/vendor-registration')"
+      >立即申請成為合作伙伴</el-button
+    >
   </div>
 </template>
 

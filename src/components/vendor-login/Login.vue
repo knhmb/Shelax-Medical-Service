@@ -36,7 +36,7 @@
         </el-form-item>
       </el-col>
       <el-col>
-        <el-button class="next">登入</el-button>
+        <el-button>登入</el-button>
       </el-col>
     </el-row>
   </el-form>

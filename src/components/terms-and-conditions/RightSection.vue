@@ -1,7 +1,7 @@
 <template>
   <div class="policy-info">
     <div class="header">
-      <h3>私隱條例</h3>
+      <h3>使用條款</h3>
     </div>
     <div class="body">
       <div class="policy-content">
