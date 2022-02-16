@@ -1,7 +1,7 @@
 <template>
   <div class="total-activities">
     <div class="top">
-      <p>2 個活動合計:</p>
+      <p>合計:</p>
       <p class="price">HKD 1710</p>
       <el-button>前往付款</el-button>
     </div>

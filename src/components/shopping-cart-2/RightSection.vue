@@ -1,5 +1,6 @@
 <template>
   <div class="right-section">
+    <h2>服務類型</h2>
     <div class="card">
       <div class="header">
         <h3>綜合個人健康體檢套餐</h3>
@@ -90,6 +91,75 @@
         </el-row>
       </div>
     </div>
+
+    <h2>產品類型</h2>
+    <div class="card">
+      <div class="header">
+        <h3>綜合個人健康體檢套餐</h3>
+        <p>ＸＸＸＸ健康中心</p>
+        <p>香港九龍城區九龍仔聯福道17號</p>
+      </div>
+      <div class="body">
+        <el-row>
+          <el-col :span="12">
+            <p class="key">數量</p>
+          </el-col>
+          <el-col :span="12">
+            <p class="value">2件</p>
+          </el-col>
+          <el-col :span="12">
+            <p class="key">單價</p>
+          </el-col>
+          <el-col :span="12">
+            <p class="value">HKD80</p>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="footer">
+        <el-row>
+          <el-col :span="12">
+            <p class="key">價格</p>
+          </el-col>
+          <el-col :span="12">
+            <p class="value">HKD160</p>
+          </el-col>
+        </el-row>
+      </div>
+    </div>
+    <div class="card">
+      <div class="header">
+        <h3>綜合個人健康體檢套餐</h3>
+        <p>ＸＸＸＸ健康中心</p>
+        <p>香港九龍城區九龍仔聯福道17號</p>
+      </div>
+      <div class="body">
+        <el-row>
+          <el-col :span="12">
+            <p class="key">數量</p>
+          </el-col>
+          <el-col :span="12">
+            <p class="value">1件</p>
+          </el-col>
+          <el-col :span="12">
+            <p class="key">單價</p>
+          </el-col>
+          <el-col :span="12">
+            <p class="value">HKD120</p>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="footer">
+        <el-row>
+          <el-col :span="12">
+            <p class="key">價格</p>
+          </el-col>
+          <el-col :span="12">
+            <p class="value">HKD120</p>
+          </el-col>
+        </el-row>
+      </div>
+    </div>
+
     <div class="card price">
       <div class="body">
         <el-row>
@@ -129,6 +199,15 @@
 </template>
 
 <style scoped>
+.right-section h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28px;
+  color: #26408a;
+  margin-bottom: 1rem;
+}
+
 .shopping-cart-step-2 .right-section .card {
   background: #ffffff;
   border: 0.8px solid #e0e0e0;

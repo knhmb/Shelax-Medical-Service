@@ -40,5 +40,8 @@ export default {
 <style scoped>
 .shopping-cart-step-2 {
   margin: 2rem 0;
+  background: #e5e5e5;
+  margin-top: -0.1rem;
+  padding-top: 1rem;
 }
 </style>

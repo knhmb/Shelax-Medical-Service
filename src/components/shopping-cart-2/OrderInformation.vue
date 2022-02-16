@@ -1,7 +1,7 @@
 <template>
   <div class="order-information">
     <h3>訂購人資料</h3>
-    <p>如訂單有什何變動，我們會通知你</p>
+    <p>如訂單有任何變動，我們會通知你</p>
     <el-form label-position="top">
       <el-row :gutter="10">
         <el-col :sm="24" :md="6">

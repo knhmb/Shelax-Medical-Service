@@ -138,7 +138,7 @@
   </div>
 
   <div class="expired-section">
-    <h2>以下活動已失效需重新確認</h2>
+    <h2>以下服務已失效需重新確認</h2>
     <div class="title">
       <h2>服務類型</h2>
     </div>
@@ -165,12 +165,12 @@
       </el-row>
 
       <el-row class="bottom">
-        <el-col :xs="24" :sm="14">
+        <el-col :xs="24" :sm="12">
           <span>更改</span>
           <span>刪除</span>
         </el-col>
-        <el-col :xs="24" :sm="10">
-          <p>活動已失效，請重新選擇後購買</p>
+        <el-col :xs="24" :sm="12">
+          <p>服務已失效，請重新選擇後購買</p>
         </el-col>
       </el-row>
     </div>
@@ -198,12 +198,12 @@
       </el-row>
 
       <el-row class="bottom">
-        <el-col :xs="24" :sm="14">
+        <el-col :xs="24" :sm="12">
           <span>更改</span>
           <span>刪除</span>
         </el-col>
-        <el-col :xs="24" :sm="10">
-          <p>活動已失效，請重新選擇後購買</p>
+        <el-col :xs="24" :sm="12">
+          <p>服務已失效，請重新選擇後購買</p>
         </el-col>
       </el-row>
     </div>
@@ -412,6 +412,12 @@ export default {
   .shopping-cart .packages .bottom p {
     text-align: center;
     margin-top: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 417px) {
+  .shopping-cart .expired-section .packages::after {
+    bottom: 7rem;
   }
 }
 </style>
