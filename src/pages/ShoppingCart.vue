@@ -3,6 +3,7 @@
     <base-content-container>
       <el-row :gutter="20">
         <el-col :sm="24" :lg="18">
+          <h2>服務類型</h2>
           <div class="selection">
             <el-checkbox></el-checkbox>
             <span>全選(3)</span>
@@ -40,7 +41,17 @@ export default {
 
 <style scoped>
 .shopping-cart {
-  margin-top: 2rem;
+  padding-top: 2rem;
+  background: #e5e5e5;
+}
+
+.shopping-cart h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28px;
+  color: #26408a;
+  margin-bottom: 1rem;
 }
 
 .shopping-cart .selection {
