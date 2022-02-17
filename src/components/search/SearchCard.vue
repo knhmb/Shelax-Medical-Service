@@ -99,7 +99,7 @@ export default {
   height: 138.22px; */
 }
 
-.right-section .box-card .card-content::after {
+/* .right-section .box-card .card-content::after {
   content: "";
   position: absolute;
   width: 29.3rem;
@@ -107,7 +107,7 @@ export default {
   background-color: #e0e0e0;
   transform: rotate(90deg);
   right: -233px;
-}
+} */
 
 .right-section .box-card .card-content h4 {
   margin: 0;
@@ -161,9 +161,9 @@ export default {
   color: #fff;
 }
 
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
   .right-section .box-card .card-content::after {
     display: none;
   }
-}
+} */
 </style>

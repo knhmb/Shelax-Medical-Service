@@ -102,12 +102,22 @@
         </el-row>
       </base-content-container>
     </div>
+    <el-backtop :visibility-height="1500" :bottom="45">
+      <div>
+        <el-icon><arrow-up-bold /></el-icon>
+      </div>
+    </el-backtop>
     <p class="copyright">© 2021 Shelax. All Rights Reserved.</p>
   </section>
 </template>
 
 <script>
+import { ArrowUpBold } from "@element-plus/icons-vue";
+
 export default {
+  components: {
+    ArrowUpBold,
+  },
   data() {
     return {
       facebookImg: require("../assets/socialmedia-facebook-default@2x.png"),
@@ -163,6 +173,47 @@ export default {
   flex-direction: column;
   /* align-items: center; */
 }
+
+.el-backtop div {
+  background: #26408a;
+  border-radius: 4px;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  position: relative;
+}
+
+.el-backtop div i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+/* .el-backtop div::after {
+  content: "kh";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  border-bottom: 5px solid red;
+  border-left: 5px solid red;
+  border-right: 5px solid red;
+} */
 
 @media screen and (max-width: 991px) {
   .el-col:not(:first-of-type) {

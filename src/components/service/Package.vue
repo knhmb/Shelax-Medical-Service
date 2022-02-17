@@ -135,6 +135,7 @@ export default {
 .service .checkup-package .wishlist-text {
   display: flex;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .service .checkup-package .wishlist-text .border {
@@ -147,6 +148,10 @@ export default {
 .service .checkup-package .wishlist-text img {
   width: 20px;
   margin-right: 0.5rem;
+}
+
+.service .checkup-package .wishlist-p .el-col {
+  margin-bottom: 1rem;
 }
 
 .service .checkup-package .wishlist-text span,
