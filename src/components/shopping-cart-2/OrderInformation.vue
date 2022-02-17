@@ -2,55 +2,69 @@
   <div class="order-information">
     <h3>訂購人資料</h3>
     <p>如訂單有任何變動，我們會通知你</p>
-    <el-form label-position="top">
+    <el-form
+      label-position="top"
+      ref="ruleFormRef"
+      :model="ruleForm"
+      :rules="rules"
+    >
       <el-row :gutter="10">
         <el-col :sm="24" :md="6">
-          <el-form-item label="稱謂">
-            <el-select v-model="title" placeholder="選擇稱謂"></el-select>
+          <el-form-item label="稱謂" prop="title">
+            <el-select
+              v-model="ruleForm.title"
+              placeholder="選擇稱謂"
+            ></el-select>
           </el-form-item>
         </el-col>
 
         <el-col :sm="24" :md="9">
-          <el-form-item label="姓氏">
-            <el-input v-model="firstName" placeholder="請輸入姓氏"></el-input>
+          <el-form-item label="姓氏" prop="firstName">
+            <el-input
+              v-model="ruleForm.firstName"
+              placeholder="請輸入姓氏"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
-          <el-form-item label="名字">
-            <el-input v-model="lastName" placeholder="請輸入名字"></el-input>
+          <el-form-item label="名字" prop="lastName">
+            <el-input
+              v-model="ruleForm.lastName"
+              placeholder="請輸入名字"
+            ></el-input>
           </el-form-item>
         </el-col>
 
         <el-col :sm="24" :md="6">
-          <el-form-item label="電話區號">
+          <el-form-item label="電話區號" prop="areaCode">
             <el-select
-              v-model="areaCode"
+              v-model="ruleForm.areaCode"
               placeholder="選擇電話區號"
             ></el-select>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
-          <el-form-item label="電話號碼">
+          <el-form-item label="電話號碼" prop="phoneNumber">
             <el-input
-              v-model="phoneNumber"
+              v-model="ruleForm.phoneNumber"
               placeholder="請輸入電話號碼"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
-          <el-form-item label="電郵地址">
+          <el-form-item label="電郵地址" prop="emailAddress">
             <el-input
-              v-model="emailAddress"
+              v-model="ruleForm.emailAddress"
               placeholder="請輸入電郵地址"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="12">
-          <el-form-item label="居住國家 / 城市">
+          <el-form-item label="居住國家 / 城市" prop="cityOfResidence">
             <el-select
               class="email-input"
               placeholder="請輸入電郵地址"
-              v-model="cityOfResidence"
+              v-model="ruleForm.cityOfResidence"
             ></el-select>
           </el-form-item>
         </el-col>
@@ -66,13 +80,67 @@
 export default {
   data() {
     return {
-      title: "Mr.",
-      lastName: "Tai Man",
-      firstName: "Chan",
-      areaCode: "香港(+852)",
-      phoneNumber: "6123 4567",
-      emailAddress: "chantaiman@email.com",
-      cityOfResidence: "香港",
+      ruleForm: {
+        title: "Mr.",
+        lastName: "Tai Man",
+        firstName: "Chan",
+        areaCode: "香港(+852)",
+        phoneNumber: "6123 4567",
+        emailAddress: "chantaiman@email.com",
+        cityOfResidence: "香港",
+      },
+      rules: {
+        title: [
+          {
+            required: true,
+            message: "This field is required",
+            trigger: "blur",
+          },
+        ],
+        lastName: [
+          {
+            required: true,
+            message: "Lastname is required",
+            trigger: "blur",
+          },
+        ],
+        firstName: [
+          {
+            required: true,
+            message: "Firstname is required",
+            trigger: "blur",
+          },
+        ],
+        areaCode: [
+          {
+            required: true,
+            message: "Area code is required",
+            trigger: "blur",
+          },
+        ],
+        phoneNumber: [
+          {
+            required: true,
+            message: "Phone number is required",
+            trigger: "blur",
+          },
+        ],
+        emailAddress: [
+          {
+            required: true,
+            type: "email",
+            message: "Email is required",
+            trigger: "blur",
+          },
+        ],
+        cityOfResidence: [
+          {
+            required: true,
+            message: "City is required",
+            trigger: "blur",
+          },
+        ],
+      },
     };
   },
 };

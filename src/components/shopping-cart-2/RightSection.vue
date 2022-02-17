@@ -277,6 +277,7 @@
   font-weight: bold;
   line-height: 20px;
   color: #4e68b2;
+  font-size: 20px;
 }
 
 .shopping-cart-step-2 .right-section .card.price .footer .key {

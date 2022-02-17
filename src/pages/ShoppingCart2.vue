@@ -43,5 +43,7 @@ export default {
   background: #e5e5e5;
   margin-top: -0.1rem;
   padding-top: 1rem;
+  padding-bottom: 2rem;
+  margin-bottom: 0;
 }
 </style>
