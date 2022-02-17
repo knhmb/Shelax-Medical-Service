@@ -73,13 +73,42 @@
       </el-row>
     </div>
   </div>
-  <el-row>
-    <el-col class="btns">
-      <el-button type="primary">加入購物車</el-button>
-      <el-button type="success">立即預約</el-button>
-    </el-col>
-  </el-row>
+  <div class="time-footer">
+    <el-row>
+      <el-col>
+        <p class="quantity">數量</p>
+      </el-col>
+      <el-col>
+        <div class="quantity-range">
+          <el-row>
+            <el-col :span="12">
+              <p>人數</p>
+            </el-col>
+            <el-col class="quantity-input" :span="12">
+              <el-input-number size="small" v-model="num" :min="1" :max="10" />
+            </el-col>
+          </el-row>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col class="btns">
+        <el-button type="primary">加入購物車</el-button>
+        <el-button type="success">立即預約</el-button>
+      </el-col>
+    </el-row>
+  </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      num: 1,
+    };
+  },
+};
+</script>
 
 <style>
 .time-section p {
@@ -112,32 +141,87 @@
   padding-bottom: 1.5rem;
 }
 
-.time-section + .el-row .btns {
+.time-footer .el-row .btns {
   text-align: end;
 }
 
-.time-section + .el-row .el-button {
+.time-footer .el-row .el-button {
   padding: 12px 42px;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
 
-.time-section + .el-row .el-button--primary {
+.time-footer .el-row .el-button--primary {
   background-color: #2d99a0;
   border-color: #2d99a0;
 }
 
-.time-section + .el-row .el-button--success {
+.time-footer .el-row .el-button--success {
   background-color: #7690da;
   border-color: #7690da;
 }
 
+.time-footer p.quantity {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #525252;
+  margin: 1rem 0;
+}
+
+.time-footer .quantity-range {
+  background: #ffffff;
+  border: 0.8px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 16px;
+}
+
+.time-footer .quantity-range p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #525252;
+}
+
+.time-footer .quantity-range .el-row {
+  align-items: center;
+}
+
+.time-footer .quantity-range .quantity-input {
+  text-align: end;
+}
+
+.time-footer .quantity-input .el-input-number {
+  width: 100%;
+}
+
+.time-footer .quantity-input .el-input-number__decrease,
+.time-footer .quantity-input .el-input-number__increase,
+.time-footer .quantity-input .el-input__inner {
+  border: none;
+}
+
+.time-footer .quantity-input .el-input-number__decrease,
+.time-footer .quantity-input .el-input-number__increase {
+  background: #f4f4f4;
+}
+
+.time-footer .quantity-input .el-input__inner {
+  font-weight: bold;
+  font-size: 16px;
+}
+
 @media screen and (max-width: 414px) {
-  .time-section + .el-row .btns {
+  .time-sectfooter .el-row .btns {
     text-align: center;
   }
 
-  .time-section + .el-row .el-button {
+  .time-footer .el-row .el-button {
     padding: 12px 20px;
     /* margin-bottom: 0.5rem; */
   }
