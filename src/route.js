@@ -16,6 +16,7 @@ import ProductSearch from "./pages/ProductSearch.vue";
 import VendorRegistration from "./pages/VendorRegistration.vue";
 import VendorLogin from "./pages/VendorLogin.vue";
 import VendorForgotPassword from "./pages/VendorForgotPassword.vue";
+import MemberProfile from "./pages/MemberProfile.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -37,6 +38,7 @@ const router = createRouter({
     { path: "/vendor-registration", component: VendorRegistration },
     { path: "/vendor-login", component: VendorLogin },
     { path: "/vendor-forgot-password", component: VendorForgotPassword },
+    { path: "/member-profile", component: MemberProfile },
   ],
 });
 
