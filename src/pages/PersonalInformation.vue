@@ -1,0 +1,54 @@
+<template>
+  <div class="personal-information">
+    <base-member-card>
+      <h3>會員資料</h3>
+      <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+        <el-tab-pane @click="console.log('first')" label="個人資料" name="first"
+          >個人資料</el-tab-pane
+        >
+        <el-tab-pane
+          @click="console.log('second')"
+          label="修改密碼"
+          name="second"
+          >修改密碼</el-tab-pane
+        >
+      </el-tabs>
+    </base-member-card>
+  </div>
+</template>
+
+<script>
+export default {
+  methods: {
+    handleClick(tab) {
+      if (tab.props.name === "first") {
+        this.$router.push({ name: "personal-information" });
+      } else {
+        this.$router.push("/");
+      }
+      console.log(tab.props.name);
+    },
+  },
+};
+</script>
+
+<style>
+.member-profile .personal-information h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28px;
+  color: #262626;
+  margin-bottom: 1rem;
+}
+
+.member-profile .personal-information .el-tabs__item {
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  /* line-height: 20px; */
+  letter-spacing: 0.1px;
+  color: #8d8d8d;
+}
+</style>

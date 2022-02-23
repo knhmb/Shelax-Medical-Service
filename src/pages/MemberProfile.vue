@@ -2,25 +2,34 @@
   <section class="member-profile">
     <base-content-container>
       <el-row>
-        <el-col :span="6">
+        <el-col :sm="24" :lg="6">
           <div class="member-card-avatar">
-            <el-avatar icon :size="100" shape="circle"></el-avatar>
-            <el-icon><camera /></el-icon>
+            <el-avatar icon :size="100" shape="circle">
+              <el-icon><camera /></el-icon>
+            </el-avatar>
             <p>Chan Tai Man</p>
           </div>
           <div class="member-card-options">
             <ul>
-              <li>會員資料</li>
+              <router-link
+                :to="{ name: 'personal-information' }"
+                v-slot="{ navigate }"
+              >
+                <li @click="navigate">會員資料</li>
+              </router-link>
+
               <li>常用成員</li>
               <li>評價管理</li>
               <li>預約記錄</li>
               <li>我的收藏</li>
-              <li>Shelax Points</li>
+              <li>Shelax Points <span>999</span></li>
             </ul>
           </div>
         </el-col>
-        <el-col :span="18">
-          <router-view></router-view>
+        <el-col :sm="24" :lg="18">
+          <div class="member-card-categories">
+            <router-view></router-view>
+          </div>
         </el-col>
       </el-row>
     </base-content-container>
@@ -50,14 +59,17 @@ export default {
   border-radius: 8px;
   padding: 40px;
   text-align: center;
-  /* min-width: 100%; */
+}
+
+.member-profile .member-card-avatar .el-avatar {
   position: relative;
+  overflow: visible;
 }
 
 .member-profile .member-card-avatar .el-icon {
   position: absolute;
-  top: 50%;
-  right: 4.3rem;
+  top: 60%;
+  right: -0.3rem;
   color: #525252;
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
@@ -109,5 +121,19 @@ export default {
 
 .member-profile .member-card-options ul li:hover {
   color: #7690da;
+}
+
+.member-profile .member-card-options ul li:last-of-type {
+  display: flex;
+  justify-content: space-between;
+}
+
+.member-profile .member-card-options ul li span {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #feb431;
 }
 </style>
