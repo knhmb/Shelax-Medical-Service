@@ -1,7 +1,7 @@
 <template>
   <section class="member-profile">
     <base-content-container>
-      <el-row>
+      <el-row :gutter="20">
         <el-col :sm="24" :lg="6">
           <div class="member-card-avatar">
             <el-avatar icon :size="100" shape="circle">
@@ -27,9 +27,7 @@
           </div>
         </el-col>
         <el-col :sm="24" :lg="18">
-          <div class="member-card-categories">
-            <router-view></router-view>
-          </div>
+          <router-view></router-view>
         </el-col>
       </el-row>
     </base-content-container>
@@ -135,5 +133,15 @@ export default {
   line-height: 24px;
   letter-spacing: 0.4px;
   color: #feb431;
+}
+
+.member-profile .member-card-options ul a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1199px) {
+  .member-profile .member-card-options {
+    margin-bottom: 1rem;
+  }
 }
 </style>

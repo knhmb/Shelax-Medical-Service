@@ -44,7 +44,7 @@ const router = createRouter({
       component: MemberProfile,
       children: [
         {
-          path: "/personal-information",
+          path: "personal-information",
           component: PersonalInformation,
           name: "personal-information",
         },

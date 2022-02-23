@@ -3,9 +3,13 @@
     <base-member-card>
       <h3>會員資料</h3>
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-        <el-tab-pane @click="console.log('first')" label="個人資料" name="first"
-          >個人資料</el-tab-pane
+        <el-tab-pane
+          @click="console.log('first')"
+          label="個人資料"
+          name="first"
         >
+          <Form />
+        </el-tab-pane>
         <el-tab-pane
           @click="console.log('second')"
           label="修改密碼"
@@ -18,7 +22,17 @@
 </template>
 
 <script>
+import Form from "../components/personal-information/Form.vue";
+
 export default {
+  components: {
+    Form,
+  },
+  data() {
+    return {
+      activeName: "first",
+    };
+  },
   methods: {
     handleClick(tab) {
       if (tab.props.name === "first") {
