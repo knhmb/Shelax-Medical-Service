@@ -4,7 +4,7 @@
       <div class="search-content">
         <el-row justify="space-between">
           <el-col :sm="24" :md="5" :lg="5">
-            <p class="title">選擇服務</p>
+            <p class="title">搜尋服務或產品</p>
             <el-select
               popper-class="service-dropdown"
               v-model="value"
@@ -76,21 +76,21 @@
             </el-select>
           </el-col>
           <el-col :sm="24" :md="5" :lg="5">
-            <p class="title">預約日期</p>
+            <p class="title">選擇日期</p>
             <el-date-picker
               v-model="datePicker"
               type="date"
-              placeholder="Pick a day"
+              placeholder="日期                                               "
             >
             </el-date-picker>
             <!-- <p>2021/12/20</p> -->
           </el-col>
           <el-col :sm="24" :md="5" :lg="5">
-            <p class="title">預約時間</p>
+            <p class="title">選擇時間</p>
             <el-select
               popper-class="time-dropdown"
               v-model="timePicker"
-              placeholder="pick a time"
+              placeholder="時間"
             >
               <h5>選擇時段</h5>
               <el-row justify="space-between">

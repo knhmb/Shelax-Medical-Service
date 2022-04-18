@@ -2,7 +2,7 @@
   <div class="new-shelf">
     <section class="new-shelf-content">
       <base-content-container>
-        <h2 class="title">精選香港體檢中心</h2>
+        <h2 class="title">全新上架</h2>
       </base-content-container>
 
       <el-carousel

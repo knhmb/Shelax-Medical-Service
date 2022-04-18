@@ -218,6 +218,10 @@ export default {
   font-size: 14px;
   margin: 0;
   margin-top: 0.6rem;
+  cursor: pointer;
+}
+.login-form .forgot-pass:hover {
+  text-decoration: underline;
 }
 
 .login-form .divider {

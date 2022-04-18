@@ -2,7 +2,7 @@
   <div class="latest-offers">
     <section class="latest-offers-content">
       <base-content-container>
-        <h2 class="title">最新優惠</h2>
+        <h2 class="title">預防子宮頸癌</h2>
       </base-content-container>
 
       <el-carousel
@@ -135,7 +135,8 @@ export default {
 .latest-offers .title {
   font-weight: 700;
   font-size: 32px;
-  /* margin-bottom: 2rem; */
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .latest-offers .latest-offers-btn {
@@ -150,7 +151,11 @@ export default {
   margin-top: 0.5rem;
 }
 
-@media screen and (min-width: 591px) and (max-width: 767px) {
+.latest-offers .el-carousel.el-carousel--horizontal .el-carousel__container {
+  height: 70vh !important;
+}
+
+/* @media screen and (min-width: 591px) and (max-width: 767px) {
   .latest-offers .el-carousel.el-carousel--horizontal .el-carousel__container {
     height: 750px !important;
   }
@@ -184,7 +189,7 @@ export default {
   .latest-offers .el-carousel.el-carousel--horizontal .el-carousel__container {
     height: 450px !important;
   }
-}
+} */
 
 /* @media screen and (max-width: 320px) {
   .latest-offers .el-carousel.el-carousel--horizontal .el-carousel__container {

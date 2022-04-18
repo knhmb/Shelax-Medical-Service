@@ -2,7 +2,7 @@
   <div class="popular-clinics">
     <section class="popular-clinics-content">
       <base-content-container>
-        <h2 class="title">熱門診所</h2>
+        <h2 class="title">孕前檢查</h2>
       </base-content-container>
 
       <el-carousel
@@ -138,7 +138,8 @@ export default {
 .popular-clinics .title {
   font-weight: 700;
   font-size: 32px;
-  /* margin-bottom: 2rem; */
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .popular-clinics .popular-clinics-btn {
@@ -153,11 +154,15 @@ export default {
   margin-top: 0.5rem;
 }
 
+.popular-clinics .el-carousel.el-carousel--horizontal .el-carousel__container {
+  height: 60vh !important;
+}
+
 .mobile-view {
   /* min-width: 800px !important; */
 }
 
-@media screen and (min-width: 591px) and (max-width: 767px) {
+/* @media screen and (min-width: 591px) and (max-width: 767px) {
   .popular-clinics
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {
@@ -211,7 +216,7 @@ export default {
     .el-carousel__container {
     height: 370px !important;
   }
-}
+} */
 
 @media screen and (max-width: 767px) {
   .hide {

@@ -1,7 +1,9 @@
 <template>
   <section
     class="footer"
-    v-if="!isVendorRegistrationPath && !isVendorForgotPassPath"
+    v-if="
+      !isVendorRegistrationPath && !isVendorForgotPassPath && !isVendorLogin
+    "
   >
     <div class="upper-footer">
       <base-content-container>
@@ -63,16 +65,16 @@
           <el-col :sm="24" :md="5">
             <p>加入我們</p>
             <ul>
-              <li>商戶合作</li>
-              <li>商戶註冊</li>
-              <li>商戶登入</li>
+              <li @click="navigate('/become-a-partner')">商戶合作</li>
+              <li @click="navigate('/vendor-registration')">商戶註冊</li>
+              <li @click="navigate('/vendor-login')">商戶登入</li>
             </ul>
           </el-col>
           <el-col :sm="24" :md="5">
             <p>網站條款</p>
             <ul>
-              <li>使用條款</li>
-              <li>私隱條例</li>
+              <li @click="navigate('/terms-and-conditions')">使用條款</li>
+              <li @click="navigate('/privacy-and-policy')">私隱條例</li>
             </ul>
           </el-col>
           <el-col :sm="24" :md="4">
@@ -134,6 +136,9 @@ export default {
     },
     isVendorForgotPassPath() {
       return this.$route.path === "/vendor-forgot-password";
+    },
+    isVendorLogin() {
+      return this.$route.path === "/vendor-login";
     },
   },
   methods: {

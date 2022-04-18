@@ -21,6 +21,13 @@ import PersonalInformation from "./pages/PersonalInformation.vue";
 import ShelaxPoints from "./pages/ShelaxPoints.vue";
 
 const router = createRouter({
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
   history: createWebHistory(),
   routes: [
     { path: "/", redirect: "/home" },

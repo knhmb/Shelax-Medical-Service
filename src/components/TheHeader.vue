@@ -15,11 +15,19 @@
             class="el-menu-demo top-header"
             mode="horizontal"
             :ellipsis="false"
+            menu-trigger="click"
           >
-            <el-sub-menu index="1">
-              <template #title>繁體中文</template>
-              <el-menu-item index="1-1">简体中文</el-menu-item>
-              <el-menu-item index="1-2">Eng</el-menu-item>
+            <el-sub-menu popper-class="language" index="1">
+              <template #title>{{ menuVal }}</template>
+              <el-menu-item @click="menuVal = '繁體中文'" index="1-1"
+                >繁體中文</el-menu-item
+              >
+              <el-menu-item @click="menuVal = '简体中文'" index="1-2"
+                >简体中文</el-menu-item
+              >
+              <el-menu-item @click="menuVal = 'English'" index="1-3"
+                >English</el-menu-item
+              >
             </el-sub-menu>
             <el-menu-item
               index="2"
@@ -119,6 +127,7 @@ export default {
       dialogVisible: false,
       loggedIn: false,
       selectedOption: "login",
+      menuVal: "繁體中文",
     };
   },
   computed: {
@@ -205,22 +214,6 @@ export default {
   cursor: pointer;
 }
 
-@media screen and (max-width: 540px) {
-  .header .el-menu--horizontal.top-header {
-    justify-content: flex-start;
-  }
-
-  .header .el-menu--horizontal.top-header .el-menu-item,
-  .header .el-menu--horizontal.top-header .el-sub-menu .el-sub-menu__title {
-    padding: 0 1rem 0 0;
-  }
-
-  .header .logo {
-    margin: 1rem auto;
-    display: block;
-  }
-}
-
 .header hr {
   border-top: 1px solid #eee;
   margin: 0;
@@ -305,9 +298,29 @@ export default {
   margin-right: 0.2rem;
 }
 
+.el-menu--horizontal.language .el-menu-item {
+  font-size: 12px;
+}
+
 @media screen and (max-width: 865px) {
   .header .bottom-container .steps {
     padding: 0 7rem;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .header .el-menu--horizontal.top-header {
+    justify-content: flex-start;
+  }
+
+  .header .el-menu--horizontal.top-header .el-menu-item,
+  .header .el-menu--horizontal.top-header .el-sub-menu .el-sub-menu__title {
+    padding: 0 1rem 0 0;
+  }
+
+  .header .logo {
+    margin: 1rem auto;
+    display: block;
   }
 }
 
