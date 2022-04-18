@@ -9,7 +9,8 @@
           <el-col :sm="24" :md="5">
             <img
               src="../assets/brand-logo@2x.png"
-              style="width: 108px"
+              style="width: 108px; cursor: pointer"
+              @click="$router.push('/')"
               alt=""
             />
             <span class="fade-effect"></span>
@@ -50,12 +51,13 @@
               />
             </span>
           </el-col>
-          <el-col :sm="24" :md="5">
+          <el-col class="first" :sm="24" :md="5">
             <p>認識Shelax</p>
             <ul>
-              <li>關於Shelax</li>
-              <li>聯絡我們</li>
-              <li>常見問題</li>
+              <li @click="navigate('/about-us')">關於Shelax</li>
+              <li @click="navigate('/shelax-points')">Shelax Points 介紹</li>
+              <li @click="navigate('/contact-us')">聯絡我們</li>
+              <li @click="navigate('/questions-and-answers')">常見問題</li>
             </ul>
           </el-col>
           <el-col :sm="24" :md="5">
@@ -157,6 +159,9 @@ export default {
         this.instagramImg = require("../assets/socialmedia-ig-default@2x.png");
       }
     },
+    navigate(path) {
+      this.$router.push(path);
+    },
   },
 };
 </script>
@@ -172,6 +177,17 @@ export default {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
+}
+
+.footer .upper-footer ul li {
+  cursor: pointer;
+  transition: 0.2s ease-out;
+  width: fit-content;
+}
+
+.footer .upper-footer ul li:hover {
+  padding-left: 0.5rem;
+  color: #fff;
 }
 
 .el-backtop div {
@@ -218,6 +234,14 @@ export default {
 @media screen and (max-width: 991px) {
   .el-col:not(:first-of-type) {
     align-items: center;
+  }
+
+  .footer .upper-footer .el-col.first p {
+    margin-left: 0.7rem;
+  }
+
+  .footer .upper-footer .el-col.first ul {
+    margin-left: 3.7rem;
   }
 }
 

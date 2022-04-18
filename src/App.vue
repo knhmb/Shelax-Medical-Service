@@ -30,7 +30,7 @@ html {
 body {
   font-family: "Noto Sans HK", sans-serif;
   position: absolute;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   width: 100%;
   /* background-color: #f5f7fa; */
 }

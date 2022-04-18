@@ -20,8 +20,6 @@ import BaseButton from "./ui/BaseButton.vue";
 import BaseCard from "./ui/BaseCard.vue";
 import BaseMemberCard from "./ui/BaseMemberCard.vue";
 
-// import lang from "element-plus/lib/locale/lang/zh-cn";
-
 const app = createApp(App);
 
 library.add(faChevronRight, faChevronLeft);
