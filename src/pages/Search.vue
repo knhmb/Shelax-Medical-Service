@@ -193,7 +193,7 @@ export default {
 
 <style>
 .search-section {
-  background-color: #4e68b2;
+  background-color: #7690da;
   /* min-width: 387px; */
 }
 
@@ -211,15 +211,15 @@ export default {
 }
 
 .search-section .el-form-item__content > .service::before {
-  content: "選擇服務";
+  content: "搜尋服務或產品";
 }
 
 .search-section .el-form-item__content > .appointment-date::before {
-  content: "預約日期";
+  content: "選擇日期";
 }
 
 .search-section .el-form-item__content > .appointment-time::before {
-  content: "預約時間";
+  content: "選擇時間";
 }
 
 .search-section .el-form-item__content > .el-input::before {
@@ -246,8 +246,8 @@ export default {
   padding: 16px;
   width: 100%;
   border-radius: 8px;
-  background-color: #7690da;
-  border: 1px solid #7690da;
+  background-color: #4e68b2;
+  border: 1px solid #4e68b2;
   color: white;
   /* margin-bottom: 22px; */
   height: 58px;

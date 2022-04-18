@@ -11,11 +11,13 @@
         <service-carousel></service-carousel>
       </div>
       <div class="checkup-package">
-        <el-row>
+        <el-row :gutter="20">
           <el-col :sm="24" :lg="16">
             <Package />
           </el-col>
-          <el-col :sm="24" :lg="8"></el-col>
+          <el-col :sm="24" :lg="8">
+            <right-section></right-section>
+          </el-col>
         </el-row>
       </div>
     </base-content-container>
@@ -45,6 +47,7 @@ import BaseContentContainer from "../ui/BaseContentContainer.vue";
 import Appointment from "../components/service/Appointment.vue";
 import Faq from "../components/service/Faq.vue";
 import RecommendedServices from "../components/service/RecommendedServices.vue";
+import RightSection from "../components/service/RightSection.vue";
 
 export default {
   components: {
@@ -56,6 +59,7 @@ export default {
     Appointment,
     Faq,
     RecommendedServices,
+    RightSection,
   },
   data() {
     return {

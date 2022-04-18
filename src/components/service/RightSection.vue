@@ -1,0 +1,169 @@
+<template>
+  <section class="service-right-section">
+    <div class="card">
+      <div class="top-section">
+        <el-row>
+          <el-col>
+            <span class="from">from</span>
+            <span class="price">HKD 570</span>
+            <span class="discount">HK$ 800</span>
+          </el-col>
+          <el-col>
+            <span class="rate">4.2</span>
+            <el-rate
+              model-value="5"
+              disabled
+              show-score
+              :colors="colors"
+              text-color="#8D8D8D"
+              score-template="(138,370)"
+            />
+          </el-col>
+          <el-col>
+            <el-button>立即預約</el-button>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="bottom-section">
+        <img src="../../assets/icon-bonuspoint@2x.png" alt="" />
+        <span>可累積 Shelax Points</span>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      colors: ["#7690DA", "#7690DA", "#7690DA"],
+    };
+  },
+};
+</script>
+
+<style>
+.service-right-section .card {
+  background: #ffffff;
+  border: 0.8px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.service-right-section .card .top-section {
+  position: relative;
+}
+
+.service-right-section .card .top-section .el-row .el-col:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.service-right-section .card .top-section {
+  padding: 1rem;
+}
+
+.service-right-section .card .top-section span.from {
+  font-family: "Noto Sans HK";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #6f6f6f;
+}
+
+.service-right-section .card .top-section span.price {
+  font-family: "Noto Sans HK";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: #262626;
+  margin: 0 0.5rem;
+}
+
+.service-right-section .card .top-section span.discount {
+  font-family: "Noto Sans HK";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  text-decoration-line: line-through;
+  color: #8d8d8d;
+}
+
+.service-right-section .card .top-section .el-rate {
+  display: inline;
+}
+
+.service-right-section
+  .card
+  .top-section
+  .el-rate
+  .el-rate__item
+  .el-rate__icon {
+  margin: 0;
+}
+
+.service-right-section .card .top-section span.rate {
+  font-family: "Noto Sans HK";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #7690da;
+  margin-right: 0.3rem;
+}
+
+.service-right-section .card .top-section .el-button {
+  background: #7690da;
+  border-radius: 4px;
+  width: 100%;
+
+  font-family: "Noto Sans HK";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+  margin-top: 1rem;
+}
+
+.service-right-section .card .top-section::after {
+  content: "";
+  background: #e0e0e0;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  bottom: 0.5rem;
+}
+
+.service-right-section .card .bottom-section {
+  padding: 0 1rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.service-right-section .card .bottom-section img {
+  width: 15px;
+  margin-right: 0.3rem;
+}
+
+.service-right-section .card .bottom-section span {
+  font-family: "Noto Sans HK";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #525252;
+}
+</style>

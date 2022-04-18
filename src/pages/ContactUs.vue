@@ -8,7 +8,12 @@
             <el-row :gutter="20">
               <el-col :sm="12" :md="9">
                 <el-form-item label="稱謂">
-                  <el-select placeholder="選擇稱謂"></el-select>
+                  <el-select placeholder="選擇稱謂">
+                    <el-option>先生</el-option>
+                    <el-option>太太</el-option>
+                    <el-option>小姐</el-option>
+                    <el-option>女士</el-option>
+                  </el-select>
                 </el-form-item>
               </el-col>
               <el-col :sm="12" :md="15">
@@ -18,7 +23,7 @@
               </el-col>
               <el-col :sm="12" :md="9">
                 <el-form-item label="電話區號">
-                  <el-select placeholder="選擇電話區號"></el-select>
+                  <el-input placeholder="選擇電話區號"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :sm="12" :md="15">
