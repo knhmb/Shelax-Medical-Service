@@ -5,7 +5,12 @@
         <h3>商戶登入</h3>
       </el-col>
       <el-col :span="12">
-        <p class="merchant-registration">商戶註冊</p>
+        <p
+          @click="$router.push('/vendor-registration')"
+          class="merchant-registration"
+        >
+          商戶註冊
+        </p>
       </el-col>
       <el-col>
         <el-form-item label="登入帳號">
@@ -32,7 +37,12 @@
       </el-col>
       <el-col :span="12">
         <el-form-item>
-          <p class="forgot-password">忘記密碼?</p>
+          <p
+            @click="$router.push('/vendor-forgot-password')"
+            class="forgot-password"
+          >
+            忘記密碼?
+          </p>
         </el-form-item>
       </el-col>
       <el-col>
@@ -106,6 +116,11 @@ img {
   line-height: 16px;
   letter-spacing: 0.2px;
   color: #393939;
+  cursor: pointer;
   /* margin-top: 0.58rem; */
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
 }
 </style>

@@ -45,7 +45,10 @@ export default {
 
 <style>
 .vendor-registration {
-  background: blue;
+  /* background: red; */
+  background-image: url("../assets/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   padding: 2rem 0;
   min-height: calc(100vh - 60px);
   /* height: 100vh; */

@@ -37,7 +37,9 @@ export default {
 
 <style>
 .vendor-forgot-password {
-  background: blue;
+  background-image: url("../assets/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   padding: 2rem 0;
   min-height: calc(100vh - 60px);
 }

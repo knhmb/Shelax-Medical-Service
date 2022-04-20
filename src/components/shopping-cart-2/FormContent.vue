@@ -30,10 +30,12 @@
           </el-col>
           <el-col :sm="24" :md="6">
             <el-form-item label="稱謂" prop="title">
-              <el-select
-                v-model="item.title"
-                placeholder="選擇稱謂"
-              ></el-select>
+              <el-select v-model="item.title" placeholder="選擇稱謂">
+                <el-option label="先生" value="先生">先生</el-option>
+                <el-option label="太太" value="太太">太太</el-option>
+                <el-option label="小姐" value="小姐">小姐</el-option>
+                <el-option label="女士" value="女士">女士</el-option>
+              </el-select>
             </el-form-item>
           </el-col>
 
@@ -56,10 +58,10 @@
 
           <el-col :sm="24" :md="6">
             <el-form-item label="電話區號" prop="areaCode">
-              <el-select
+              <el-input
                 v-model="item.areaCode"
                 placeholder="選擇電話區號"
-              ></el-select>
+              ></el-input>
             </el-form-item>
           </el-col>
           <el-col :sm="24" :md="9">
@@ -80,11 +82,11 @@
           </el-col>
           <el-col :sm="24" :md="12">
             <el-form-item label="居住國家 / 城市" prop="cityOfResidence">
-              <el-select
+              <el-input
                 v-model="item.cityOfResidence"
                 class="email-input"
                 placeholder="請輸入電郵地址"
-              ></el-select>
+              ></el-input>
             </el-form-item>
           </el-col>
           <el-col :sm="24" :md="12">
