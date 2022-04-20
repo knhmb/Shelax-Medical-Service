@@ -5,12 +5,16 @@
         <el-col :sm="24" :lg="18">
           <h2>服務類型</h2>
           <div class="selection">
-            <el-checkbox></el-checkbox>
-            <span>全選(3)</span>
-            <span>刪除已選活動</span>
+            <el-checkbox @change="applyAll" v-model="checkboxVal"></el-checkbox>
+            <span>全選</span>
+            <span @click="unSelect" style="cursor: pointer">刪除已選活動</span>
             <span>刪除已失效活動</span>
           </div>
-          <personal-health-package></personal-health-package>
+          <personal-health-package
+            :personal-health-checkbox1="personalHealthCheckbox1"
+            :personal-health-checkbox2="personalHealthCheckbox2"
+            @val1Changed="toggleCheckbox"
+          ></personal-health-package>
         </el-col>
         <el-col :sm="24" :lg="6">
           <total-activities></total-activities>
@@ -28,6 +32,48 @@ export default {
   components: {
     PersonalHealthPackage,
     TotalActivities,
+  },
+  data() {
+    return {
+      personalHealthCheckbox1: false,
+      personalHealthCheckbox2: false,
+      checkboxVal: false,
+    };
+  },
+  watch: {
+    personalHealthCheckbox1() {
+      !this.personalHealthCheckbox1 ? (this.checkboxVal = false) : "";
+      console.log("changed");
+    },
+    personalHealthCheckbox2() {
+      !this.personalHealthCheckbox2 ? (this.checkboxVal = false) : "";
+    },
+  },
+  methods: {
+    applyAll() {
+      if (this.checkboxVal) {
+        this.personalHealthCheckbox1 = true;
+        this.personalHealthCheckbox2 = true;
+      } else {
+        this.personalHealthCheckbox1 = false;
+        this.personalHealthCheckbox2 = false;
+      }
+    },
+    toggleCheckbox({ value, option }) {
+      if (!value) {
+        this.checkboxVal = false;
+      }
+      if (option === 1) {
+        this.personalHealthCheckbox1 = value;
+      } else {
+        this.personalHealthCheckbox2 = value;
+      }
+    },
+    unSelect() {
+      this.personalHealthCheckbox1 = false;
+      this.personalHealthCheckbox2 = false;
+      this.checkboxVal = false;
+    },
   },
   created() {
     this.$store.dispatch("toggleSteps", true);

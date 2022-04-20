@@ -2,7 +2,7 @@
   <div class="packages">
     <el-row class="top">
       <el-col :xs="24" :sm="1" :md="1">
-        <el-checkbox></el-checkbox>
+        <el-checkbox @change="checkboxChanged(1)" v-model="val1"></el-checkbox>
         <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
       </el-col>
       <el-col :xs="24" :sm="3" :md="3">
@@ -35,7 +35,7 @@
   <div class="packages">
     <el-row class="top">
       <el-col :xs="24" :sm="1" :md="1">
-        <el-checkbox></el-checkbox>
+        <el-checkbox @change="checkboxChanged(2)" v-model="val2"></el-checkbox>
         <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
       </el-col>
       <el-col :xs="24" :sm="3" :md="3">
@@ -70,14 +70,20 @@
   </div>
 
   <div class="selection">
-    <el-checkbox></el-checkbox>
-    <span>全選(3)</span>
-    <span>刪除已選產品</span>
+    <el-checkbox
+      v-model="selectAllProduct"
+      @change="toggleSelectAll"
+    ></el-checkbox>
+    <span>全選</span>
+    <span @click="unSelectAll" style="cursor: pointer">刪除已選產品</span>
   </div>
   <div class="packages">
     <el-row class="top">
       <el-col :xs="24" :sm="1" :md="1">
-        <el-checkbox></el-checkbox>
+        <el-checkbox
+          @change="valChanged"
+          v-model="firstProductCheckbox"
+        ></el-checkbox>
         <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
       </el-col>
       <el-col :xs="24" :sm="3" :md="3">
@@ -108,7 +114,10 @@
   <div class="packages">
     <el-row class="top">
       <el-col :xs="24" :sm="1" :md="1">
-        <el-checkbox></el-checkbox>
+        <el-checkbox
+          @change="valChanged"
+          v-model="secondProductCheckbox"
+        ></el-checkbox>
         <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
       </el-col>
       <el-col :xs="24" :sm="3" :md="3">
@@ -212,10 +221,52 @@
 
 <script>
 export default {
+  props: ["personalHealthCheckbox1", "personalHealthCheckbox2"],
   data() {
     return {
       num: 1,
+      val1: this.personalHealthCheckbox1,
+      val2: this.personalHealthCheckbox2,
+      firstProductCheckbox: false,
+      secondProductCheckbox: false,
+      selectAllProduct: false,
     };
+  },
+  watch: {
+    personalHealthCheckbox1() {
+      this.val1 = this.personalHealthCheckbox1;
+    },
+    personalHealthCheckbox2() {
+      this.val2 = this.personalHealthCheckbox2;
+    },
+  },
+  methods: {
+    checkboxChanged(val) {
+      if (val === 1) {
+        this.$emit("val1Changed", { value: this.val1, option: val });
+      } else {
+        this.$emit("val1Changed", { value: this.val2, option: val });
+      }
+    },
+    toggleSelectAll() {
+      if (this.selectAllProduct) {
+        this.firstProductCheckbox = true;
+        this.secondProductCheckbox = true;
+      } else {
+        this.firstProductCheckbox = false;
+        this.secondProductCheckbox = false;
+      }
+    },
+    valChanged() {
+      if (!this.firstProductCheckbox || !this.secondProductCheckbox) {
+        this.selectAllProduct = false;
+      }
+    },
+    unSelectAll() {
+      this.firstProductCheckbox = false;
+      this.secondProductCheckbox = false;
+      this.selectAllProduct = false;
+    },
   },
 };
 </script>
