@@ -1,6 +1,6 @@
 <template>
   <div class="personal-information">
-    <base-member-card>
+    <base-member-card :hide="true">
       <h3>會員資料</h3>
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane
@@ -14,8 +14,9 @@
           @click="console.log('second')"
           label="修改密碼"
           name="second"
-          >修改密碼</el-tab-pane
         >
+          <change-password></change-password>
+        </el-tab-pane>
       </el-tabs>
     </base-member-card>
   </div>
@@ -23,10 +24,12 @@
 
 <script>
 import Form from "../components/personal-information/Form.vue";
+import ChangePassword from "../components/personal-information/ChangePassword.vue";
 
 export default {
   components: {
     Form,
+    ChangePassword,
   },
   data() {
     return {
@@ -34,14 +37,14 @@ export default {
     };
   },
   methods: {
-    handleClick(tab) {
-      if (tab.props.name === "first") {
-        this.$router.push({ name: "personal-information" });
-      } else {
-        this.$router.push("/");
-      }
-      console.log(tab.props.name);
-    },
+    // handleClick(tab) {
+    //   if (tab.props.name === "first") {
+    //     this.$router.push({ name: "personal-information" });
+    //   } else {
+    //     this.$router.push("/");
+    //   }
+    //   console.log(tab.props.name);
+    // },
   },
 };
 </script>
@@ -64,5 +67,13 @@ export default {
   /* line-height: 20px; */
   letter-spacing: 0.1px;
   color: #8d8d8d;
+}
+
+.member-profile .personal-information .el-tabs__active-bar {
+  background-color: #7690da;
+}
+
+.member-profile .personal-information .el-tabs__item.is-active {
+  color: #7690da;
 }
 </style>

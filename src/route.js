@@ -19,6 +19,7 @@ import VendorForgotPassword from "./pages/VendorForgotPassword.vue";
 import MemberProfile from "./pages/MemberProfile.vue";
 import PersonalInformation from "./pages/PersonalInformation.vue";
 import ShelaxPoints from "./pages/ShelaxPoints.vue";
+import OtherMember from "./pages/OtherMember.vue";
 
 const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
@@ -56,6 +57,11 @@ const router = createRouter({
           path: "personal-information",
           component: PersonalInformation,
           name: "personal-information",
+        },
+        {
+          path: "other-member",
+          component: OtherMember,
+          name: "other-member",
         },
       ],
     },

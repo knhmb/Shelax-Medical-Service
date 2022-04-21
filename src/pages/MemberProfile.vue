@@ -15,14 +15,42 @@
                 :to="{ name: 'personal-information' }"
                 v-slot="{ navigate }"
               >
-                <li @click="navigate">會員資料</li>
+                <li
+                  :style="{
+                    color:
+                      $route.path === '/member-profile/personal-information'
+                        ? '#7690da'
+                        : '',
+                  }"
+                  @mouseleave="unhover('info')"
+                  @mouseover="hover('info')"
+                  @click="navigate"
+                >
+                  <img :src="infoImg" alt="" />
+                  會員資料
+                </li>
+              </router-link>
+              <router-link :to="{ name: 'other-member' }" v-slot="{ navigate }">
+                <li
+                  :style="{
+                    color:
+                      $route.path === '/member-profile/other-member'
+                        ? '#7690da'
+                        : '',
+                  }"
+                  @mouseleave="unhover('other-member')"
+                  @mouseover="hover('other-member')"
+                  @click="navigate"
+                >
+                  <img :src="otherMemberImg" alt="" />
+                  常用成員
+                </li>
               </router-link>
 
-              <li>常用成員</li>
               <li>評價管理</li>
               <li>預約記錄</li>
               <li>我的收藏</li>
-              <li>Shelax Points <span>999</span></li>
+              <li class="points">Shelax Points <span>999</span></li>
             </ul>
           </div>
         </el-col>
@@ -40,6 +68,49 @@ import { Camera } from "@element-plus/icons-vue";
 export default {
   components: {
     Camera,
+  },
+  data() {
+    return {
+      infoImg: require("../assets/icon-infomation-default@2x.png"),
+      otherMemberImg: require("../assets/icon-member-default@2x.png"),
+    };
+  },
+  watch: {
+    "$route.path": {
+      deep: true,
+      immediate: true,
+      handler() {
+        if (this.$route.path === "/member-profile/personal-information") {
+          this.infoImg = require("../assets/icon-infomation-pressed@2x.png");
+          this.otherMemberImg = require("../assets/icon-member-default@2x.png");
+        } else if (this.$route.path === "/member-profile/other-member") {
+          this.otherMemberImg = require("../assets/icon-member-pressed@2x.png");
+          this.infoImg = require("../assets/icon-infomation-default@2x.png");
+        }
+      },
+    },
+  },
+  methods: {
+    hover(option) {
+      if (option === "info") {
+        this.infoImg = require("../assets/icon-infomation-pressed@2x.png");
+      } else if (option === "other-member") {
+        this.otherMemberImg = require("../assets/icon-member-pressed@2x.png");
+      }
+    },
+    unhover(option) {
+      if (
+        option === "info" &&
+        this.$route.path !== "/member-profile/personal-information"
+      ) {
+        this.infoImg = require("../assets/icon-infomation-default@2x.png");
+      } else if (
+        option === "other-member" &&
+        this.$route.path !== "/member-profile/other-member"
+      ) {
+        this.otherMemberImg = require("../assets/icon-member-default@2x.png");
+      }
+    },
   },
 };
 </script>
@@ -115,14 +186,15 @@ export default {
   line-height: 24px;
   letter-spacing: 0.4px;
   color: #525252;
+  display: flex;
+  align-items: center;
 }
 
 .member-profile .member-card-options ul li:hover {
   color: #7690da;
 }
 
-.member-profile .member-card-options ul li:last-of-type {
-  display: flex;
+.member-profile .member-card-options ul li.points {
   justify-content: space-between;
 }
 
@@ -137,6 +209,12 @@ export default {
 
 .member-profile .member-card-options ul a {
   text-decoration: none;
+}
+
+.member-profile .member-card-options img {
+  width: 25px;
+  height: 25px;
+  margin-right: 0.5rem;
 }
 
 @media screen and (max-width: 1199px) {
