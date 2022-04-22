@@ -46,8 +46,23 @@
                   常用成員
                 </li>
               </router-link>
+              <router-link :to="{ name: 'comment' }" v-slot="{ navigate }">
+                <li
+                  :style="{
+                    color:
+                      $route.path === '/member-profile/comment'
+                        ? '#7690da'
+                        : '',
+                  }"
+                  @mouseleave="unhover('comment')"
+                  @mouseover="hover('comment')"
+                  @click="navigate"
+                >
+                  <img :src="commentImg" alt="" />
+                  評價管理
+                </li>
+              </router-link>
 
-              <li>評價管理</li>
               <li>預約記錄</li>
               <li>我的收藏</li>
               <li class="points">Shelax Points <span>999</span></li>
@@ -55,7 +70,7 @@
           </div>
         </el-col>
         <el-col :sm="24" :lg="18">
-          <router-view></router-view>
+          <router-view> </router-view>
         </el-col>
       </el-row>
     </base-content-container>
@@ -73,6 +88,7 @@ export default {
     return {
       infoImg: require("../assets/icon-infomation-default@2x.png"),
       otherMemberImg: require("../assets/icon-member-default@2x.png"),
+      commentImg: require("../assets/icon-comment-default@2x.png"),
     };
   },
   watch: {
@@ -83,8 +99,14 @@ export default {
         if (this.$route.path === "/member-profile/personal-information") {
           this.infoImg = require("../assets/icon-infomation-pressed@2x.png");
           this.otherMemberImg = require("../assets/icon-member-default@2x.png");
+          this.commentImg = require("../assets/icon-comment-default@2x.png");
         } else if (this.$route.path === "/member-profile/other-member") {
           this.otherMemberImg = require("../assets/icon-member-pressed@2x.png");
+          this.infoImg = require("../assets/icon-infomation-default@2x.png");
+          this.commentImg = require("../assets/icon-comment-default@2x.png");
+        } else if (this.$route.path === "/member-profile/comment") {
+          this.commentImg = require("../assets/icon-comment-pressed@2x.png");
+          this.otherMemberImg = require("../assets/icon-member-default@2x.png");
           this.infoImg = require("../assets/icon-infomation-default@2x.png");
         }
       },
@@ -96,6 +118,8 @@ export default {
         this.infoImg = require("../assets/icon-infomation-pressed@2x.png");
       } else if (option === "other-member") {
         this.otherMemberImg = require("../assets/icon-member-pressed@2x.png");
+      } else if (option === "comment") {
+        this.commentImg = require("../assets/icon-comment-pressed@2x.png");
       }
     },
     unhover(option) {
@@ -109,6 +133,11 @@ export default {
         this.$route.path !== "/member-profile/other-member"
       ) {
         this.otherMemberImg = require("../assets/icon-member-default@2x.png");
+      } else if (
+        option === "comment" &&
+        this.$route.path !== "/member-profile/comment"
+      ) {
+        this.commentImg = require("../assets/icon-comment-default@2x.png");
       }
     },
   },

@@ -20,6 +20,7 @@ import MemberProfile from "./pages/MemberProfile.vue";
 import PersonalInformation from "./pages/PersonalInformation.vue";
 import ShelaxPoints from "./pages/ShelaxPoints.vue";
 import OtherMember from "./pages/OtherMember.vue";
+import Comment from "./pages/Comment.vue";
 
 const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
@@ -62,6 +63,11 @@ const router = createRouter({
           path: "other-member",
           component: OtherMember,
           name: "other-member",
+        },
+        {
+          path: "comment",
+          component: Comment,
+          name: "comment",
         },
       ],
     },

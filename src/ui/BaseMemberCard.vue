@@ -1,12 +1,12 @@
 <template>
-  <div :class="{ hide: hide }" class="member-card-categories">
+  <div :class="{ invisible: invisible }" class="member-card-categories">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["hide"],
+  props: ["invisible"],
   // created() {
   //   console.log(this.hide);
   // },
@@ -34,7 +34,7 @@ export default {
   left: 0;
 }
 
-.hide.member-card-categories::after {
-  display: none;
+.invisible.member-card-categories::after {
+  content: none;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="personal-information">
-    <base-member-card :hide="true">
+    <base-member-card :invisible="true">
       <h3>會員資料</h3>
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane
