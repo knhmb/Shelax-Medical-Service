@@ -1,13 +1,13 @@
 <template>
-  <section class="comment">
+  <section class="wishlist-bookmark">
     <base-member-card :invisible="true">
-      <h3>評價管理</h3>
+      <h3>我的收藏</h3>
       <el-tabs v-model="activeName" class="demo-tabs">
-        <el-tab-pane label="個人資料" name="first">
+        <el-tab-pane label="服務類" name="first">
           <first-tab></first-tab>
         </el-tab-pane>
-        <el-tab-pane label="修改密碼" name="second">
-          <past-comment></past-comment>
+        <el-tab-pane label="產品類" name="second">
+          <p>Second Tab</p>
         </el-tab-pane>
       </el-tabs>
     </base-member-card>
@@ -15,13 +15,11 @@
 </template>
 
 <script>
-import FirstTab from "../components/comment/FirstTab.vue";
-import PastComment from "../components/comment/PastComment.vue";
+import FirstTab from "../components/wishlist/FirstTab.vue";
 
 export default {
   components: {
     FirstTab,
-    PastComment,
   },
   data() {
     return {
@@ -32,7 +30,7 @@ export default {
 </script>
 
 <style>
-.member-profile .comment h3 {
+.member-profile .wishlist-bookmark h3 {
   font-family: "Noto Sans HK";
   font-style: normal;
   font-weight: 500;
@@ -42,7 +40,7 @@ export default {
   margin-bottom: 1rem;
 }
 
-.member-profile .comment .el-tabs__item {
+.member-profile .wishlist-bookmark .el-tabs__item {
   font-family: Noto Sans HK;
   font-style: normal;
   font-weight: 500;
@@ -52,11 +50,11 @@ export default {
   color: #8d8d8d;
 }
 
-.member-profile .comment .el-tabs__active-bar {
+.member-profile .wishlist-bookmark .el-tabs__active-bar {
   background-color: #7690da;
 }
 
-.member-profile .comment .el-tabs__item.is-active {
+.member-profile .wishlist-bookmark .el-tabs__item.is-active {
   color: #7690da;
 }
 </style>

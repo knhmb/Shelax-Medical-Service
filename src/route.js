@@ -21,6 +21,8 @@ import PersonalInformation from "./pages/PersonalInformation.vue";
 import ShelaxPoints from "./pages/ShelaxPoints.vue";
 import OtherMember from "./pages/OtherMember.vue";
 import Comment from "./pages/Comment.vue";
+import Booking from "./pages/Booking.vue";
+import Wishlist from "./pages/Wishlist.vue";
 
 const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
@@ -68,6 +70,16 @@ const router = createRouter({
           path: "comment",
           component: Comment,
           name: "comment",
+        },
+        {
+          path: "booking",
+          component: Booking,
+          name: "booking",
+        },
+        {
+          path: "wishlist",
+          component: Wishlist,
+          name: "wishlist",
         },
       ],
     },

@@ -62,9 +62,39 @@
                   評價管理
                 </li>
               </router-link>
+              <router-link :to="{ name: 'booking' }" v-slot="{ navigate }">
+                <li
+                  :style="{
+                    color:
+                      $route.path === '/member-profile/booking'
+                        ? '#7690da'
+                        : '',
+                  }"
+                  @mouseleave="unhover('booking')"
+                  @mouseover="hover('booking')"
+                  @click="navigate"
+                >
+                  <img :src="bookingImg" alt="" />
+                  預約記錄
+                </li>
+              </router-link>
+              <router-link :to="{ name: 'wishlist' }" v-slot="{ navigate }">
+                <li
+                  :style="{
+                    color:
+                      $route.path === '/member-profile/wishlist'
+                        ? '#7690da'
+                        : '',
+                  }"
+                  @mouseleave="unhover('wishlist')"
+                  @mouseover="hover('wishlist')"
+                  @click="navigate"
+                >
+                  <img :src="wishlistImg" alt="" />
+                  我的收藏
+                </li>
+              </router-link>
 
-              <li>預約記錄</li>
-              <li>我的收藏</li>
               <li class="points">Shelax Points <span>999</span></li>
             </ul>
           </div>
@@ -89,6 +119,8 @@ export default {
       infoImg: require("../assets/icon-infomation-default@2x.png"),
       otherMemberImg: require("../assets/icon-member-default@2x.png"),
       commentImg: require("../assets/icon-comment-default@2x.png"),
+      bookingImg: require("../assets/icon-booking-default@2x.png"),
+      wishlistImg: require("../assets/icon-bookmark-default@2x.png"),
     };
   },
   watch: {
@@ -100,12 +132,30 @@ export default {
           this.infoImg = require("../assets/icon-infomation-pressed@2x.png");
           this.otherMemberImg = require("../assets/icon-member-default@2x.png");
           this.commentImg = require("../assets/icon-comment-default@2x.png");
+          this.bookingImg = require("../assets/icon-booking-default@2x.png");
+          this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
         } else if (this.$route.path === "/member-profile/other-member") {
           this.otherMemberImg = require("../assets/icon-member-pressed@2x.png");
           this.infoImg = require("../assets/icon-infomation-default@2x.png");
           this.commentImg = require("../assets/icon-comment-default@2x.png");
+          this.bookingImg = require("../assets/icon-booking-default@2x.png");
+          this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
         } else if (this.$route.path === "/member-profile/comment") {
           this.commentImg = require("../assets/icon-comment-pressed@2x.png");
+          this.otherMemberImg = require("../assets/icon-member-default@2x.png");
+          this.infoImg = require("../assets/icon-infomation-default@2x.png");
+          this.bookingImg = require("../assets/icon-booking-default@2x.png");
+          this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
+        } else if (this.$route.path === "/member-profile/booking") {
+          this.bookingImg = require("../assets/icon-booking-pressed@2x.png");
+          this.commentImg = require("../assets/icon-comment-default@2x.png");
+          this.otherMemberImg = require("../assets/icon-member-default@2x.png");
+          this.infoImg = require("../assets/icon-infomation-default@2x.png");
+          this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
+        } else if (this.$route.path === "/member-profile/wishlist") {
+          this.wishlistImg = require("../assets/icon-bookmark-pressed@2x.png");
+          this.bookingImg = require("../assets/icon-booking-default@2x.png");
+          this.commentImg = require("../assets/icon-comment-default@2x.png");
           this.otherMemberImg = require("../assets/icon-member-default@2x.png");
           this.infoImg = require("../assets/icon-infomation-default@2x.png");
         }
@@ -120,6 +170,10 @@ export default {
         this.otherMemberImg = require("../assets/icon-member-pressed@2x.png");
       } else if (option === "comment") {
         this.commentImg = require("../assets/icon-comment-pressed@2x.png");
+      } else if (option === "booking") {
+        this.bookingImg = require("../assets/icon-booking-pressed@2x.png");
+      } else if (option === "wishlist") {
+        this.wishlistImg = require("../assets/icon-bookmark-pressed@2x.png");
       }
     },
     unhover(option) {
@@ -138,6 +192,16 @@ export default {
         this.$route.path !== "/member-profile/comment"
       ) {
         this.commentImg = require("../assets/icon-comment-default@2x.png");
+      } else if (
+        option === "booking" &&
+        this.$route.path !== "/member-profile/booking"
+      ) {
+        this.bookingImg = require("../assets/icon-booking-default@2x.png");
+      } else if (
+        option === "wishlist" &&
+        this.$route.path !== "/member-profile/wishlisy"
+      ) {
+        this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
       }
     },
   },

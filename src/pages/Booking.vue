@@ -1,13 +1,13 @@
 <template>
-  <section class="comment">
+  <section class="booking">
     <base-member-card :invisible="true">
-      <h3>評價管理</h3>
+      <h3>預約記錄</h3>
       <el-tabs v-model="activeName" class="demo-tabs">
-        <el-tab-pane label="個人資料" name="first">
+        <el-tab-pane label="服務類" name="first">
           <first-tab></first-tab>
         </el-tab-pane>
-        <el-tab-pane label="修改密碼" name="second">
-          <past-comment></past-comment>
+        <el-tab-pane label="產品類" name="second">
+          <!-- <second-tab></second-tab> -->
         </el-tab-pane>
       </el-tabs>
     </base-member-card>
@@ -15,13 +15,13 @@
 </template>
 
 <script>
-import FirstTab from "../components/comment/FirstTab.vue";
-import PastComment from "../components/comment/PastComment.vue";
+import FirstTab from "../components/booking/FirstTab.vue";
+// import SecondTab from "../components/booking/SecondTab.vue";
 
 export default {
   components: {
     FirstTab,
-    PastComment,
+    // SecondTab,
   },
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style>
-.member-profile .comment h3 {
+.member-profile .booking h3 {
   font-family: "Noto Sans HK";
   font-style: normal;
   font-weight: 500;
@@ -42,7 +42,7 @@ export default {
   margin-bottom: 1rem;
 }
 
-.member-profile .comment .el-tabs__item {
+.member-profile .booking .el-tabs__item {
   font-family: Noto Sans HK;
   font-style: normal;
   font-weight: 500;
@@ -52,11 +52,11 @@ export default {
   color: #8d8d8d;
 }
 
-.member-profile .comment .el-tabs__active-bar {
+.member-profile .booking .el-tabs__active-bar {
   background-color: #7690da;
 }
 
-.member-profile .comment .el-tabs__item.is-active {
+.member-profile .booking .el-tabs__item.is-active {
   color: #7690da;
 }
 </style>
