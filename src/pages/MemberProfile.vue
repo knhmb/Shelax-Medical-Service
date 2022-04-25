@@ -94,8 +94,28 @@
                   我的收藏
                 </li>
               </router-link>
+              <router-link
+                :to="{ name: 'shelax-points' }"
+                v-slot="{ navigate }"
+              >
+                <li
+                  class="points"
+                  :style="{
+                    color:
+                      $route.path === '/member-profile/shelax-points'
+                        ? '#7690da'
+                        : '',
+                  }"
+                  @mouseleave="unhover('shelax-points')"
+                  @mouseover="hover('shelax-points')"
+                  @click="navigate"
+                >
+                  <p><img :src="pointsImg" alt="" /> Shelax Points</p>
+                  <span>999</span>
+                </li>
+              </router-link>
 
-              <li class="points">Shelax Points <span>999</span></li>
+              <!-- <li class="points">Shelax Points <span>999</span></li> -->
             </ul>
           </div>
         </el-col>
@@ -121,6 +141,7 @@ export default {
       commentImg: require("../assets/icon-comment-default@2x.png"),
       bookingImg: require("../assets/icon-booking-default@2x.png"),
       wishlistImg: require("../assets/icon-bookmark-default@2x.png"),
+      pointsImg: require("../assets/icon-reward-default@2x.png"),
     };
   },
   watch: {
@@ -134,26 +155,38 @@ export default {
           this.commentImg = require("../assets/icon-comment-default@2x.png");
           this.bookingImg = require("../assets/icon-booking-default@2x.png");
           this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
+          this.pointsImg = require("../assets/icon-reward-default@2x.png");
         } else if (this.$route.path === "/member-profile/other-member") {
           this.otherMemberImg = require("../assets/icon-member-pressed@2x.png");
           this.infoImg = require("../assets/icon-infomation-default@2x.png");
           this.commentImg = require("../assets/icon-comment-default@2x.png");
           this.bookingImg = require("../assets/icon-booking-default@2x.png");
           this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
+          this.pointsImg = require("../assets/icon-reward-default@2x.png");
         } else if (this.$route.path === "/member-profile/comment") {
           this.commentImg = require("../assets/icon-comment-pressed@2x.png");
           this.otherMemberImg = require("../assets/icon-member-default@2x.png");
           this.infoImg = require("../assets/icon-infomation-default@2x.png");
           this.bookingImg = require("../assets/icon-booking-default@2x.png");
           this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
+          this.pointsImg = require("../assets/icon-reward-default@2x.png");
         } else if (this.$route.path === "/member-profile/booking") {
           this.bookingImg = require("../assets/icon-booking-pressed@2x.png");
           this.commentImg = require("../assets/icon-comment-default@2x.png");
           this.otherMemberImg = require("../assets/icon-member-default@2x.png");
           this.infoImg = require("../assets/icon-infomation-default@2x.png");
           this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
+          this.pointsImg = require("../assets/icon-reward-default@2x.png");
         } else if (this.$route.path === "/member-profile/wishlist") {
           this.wishlistImg = require("../assets/icon-bookmark-pressed@2x.png");
+          this.bookingImg = require("../assets/icon-booking-default@2x.png");
+          this.commentImg = require("../assets/icon-comment-default@2x.png");
+          this.otherMemberImg = require("../assets/icon-member-default@2x.png");
+          this.infoImg = require("../assets/icon-infomation-default@2x.png");
+          this.pointsImg = require("../assets/icon-reward-default@2x.png");
+        } else if (this.$route.path === "/member-profile/member-points") {
+          this.pointsImg = require("../assets/icon-reward-pressed@2x.png");
+          this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
           this.bookingImg = require("../assets/icon-booking-default@2x.png");
           this.commentImg = require("../assets/icon-comment-default@2x.png");
           this.otherMemberImg = require("../assets/icon-member-default@2x.png");
@@ -174,6 +207,8 @@ export default {
         this.bookingImg = require("../assets/icon-booking-pressed@2x.png");
       } else if (option === "wishlist") {
         this.wishlistImg = require("../assets/icon-bookmark-pressed@2x.png");
+      } else if (option === "shelax-points") {
+        this.pointsImg = require("../assets/icon-reward-pressed@2x.png");
       }
     },
     unhover(option) {
@@ -199,9 +234,14 @@ export default {
         this.bookingImg = require("../assets/icon-booking-default@2x.png");
       } else if (
         option === "wishlist" &&
-        this.$route.path !== "/member-profile/wishlisy"
+        this.$route.path !== "/member-profile/wishlist"
       ) {
         this.wishlistImg = require("../assets/icon-bookmark-default@2x.png");
+      } else if (
+        option === "shelax-points" &&
+        this.$route.path !== "/member-profile/member-points"
+      ) {
+        this.pointsImg = require("../assets/icon-reward-default@2x.png");
       }
     },
   },
@@ -285,6 +325,11 @@ export default {
 
 .member-profile .member-card-options ul li:hover {
   color: #7690da;
+}
+
+.member-profile .member-card-options ul li.points p {
+  display: flex;
+  align-items: center;
 }
 
 .member-profile .member-card-options ul li.points {
