@@ -26,7 +26,12 @@
         </el-row>
         <transition name="animate" mode="out-in">
           <div v-if="isContentVisible" class="box-content">
-            <el-form label-position="top">
+            <el-form
+              ref="ruleFormRef"
+              :model="ruleForm"
+              :rules="rules"
+              label-position="top"
+            >
               <el-row :gutter="20">
                 <el-col :sm="12" :md="3">
                   <el-avatar :size="50">
@@ -34,37 +39,37 @@
                   </el-avatar>
                 </el-col>
                 <el-col :sm="12" :md="5">
-                  <el-form-item label="稱謂">
+                  <el-form-item label="稱謂" prop="title">
                     <el-select></el-select>
                   </el-form-item>
                 </el-col>
                 <el-col :sm="12" :md="8">
-                  <el-form-item label="姓氏">
+                  <el-form-item label="姓氏" prop="lastName">
                     <el-input></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :sm="12" :md="8">
-                  <el-form-item label="名字">
+                  <el-form-item label="名字" prop="firstName">
                     <el-input></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :sm="12" :md="5">
-                  <el-form-item label="電話區號">
+                  <el-form-item label="電話區號" prop="phoneAreaCode">
                     <el-input></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :sm="12" :md="9">
-                  <el-form-item label="電話號碼">
+                  <el-form-item label="電話號碼" prop="phoneNumber">
                     <el-input></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :sm="12" :md="9">
-                  <el-form-item label="電郵地址">
+                  <el-form-item label="電郵地址" prop="email">
                     <el-input></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :sm="12" :md="12">
-                  <el-form-item label="居住國家 / 城市">
+                  <el-form-item label="居住國家 / 城市" prop="country">
                     <el-input></el-input>
                   </el-form-item>
                 </el-col>
@@ -121,6 +126,60 @@ export default {
   data() {
     return {
       isContentVisible: false,
+      ruleForm: {
+        title: "",
+        lastName: "",
+        firstName: "",
+        phoneAreaCode: "",
+        phoneNumber: "",
+        email: "",
+        country: "",
+      },
+      rules: {
+        title: [
+          {
+            required: true,
+            message: "This Field is required",
+            trigger: "change",
+          },
+        ],
+        lastName: [
+          {
+            required: true,
+            message: "This Field is required",
+            trigger: "blur",
+          },
+        ],
+        firstName: [
+          {
+            required: true,
+            message: "This Field is required",
+            trigger: "blur",
+          },
+        ],
+        phoneAreaCode: [
+          {
+            required: true,
+            message: "This Field is required",
+            trigger: "blur",
+          },
+        ],
+        email: [
+          {
+            required: true,
+            message: "This Field is required",
+            type: "email",
+            trigger: "blur",
+          },
+        ],
+        country: [
+          {
+            required: true,
+            message: "This Field is required",
+            trigger: "blur",
+          },
+        ],
+      },
     };
   },
   methods: {

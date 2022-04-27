@@ -5,8 +5,12 @@
         <el-col :sm="24" :lg="6">
           <div class="member-card-avatar">
             <el-avatar icon :size="100" shape="circle">
-              <el-icon><camera /></el-icon>
+              <img v-if="imgSrc" class="image-avatar" :src="imgSrc" alt="" />
+              <label for="file-upload">
+                <el-icon style="cursor: pointer"><camera /></el-icon>
+              </label>
             </el-avatar>
+            <input id="file-upload" @change="onFileChange" type="file" />
             <p>Chan Tai Man</p>
           </div>
           <div class="member-card-options">
@@ -102,7 +106,7 @@
                   class="points"
                   :style="{
                     color:
-                      $route.path === '/member-profile/shelax-points'
+                      $route.path === '/member-profile/member-points'
                         ? '#7690da'
                         : '',
                   }"
@@ -129,6 +133,7 @@
 
 <script>
 import { Camera } from "@element-plus/icons-vue";
+import { ElMessage } from "element-plus";
 
 export default {
   components: {
@@ -136,6 +141,7 @@ export default {
   },
   data() {
     return {
+      imgSrc: null,
       infoImg: require("../assets/icon-infomation-default@2x.png"),
       otherMemberImg: require("../assets/icon-member-default@2x.png"),
       commentImg: require("../assets/icon-comment-default@2x.png"),
@@ -196,6 +202,20 @@ export default {
     },
   },
   methods: {
+    onFileChange(event) {
+      console.log(event);
+      console.log(event.target.files[0]);
+      const file = event.target.files[0];
+
+      if (file.type !== "image/jpeg" && file.type !== "image/png") {
+        ElMessage({
+          message: "Image must be in jpeg or png format",
+          type: "error",
+        });
+      } else {
+        this.imgSrc = URL.createObjectURL(file);
+      }
+    },
     hover(option) {
       if (option === "info") {
         this.infoImg = require("../assets/icon-infomation-pressed@2x.png");
@@ -249,6 +269,22 @@ export default {
 </script>
 
 <style scoped>
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.image-avatar {
+  width: 100%;
+  border-radius: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+input[type="file"] {
+  display: none;
+}
 .member-profile {
   padding: 2rem 0;
 }
