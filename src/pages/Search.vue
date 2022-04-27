@@ -64,7 +64,15 @@
           </div> -->
           <div class="slider">
             <h3>價錢</h3>
-            <el-slider v-model="value" range show-stops :max="10"> </el-slider>
+            <el-slider
+              v-model="value"
+              show-tooltip
+              :step="10"
+              range
+              :min="10"
+              :max="10000"
+            >
+            </el-slider>
             <div class="range">
               <el-row>
                 <el-col :span="10">
@@ -180,7 +188,7 @@ export default {
       service: "",
       date: null,
       time: null,
-      value: [4, 8],
+      value: [10, 10000],
       fiveStarRating: 5,
       fourStarRating: 4,
       threeStarRating: 3,

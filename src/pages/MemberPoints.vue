@@ -5,7 +5,7 @@
       <p>
         目前可使用點數:
         <img src="../assets/Group-110.png" alt="" />
-        <span> 9999</span>
+        <span>999</span>
       </p>
     </base-member-card>
     <how-to-use></how-to-use>

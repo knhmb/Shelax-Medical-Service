@@ -3,10 +3,10 @@
     <base-member-card :invisible="true">
       <h3>評價管理</h3>
       <el-tabs v-model="activeName" class="demo-tabs">
-        <el-tab-pane label="個人資料" name="first">
+        <el-tab-pane label="未評價預約" name="first">
           <first-tab></first-tab>
         </el-tab-pane>
-        <el-tab-pane label="修改密碼" name="second">
+        <el-tab-pane label="已評價預約" name="second">
           <past-comment></past-comment>
         </el-tab-pane>
       </el-tabs>

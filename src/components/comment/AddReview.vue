@@ -11,12 +11,13 @@
       <el-row>
         <el-col>
           <el-form-item class="first-label" label="評論標題">
-            <el-input placeholder="請輸入評論標題"></el-input>
+            <el-input v-model="title" placeholder="請輸入評論標題"></el-input>
           </el-form-item>
         </el-col>
         <el-col>
           <el-form-item label="告訴我們你的想法">
             <el-input
+              v-model="description"
               placeholder="你覺得這次的體驗如何呢？請跟我們分享你的想法"
               type="textarea"
               rows="5"
@@ -38,6 +39,8 @@ export default {
     return {
       colors: ["#7690DA", "#7690DA", "#7690DA"],
       value: 3,
+      title: "",
+      description: "",
     };
   },
 };
