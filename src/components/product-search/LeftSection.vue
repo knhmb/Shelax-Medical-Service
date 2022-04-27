@@ -2,7 +2,8 @@
   <div class="left-section">
     <div class="slider">
       <h3>價錢</h3>
-      <el-slider v-model="value" range show-stops :max="10"> </el-slider>
+      <el-slider v-model="value" range :step="10" :min="1" :max="10000">
+      </el-slider>
       <div class="range">
         <el-row>
           <el-col :span="10">
@@ -60,7 +61,7 @@
 export default {
   data() {
     return {
-      value: [4, 8],
+      value: [8, 10000],
       checkList: [],
     };
   },

@@ -69,7 +69,7 @@
               show-tooltip
               :step="10"
               range
-              :min="10"
+              :min="1"
               :max="10000"
             >
             </el-slider>
@@ -188,7 +188,7 @@ export default {
       service: "",
       date: null,
       time: null,
-      value: [10, 10000],
+      value: [8, 10000],
       fiveStarRating: 5,
       fourStarRating: 4,
       threeStarRating: 3,

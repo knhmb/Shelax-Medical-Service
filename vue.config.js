@@ -1,11 +1,11 @@
-// module.exports = {
-//   devServer: {
-//     proxy: {
-//       "^/posts": {
-//         target: "https://jsonplaceholder.typicode.com",
-//         ws: true,
-//         changeOrigin: true,
-//       },
-//     },
-//   },
-// };
+module.exports = {
+  devServer: {
+    proxy: {
+      "^/api": {
+        target: "https://shelax-medical.dev.marvelconnect.com",
+        ws: true,
+        changeOrigin: true,
+      },
+    },
+  },
+};

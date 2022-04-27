@@ -4,41 +4,60 @@
       <el-col :sm="24" :md="12">
         <div class="contact-us-content">
           <h2>聯絡我們</h2>
-          <el-form label-position="top">
+          <el-form
+            label-position="top"
+            :model="ruleForm"
+            ref="ruleFormRef"
+            :rules="rules"
+            hide-required-asterisk
+          >
             <el-row :gutter="20">
               <el-col :sm="12" :md="9">
-                <el-form-item label="稱謂">
-                  <el-select placeholder="選擇稱謂">
-                    <el-option>先生</el-option>
-                    <el-option>太太</el-option>
-                    <el-option>小姐</el-option>
-                    <el-option>女士</el-option>
+                <el-form-item label="稱謂" prop="title">
+                  <el-select v-model="ruleForm.title" placeholder="選擇稱謂">
+                    <el-option label="先生" value="先生">先生</el-option>
+                    <el-option label="太太" value="太太">太太</el-option>
+                    <el-option label="小姐" value="小姐">小姐</el-option>
+                    <el-option label="女士" value="女士">女士</el-option>
                   </el-select>
                 </el-form-item>
               </el-col>
               <el-col :sm="12" :md="15">
-                <el-form-item label="姓名">
-                  <el-input placeholder="請輸入姓名"></el-input>
+                <el-form-item label="姓名" prop="name">
+                  <el-input
+                    v-model="ruleForm.name"
+                    placeholder="請輸入姓名"
+                  ></el-input>
                 </el-form-item>
               </el-col>
               <el-col :sm="12" :md="9">
-                <el-form-item label="電話區號">
-                  <el-input placeholder="選擇電話區號"></el-input>
+                <el-form-item label="電話區號" prop="phoneAreaCode">
+                  <el-input
+                    v-model="ruleForm.phoneAreaCode"
+                    placeholder="選擇電話區號"
+                  ></el-input>
                 </el-form-item>
               </el-col>
               <el-col :sm="12" :md="15">
-                <el-form-item label="電話號碼">
-                  <el-input placeholder="請輸入電話號碼"></el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :sm="12" :md="24">
-                <el-form-item label="電郵地址">
-                  <el-input placeholder="請輸入電郵地址"></el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :sm="12" :md="24">
-                <el-form-item label="你的訊息">
+                <el-form-item label="電話號碼" prop="phoneNumber">
                   <el-input
+                    v-model="ruleForm.phoneNumber"
+                    placeholder="請輸入電話號碼"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :sm="12" :md="24">
+                <el-form-item label="電郵地址" prop="email">
+                  <el-input
+                    v-model="ruleForm.email"
+                    placeholder="請輸入電郵地址"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :sm="12" :md="24">
+                <el-form-item label="你的訊息" prop="message">
+                  <el-input
+                    v-model="ruleForm.message"
                     type="textarea"
                     rows="7"
                     placeholder="請輸入訊息內容"
@@ -47,7 +66,7 @@
               </el-col>
               <el-col>
                 <el-form-item>
-                  <el-button>送出</el-button>
+                  <el-button @click="submit">送出</el-button>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -63,11 +82,72 @@
 </template>
 
 <script>
-// import Banner from "../components/contact-us/Banner.vue";
-
 export default {
-  components: {
-    // Banner,
+  data() {
+    return {
+      ruleForm: {
+        title: "",
+        name: "",
+        phoneAreaCode: "",
+        phoneNumber: "",
+        email: "",
+        message: "",
+      },
+      rules: {
+        title: [
+          {
+            required: true,
+            message: "選擇稱謂",
+            trigger: "blur",
+          },
+        ],
+        name: [
+          {
+            required: true,
+            message: "請輸入姓名",
+            trigger: "blur",
+          },
+        ],
+        phoneAreaCode: [
+          {
+            required: true,
+            message: "選擇電話區號",
+            trigger: "blur",
+          },
+        ],
+        phoneNumber: [
+          {
+            required: true,
+            message: "請輸入電話號碼",
+            trigger: "blur",
+          },
+        ],
+        email: [
+          {
+            required: true,
+            message: "請輸入電郵地址",
+            type: "email",
+            trigger: "blur",
+          },
+        ],
+        message: [
+          {
+            required: true,
+            message: "請輸入訊息內容",
+            trigger: "blur",
+          },
+        ],
+      },
+    };
+  },
+  methods: {
+    submit() {
+      this.$refs.ruleFormRef.validate((valid) => {
+        if (valid) {
+          console.log("valid");
+        }
+      });
+    },
   },
 };
 </script>
@@ -87,7 +167,7 @@ export default {
 }
 
 .contact-us .contact-us-content .el-form .el-form-item {
-  margin-bottom: 10px;
+  /* margin-bottom: 2rem; */
 }
 
 .contact-us .contact-us-content .el-form .el-form-item__label {

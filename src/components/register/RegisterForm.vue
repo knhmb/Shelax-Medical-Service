@@ -1,10 +1,16 @@
 <template>
   <div class="register-form">
-    <el-form>
+    <el-form
+      hide-required-asterisk
+      :model="ruleForm"
+      ref="ruleFormRef"
+      :rules="rules"
+    >
       <el-row>
         <el-col :span="24">
-          <el-form-item>
+          <el-form-item prop="email">
             <el-input
+              v-model="ruleForm.email"
               class="w-50 m-2"
               placeholder="Email"
               :prefix-icon="emailIcon"
@@ -13,8 +19,9 @@
         </el-col>
 
         <el-col :span="24">
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
+              v-model="ruleForm.password"
               type="password"
               placeholder="密碼"
               :prefix-icon="passwordIcon"
@@ -37,7 +44,7 @@
 
       <el-row>
         <el-col>
-          <el-button>註冊</el-button>
+          <el-button @click="register">註冊</el-button>
         </el-col>
       </el-row>
 
@@ -107,6 +114,26 @@ export default {
     return {
       emailIcon: Message,
       passwordIcon: Lock,
+      ruleForm: {
+        email: "",
+        password: "",
+      },
+      rules: {
+        email: [
+          {
+            required: true,
+            message: "Email",
+            trigger: "blur",
+          },
+        ],
+        password: [
+          {
+            required: true,
+            message: "密碼",
+            trigger: "blur",
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -114,6 +141,13 @@ export default {
       this.$emit("authChanged", {
         changedAuthOption: "login",
         authTitle: "登入",
+      });
+    },
+    register() {
+      this.$refs.ruleFormRef.validate((valid) => {
+        if (valid) {
+          console.log("valid");
+        }
       });
     },
   },
