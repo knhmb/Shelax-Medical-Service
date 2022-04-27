@@ -129,7 +129,13 @@ export default {
   text-align: center;
 }
 
-@media screen and (min-width: 591px) and (max-width: 767px) {
+.recommended-services
+  .el-carousel.el-carousel--horizontal
+  .el-carousel__container {
+  height: 70vh !important;
+}
+
+/* @media screen and (min-width: 591px) and (max-width: 767px) {
   .recommended-services
     .el-carousel.el-carousel--horizontal
     .el-carousel__container {
@@ -175,5 +181,5 @@ export default {
     .el-carousel__container {
     height: 480px !important;
   }
-}
+} */
 </style>
