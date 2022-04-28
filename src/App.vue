@@ -13,6 +13,9 @@ export default {
     TheHeader,
     TheFooter,
   },
+  // created() {
+  //   localStorage.setItem("lang", "zh-cn");
+  // },
 };
 </script>
 

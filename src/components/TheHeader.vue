@@ -53,7 +53,7 @@
               "
               index="3"
               @click="openDialog('login')"
-              >登入</el-menu-item
+              >{{ $t("menu_login") }}</el-menu-item
             >
             <li
               class="login-btn"
@@ -64,7 +64,7 @@
             >
               <!-- <el-button class="my-login-btn" type="primary">Login</el-button> -->
               <button @click="openDialog('register')" class="my-login-btn">
-                註冊
+                {{ $t("menu_register") }}
               </button>
             </li>
           </el-menu>
@@ -88,20 +88,20 @@
         class="el-menu-demo bottom-header"
         mode="horizontal"
       >
-        <el-menu-item index="1">HPV疫苗</el-menu-item>
-        <el-menu-item index="2">四痘混合疫苗</el-menu-item>
-        <el-menu-item index="3">兒童疫苗</el-menu-item>
-        <el-menu-item index="4">13價肺炎球菌疫苗</el-menu-item>
-        <el-menu-item index="5">孕前檢查</el-menu-item>
-        <el-menu-item index="6">人工受孕</el-menu-item>
-        <el-menu-item index="7">凍卵</el-menu-item>
-        <el-menu-item index="8">身體檢查</el-menu-item>
+        <el-menu-item index="1">{{ $t("bottom_menu_left_1") }}</el-menu-item>
+        <el-menu-item index="2">{{ $t("bottom_menu_left_2") }}</el-menu-item>
+        <el-menu-item index="3">{{ $t("bottom_menu_left_3") }}</el-menu-item>
+        <el-menu-item index="4">{{ $t("bottom_menu_left_4") }}</el-menu-item>
+        <el-menu-item index="5">{{ $t("bottom_menu_left_5") }}</el-menu-item>
+        <el-menu-item index="6">{{ $t("bottom_menu_left_6") }}</el-menu-item>
+        <el-menu-item index="7">{{ $t("bottom_menu_left_7") }}</el-menu-item>
+        <el-menu-item index="8">{{ $t("bottom_menu_left_8") }}</el-menu-item>
         <el-sub-menu index="9">
-          <template #title>基因檢查</template>
+          <template #title>{{ $t("bottom_menu_left_9") }}</template>
           <el-menu-item index="9-1">DNA基因檢查</el-menu-item>
           <el-menu-item index="9-2">腫瘤基因檢查</el-menu-item>
         </el-sub-menu>
-        <el-menu-item index="10">兒科檢查</el-menu-item>
+        <el-menu-item index="10">{{ $t("bottom_menu_left_10") }}</el-menu-item>
       </el-menu>
       <div v-else class="steps">
         <el-steps :active="step" finish-status="success">

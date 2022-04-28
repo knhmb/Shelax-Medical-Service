@@ -6,30 +6,24 @@
       width="30%"
       :before-close="handleClose"
     >
-      <el-tabs v-model="activeName" :stretch="true">
+      <!-- <el-tabs v-model="activeName" :stretch="true">
         <el-tab-pane label="電郵地址" name="first">
           <template #label>
             <span @click="selectedTab('email')" class="label">
               <img :src="emailTab" style="width: 20px" alt="" />
-              <!-- <img
-                v-else
-                src="../../assets/icon-email-off@2x.png"
-                style="width: 20px"
-                alt=""
-              /> -->
               電郵地址
             </span>
-          </template>
-          <register-form
-            v-if="selectedOption === 'register'"
-            @authChanged="changedAuth"
-          ></register-form>
-          <login-form
-            v-if="selectedOption === 'login'"
-            @authChanged="changedAuth"
-          ></login-form>
-        </el-tab-pane>
-        <!-- <el-tab-pane label="手機號碼" name="second">
+          </template> -->
+      <register-form
+        v-if="selectedOption === 'register'"
+        @authChanged="changedAuth"
+      ></register-form>
+      <login-form
+        v-if="selectedOption === 'login'"
+        @authChanged="changedAuth"
+      ></login-form>
+      <!-- </el-tab-pane> -->
+      <!-- <el-tab-pane label="手機號碼" name="second">
           <template #label>
             <span @click="selectedTab('phone')" class="label">
               <img :src="phoneTab" style="width: 20px" alt="" />
@@ -37,7 +31,7 @@
             </span>
           </template></el-tab-pane
         > -->
-      </el-tabs>
+      <!-- </el-tabs> -->
     </el-dialog>
   </section>
 </template>
@@ -59,15 +53,18 @@ export default {
       phoneTab: require("../../assets/icon-phone-off@2x.png"),
       activeName: "first",
       selectedAuthOption: "register",
-      authTitle: "登入",
+      // authTitle: "登入",
+      authTitle: this.$t("menu_login"),
     };
   },
   watch: {
     selectedOption() {
       if (this.selectedOption === "register") {
-        this.authTitle = "註冊";
+        // this.authTitle = "註冊";
+        this.authTitle = this.$t("menu_register");
       } else {
-        this.authTitle = "登入";
+        // this.authTitle = "登入";
+        this.authTitle = this.$t("menu_login");
       }
     },
   },
@@ -166,7 +163,7 @@ export default {
 .dialog .el-dialog__header,
 .dialog .el-dialog__body,
 .dialog .el-dialog__footer {
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 </style>

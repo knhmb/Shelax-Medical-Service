@@ -8,4 +8,16 @@ module.exports = {
       },
     },
   },
+
+  pluginOptions: {
+    i18n: {
+      locale: 'zh-cn',
+      fallbackLocale: 'zh-cn',
+      localeDir: 'locales',
+      enableLegacy: false,
+      runtimeOnly: false,
+      compositionOnly: false,
+      fullInstall: true
+    }
+  }
 };

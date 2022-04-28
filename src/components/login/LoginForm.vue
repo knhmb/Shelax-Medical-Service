@@ -23,7 +23,7 @@
             <el-input
               v-model="ruleForm.password"
               type="password"
-              placeholder="密碼"
+              :placeholder="$t('password')"
               :prefix-icon="passwordIcon"
               show-password
             />
@@ -34,23 +34,23 @@
       <el-row>
         <el-col :span="12">
           <el-form-item>
-            <el-checkbox label="記住我" size="large"></el-checkbox>
+            <el-checkbox :label="$t('remember_me')" size="large"></el-checkbox>
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <p class="forgot-pass">忘記密碼?</p>
+          <p class="forgot-pass">{{ $t("forgot_password") }}</p>
         </el-col>
       </el-row>
 
       <el-row>
         <el-col>
-          <el-button @click="login">登入</el-button>
+          <el-button @click="login">{{ $t("menu_login") }}</el-button>
         </el-col>
       </el-row>
 
-      <el-divider content-position="center">或快速登入</el-divider>
+      <el-divider content-position="center">{{ $t("quick_login") }}</el-divider>
       <p class="divider">
-        如以未登記的電話號碼或第三方帳戶登入，將自動為你建立一個新的Shelax 帳戶
+        {{ $t("login_note") }}
       </p>
       <el-row :gutter="15">
         <el-col :span="12">
@@ -60,7 +60,7 @@
               style="width: 24px"
               alt=""
             />
-            <p>使用 Facebook 登入</p>
+            <p>{{ $t("login_facebook") }}</p>
           </el-button>
         </el-col>
         <el-col :span="12">
@@ -70,7 +70,7 @@
               style="width: 24px"
               alt=""
             />
-            <p>使用 Google 登入</p>
+            <p>{{ $t("login_google") }}</p>
           </el-button>
         </el-col>
         <el-col :span="12">
@@ -80,7 +80,7 @@
               style="width: 24px"
               alt=""
             />
-            <p>使用 WeChat 登入</p>
+            <p>{{ $t("login_wechat") }}</p>
           </el-button>
         </el-col>
         <el-col :span="12">
@@ -90,15 +90,17 @@
               style="width: 24px"
               alt=""
             />
-            <p>使用 Apple 登入</p>
+            <p>{{ $t("login_apple") }}</p>
           </el-button>
         </el-col>
       </el-row>
       <el-row>
         <el-col>
           <p class="login">
-            未有Shelax帳號?
-            <span @click="changeAuthOption" class="login-link">現在註冊</span>
+            {{ $t("dont_have_account") }}
+            <span @click="changeAuthOption" class="login-link">{{
+              $t("signup_now")
+            }}</span>
           </p>
         </el-col>
       </el-row>
@@ -131,7 +133,7 @@ export default {
         password: [
           {
             required: true,
-            message: "密碼",
+            message: this.$t("password"),
             trigger: "blur",
           },
         ],

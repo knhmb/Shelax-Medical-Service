@@ -19,6 +19,7 @@ import BaseContentContainer from "./ui/BaseContentContainer.vue";
 import BaseButton from "./ui/BaseButton.vue";
 import BaseCard from "./ui/BaseCard.vue";
 import BaseMemberCard from "./ui/BaseMemberCard.vue";
+import i18n from "./i18n.js";
 
 const app = createApp(App);
 
@@ -28,6 +29,7 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(ElementPlus);
 app.use(router);
 app.use(store);
+app.use(i18n);
 
 app.component("base-container", BaseContainer);
 app.component("base-content-container", BaseContentContainer);
