@@ -4,7 +4,12 @@
       <h3>點數記錄</h3>
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="orderNumber" label="訂單號碼" width="180" />
-        <el-table-column prop="earnPoints" label="獲得點數" width="180" />
+        <el-table-column
+          class-name="points"
+          prop="earnPoints"
+          label="獲得點數"
+          width="180"
+        />
         <el-table-column prop="validUntil" label="有效期至" />
       </el-table>
       <!-- <el-row>
@@ -68,6 +73,10 @@ export default {
   line-height: 28px;
   color: #262626;
   margin-bottom: 2rem;
+}
+
+.member-points .table .el-table__body .points {
+  color: #feb431;
 }
 
 .member-points .table .el-row {
