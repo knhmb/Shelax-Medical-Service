@@ -19,13 +19,19 @@
           >
             <el-sub-menu popper-class="language" index="1">
               <template #title>{{ menuVal }}</template>
-              <el-menu-item @click="menuVal = '繁體中文'" index="1-1"
+              <el-menu-item
+                @click="setLanguage({ option: '繁體中文', lang: 'zh-cn' })"
+                index="1-1"
                 >繁體中文</el-menu-item
               >
-              <el-menu-item @click="menuVal = '简体中文'" index="1-2"
+              <el-menu-item
+                @click="setLanguage({ option: '简体中文', lang: 'zh-cht' })"
+                index="1-2"
                 >简体中文</el-menu-item
               >
-              <el-menu-item @click="menuVal = 'English'" index="1-3"
+              <el-menu-item
+                @click="setLanguage({ option: 'English', lang: 'en' })"
+                index="1-3"
                 >English</el-menu-item
               >
             </el-sub-menu>
@@ -128,6 +134,7 @@ export default {
       loggedIn: false,
       selectedOption: "login",
       menuVal: "繁體中文",
+      lang: null,
     };
   },
   computed: {
@@ -156,6 +163,22 @@ export default {
     changeAuth(event) {
       this.selectedOption = event;
     },
+    setLanguage({ option, lang }) {
+      this.menuVal = option;
+      this.lang = lang;
+      localStorage.setItem("lang", this.lang);
+      window.location.reload();
+    },
+  },
+  created() {
+    const language = localStorage.getItem("lang");
+    if (language === "zh-cht") {
+      this.menuVal = "简体中文";
+    } else if (language === "zh-cn") {
+      this.menuVal = "繁體中文";
+    } else if (language === "en") {
+      this.menuVal = "English";
+    }
   },
 };
 </script>
