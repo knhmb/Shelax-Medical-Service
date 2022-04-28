@@ -7,13 +7,198 @@
         <el-icon @click="addMember" style="cursor: pointer"><plus /></el-icon>
         <span class="text">新增常用成員</span>
       </div>
+
+      <!-- ====================================================== Edit Member ====================================================== -->
+
+      <template v-if="ruleForm.members.length > 0">
+        <div
+          v-for="(item, index) in ruleForm.members"
+          class="box-2"
+          :key="index"
+        >
+          <el-row>
+            <el-col :xs="24" :sm="12">
+              <el-avatar :src="item.imgSrc" :size="50" />
+              <span>{{ item.firstName }}</span>
+            </el-col>
+            <el-col :xs="24" :sm="12">
+              <div @click="showContent(item)" class="edit">
+                <el-icon><edit /></el-icon>
+                <span class="action">修改</span>
+              </div>
+              <div class="delete">
+                <el-icon><delete /></el-icon>
+                <span class="action">刪除</span>
+              </div>
+            </el-col>
+          </el-row>
+          <transition name="animate" mode="out-in">
+            <div v-if="item.memberEdit" class="box-content">
+              <el-form
+                ref="ruleFormRef"
+                :model="ruleForm"
+                :rules="rules"
+                label-position="top"
+              >
+                <el-row :gutter="20">
+                  <el-col :sm="12" :md="3">
+                    <!-- <el-avatar :size="50">
+                      <el-icon class="form-icon"><camera /></el-icon>
+                    </el-avatar> -->
+                    <el-avatar icon :size="50" shape="circle">
+                      <img
+                        v-if="item.imgSrc"
+                        class="image-avatar"
+                        :src="item.imgSrc"
+                        alt=""
+                      />
+                      <label for="member-image">
+                        <el-icon class="form-icon" style="cursor: pointer"
+                          ><camera
+                        /></el-icon>
+                      </label>
+                    </el-avatar>
+                    <input
+                      id="member-image"
+                      @change="onFileChange($event, item)"
+                      type="file"
+                    />
+                  </el-col>
+                  <el-col :sm="12" :md="5">
+                    <el-form-item
+                      label="稱謂"
+                      :prop="'members.' + index + '.title'"
+                      :rules="{
+                        required: true,
+                        message: 'This Field is required',
+                        trigger: 'change',
+                      }"
+                    >
+                      <el-select v-model="item.title" placeholder="先生">
+                        <el-option label="先生" value="先生">先生</el-option>
+                        <el-option label="太太" value="太太">太太</el-option>
+                        <el-option label="小姐" value="小姐">小姐</el-option>
+                        <el-option label="女士" value="女士">女士</el-option>
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :sm="12" :md="8">
+                    <el-form-item
+                      label="姓氏"
+                      :prop="'members.' + index + '.lastName'"
+                      :rules="{
+                        required: true,
+                        message: '請輸入姓氏',
+                        trigger: 'blur',
+                      }"
+                    >
+                      <el-input
+                        placeholder="請輸入姓氏"
+                        v-model="item.lastName"
+                      ></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :sm="12" :md="8">
+                    <el-form-item
+                      label="名字"
+                      :prop="'members.' + index + '.firstName'"
+                      :rules="{
+                        required: true,
+                        message: '請輸入名字',
+                        trigger: 'blur',
+                      }"
+                    >
+                      <el-input
+                        placeholder="請輸入名字"
+                        v-model="item.firstName"
+                      ></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :sm="12" :md="5">
+                    <el-form-item
+                      label="電話區號"
+                      :prop="'members.' + index + '.phoneAreaCode'"
+                      :rules="{
+                        required: true,
+                        message: '請輸入電話區號',
+                        trigger: 'blur',
+                      }"
+                    >
+                      <el-input
+                        placeholder="請輸入電話區號"
+                        v-model="item.phoneAreaCode"
+                      ></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :sm="12" :md="9">
+                    <el-form-item
+                      label="電話號碼"
+                      :prop="'members.' + index + '.phoneNumber'"
+                      :rules="{
+                        required: true,
+                        message: '請輸入電話號碼',
+                        trigger: 'blur',
+                      }"
+                    >
+                      <el-input
+                        placeholder="請輸入電話號碼"
+                        v-model="item.phoneNumber"
+                      ></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :sm="12" :md="9">
+                    <el-form-item
+                      label="電郵地址"
+                      :prop="'members.' + index + '.email'"
+                      :rules="{
+                        required: true,
+                        message: '請輸入電郵地址',
+                        trigger: 'blur',
+                        type: 'email',
+                      }"
+                    >
+                      <el-input
+                        placeholder="請輸入電郵地址"
+                        v-model="item.email"
+                      ></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :sm="12" :md="12">
+                    <el-form-item
+                      label="居住國家 / 城市"
+                      :prop="'members.' + index + '.country'"
+                      :rules="{
+                        required: true,
+                        message: '請輸入居住國家/城市',
+                        trigger: 'blur',
+                      }"
+                    >
+                      <el-input
+                        placeholder="請輸入居住國家/城市"
+                        v-model="item.country"
+                      ></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col class="buttons">
+                    <el-button @click="item.memberEdit = false">取消</el-button>
+                    <el-button @click="edit(item)">儲存</el-button>
+                  </el-col>
+                </el-row>
+              </el-form>
+            </div>
+          </transition>
+        </div>
+      </template>
+
+      <!-- ====================================================== New Member ====================================================== -->
+
       <div
         class="dynamic"
         v-for="(item, index) in ruleForm.dynamicContent"
         :key="index"
       >
         <div :class="{ 'content-visible': isContentVisible }" class="box-2">
-          <el-row>
+          <!-- <el-row>
             <el-col :xs="24" :sm="12">
               <el-avatar :size="50" />
               <span>Jane Cooper</span>
@@ -28,11 +213,11 @@
                 <span class="action">刪除</span>
               </div>
             </el-col>
-          </el-row>
+          </el-row> -->
           <transition name="animate" mode="out-in">
             <div v-if="item.contentVisible" class="box-content">
               <el-form
-                ref="ruleFormRef"
+                ref="ruleFormRefAdd"
                 :model="ruleForm"
                 :rules="rules"
                 label-position="top"
@@ -180,9 +365,7 @@
                     <el-button @click="item.contentVisible = false"
                       >取消</el-button
                     >
-                    <el-button @click="item.contentVisible = false"
-                      >修改</el-button
-                    >
+                    <el-button @click="submit(item)">儲存</el-button>
                   </el-col>
                 </el-row>
               </el-form>
@@ -195,7 +378,7 @@
 </template>
 
 <script>
-import { Plus, Edit, Delete, Camera } from "@element-plus/icons-vue";
+import { Plus, Camera, Edit, Delete } from "@element-plus/icons-vue";
 import { ElMessage } from "element-plus";
 
 export default {
@@ -210,6 +393,7 @@ export default {
       isContentVisible: false,
       imgSrc: null,
       ruleForm: {
+        members: [],
         // title: "",
         // lastName: "",
         // firstName: "",
@@ -287,7 +471,35 @@ export default {
   methods: {
     showContent(item) {
       // this.isContentVisible = true;
-      item.contentVisible = true;
+      // item.contentVisible = true;
+      item.memberEdit = true;
+    },
+    submit(item) {
+      this.$refs.ruleFormRefAdd[0].validate((valid) => {
+        if (valid) {
+          item.contentVisible = false;
+          this.ruleForm.members.push({ ...item, memberEdit: false });
+        } else {
+          ElMessage({
+            message: "Please Fill All Fields",
+            type: "error",
+          });
+        }
+      });
+    },
+    edit(item) {
+      this.$refs.ruleFormRef[0].validate((valid) => {
+        if (valid) {
+          console.log("editted");
+          console.log(item);
+          item.memberEdit = false;
+        } else {
+          ElMessage({
+            message: "Please Fill All Fields",
+            type: "error",
+          });
+        }
+      });
     },
     addMember() {
       this.ruleForm.dynamicContent.push({
@@ -347,6 +559,10 @@ input[type="file"] {
   line-height: 28px;
   color: #262626;
   margin-bottom: 2rem;
+}
+
+.other-member .box-2:empty {
+  display: none;
 }
 
 .other-member .box,
