@@ -167,7 +167,7 @@ export default {
       this.menuVal = option;
       this.lang = lang;
       localStorage.setItem("lang", this.lang);
-      window.location.reload();
+      this.$i18n.locale = this.lang;
     },
   },
   created() {
