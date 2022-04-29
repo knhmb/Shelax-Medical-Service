@@ -3,79 +3,166 @@
     <base-content-container>
       <div class="search-content">
         <el-row justify="space-between">
-          <el-col :sm="24" :md="5" :lg="5">
-            <p class="title">搜尋服務或產品</p>
-            <el-select
-              popper-class="service-dropdown"
-              v-model="value"
-              placeholder="身體檢查"
-            >
-              <h5>選擇服務</h5>
-              <el-row justify="space-between">
-                <el-col class="service-option" :span="7">
-                  <el-option value="HPV疫苗">
-                    <p>HPV疫苗</p>
-                  </el-option>
+          <el-col class="first-column" :sm="24" :md="6" :lg="6">
+            <div class="first-column-content">
+              <el-row class="select-search-option">
+                <el-col
+                  @click="setActiveOption('service')"
+                  :class="{ 'is-active': isActive === 'service' }"
+                  :span="9"
+                >
+                  <p>服務</p>
                 </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="四痘混合疫苗">
-                    <p>四痘混合疫苗</p>
-                  </el-option>
-                </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="兒童疫苗">
-                    <p>兒童疫苗</p>
-                  </el-option>
-                </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="13價肺炎球菌疫苗">
-                    <p>13價肺炎球菌疫苗</p>
-                  </el-option>
-                </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="孕前檢查">
-                    <p>孕前檢查</p>
-                  </el-option>
-                </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="人工受孕">
-                    <p>人工受孕</p>
-                  </el-option>
-                </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="凍卵">
-                    <p>凍卵</p>
-                  </el-option>
-                </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="身體檢查">
-                    <p>身體檢查</p>
-                  </el-option>
-                </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="基因檢查">
-                    <p>基因檢查</p>
-                  </el-option>
-                </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="DNA基因檢查">
-                    <p>DNA基因檢查</p>
-                  </el-option>
-                </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="腫瘤基因檢查">
-                    <p>腫瘤基因檢查</p>
-                  </el-option>
-                </el-col>
-                <el-col class="service-option" :span="7">
-                  <el-option value="兒科檢查">
-                    <p>兒科檢查</p>
-                  </el-option>
+                <el-col
+                  @click="setActiveOption('product')"
+                  :class="{ 'is-active': isActive === 'product' }"
+                  :span="9"
+                >
+                  <p>產品</p>
                 </el-col>
               </el-row>
-            </el-select>
+              <!-- <p class="title">搜尋服務或產品</p> -->
+              <el-select
+                popper-class="service-dropdown"
+                v-model="value"
+                filterable
+                allow-create
+                placeholder="身體檢查"
+              >
+                <div class="service-options">
+                  <h5>選擇服務</h5>
+                  <el-row justify="space-between">
+                    <el-col class="service-option" :span="7">
+                      <el-option value="HPV疫苗">
+                        <p>HPV疫苗</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="四痘混合疫苗">
+                        <p>四痘混合疫苗</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="兒童疫苗">
+                        <p>兒童疫苗</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="13價肺炎球菌疫苗">
+                        <p>13價肺炎球菌疫苗</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="孕前檢查">
+                        <p>孕前檢查</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="人工受孕">
+                        <p>人工受孕</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="凍卵">
+                        <p>凍卵</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="身體檢查">
+                        <p>身體檢查</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="基因檢查">
+                        <p>基因檢查</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="DNA基因檢查">
+                        <p>DNA基因檢查</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="腫瘤基因檢查">
+                        <p>腫瘤基因檢查</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="兒科檢查">
+                        <p>兒科檢查</p>
+                      </el-option>
+                    </el-col>
+                  </el-row>
+                </div>
+                <div class="product-options">
+                  <h5>選擇服務</h5>
+                  <el-row justify="space-between">
+                    <el-col class="service-option" :span="7">
+                      <el-option value="HPV疫苗">
+                        <p>HPV疫苗</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="四痘混合疫苗">
+                        <p>四痘混合疫苗</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="兒童疫苗">
+                        <p>兒童疫苗</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="13價肺炎球菌疫苗">
+                        <p>13價肺炎球菌疫苗</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="孕前檢查">
+                        <p>孕前檢查</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="人工受孕">
+                        <p>人工受孕</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="凍卵">
+                        <p>凍卵</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="身體檢查">
+                        <p>身體檢查</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="基因檢查">
+                        <p>基因檢查</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="DNA基因檢查">
+                        <p>DNA基因檢查</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="腫瘤基因檢查">
+                        <p>腫瘤基因檢查</p>
+                      </el-option>
+                    </el-col>
+                    <el-col class="service-option" :span="7">
+                      <el-option value="兒科檢查">
+                        <p>兒科檢查</p>
+                      </el-option>
+                    </el-col>
+                  </el-row>
+                </div>
+              </el-select>
+            </div>
           </el-col>
-          <el-col :sm="24" :md="5" :lg="5">
+          <el-col :sm="24" :md="4" :lg="4">
             <p class="title">選擇日期</p>
             <el-date-picker
               v-model="datePicker"
@@ -85,7 +172,7 @@
             </el-date-picker>
             <!-- <p>2021/12/20</p> -->
           </el-col>
-          <el-col :sm="24" :md="5" :lg="5">
+          <el-col :sm="24" :md="4" :lg="4">
             <p class="title">選擇時間</p>
             <el-select
               popper-class="time-dropdown"
@@ -245,7 +332,7 @@
             </el-select>
             <!-- <p>上午 10:00</p> -->
           </el-col>
-          <el-col :sm="24" :md="5" :lg="5">
+          <el-col :sm="24" :md="6" :lg="6">
             <button>
               <img
                 src="../assets/icon-search@2x.png"
@@ -277,7 +364,13 @@ export default {
       value: "",
       datePicker: "",
       timePicker: "",
+      isActive: "service",
     };
+  },
+  methods: {
+    setActiveOption(option) {
+      this.isActive = option;
+    },
   },
 };
 </script>
@@ -314,6 +407,49 @@ export default {
   min-width: 200px;
 }
 
+.search .search-content .el-col {
+  /* padding: 16px 26px 24px 24px; */
+}
+
+.search .search-content .el-col.first-column .first-column-content {
+  background-color: #f4f4f4;
+  border-radius: 100px;
+  padding: 16px;
+}
+
+.search .el-row.select-search-option .el-col {
+  background-color: #f4f4f4;
+  border-radius: 100px;
+  padding: 4px 12px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+  transition: 0.2s ease-out;
+}
+
+.search .el-row.select-search-option .el-col:hover,
+.search .el-row.select-search-option .el-col.is-active {
+  background: #7690da;
+}
+
+.search .el-row.select-search-option .el-col:hover p,
+.search .el-row.select-search-option .el-col.is-active p {
+  color: #fff;
+}
+
+.search .el-row.select-search-option .el-col p {
+  text-align: center;
+  width: 100%;
+  word-break: break-word;
+
+  font-family: "PingFang HK";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #a8a8a8;
+}
+
 .search .el-button.el-button--primary {
   background-color: #7690da;
   border-color: #7690da;
@@ -332,7 +468,7 @@ export default {
 .search button {
   background-color: #7690da;
   border: 1px solid #7690da;
-  padding: 16px;
+  /* padding: 16px; */
   width: 100%;
   border-radius: 100px;
   display: flex;
@@ -343,6 +479,7 @@ export default {
   /* font-size: 18px; */
   font-weight: 700;
   line-height: 28px;
+  padding: 26px;
 }
 
 .el-select__popper.service-dropdown.el-popper.is-pure,
@@ -355,12 +492,14 @@ export default {
 
 .el-select-dropdown.service-dropdown .el-scrollbar {
   border-radius: 24px;
+  /* min-height: 500px; */
 }
 
 .el-select-dropdown.service-dropdown .el-scrollbar .service-option {
   background: #f4f4f4;
   border-radius: 100px;
   /* padding: 16px 24px; */
+  padding: 0 32px 0 20px;
   margin-bottom: 1rem;
 }
 
@@ -368,12 +507,17 @@ export default {
   text-align: center;
 }
 
-.el-select-dropdown.service-dropdown .el-select-dropdown__item:hover,
+/* .el-select-dropdown.service-dropdown .el-select-dropdown__item:hover,
 .el-select-dropdown.service-dropdown .el-select-dropdown__item.selected {
   border: 1px solid #7690da;
   border-radius: 24px;
   color: #606266;
   font-weight: normal;
+} */
+
+.el-select-dropdown.service-dropdown .el-scrollbar .service-option:hover {
+  border: 1px solid #7690da;
+  cursor: pointer;
 }
 
 .service-dropdown h5,
