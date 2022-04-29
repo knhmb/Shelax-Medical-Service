@@ -32,131 +32,215 @@
                 <div class="service-options">
                   <h5>選擇服務</h5>
                   <el-row justify="space-between">
-                    <el-col class="service-option" :span="7">
-                      <el-option value="HPV疫苗">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === 'HPV疫苗' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('HPV疫苗')"
+                        value="HPV疫苗"
+                      >
                         <p>HPV疫苗</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="四痘混合疫苗">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '四痘混合疫苗' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('四痘混合疫苗')"
+                        value="四痘混合疫苗"
+                      >
                         <p>四痘混合疫苗</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="兒童疫苗">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '兒童疫苗' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('兒童疫苗')"
+                        value="兒童疫苗"
+                      >
                         <p>兒童疫苗</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="13價肺炎球菌疫苗">
+                    <el-col
+                      class="service-option"
+                      :class="{
+                        selected: currentOption === '13價肺炎球菌疫苗',
+                      }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('13價肺炎球菌疫苗')"
+                        value="13價肺炎球菌疫苗"
+                      >
                         <p>13價肺炎球菌疫苗</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="孕前檢查">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '孕前檢查' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('孕前檢查')"
+                        value="孕前檢查"
+                      >
                         <p>孕前檢查</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="人工受孕">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '人工受孕' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('人工受孕')"
+                        value="人工受孕"
+                      >
                         <p>人工受孕</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="凍卵">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '凍卵' }"
+                      :span="7"
+                    >
+                      <el-option @click="selectedOption('凍卵')" value="凍卵">
                         <p>凍卵</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="身體檢查">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '身體檢查' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('身體檢查')"
+                        value="身體檢查"
+                      >
                         <p>身體檢查</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="基因檢查">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '基因檢查' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('基因檢查')"
+                        value="基因檢查"
+                      >
                         <p>基因檢查</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="DNA基因檢查">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === 'DNA基因檢查' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('DNA基因檢查')"
+                        value="DNA基因檢查"
+                      >
                         <p>DNA基因檢查</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="腫瘤基因檢查">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '腫瘤基因檢查' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('腫瘤基因檢查')"
+                        value="腫瘤基因檢查"
+                      >
                         <p>腫瘤基因檢查</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="兒科檢查">
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '兒科檢查' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('兒科檢查')"
+                        value="兒科檢查"
+                      >
                         <p>兒科檢查</p>
                       </el-option>
                     </el-col>
                   </el-row>
                 </div>
                 <div class="product-options">
-                  <h5>選擇服務</h5>
+                  <h5>產品類型</h5>
                   <el-row justify="space-between">
-                    <el-col class="service-option" :span="7">
-                      <el-option value="HPV疫苗">
-                        <p>HPV疫苗</p>
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '抗疫產品' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('抗疫產品')"
+                        value="抗疫產品"
+                      >
+                        <p>抗疫產品</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="四痘混合疫苗">
-                        <p>四痘混合疫苗</p>
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '健康營養' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('健康營養')"
+                        value="健康營養"
+                      >
+                        <p>健康營養</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="兒童疫苗">
-                        <p>兒童疫苗</p>
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '復康保健' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('復康保健')"
+                        value="復康保健"
+                      >
+                        <p>復康保健</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="13價肺炎球菌疫苗">
-                        <p>13價肺炎球菌疫苗</p>
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '舒緩痛症' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('舒緩痛症')"
+                        value="舒緩痛症"
+                      >
+                        <p>舒緩痛症</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="孕前檢查">
-                        <p>孕前檢查</p>
+                    <el-col
+                      class="service-option"
+                      :class="{ selected: currentOption === '醫療器械' }"
+                      :span="7"
+                    >
+                      <el-option
+                        @click="selectedOption('醫療器械')"
+                        value="醫療器械"
+                      >
+                        <p>醫療器械</p>
                       </el-option>
                     </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="人工受孕">
-                        <p>人工受孕</p>
-                      </el-option>
-                    </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="凍卵">
-                        <p>凍卵</p>
-                      </el-option>
-                    </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="身體檢查">
-                        <p>身體檢查</p>
-                      </el-option>
-                    </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="基因檢查">
-                        <p>基因檢查</p>
-                      </el-option>
-                    </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="DNA基因檢查">
-                        <p>DNA基因檢查</p>
-                      </el-option>
-                    </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="腫瘤基因檢查">
-                        <p>腫瘤基因檢查</p>
-                      </el-option>
-                    </el-col>
-                    <el-col class="service-option" :span="7">
-                      <el-option value="兒科檢查">
-                        <p>兒科檢查</p>
-                      </el-option>
-                    </el-col>
+                    <el-col :span="7"></el-col>
                   </el-row>
                 </div>
               </el-select>
@@ -365,11 +449,15 @@ export default {
       datePicker: "",
       timePicker: "",
       isActive: "service",
+      currentOption: "",
     };
   },
   methods: {
     setActiveOption(option) {
       this.isActive = option;
+    },
+    selectedOption(option) {
+      this.currentOption = option;
     },
   },
 };
@@ -495,10 +583,15 @@ export default {
   /* min-height: 500px; */
 }
 
+.el-select-dropdown.service-dropdown .el-select-dropdown__wrap {
+  max-height: 100%;
+}
+
 .el-select-dropdown.service-dropdown .el-scrollbar .service-option {
   background: #f4f4f4;
   border-radius: 100px;
   /* padding: 16px 24px; */
+  border: 1px solid #f4f4f4;
   padding: 0 32px 0 20px;
   margin-bottom: 1rem;
 }
@@ -515,9 +608,20 @@ export default {
   font-weight: normal;
 } */
 
+.el-select-dropdown.service-dropdown .el-select-dropdown__item.selected {
+  /* border: 1px solid #7690da; */
+  /* border-radius: 24px; */
+  color: #606266;
+  font-weight: normal;
+}
+
 .el-select-dropdown.service-dropdown .el-scrollbar .service-option:hover {
-  border: 1px solid #7690da;
+  border-color: #7690da;
+
   cursor: pointer;
+}
+.el-select-dropdown.service-dropdown .el-scrollbar .service-option.selected {
+  border-color: #7690da;
 }
 
 .service-dropdown h5,
