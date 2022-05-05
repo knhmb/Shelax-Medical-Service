@@ -14,7 +14,7 @@ export default {
     TheFooter,
   },
   // created() {
-  //   localStorage.setItem("lang", "zh-cn");
+  //   localStorage.setItem("lang", "zh-CN");
   // },
 };
 </script>

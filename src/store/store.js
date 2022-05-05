@@ -2,7 +2,8 @@ import { createStore } from "vuex";
 import actions from "./actions";
 import mutations from "./mutations";
 import getters from "./getters";
-import dashboardModule from "./modules/dashboard";
+import dashboardModule from "./modules/dashboard/index";
+import authModule from "./modules/auth/index";
 
 const store = createStore({
   state() {
@@ -16,6 +17,7 @@ const store = createStore({
   getters,
   modules: {
     dashboard: dashboardModule,
+    auth: authModule,
   },
 });
 

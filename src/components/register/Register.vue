@@ -17,6 +17,7 @@
       <register-form
         v-if="selectedOption === 'register'"
         @authChanged="changedAuth"
+        @closeDialog="closeDialog"
       ></register-form>
       <login-form
         v-if="selectedOption === 'login'"

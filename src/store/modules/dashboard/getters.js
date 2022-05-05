@@ -5,4 +5,7 @@ export default {
   subMenuItems(state) {
     return state.subMenuItems;
   },
+  promoBanners(state) {
+    return state.promoBanners;
+  },
 };

@@ -6,24 +6,48 @@
       ref="ruleFormRef"
       :rules="rules"
     >
-      <el-row>
-        <el-col :span="24">
+      <el-row :gutter="10">
+        <el-col :span="17">
           <el-form-item prop="email">
             <el-input
               v-model="ruleForm.email"
               class="w-50 m-2"
-              placeholder="Email"
+              placeholder="輸入電郵地址"
               :prefix-icon="emailIcon"
             />
           </el-form-item>
         </el-col>
+        <el-col :span="7">
+          <el-button @click="sendVerificationCode" class="verification-code"
+            >獲取驗證碼</el-button
+          >
+        </el-col>
 
+        <el-col :span="24">
+          <el-form-item prop="verificationCode">
+            <el-input
+              v-model="ruleForm.verificationCode"
+              placeholder="輸入驗證碼"
+            />
+          </el-form-item>
+        </el-col>
         <el-col :span="24">
           <el-form-item prop="password">
             <el-input
               v-model="ruleForm.password"
               type="password"
-              placeholder="密碼"
+              placeholder="輸入密碼"
+              :prefix-icon="passwordIcon"
+              show-password
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="24">
+          <el-form-item prop="confirmPassword">
+            <el-input
+              v-model="ruleForm.confirmPassword"
+              type="password"
+              placeholder="確認新密碼"
               :prefix-icon="passwordIcon"
               show-password
             />
@@ -33,8 +57,9 @@
 
       <el-row>
         <el-col>
-          <el-form-item>
+          <el-form-item prop="promotions">
             <el-checkbox
+              v-model="ruleForm.promotions"
               label="是的！我願意接收有關Shelax的最新優惠及其他資訊，並了解我可以隨時取消訂閱。"
               size="large"
             ></el-checkbox>
@@ -44,7 +69,7 @@
 
       <el-row>
         <el-col>
-          <el-button @click="register">註冊</el-button>
+          <el-button @click="submit">註冊</el-button>
         </el-col>
       </el-row>
 
@@ -58,7 +83,7 @@
               style="width: 24px"
               alt=""
             />
-            <p>使用 Facebook 登入</p>
+            <p>{{ $t("login_facebook") }}</p>
           </el-button>
         </el-col>
         <el-col :span="12">
@@ -68,7 +93,7 @@
               style="width: 24px"
               alt=""
             />
-            <p>使用 Facebook 登入</p>
+            <p>{{ $t("login_google") }}</p>
           </el-button>
         </el-col>
         <el-col :span="12">
@@ -78,7 +103,7 @@
               style="width: 24px"
               alt=""
             />
-            <p>使用 WeChat 登入</p>
+            <p>{{ $t("login_wechat") }}</p>
           </el-button>
         </el-col>
         <el-col :span="12">
@@ -88,7 +113,7 @@
               style="width: 24px"
               alt=""
             />
-            <p>使用 Apple 登入</p>
+            <p>{{ $t("login_apple") }}</p>
           </el-button>
         </el-col>
       </el-row>
@@ -106,30 +131,78 @@
 
 <script>
 import { Message, Lock } from "@element-plus/icons-vue";
+import { ElMessage, ElNotification } from "element-plus";
 
 export default {
   // props: ["authOption"],
   emits: ["authChanged"],
   data() {
+    const validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("要求輸入密碼"));
+      } else {
+        if (this.ruleForm.confirmPassword !== "") {
+          this.$refs.ruleFormRef.validateField("confirmPassword");
+        }
+        callback();
+      }
+    };
+
+    const validateConfirmPass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("請重新輸入密碼"));
+      } else {
+        if (value !== this.ruleForm.password) {
+          callback(new Error("密碼不匹配"));
+        } else {
+          callback();
+        }
+      }
+    };
+
     return {
       emailIcon: Message,
       passwordIcon: Lock,
       ruleForm: {
         email: "",
         password: "",
+        verificationCode: "",
+        confirmPassword: "",
+        promotions: false,
       },
       rules: {
         email: [
           {
             required: true,
-            message: "Email",
+            message: "輸入電郵地址",
             trigger: "blur",
+            type: "email",
           },
         ],
         password: [
           {
             required: true,
-            message: "密碼",
+            trigger: "blur",
+            validator: validatePass,
+          },
+        ],
+        confirmPassword: [
+          {
+            required: true,
+            trigger: "blur",
+            validator: validateConfirmPass,
+          },
+        ],
+        verificationCode: [
+          {
+            required: true,
+            message: "輸入驗證碼",
+            trigger: "blur",
+          },
+        ],
+        promotions: [
+          {
+            required: false,
             trigger: "blur",
           },
         ],
@@ -143,10 +216,74 @@ export default {
         authTitle: "登入",
       });
     },
-    register() {
+    savedData() {
+      const data = {
+        email: this.ruleForm.email,
+        otp: this.ruleForm.verificationCode,
+        password: this.ruleForm.password,
+        isAgreeRecvPromo: this.ruleForm.promotions,
+        memberRegistration: true,
+      };
+      console.log(data);
+      this.$store
+        .dispatch("auth/register", data)
+        .then(() => {
+          this.$refs.ruleFormRef.resetFields();
+          this.$emit("closeDialog");
+          ElNotification({
+            title: "Success",
+            message: this.$t("register_successful"),
+            type: "success",
+          });
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+        });
+      // .then(() => {
+      //   this.$refs.ruleFormRef.resetFields();
+      //   this.$emit("closeDialog");
+      //   ElNotification({
+      //     title: "Success",
+      //     message: this.$t("register_successful"),
+      //     type: "success",
+      //   });
+      // })
+      // .catch(() => {
+      //   ElNotification({
+      //     title: "Error",
+      //     message: this.$t("register_unsuccessful"),
+      //     type: "error",
+      //   });
+      // });
+    },
+    async submit() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          console.log("valid");
+          this.savedData();
+        }
+      });
+    },
+    sendVerificationCode() {
+      this.$refs.ruleFormRef.validateField("email", (valid) => {
+        if (valid) {
+          ElMessage.error(this.$t("enter_email"));
+        } else {
+          this.$store
+            .dispatch("auth/receiveOtp", this.ruleForm.email)
+            .then(() => {
+              ElMessage.success(this.$t("code_sent"));
+            })
+            .catch(() => {
+              ElNotification({
+                title: "Error",
+                message: this.$t("account_exists"),
+                type: "error",
+              });
+            });
         }
       });
     },
@@ -244,5 +381,22 @@ export default {
 
 .register-form .register-link:hover {
   text-decoration: underline;
+}
+
+.register-form .el-button.verification-code {
+  font-family: "Noto Sans HK";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #ffffff;
+  background: #2d99a0;
+  border-radius: 4px;
+  padding: 0.6rem;
+}
+
+.register-form .el-icon.el-input__icon {
+  font-size: 1.1rem;
 }
 </style>

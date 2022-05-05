@@ -8,18 +8,34 @@
           height="350px"
           indicator-position="none"
         >
-          <el-carousel-item v-for="item in 4" :key="item">
+          <el-carousel-item v-for="banner in promoBanners" :key="banner.id">
+            <img :src="banner.path" class="carousel-img" alt="" />
+          </el-carousel-item>
+          <!-- <el-carousel-item v-for="item in 4" :key="item">
             <img
               src="../assets/banner-sample@2x.png"
               class="carousel-img"
               alt=""
             />
-          </el-carousel-item>
+          </el-carousel-item> -->
         </el-carousel>
       </el-col>
     </el-row>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    promoBanners() {
+      return this.$store.getters["dashboard/promoBanners"];
+    },
+  },
+  created() {
+    this.$store.dispatch("dashboard/getPromoBanner");
+  },
+};
+</script>
 
 <style>
 .carousel {
@@ -30,6 +46,7 @@
   width: 100%;
   /* height: fit-content; */
   height: 100%;
+  object-fit: cover;
   /* object-fit: scale-down; */
 }
 
