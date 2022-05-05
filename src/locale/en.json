@@ -30,5 +30,7 @@
   "account_exists": "Email already exists!",
   "menu_logout": "Logout",
   "error.account.invalid-username": "Invalid Username!",
-  "error.account.invalid-password": "Incorrect Password!"
+  "error.account.invalid-password": "Incorrect Password!",
+  "shopping_cart": "Shopping Cart",
+  "view_profile": "View Profile"
 }

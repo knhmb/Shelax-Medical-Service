@@ -19,6 +19,7 @@ export default {
     context.commit("LOGGEDIN", {
       accessToken: response.data.accessToken,
       refreshToken: response.data.refreshToken,
+      currentUser: response.data.item.username,
     });
     context.commit("SET_LOGIN", {}, { root: true });
   },
@@ -26,5 +27,34 @@ export default {
     context.commit("LOGOUT");
     context.commit("REMOVE_LOGIN", {}, { root: true });
     router.replace("/");
+  },
+  async checkAccessToken() {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.get("/api/authenticate", {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+  },
+  async checkRefreshToken(context) {
+    const userToken = localStorage.getItem("refreshToken");
+
+    const response = await axios.put(
+      "/api/authenticate",
+      {},
+      {
+        headers: {
+          authorization: userToken,
+        },
+      }
+    );
+    console.log(response);
+    context.commit("LOGGEDIN", {
+      accessToken: response.data.accessToken,
+      refreshToken: response.data.refreshToken,
+      currentUser: response.data.item.username,
+    });
   },
 };

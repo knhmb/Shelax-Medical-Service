@@ -4,6 +4,7 @@ import mutations from "./mutations";
 import getters from "./getters";
 import dashboardModule from "./modules/dashboard/index";
 import authModule from "./modules/auth/index";
+import profileModule from "./modules/profile/index";
 import createPersistedState from "vuex-persistedstate";
 
 const store = createStore({
@@ -21,6 +22,7 @@ const store = createStore({
   modules: {
     dashboard: dashboardModule,
     auth: authModule,
+    profile: profileModule,
   },
 });
 

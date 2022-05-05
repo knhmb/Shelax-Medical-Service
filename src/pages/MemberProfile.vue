@@ -133,7 +133,7 @@
 
 <script>
 import { Camera } from "@element-plus/icons-vue";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElNotification } from "element-plus";
 
 export default {
   components: {
@@ -264,6 +264,36 @@ export default {
         this.pointsImg = require("../assets/icon-reward-default@2x.png");
       }
     },
+    checkAccessToken() {
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store.dispatch("profile/getAccount");
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err.response.data.statusCode === 401) {
+            this.checkRefreshToken();
+          }
+        });
+    },
+    checkRefreshToken() {
+      this.$store
+        .dispatch("auth/checkRefreshToken")
+        .then(() => {
+          this.$store.dispatch("profile/getAccount");
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+        });
+    },
+  },
+  created() {
+    this.checkAccessToken();
   },
 };
 </script>

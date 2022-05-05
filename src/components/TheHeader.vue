@@ -37,13 +37,13 @@
             <el-menu-item
               index="2"
               v-if="
-                isloggedIn &&
+                isLoggedIn &&
                 $route.path !== '/vendor-registration' &&
                 $route.path !== '/vendor-forgot-password'
               "
             >
               <img src="../assets/icon-cart@2x.png" class="cart-icon" alt="" />
-              購物車
+              {{ $t("shopping_cart") }}
             </el-menu-item>
             <el-menu-item
               v-if="
@@ -55,16 +55,24 @@
               @click="openDialog('login')"
               >{{ $t("menu_login") }}</el-menu-item
             >
-            <el-menu-item
+            <el-sub-menu
               v-if="
                 isLoggedIn &&
                 $route.path !== '/vendor-registration' &&
                 $route.path !== '/vendor-forgot-password'
               "
-              index="3"
-              @click="logout"
-              >{{ $t("menu_logout") }}</el-menu-item
+              index="4"
             >
+              <template #title>你 人, {{ currentUser }}</template>
+              <el-menu-item
+                @click="$router.push({ name: 'personal-information' })"
+                index="4-1"
+                >{{ $t("view_profile") }}</el-menu-item
+              >
+              <el-menu-item @click="logout" index="4-2">{{
+                $t("menu_logout")
+              }}</el-menu-item>
+            </el-sub-menu>
             <li
               class="login-btn"
               v-if="
@@ -179,6 +187,9 @@ export default {
     },
     isLoggedIn() {
       return this.$store.getters.isLoggedIn;
+    },
+    currentUser() {
+      return this.$store.getters["auth/currentUser"];
     },
   },
   methods: {
