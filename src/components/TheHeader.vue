@@ -15,7 +15,6 @@
             class="el-menu-demo top-header"
             mode="horizontal"
             :ellipsis="false"
-            menu-trigger="click"
           >
             <el-sub-menu popper-class="language" index="1">
               <template #title>{{ menuVal }}</template>
