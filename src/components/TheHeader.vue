@@ -20,17 +20,17 @@
             <el-sub-menu popper-class="language" index="1">
               <template #title>{{ menuVal }}</template>
               <el-menu-item
-                @click="setLanguage({ option: '繁體中文', lang: 'zh-cn' })"
+                @click="setLanguage({ option: '繁體中文', lang: 'zh-CN' })"
                 index="1-1"
                 >繁體中文</el-menu-item
               >
               <el-menu-item
-                @click="setLanguage({ option: '简体中文', lang: 'zh-cht' })"
+                @click="setLanguage({ option: '简体中文', lang: 'zh-HK' })"
                 index="1-2"
                 >简体中文</el-menu-item
               >
               <el-menu-item
-                @click="setLanguage({ option: 'English', lang: 'en' })"
+                @click="setLanguage({ option: 'English', lang: 'en-US' })"
                 index="1-3"
                 >English</el-menu-item
               >
@@ -87,21 +87,33 @@
         v-if="!isSteps"
         class="el-menu-demo bottom-header"
         mode="horizontal"
+        :ellipsis="false"
       >
-        <el-menu-item index="1">{{ $t("bottom_menu_left_1") }}</el-menu-item>
-        <el-menu-item index="2">{{ $t("bottom_menu_left_2") }}</el-menu-item>
-        <el-menu-item index="3">{{ $t("bottom_menu_left_3") }}</el-menu-item>
-        <el-menu-item index="4">{{ $t("bottom_menu_left_4") }}</el-menu-item>
-        <el-menu-item index="5">{{ $t("bottom_menu_left_5") }}</el-menu-item>
-        <el-menu-item index="6">{{ $t("bottom_menu_left_6") }}</el-menu-item>
-        <el-menu-item index="7">{{ $t("bottom_menu_left_7") }}</el-menu-item>
-        <el-menu-item index="8">{{ $t("bottom_menu_left_8") }}</el-menu-item>
-        <el-sub-menu index="9">
-          <template #title>{{ $t("bottom_menu_left_9") }}</template>
-          <el-menu-item index="9-1">DNA基因檢查</el-menu-item>
-          <el-menu-item index="9-2">腫瘤基因檢查</el-menu-item>
-        </el-sub-menu>
-        <el-menu-item index="10">{{ $t("bottom_menu_left_10") }}</el-menu-item>
+        <template v-for="item in menuItems" :key="item.id">
+          <el-menu-item
+            :index="item.displayOrder"
+            v-if="item.slug !== 'servcat-genetic-testing'"
+            >{{ item.name }}</el-menu-item
+          >
+          <el-sub-menu
+            v-if="item.slug === 'servcat-genetic-testing'"
+            :index="item.displayOrder"
+          >
+            <template #title>{{ item.name }}</template>
+            <el-menu-item
+              v-for="menuItem in subMenuItems"
+              :key="menuItem.id"
+              :index="item.displayOrder + '-' + menuItem.displayOrder"
+              >{{ menuItem.name }}</el-menu-item
+            >
+            <!-- <el-menu-item :index="item.displayOrder + '-' + '1'"
+              >DNA基因檢查</el-menu-item
+            >
+            <el-menu-item :index="item.displayOrder + '-' + '2'"
+              >腫瘤基因檢查</el-menu-item
+            > -->
+          </el-sub-menu>
+        </template>
       </el-menu>
       <div v-else class="steps">
         <el-steps :active="step" finish-status="success">
@@ -135,6 +147,7 @@ export default {
       selectedOption: "login",
       menuVal: "繁體中文",
       lang: null,
+      trigger: 1,
     };
   },
   computed: {
@@ -144,12 +157,14 @@ export default {
     step() {
       return this.$store.getters.step;
     },
+    menuItems() {
+      console.log(this.trigger);
+      return this.$store.getters["dashboard/menuItems"];
+    },
+    subMenuItems() {
+      return this.$store.getters["dashboard/subMenuItems"];
+    },
   },
-  // provide() {
-  //   return {
-  //     dialogVisible: this.dialogVisible,
-  //   };
-  // },
   methods: {
     openDialog(value) {
       this.selectedOption = value;
@@ -163,22 +178,32 @@ export default {
     changeAuth(event) {
       this.selectedOption = event;
     },
+    getMenuItems() {
+      this.$store.dispatch("dashboard/getMenuItems");
+    },
+    getSubMenuItems() {
+      this.$store.dispatch("dashboard/getGenericTestingSubMenuItem");
+    },
     setLanguage({ option, lang }) {
       this.menuVal = option;
       this.lang = lang;
       localStorage.setItem("lang", this.lang);
       this.$i18n.locale = this.lang;
+      this.getMenuItems();
+      this.getSubMenuItems();
     },
   },
   created() {
     const language = localStorage.getItem("lang");
-    if (language === "zh-cht") {
+    if (language === "zh-HK") {
       this.menuVal = "简体中文";
-    } else if (language === "zh-cn") {
+    } else if (language === "zh-CN") {
       this.menuVal = "繁體中文";
-    } else if (language === "en") {
+    } else if (language === "en-US") {
       this.menuVal = "English";
     }
+    this.getMenuItems();
+    this.getSubMenuItems();
   },
 };
 </script>

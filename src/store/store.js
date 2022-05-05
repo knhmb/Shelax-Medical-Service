@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import actions from "./actions";
 import mutations from "./mutations";
 import getters from "./getters";
+import dashboardModule from "./modules/dashboard";
 
 const store = createStore({
   state() {
@@ -13,6 +14,9 @@ const store = createStore({
   actions,
   mutations,
   getters,
+  modules: {
+    dashboard: dashboardModule,
+  },
 });
 
 export default store;

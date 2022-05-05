@@ -20,6 +20,12 @@ import BaseButton from "./ui/BaseButton.vue";
 import BaseCard from "./ui/BaseCard.vue";
 import BaseMemberCard from "./ui/BaseMemberCard.vue";
 import i18n from "./i18n.js";
+// import axios from "axios";
+
+// Axios
+// const lang = localStorage.getItem("lang");
+// console.log(lang);
+// axios.defaults.headers.common["accept-language-code"] = lang;
 
 const app = createApp(App);
 

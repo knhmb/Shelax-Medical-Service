@@ -6,9 +6,9 @@ import { createI18n } from "vue-i18n";
 const vueI18n = createI18n({
   locale: localStorage.getItem("lang") || "zh-cn",
   messages: {
-    en: en,
-    "zh-cn": zhCn,
-    "zh-cht": zhCht,
+    "en-US": en,
+    "zh-CN": zhCn,
+    "zh-HK": zhCht,
   },
 });
 
