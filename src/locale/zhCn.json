@@ -27,5 +27,8 @@
   "register_successful": "恭喜，您的帳戶已成功創建!",
   "register_unsuccessful": "出問題了!",
   "error.account.invalid-one-time-password": "一次性密碼無效！",
-  "account_exists": "電子郵件已經存在！"
+  "account_exists": "電子郵件已經存在！",
+  "menu_logout": "登出",
+  "error.account.invalid-username": "無效的用戶名!",
+  "error.account.invalid-password": "密碼錯誤!"
 }

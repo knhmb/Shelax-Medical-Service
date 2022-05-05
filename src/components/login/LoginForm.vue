@@ -110,6 +110,7 @@
 
 <script>
 import { Message, Lock } from "@element-plus/icons-vue";
+import { ElNotification } from "element-plus";
 
 export default {
   // props: ["authOption"],
@@ -148,9 +149,26 @@ export default {
       });
     },
     login() {
+      const data = {
+        username: this.ruleForm.email,
+        password: this.ruleForm.password,
+      };
+
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          console.log("valid");
+          this.$store
+            .dispatch("auth/login", data)
+            .then(() => {
+              this.$refs.ruleFormRef.resetFields();
+              this.$emit("closeDialog");
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+            });
         }
       });
     },
@@ -251,7 +269,7 @@ export default {
 
 .login-form .forgot-pass {
   text-align: end;
-  font-size: 14px;
+  font-size: 12px;
   margin: 0;
   margin-top: 0.6rem;
   cursor: pointer;

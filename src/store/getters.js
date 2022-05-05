@@ -5,4 +5,7 @@ export default {
   step(state) {
     return state.step;
   },
+  isLoggedIn(state) {
+    return state.isLoggedIn;
+  },
 };

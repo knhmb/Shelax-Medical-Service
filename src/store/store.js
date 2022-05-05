@@ -4,12 +4,15 @@ import mutations from "./mutations";
 import getters from "./getters";
 import dashboardModule from "./modules/dashboard/index";
 import authModule from "./modules/auth/index";
+import createPersistedState from "vuex-persistedstate";
 
 const store = createStore({
+  plugins: [createPersistedState()],
   state() {
     return {
       isSteps: false,
       step: 0,
+      isLoggedIn: false,
     };
   },
   actions,

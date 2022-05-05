@@ -27,5 +27,8 @@
   "register_successful": "Congratulations, your account has been successfully created!",
   "register_unsuccessful": "Something went wrong!",
   "error.account.invalid-one-time-password": "Invalid One-Time Password!",
-  "account_exists": "Email already exists!"
+  "account_exists": "Email already exists!",
+  "menu_logout": "Logout",
+  "error.account.invalid-username": "Invalid Username!",
+  "error.account.invalid-password": "Incorrect Password!"
 }

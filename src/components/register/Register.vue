@@ -22,6 +22,7 @@
       <login-form
         v-if="selectedOption === 'login'"
         @authChanged="changedAuth"
+        @closeDialog="closeDialog"
       ></login-form>
       <!-- </el-tab-pane> -->
       <!-- <el-tab-pane label="手機號碼" name="second">

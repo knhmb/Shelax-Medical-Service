@@ -37,7 +37,7 @@
             <el-menu-item
               index="2"
               v-if="
-                loggedIn &&
+                isloggedIn &&
                 $route.path !== '/vendor-registration' &&
                 $route.path !== '/vendor-forgot-password'
               "
@@ -47,12 +47,23 @@
             </el-menu-item>
             <el-menu-item
               v-if="
+                !isLoggedIn &&
                 $route.path !== '/vendor-registration' &&
                 $route.path !== '/vendor-forgot-password'
               "
               index="3"
               @click="openDialog('login')"
               >{{ $t("menu_login") }}</el-menu-item
+            >
+            <el-menu-item
+              v-if="
+                isLoggedIn &&
+                $route.path !== '/vendor-registration' &&
+                $route.path !== '/vendor-forgot-password'
+              "
+              index="3"
+              @click="logout"
+              >{{ $t("menu_logout") }}</el-menu-item
             >
             <li
               class="login-btn"
@@ -62,7 +73,11 @@
               "
             >
               <!-- <el-button class="my-login-btn" type="primary">Login</el-button> -->
-              <button @click="openDialog('register')" class="my-login-btn">
+              <button
+                v-if="!isLoggedIn"
+                @click="openDialog('register')"
+                class="my-login-btn"
+              >
                 {{ $t("menu_register") }}
               </button>
             </li>
@@ -142,7 +157,6 @@ export default {
   data() {
     return {
       dialogVisible: false,
-      loggedIn: false,
       selectedOption: "login",
       menuVal: "繁體中文",
       lang: null,
@@ -162,6 +176,9 @@ export default {
     },
     subMenuItems() {
       return this.$store.getters["dashboard/subMenuItems"];
+    },
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
     },
   },
   methods: {
@@ -190,6 +207,9 @@ export default {
       this.$i18n.locale = this.lang;
       this.getMenuItems();
       this.getSubMenuItems();
+    },
+    logout() {
+      this.$store.dispatch("auth/logout");
     },
   },
   created() {

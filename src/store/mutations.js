@@ -5,4 +5,10 @@ export default {
   SET_STEP(state, payload) {
     state.step = payload;
   },
+  SET_LOGIN(state) {
+    state.isLoggedIn = true;
+  },
+  REMOVE_LOGIN(state) {
+    state.isLoggedIn = false;
+  },
 };
