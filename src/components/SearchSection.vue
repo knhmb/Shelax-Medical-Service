@@ -4,8 +4,8 @@
       <div class="search-content">
         <el-row justify="space-between">
           <el-col class="first-column" :sm="24" :md="6" :lg="6">
-            <div class="first-column-content">
-              <el-row class="select-search-option">
+            <div :class="{ 'first-column-content': language !== 'en-US' }">
+              <el-row v-if="language !== 'en-US'" class="select-search-option">
                 <el-col
                   @click="setActiveOption('service')"
                   :class="{ 'is-active': isActive === 'service' }"
@@ -21,16 +21,18 @@
                   <p>產品</p>
                 </el-col>
               </el-row>
-              <!-- <p class="title">搜尋服務或產品</p> -->
+              <p v-if="language === 'en-US'" class="title">
+                Search services or products
+              </p>
               <el-select
                 popper-class="service-dropdown"
                 v-model="value"
                 filterable
                 allow-create
-                placeholder="身體檢查"
+                :placeholder="$t('choose_appointment')"
               >
                 <div class="service-options">
-                  <h5>選擇服務</h5>
+                  <h5>{{ $t("common_services") }}</h5>
                   <el-row justify="space-between">
                     <el-col
                       class="service-option"
@@ -39,9 +41,9 @@
                     >
                       <el-option
                         @click="selectedOption('HPV疫苗')"
-                        value="HPV疫苗"
+                        :value="$t('hpv_vaccine')"
                       >
-                        <p>HPV疫苗</p>
+                        <p>{{ $t("hpv_vaccine") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -51,9 +53,9 @@
                     >
                       <el-option
                         @click="selectedOption('四痘混合疫苗')"
-                        value="四痘混合疫苗"
+                        :value="$t('mmrv')"
                       >
-                        <p>四痘混合疫苗</p>
+                        <p>{{ $t("mmrv") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -63,9 +65,9 @@
                     >
                       <el-option
                         @click="selectedOption('兒童疫苗')"
-                        value="兒童疫苗"
+                        :value="$t('children_vaccine')"
                       >
-                        <p>兒童疫苗</p>
+                        <p>{{ $t("children_vaccine") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -77,9 +79,9 @@
                     >
                       <el-option
                         @click="selectedOption('13價肺炎球菌疫苗')"
-                        value="13價肺炎球菌疫苗"
+                        :value="$t('pcv13')"
                       >
-                        <p>13價肺炎球菌疫苗</p>
+                        <p>{{ $t("pcv13") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -89,9 +91,9 @@
                     >
                       <el-option
                         @click="selectedOption('孕前檢查')"
-                        value="孕前檢查"
+                        :value="$t('pre-pregnancy_checkup')"
                       >
-                        <p>孕前檢查</p>
+                        <p>{{ $t("pre-pregnancy_checkup") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -101,9 +103,9 @@
                     >
                       <el-option
                         @click="selectedOption('人工受孕')"
-                        value="人工受孕"
+                        :value="$t('ivf')"
                       >
-                        <p>人工受孕</p>
+                        <p>{{ $t("ivf") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -111,8 +113,11 @@
                       :class="{ selected: currentOption === '凍卵' }"
                       :span="7"
                     >
-                      <el-option @click="selectedOption('凍卵')" value="凍卵">
-                        <p>凍卵</p>
+                      <el-option
+                        @click="selectedOption('凍卵')"
+                        :value="$t('social_egg_freezing')"
+                      >
+                        <p>{{ $t("social_egg_freezing") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -122,9 +127,9 @@
                     >
                       <el-option
                         @click="selectedOption('身體檢查')"
-                        value="身體檢查"
+                        :value="$t('body_check')"
                       >
-                        <p>身體檢查</p>
+                        <p>{{ $t("body_check") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -134,9 +139,9 @@
                     >
                       <el-option
                         @click="selectedOption('基因檢查')"
-                        value="基因檢查"
+                        :value="$t('genetic_testing')"
                       >
-                        <p>基因檢查</p>
+                        <p>{{ $t("genetic_testing") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -146,9 +151,9 @@
                     >
                       <el-option
                         @click="selectedOption('DNA基因檢查')"
-                        value="DNA基因檢查"
+                        :value="$t('dna_genetic_testing')"
                       >
-                        <p>DNA基因檢查</p>
+                        <p>{{ $t("dna_genetic_testing") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -158,9 +163,9 @@
                     >
                       <el-option
                         @click="selectedOption('腫瘤基因檢查')"
-                        value="腫瘤基因檢查"
+                        :value="$t('cancer_genetic_testing')"
                       >
-                        <p>腫瘤基因檢查</p>
+                        <p>{{ $t("cancer_genetic_testing") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -170,15 +175,15 @@
                     >
                       <el-option
                         @click="selectedOption('兒科檢查')"
-                        value="兒科檢查"
+                        :value="$t('child_health_checks')"
                       >
-                        <p>兒科檢查</p>
+                        <p>{{ $t("child_health_checks") }}</p>
                       </el-option>
                     </el-col>
                   </el-row>
                 </div>
                 <div class="product-options">
-                  <h5>產品類型</h5>
+                  <h5>{{ $t("product_type") }}</h5>
                   <el-row justify="space-between">
                     <el-col
                       class="service-option"
@@ -187,9 +192,9 @@
                     >
                       <el-option
                         @click="selectedOption('抗疫產品')"
-                        value="抗疫產品"
+                        :value="$t('anti_epidemic_products')"
                       >
-                        <p>抗疫產品</p>
+                        <p>{{ $t("anti_epidemic_products") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -199,9 +204,9 @@
                     >
                       <el-option
                         @click="selectedOption('健康營養')"
-                        value="健康營養"
+                        :value="$t('health_and_nutrition')"
                       >
-                        <p>健康營養</p>
+                        <p>{{ $t("health_and_nutrition") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -211,9 +216,9 @@
                     >
                       <el-option
                         @click="selectedOption('復康保健')"
-                        value="復康保健"
+                        :value="$t('rehabilitation')"
                       >
-                        <p>復康保健</p>
+                        <p>{{ $t("rehabilitation") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -223,9 +228,9 @@
                     >
                       <el-option
                         @click="selectedOption('舒緩痛症')"
-                        value="舒緩痛症"
+                        :value="$t('pain_relief')"
                       >
-                        <p>舒緩痛症</p>
+                        <p>{{ $t("pain_relief") }}</p>
                       </el-option>
                     </el-col>
                     <el-col
@@ -235,9 +240,9 @@
                     >
                       <el-option
                         @click="selectedOption('醫療器械')"
-                        value="醫療器械"
+                        :value="$t('medical_instruments')"
                       >
-                        <p>醫療器械</p>
+                        <p>{{ $t("medical_instruments") }}</p>
                       </el-option>
                     </el-col>
                     <el-col :span="7"></el-col>
@@ -247,32 +252,32 @@
             </div>
           </el-col>
           <el-col :sm="24" :md="4" :lg="4">
-            <p class="title">選擇日期</p>
+            <p class="title">{{ $t("booking_date") }}</p>
             <el-date-picker
               v-model="datePicker"
               type="date"
-              placeholder="日期                                               "
+              :placeholder="$t('booking_date_placeholder')"
             >
             </el-date-picker>
             <!-- <p>2021/12/20</p> -->
           </el-col>
           <el-col :sm="24" :md="4" :lg="4">
-            <p class="title">選擇時間</p>
+            <p class="title">{{ $t("booking_time") }}</p>
             <el-select
               popper-class="time-dropdown"
               v-model="timePicker"
-              placeholder="時間"
+              :placeholder="$t('booking_time_placeholder')"
             >
-              <h5>選擇時段</h5>
+              <h5>{{ $t("booking_time") }}</h5>
               <el-row justify="space-between">
                 <el-col :span="24" class="time-card">
                   <el-option value="任何時間">
-                    <p>任何時間</p>
+                    <p>{{ $t("anytime") }}</p>
                   </el-option>
                 </el-col>
                 <el-col :span="24" class="time-card">
                   <el-option value="上午">
-                    <p>上午</p>
+                    <p>{{ $t("am") }}</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
@@ -329,7 +334,7 @@
                 <el-col :span="5"> </el-col>
                 <el-col :span="24" class="time-card">
                   <el-option value="下午">
-                    <p>下午</p>
+                    <p>{{ $t("pm") }}</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
@@ -423,7 +428,7 @@
                 class="search-icon"
                 alt=""
               />
-              搜尋
+              {{ $t("search_button") }}
             </button>
           </el-col>
         </el-row>
@@ -451,6 +456,17 @@ export default {
       isActive: "service",
       currentOption: "",
     };
+  },
+  watch: {
+    isLanguageEnglish(oldVal, newVal) {
+      console.log(oldVal);
+      console.log(newVal);
+    },
+  },
+  computed: {
+    language() {
+      return this.$store.getters.lang;
+    },
   },
   methods: {
     setActiveOption(option) {

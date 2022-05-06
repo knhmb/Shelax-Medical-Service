@@ -31,7 +31,7 @@
                   @click="navigate"
                 >
                   <img :src="infoImg" alt="" />
-                  會員資料
+                  {{ $t("member_profile") }}
                 </li>
               </router-link>
               <router-link :to="{ name: 'other-member' }" v-slot="{ navigate }">
@@ -47,7 +47,7 @@
                   @click="navigate"
                 >
                   <img :src="otherMemberImg" alt="" />
-                  常用成員
+                  {{ $t("regular_members") }}
                 </li>
               </router-link>
               <router-link :to="{ name: 'comment' }" v-slot="{ navigate }">
@@ -63,7 +63,7 @@
                   @click="navigate"
                 >
                   <img :src="commentImg" alt="" />
-                  評價管理
+                  {{ $t("reviews_management") }}
                 </li>
               </router-link>
               <router-link :to="{ name: 'booking' }" v-slot="{ navigate }">
@@ -79,7 +79,7 @@
                   @click="navigate"
                 >
                   <img :src="bookingImg" alt="" />
-                  預約記錄
+                  {{ $t("booking_records") }}
                 </li>
               </router-link>
               <router-link :to="{ name: 'wishlist' }" v-slot="{ navigate }">
@@ -95,7 +95,7 @@
                   @click="navigate"
                 >
                   <img :src="wishlistImg" alt="" />
-                  我的收藏
+                  {{ $t("my_wishlist") }}
                 </li>
               </router-link>
               <router-link
@@ -114,7 +114,9 @@
                   @mouseover="hover('shelax-points')"
                   @click="navigate"
                 >
-                  <p><img :src="pointsImg" alt="" /> Shelax Points</p>
+                  <p>
+                    <img :src="pointsImg" alt="" />{{ $t("member_points") }}
+                  </p>
                   <span>999</span>
                 </li>
               </router-link>

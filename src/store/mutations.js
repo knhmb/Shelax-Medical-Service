@@ -11,4 +11,7 @@ export default {
   REMOVE_LOGIN(state) {
     state.isLoggedIn = false;
   },
+  SET_LANG(state, payload) {
+    state.lang = payload;
+  },
 };

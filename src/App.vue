@@ -1,21 +1,50 @@
 <template>
   <the-header></the-header>
-  <router-view></router-view>
+  <el-config-provider :locale="locale">
+    <router-view></router-view>
+  </el-config-provider>
   <the-footer></the-footer>
 </template>
 
 <script>
 import TheHeader from "./components/TheHeader.vue";
 import TheFooter from "./components/TheFooter.vue";
+import { ElConfigProvider } from "element-plus";
+import zhCn from "element-plus/es/locale/lang/zh-cn";
+import en from "element-plus/es/locale/lang/en";
 
 export default {
   components: {
     TheHeader,
     TheFooter,
+    ElConfigProvider,
   },
-  // created() {
-  //   localStorage.setItem("lang", "zh-CN");
-  // },
+  data() {
+    return {
+      locale: "",
+    };
+  },
+  watch: {
+    language(newVal) {
+      if (newVal === "en-US") {
+        this.locale = en;
+      } else {
+        this.locale = zhCn;
+      }
+    },
+  },
+  computed: {
+    language() {
+      return this.$store.getters.lang;
+    },
+  },
+  created() {
+    if (this.language === "en-US") {
+      this.locale = en;
+    } else {
+      this.locale = zhCn;
+    }
+  },
 };
 </script>
 

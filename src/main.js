@@ -20,6 +20,9 @@ import BaseButton from "./ui/BaseButton.vue";
 import BaseCard from "./ui/BaseCard.vue";
 import BaseMemberCard from "./ui/BaseMemberCard.vue";
 import i18n from "./i18n.js";
+
+// import ElementPlus from 'element-plus'
+
 // import axios from "axios";
 
 // Axios
@@ -36,6 +39,9 @@ app.use(ElementPlus);
 app.use(router);
 app.use(store);
 app.use(i18n);
+// app.use(ElementPlus, {
+//   locale: store.state.lang === "en-US" ? en : zhCn,
+// });
 
 app.component("base-container", BaseContainer);
 app.component("base-content-container", BaseContentContainer);

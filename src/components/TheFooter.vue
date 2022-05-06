@@ -54,31 +54,45 @@
             </span>
           </el-col>
           <el-col class="first" :sm="24" :md="5">
-            <p>認識Shelax</p>
+            <p>{{ $t("about_shelax") }}</p>
             <ul>
-              <li @click="navigate('/about-us')">關於Shelax</li>
-              <li @click="navigate('/shelax-points')">Shelax Points 介紹</li>
-              <li @click="navigate('/contact-us')">聯絡我們</li>
-              <li @click="navigate('/questions-and-answers')">常見問題</li>
+              <li @click="navigate('/about-us')">{{ $t("about_us") }}</li>
+              <li @click="navigate('/shelax-points')">
+                {{ $t("shelax_points") }}
+              </li>
+              <li @click="navigate('/contact-us')">{{ $t("contact_us") }}</li>
+              <li @click="navigate('/questions-and-answers')">
+                {{ $t("q_and_a") }}
+              </li>
             </ul>
           </el-col>
           <el-col :sm="24" :md="5">
-            <p>加入我們</p>
+            <p>{{ $t("join_us") }}</p>
             <ul>
-              <li @click="navigate('/become-a-partner')">商戶合作</li>
-              <li @click="navigate('/vendor-registration')">商戶註冊</li>
-              <li @click="navigate('/vendor-login')">商戶登入</li>
+              <li @click="navigate('/become-a-partner')">
+                {{ $t("to_be_a_partner") }}
+              </li>
+              <li @click="navigate('/vendor-registration')">
+                {{ $t("shop_vendor_signup") }}
+              </li>
+              <li @click="navigate('/vendor-login')">
+                {{ $t("shop_vendor_login") }}
+              </li>
             </ul>
           </el-col>
           <el-col :sm="24" :md="5">
-            <p>網站條款</p>
+            <p>{{ $t("terms_of_use") }}</p>
             <ul>
-              <li @click="navigate('/terms-and-conditions')">使用條款</li>
-              <li @click="navigate('/privacy-and-policy')">私隱條例</li>
+              <li @click="navigate('/terms-and-conditions')">
+                {{ $t("terms_and_conditions") }}
+              </li>
+              <li @click="navigate('/privacy-and-policy')">
+                {{ $t("privacy_policy") }}
+              </li>
             </ul>
           </el-col>
           <el-col :sm="24" :md="4">
-            <p class="payment-title">支付方式</p>
+            <p class="payment-title">{{ $t("payment_method") }}</p>
             <el-row>
               <el-col :sm="24" :md="12">
                 <img

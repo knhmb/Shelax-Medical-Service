@@ -14,6 +14,7 @@ const store = createStore({
       isSteps: false,
       step: 0,
       isLoggedIn: false,
+      lang: localStorage.getItem("lang"),
     };
   },
   actions,

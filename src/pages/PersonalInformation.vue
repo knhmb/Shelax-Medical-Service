@@ -1,12 +1,12 @@
 <template>
   <div class="personal-information">
     <base-member-card :invisible="true">
-      <h3>會員資料</h3>
+      <h3>{{ $t("member_profile_page_title") }}</h3>
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-        <el-tab-pane label="個人資料" name="first">
+        <el-tab-pane :label="$t('personal_information')" name="first">
           <Form />
         </el-tab-pane>
-        <el-tab-pane label="修改密碼" name="second">
+        <el-tab-pane :label="$t('change_password')" name="second">
           <change-password></change-password>
         </el-tab-pane>
       </el-tabs>

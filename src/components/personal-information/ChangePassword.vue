@@ -8,43 +8,70 @@
     >
       <el-row>
         <el-col>
-          <el-form-item label="原始密碼" prop="oldPassword">
+          <el-form-item :label="$t('original_password')" prop="oldPassword">
             <el-input
               type="password"
               v-model="ruleForm.oldPassword"
-              placeholder="輸入原始密碼"
+              :placeholder="$t('original_password')"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col>
-          <el-form-item label="新密碼" prop="newPassword">
+          <el-form-item :label="$t('new_password')" prop="newPassword">
             <el-input
               type="password"
               v-model="ruleForm.newPassword"
-              placeholder="輸入新密碼"
+              :placeholder="$t('new_password')"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col>
-          <el-form-item label="確認新密碼" prop="confirmPassword">
+          <el-form-item
+            :label="$t('confirm_new_password')"
+            prop="confirmPassword"
+          >
             <el-input
               type="password"
               v-model="ruleForm.confirmPassword"
-              placeholder="再次輸入新密碼"
+              :placeholder="$t('confirm_new_password')"
             ></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <div class="button-wrapper">
-        <el-button @click="submit">儲存</el-button>
+        <el-button @click="submit">{{ $t("update_button") }}</el-button>
       </div>
     </el-form>
   </section>
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
 export default {
   data() {
+    const validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error(this.$t("password_required")));
+      } else {
+        if (this.ruleForm.confirmPassword !== "") {
+          this.$refs.ruleFormRef.validateField("confirmPassword");
+        }
+        callback();
+      }
+    };
+
+    const validateConfirmPass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error(this.$t("confirm_password_required")));
+      } else {
+        if (value !== this.ruleForm.newPassword) {
+          callback(new Error(this.$t("password_does_not_match")));
+        } else {
+          callback();
+        }
+      }
+    };
+
     return {
       ruleForm: {
         oldPassword: "",
@@ -55,22 +82,22 @@ export default {
         oldPassword: [
           {
             required: true,
-            message: "請輸入原始密碼",
+            message: this.$t("old_password_required"),
             trigger: "blur",
           },
         ],
         newPassword: [
           {
             required: true,
-            message: "請輸入新密碼",
             trigger: "blur",
+            validator: validatePass,
           },
         ],
         confirmPassword: [
           {
             required: true,
-            message: "請確認新密碼",
             trigger: "blur",
+            validator: validateConfirmPass,
           },
         ],
       },
@@ -80,9 +107,56 @@ export default {
     submit() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          console.log("valid");
+          this.$store
+            .dispatch("auth/checkAccessToken")
+            .then(() => {
+              this.changePassword();
+            })
+            .catch(() => {
+              this.checkRefreshToken();
+            });
         }
       });
+    },
+    checkRefreshToken() {
+      this.$store
+        .dispatch("auth/checkRefreshToken")
+        .then(() => {
+          this.changePassword();
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+          this.$router.replace("/");
+        });
+    },
+    changePassword() {
+      const data = {
+        oldPassword: this.ruleForm.oldPassword,
+        newPassword: this.ruleForm.newPassword,
+      };
+      console.log(data);
+
+      this.$store
+        .dispatch("profile/profileChangePassword", data)
+        .then(() => {
+          ElNotification({
+            title: "Success",
+            message: this.$t("password_changed"),
+            type: "success",
+          });
+          this.$refs.ruleFormRef.resetFields();
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+        });
     },
   },
 };

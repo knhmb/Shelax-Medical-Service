@@ -8,4 +8,7 @@ export default {
   isLoggedIn(state) {
     return state.isLoggedIn;
   },
+  lang(state) {
+    return state.lang;
+  },
 };

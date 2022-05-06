@@ -167,7 +167,7 @@ export default {
       dialogVisible: false,
       selectedOption: "login",
       menuVal: "繁體中文",
-      lang: null,
+      // lang: null,
       trigger: 1,
     };
   },
@@ -213,9 +213,10 @@ export default {
     },
     setLanguage({ option, lang }) {
       this.menuVal = option;
-      this.lang = lang;
-      localStorage.setItem("lang", this.lang);
-      this.$i18n.locale = this.lang;
+      // this.lang = lang;
+      this.$store.commit("SET_LANG", lang);
+      localStorage.setItem("lang", lang);
+      this.$i18n.locale = lang;
       this.getMenuItems();
       this.getSubMenuItems();
     },

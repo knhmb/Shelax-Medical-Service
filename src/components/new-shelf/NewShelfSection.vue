@@ -59,7 +59,7 @@
         </el-carousel-item>
       </el-carousel>
       <div class="new-shelf-btn">
-        <el-button class="btn">顯示全部</el-button>
+        <el-button class="btn">{{ $t("show_more_button") }}</el-button>
       </div>
     </section>
   </div>

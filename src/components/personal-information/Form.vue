@@ -8,7 +8,7 @@
     >
       <el-row :gutter="20">
         <el-col :sm="24" :md="6">
-          <el-form-item label="稱謂" prop="title">
+          <el-form-item :label="$t('title')" prop="title">
             <el-select v-model="ruleForm.title" :placeholder="$t('Mr')">
               <el-option :label="$t('Mr')" :value="$t('Mr')">{{
                 $t("Mr")
@@ -26,26 +26,26 @@
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
-          <el-form-item label="姓氏" prop="lastName">
+          <el-form-item :label="$t('last_name')" prop="lastName">
             <el-input
               v-model="ruleForm.lastName"
-              placeholder="請輸入姓氏"
+              :placeholder="$t('last_name')"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
-          <el-form-item label="名字" prop="firstName">
+          <el-form-item :label="$t('first_name')" prop="firstName">
             <el-input
               v-model="ruleForm.firstName"
-              placeholder="請輸入名字"
+              :placeholder="$t('first_name')"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="6">
-          <el-form-item label="電話區號" prop="phoneAreaCode">
+          <el-form-item :label="$t('country_code')" prop="phoneAreaCode">
             <el-select
               v-model="ruleForm.phoneAreaCode"
-              placeholder="香港(+852)"
+              :placeholder="$t('country_code')"
             >
               <el-option
                 v-for="code in countryCodes"
@@ -57,26 +57,26 @@
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
-          <el-form-item label="電話號碼" prop="phoneNumber">
+          <el-form-item :label="$t('phone_number')" prop="phoneNumber">
             <el-input
               v-model="ruleForm.phoneNumber"
-              placeholder="請輸入電話號碼"
+              :placeholder="$t('phone_number')"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
-          <el-form-item label="電郵地址" prop="email">
+          <el-form-item :label="$t('email_address')" prop="email">
             <el-input
               v-model="ruleForm.email"
-              placeholder="請輸入電郵地址"
+              :placeholder="$t('email_address')"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="12">
-          <el-form-item label="居住國家 / 城市" prop="country">
+          <el-form-item :label="$t('city_of_residence')" prop="country">
             <el-select
               v-model="ruleForm.country"
-              placeholder="請選擇居住國家/城市"
+              :placeholder="$t('city_of_residence')"
             >
               <el-option
                 v-for="code in countryCodes"
@@ -89,7 +89,7 @@
         </el-col>
       </el-row>
       <div class="button-wrapper">
-        <el-button @click="submit">儲存</el-button>
+        <el-button @click="submit">{{ $t("save_button") }}</el-button>
       </div>
     </el-form>
   </div>
