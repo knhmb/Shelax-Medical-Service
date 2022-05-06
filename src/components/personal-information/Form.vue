@@ -9,11 +9,19 @@
       <el-row :gutter="20">
         <el-col :sm="24" :md="6">
           <el-form-item label="稱謂" prop="title">
-            <el-select v-model="ruleForm.title" placeholder="先生">
-              <el-option label="先生" value="先生">先生</el-option>
-              <el-option label="太太" value="太太">太太</el-option>
-              <el-option label="小姐" value="小姐">小姐</el-option>
-              <el-option label="女士" value="女士">女士</el-option>
+            <el-select v-model="ruleForm.title" :placeholder="$t('Mr')">
+              <el-option :label="$t('Mr')" :value="$t('Mr')">{{
+                $t("Mr")
+              }}</el-option>
+              <el-option :label="$t('Mrs')" :value="$t('Mrs')">{{
+                $t("Mrs")
+              }}</el-option>
+              <el-option :label="$t('Miss')" :value="$t('Miss')">{{
+                $t("Miss")
+              }}</el-option>
+              <el-option :label="$t('Ms')" :value="$t('Ms')">{{
+                $t("Ms")
+              }}</el-option>
             </el-select>
           </el-form-item>
         </el-col>
@@ -35,10 +43,17 @@
         </el-col>
         <el-col :sm="24" :md="6">
           <el-form-item label="電話區號" prop="phoneAreaCode">
-            <el-input
+            <el-select
               v-model="ruleForm.phoneAreaCode"
-              placeholder="請輸入電話區號"
-            ></el-input>
+              placeholder="香港(+852)"
+            >
+              <el-option
+                v-for="code in countryCodes"
+                :key="code.id"
+                :label="code.name + '(+' + code.isd + ')'"
+                :value="code.alphaThree"
+              />
+            </el-select>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
@@ -59,10 +74,17 @@
         </el-col>
         <el-col :sm="24" :md="12">
           <el-form-item label="居住國家 / 城市" prop="country">
-            <el-input
+            <el-select
               v-model="ruleForm.country"
               placeholder="請選擇居住國家/城市"
-            ></el-input>
+            >
+              <el-option
+                v-for="code in countryCodes"
+                :key="code.id"
+                :label="code.name + '(+' + code.isd + ')'"
+                :value="code.alphaThree"
+              />
+            </el-select>
           </el-form-item>
         </el-col>
       </el-row>
@@ -74,6 +96,7 @@
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
 export default {
   data() {
     return {
@@ -112,7 +135,7 @@ export default {
           {
             required: true,
             message: "請輸入電話區號",
-            trigger: "blur",
+            trigger: "change",
           },
         ],
         phoneNumber: [
@@ -134,20 +157,98 @@ export default {
           {
             required: true,
             message: "請選擇居住國家/城市",
-            trigger: "blur",
+            trigger: "change",
           },
         ],
       },
     };
   },
+  watch: {
+    userDetails: {
+      deep: true,
+      handler() {
+        this.ruleForm.title = this.userDetails.salutation;
+        this.ruleForm.lastName = this.userDetails.lastName;
+        this.ruleForm.firstName = this.userDetails.givenName;
+        this.ruleForm.phoneAreaCode = this.userDetails.phoneCode;
+        this.ruleForm.phoneNumber = this.userDetails.phoneNo;
+        this.ruleForm.email = this.userDetails.email;
+        this.ruleForm.country = this.userDetails.placeOfResidence;
+        console.log("changed");
+      },
+    },
+  },
+  computed: {
+    userDetails() {
+      return this.$store.getters["profile/userDetails"];
+    },
+    countryCodes() {
+      return this.$store.getters["profile/countryCodes"];
+    },
+  },
   methods: {
     submit() {
+      const data = {
+        salutation: this.ruleForm.title,
+        lastName: this.ruleForm.lastName,
+        givenName: this.ruleForm.firstName,
+        phoneCode: this.ruleForm.phoneAreaCode,
+        phoneNo: this.ruleForm.phoneNumber,
+        email: this.ruleForm.email,
+        placeOfResidence: this.ruleForm.country,
+      };
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          console.log("valid");
+          this.$store
+            .dispatch("auth/checkAccessToken")
+            .then(() => {
+              this.$store.dispatch("profile/updateAccount", data).then(() => {
+                ElNotification({
+                  title: "Success",
+                  message: this.$t("profile_updated"),
+                  type: "success",
+                });
+                this.$store.dispatch("profile/getAccount");
+              });
+            })
+            .catch(() => {
+              this.checkRefreshToken(data);
+            });
         }
       });
     },
+    checkRefreshToken(data) {
+      this.$store
+        .dispatch("auth/checkRefreshToken")
+        .then(() => {
+          this.$store.dispatch("profile/updateAccount", data).then(() => {
+            ElNotification({
+              title: "Success",
+              message: this.$t("profile_updated"),
+              type: "success",
+            });
+            this.$store.dispatch("profile/getAccount");
+          });
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: err.response.data.message,
+            type: "error",
+          });
+          this.$router.replace("/");
+        });
+    },
+  },
+  created() {
+    this.ruleForm.title = this.userDetails.salutation;
+    this.ruleForm.lastName = this.userDetails.lastName;
+    this.ruleForm.firstName = this.userDetails.givenName;
+    this.ruleForm.phoneAreaCode = this.userDetails.phoneCode;
+    this.ruleForm.phoneNumber = this.userDetails.phoneNo;
+    this.ruleForm.email = this.userDetails.email;
+    this.ruleForm.country = this.userDetails.placeOfResidence;
+    console.log(this.ruleForm);
   },
 };
 </script>

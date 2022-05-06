@@ -56,6 +56,13 @@ const router = createRouter({
     {
       path: "/member-profile",
       component: MemberProfile,
+      beforeEnter: (to, from, next) => {
+        if (localStorage.getItem("accessToken")) {
+          next();
+        } else {
+          router.replace("/");
+        }
+      },
       children: [
         {
           path: "personal-information",

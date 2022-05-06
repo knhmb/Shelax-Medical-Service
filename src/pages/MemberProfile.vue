@@ -11,7 +11,7 @@
               </label>
             </el-avatar>
             <input id="file-upload" @change="onFileChange" type="file" />
-            <p>Chan Tai Man</p>
+            <p>{{ userDetails.givenName }}</p>
           </div>
           <div class="member-card-options">
             <ul>
@@ -201,6 +201,11 @@ export default {
       },
     },
   },
+  computed: {
+    userDetails() {
+      return this.$store.getters["profile/userDetails"];
+    },
+  },
   methods: {
     onFileChange(event) {
       console.log(event);
@@ -289,11 +294,13 @@ export default {
             message: this.$t(err.response.data.message),
             type: "error",
           });
+          this.$router.replace("/");
         });
     },
   },
   created() {
     this.checkAccessToken();
+    this.$store.dispatch("profile/getCountryCode");
   },
 };
 </script>

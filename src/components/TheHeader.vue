@@ -19,12 +19,12 @@
             <el-sub-menu popper-class="language" index="1">
               <template #title>{{ menuVal }}</template>
               <el-menu-item
-                @click="setLanguage({ option: '繁體中文', lang: 'zh-CN' })"
+                @click="setLanguage({ option: '繁體中文', lang: 'zh-HK' })"
                 index="1-1"
                 >繁體中文</el-menu-item
               >
               <el-menu-item
-                @click="setLanguage({ option: '简体中文', lang: 'zh-HK' })"
+                @click="setLanguage({ option: '简体中文', lang: 'zh-CN' })"
                 index="1-2"
                 >简体中文</el-menu-item
               >
@@ -226,9 +226,9 @@ export default {
   created() {
     const language = localStorage.getItem("lang");
     if (language === "zh-HK") {
-      this.menuVal = "简体中文";
-    } else if (language === "zh-CN") {
       this.menuVal = "繁體中文";
+    } else if (language === "zh-CN") {
+      this.menuVal = "简体中文";
     } else if (language === "en-US") {
       this.menuVal = "English";
     }

@@ -32,5 +32,11 @@
   "error.account.invalid-username": "Invalid Username!",
   "error.account.invalid-password": "Incorrect Password!",
   "shopping_cart": "Shopping Cart",
-  "view_profile": "View Profile"
+  "view_profile": "View Profile",
+  "error.auth.invalid-refresh-token": "Access Token Expired!",
+  "Mr": "Mr.",
+  "Mrs": "Mrs.",
+  "Miss": "Miss",
+  "Ms": "Ms.",
+  "profile_updated": "Profile has been updated successfully!"
 }

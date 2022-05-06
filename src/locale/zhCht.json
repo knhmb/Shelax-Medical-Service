@@ -32,5 +32,11 @@
   "error.account.invalid-username": "無效的用戶名!",
   "error.account.invalid-password": "密碼錯誤!",
   "shopping_cart": "購物車",
-  "view_profile": "查看資料"
+  "view_profile": "查看資料",
+  "error.auth.invalid-refresh-token": "訪問令牌已過期！",
+  "Mr": "先生",
+  "Mrs": "太太",
+  "Miss": "小姐",
+  "Ms": "女士",
+  "profile_updated": "個人資料已成功更新！"
 }
