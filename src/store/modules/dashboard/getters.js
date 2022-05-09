@@ -8,4 +8,7 @@ export default {
   promoBanners(state) {
     return state.promoBanners;
   },
+  themes(state) {
+    return state.themes;
+  },
 };

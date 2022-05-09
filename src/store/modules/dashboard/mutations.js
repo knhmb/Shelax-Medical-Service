@@ -10,4 +10,7 @@ export default {
       state.promoBanners = payload;
     }
   },
+  SET_THEMES(state, paylaod) {
+    state.themes = paylaod;
+  },
 };

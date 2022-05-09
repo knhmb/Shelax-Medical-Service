@@ -47,4 +47,35 @@ export default {
         console.log(err);
       });
   },
+  getThemes(context) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+    axios
+      .get("/api/codex?filter=codexTypeCode:THEME", {
+        headers: {
+          "accept-language-code": lang,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        context.commit("SET_THEMES", res.data.items);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  getSingleTheme(_, item) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+    axios
+      .get(`/api/item?filter=theme:${item[0].slug}&pagesize=4`, {
+        headers: {
+          "accept-language-code": lang,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 };

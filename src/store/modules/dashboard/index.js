@@ -9,6 +9,7 @@ export default {
       menuItems: [],
       subMenuItems: [],
       promoBanners: [],
+      themes: [],
     };
   },
   getters,

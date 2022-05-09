@@ -27,5 +27,8 @@ export default {
     FourthSection,
     // TheFooter,
   },
+  created() {
+    this.$store.dispatch("dashboard/getThemes");
+  },
 };
 </script>

@@ -2,7 +2,14 @@
   <div class="latest-offers">
     <section class="latest-offers-content">
       <base-content-container>
-        <h2 class="title">預防子宮頸癌</h2>
+        <template v-for="theme in themes" :key="theme.id">
+          <h2
+            v-if="theme.slug === 'theme-prevent-cervical-cancer'"
+            class="title"
+          >
+            {{ theme.name }}
+          </h2>
+        </template>
       </base-content-container>
 
       <el-carousel
@@ -42,18 +49,20 @@
           <!-- <base-container> -->
           <base-content-container>
             <el-row :gutter="12">
-              <el-col :span="6" v-for="product in products" :key="product.id">
+              <el-col :span="6" v-for="theme in themes" :key="theme.id">
                 <latest-offers-card
-                  :name="product.name"
-                  :description="product.description"
-                  :price="product.price"
-                  :rate="product.rate"
-                  :number-of-rate="product.numberOfRate"
-                  :discount="product.discountPrice"
-                  :image="product.image"
+                  v-if="theme.slug === 'theme-prevent-cervical-cancer'"
+                  :name="theme.category"
+                  :description="theme.itemName"
+                  :price="theme.originalPrice"
+                  :rate="theme.rating"
+                  :number-of-rate="theme.reviewsCount"
+                  :discount="theme.discountedPrice"
+                  :image="theme.thumbnail"
                 ></latest-offers-card>
               </el-col>
             </el-row>
+            {{ getSlug }}
           </base-content-container>
           <!-- </base-container> -->
         </el-carousel-item>
@@ -74,49 +83,63 @@ export default {
   },
   data() {
     return {
-      products: [
-        {
-          id: 1,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
-          rate: 4,
-          numberOfRate: "(138,370)",
-          image: require("../assets/Rectangle-77.png"),
-        },
-        {
-          id: 2,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
-          rate: 4,
-          numberOfRate: "(138,370)",
-          image: require("../assets/Rectangle-77-1.png"),
-        },
-        {
-          id: 3,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
-          rate: 4,
-          numberOfRate: "(138,370)",
-          image: require("../assets/Rectangle-77-3.png"),
-        },
-        {
-          id: 4,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
-          rate: 4,
-          numberOfRate: "(138,370)",
-          image: require("../assets/Rectangle-77-2.png"),
-        },
-      ],
+      // products: [
+      //   {
+      //     id: 1,
+      //     name: "身體檢查",
+      //     price: "HK$ 570",
+      //     discountPrice: "HK$ 800",
+      //     description: "綜合個人健康體檢套餐",
+      //     rate: 4,
+      //     numberOfRate: "(138,370)",
+      //     image: require("../assets/Rectangle-77.png"),
+      //   },
+      //   {
+      //     id: 2,
+      //     name: "身體檢查",
+      //     price: "HK$ 570",
+      //     discountPrice: "HK$ 800",
+      //     description: "綜合個人健康體檢套餐",
+      //     rate: 4,
+      //     numberOfRate: "(138,370)",
+      //     image: require("../assets/Rectangle-77-1.png"),
+      //   },
+      //   {
+      //     id: 3,
+      //     name: "身體檢查",
+      //     price: "HK$ 570",
+      //     discountPrice: "HK$ 800",
+      //     description: "綜合個人健康體檢套餐",
+      //     rate: 4,
+      //     numberOfRate: "(138,370)",
+      //     image: require("../assets/Rectangle-77-3.png"),
+      //   },
+      //   {
+      //     id: 4,
+      //     name: "身體檢查",
+      //     price: "HK$ 570",
+      //     discountPrice: "HK$ 800",
+      //     description: "綜合個人健康體檢套餐",
+      //     rate: 4,
+      //     numberOfRate: "(138,370)",
+      //     image: require("../assets/Rectangle-77-2.png"),
+      //   },
+      // ],
     };
+  },
+  computed: {
+    themes() {
+      return this.$store.getters["dashboard/themes"];
+    },
+    getSlug() {
+      return this.themes.filter(
+        (item) => item.slug === "theme-prevent-cervical-cancer"
+      );
+    },
+  },
+  mounted() {
+    console.log(this.getSlug);
+    this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
   },
 };
 </script>
