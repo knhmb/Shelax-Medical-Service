@@ -275,149 +275,149 @@
               <h5>{{ $t("booking_time") }}</h5>
               <el-row justify="space-between">
                 <el-col :span="24" class="time-card">
-                  <el-option value="任何時間">
+                  <el-option :value="$t('anytime')">
                     <p>{{ $t("anytime") }}</p>
                   </el-option>
                 </el-col>
                 <el-col :span="24" class="time-card">
-                  <el-option value="上午">
+                  <el-option :value="$t('am')">
                     <p>{{ $t("am") }}</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="7:00">
+                  <el-option value="07:00" label="7:00">
                     <p>7:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="7:30">
+                  <el-option value="07:30" label="7:30">
                     <p>7:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="8:00">
+                  <el-option value="08:00" label="8:00">
                     <p>8:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="8:30">
+                  <el-option value="08:30" label="8:30">
                     <p>8:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="9:00">
+                  <el-option value="09:00" label="9:00">
                     <p>9:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="9:30">
+                  <el-option value="09:30" label="9:30">
                     <p>9:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="10:00">
+                  <el-option value="10:00" label="10:00">
                     <p>10:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="10:30">
+                  <el-option value="10:30" label="10:30">
                     <p>10:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="11:00">
+                  <el-option value="11:00" label="11:00">
                     <p>11:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="11:30">
+                  <el-option value="11:30" label="11:30">
                     <p>11:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5"> </el-col>
                 <el-col :span="5"> </el-col>
                 <el-col :span="24" class="time-card">
-                  <el-option value="下午">
+                  <el-option :value="$t('pm')">
                     <p>{{ $t("pm") }}</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="12:00">
+                  <el-option value="12:00" label="12:00">
                     <p>12:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="12:30">
+                  <el-option value="12:30" label="12:30">
                     <p>12:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="13:00">
+                  <el-option value="13:00" label="13:00">
                     <p>13:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="13:30">
+                  <el-option value="13:30" label="13:30">
                     <p>13:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="14:00">
+                  <el-option value="14:00" label="14:00">
                     <p>14:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="14:30">
+                  <el-option value="14:30" label="14:30">
                     <p>14:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="15:00">
+                  <el-option value="15:00" label="15:00">
                     <p>15:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="15:30">
+                  <el-option value="15:30" label="15:30">
                     <p>15:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="16:00">
+                  <el-option value="16:00" label="16:00">
                     <p>16:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="16:30">
+                  <el-option value="16:30" label="16:30">
                     <p>16:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="17:00">
+                  <el-option value="17:00" label="17:00">
                     <p>17:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="17:30">
+                  <el-option value="17:30" label="17:30">
                     <p>17:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="18:00">
+                  <el-option value="18:00" label="18:00">
                     <p>18:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="18:30">
+                  <el-option value="18:30" label="18:30">
                     <p>18:30</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="19:00">
+                  <el-option value="19:00" label="19:00">
                     <p>19:00</p>
                   </el-option>
                 </el-col>
                 <el-col :span="5" class="time-card">
-                  <el-option value="19:30">
+                  <el-option value="19:30" label="19:30">
                     <p>19:30</p>
                   </el-option>
                 </el-col>
@@ -446,6 +446,7 @@
 <script>
 import MedsSlider from "./MedsSlider.vue";
 import LatestOffersSection from "./LatestOffersSection.vue";
+import moment from "moment";
 
 export default {
   components: {
@@ -485,15 +486,30 @@ export default {
     selectedOption(option) {
       this.currentOption = option;
     },
+    resetFields() {
+      (this.timePicker = ""),
+        (this.datePicker = ""),
+        (this.value = ""),
+        (this.isActive = "service");
+    },
     search() {
       const data = {
         option: this.isActive,
         search: this.value,
-        time: this.timePicker,
-        date: this.datePicker,
+        time:
+          this.timePicker && this.timePicker.includes(":")
+            ? this.timePicker.replace(":", "")
+            : this.timePicker === this.$t("anytime")
+            ? ""
+            : this.timePicker,
+        date: this.datePicker ? moment(this.datePicker).format("YYYYMMDD") : "",
       };
       console.log(data);
-      this.$store.dispatch("search/searchItem", data);
+      console.log(this.timePicker);
+      this.$store.dispatch("search/searchItem", data).then(() => {
+        this.$router.push("/search");
+        this.resetFields();
+      });
     },
   },
 };

@@ -12,6 +12,7 @@ export default {
       themes: [],
       serviceCategory: [],
       productCategory: [],
+      productItems: [],
     };
   },
   getters,

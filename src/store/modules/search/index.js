@@ -5,7 +5,11 @@ import getters from "./getters";
 export default {
   namespaced: true,
   state() {
-    return {};
+    return {
+      searchItems: [],
+      regions: [],
+      districts: [],
+    };
   },
   getters,
   mutations,

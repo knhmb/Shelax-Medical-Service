@@ -1,17 +1,53 @@
 <template>
   <div class="right-section">
-    <el-card class="box-card" v-for="service in services" :key="service.id">
+    <div class="options">
+      <el-row>
+        <el-col
+          @click="setOption('recommendation')"
+          :class="{ 'is-selected': isActive === 'recommendation' }"
+          :sm="12"
+          :md="6"
+        >
+          <p>推薦</p>
+        </el-col>
+        <el-col
+          @click="setOption('+price')"
+          :class="{ 'is-selected': isActive === '+price' }"
+          :sm="12"
+          :md="6"
+        >
+          <p>價錢由低至高</p>
+        </el-col>
+        <el-col
+          @click="setOption('-price')"
+          :class="{ 'is-selected': isActive === '-price' }"
+          :sm="12"
+          :md="6"
+        >
+          <p>價錢由高至低</p>
+        </el-col>
+        <el-col
+          @click="setOption('rating')"
+          :class="{ 'is-selected': isActive === 'rating' }"
+          :sm="12"
+          :md="6"
+        >
+          <p>評級最高</p>
+        </el-col>
+      </el-row>
+    </div>
+    <el-card class="box-card" v-for="item in searchItems" :key="item.id">
       <search-card
-        :name="service.name"
-        :description="service.description"
-        :rate="service.rate"
-        :rate-no="service.rateNo"
-        :earliestAppointment="service.earliestAppointment"
-        :date="service.date"
-        :time="service.time"
-        :discountPrice="service.discountPrice"
-        :price="service.price"
-        :image="service.image"
+        :name="item.itemName"
+        :description="item.address"
+        :rate="item.rating"
+        :rate-no="item.reviewsCount"
+        :earliestAppointment="item.providerName"
+        :date="item.earliestBookingDate"
+        :time="item.earliestBookingTime"
+        :discountPrice="item.discountedPrice"
+        :price="item.originalPrice"
+        :image="item.thumbnail"
       ></search-card>
     </el-card>
   </div>
@@ -21,11 +57,13 @@
 import SearchCard from "./SearchCard.vue";
 
 export default {
+  props: ["isActive"],
   components: {
     SearchCard,
   },
   data() {
     return {
+      // isActive: "推薦",
       services: [
         {
           id: 1,
@@ -160,6 +198,16 @@ export default {
       ],
     };
   },
+  computed: {
+    searchItems() {
+      return this.$store.getters["search/searchItems"];
+    },
+  },
+  methods: {
+    setOption(option) {
+      this.$emit("changedSort", option);
+    },
+  },
 };
 </script>
 
@@ -170,5 +218,65 @@ export default {
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
   margin-bottom: 1rem;
+}
+
+.content .right-section .options {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+
+.content .right-section .options .el-col {
+  text-align: center;
+  cursor: pointer;
+  padding: 8px 24px;
+  position: relative;
+}
+
+.content .right-section .options .el-col p {
+  font-family: Noto Sans HK;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #262626;
+}
+
+.content .right-section .options .el-col:not(:last-of-type):after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 30px;
+  background: #e0e0e0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.content .right-section .options .el-col:hover:not(:last-of-type):after {
+  background: #7690da;
+}
+
+.content .right-section .options .el-col:hover {
+  background: #7690da;
+  transition: all 0.2s ease;
+}
+
+.content .right-section .options .el-col:hover p {
+  color: #fff;
+}
+
+.content .right-section .options .el-col.is-selected {
+  background: #7690da;
+}
+
+.content .right-section .options .el-col.is-selected p {
+  color: #fff;
+}
+
+.content .right-section .options .el-col.is-selected:after {
+  background: #7690da;
 }
 </style>

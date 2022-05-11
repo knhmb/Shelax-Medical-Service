@@ -17,4 +17,7 @@ export default {
   productCategory(state) {
     return state.productCategory;
   },
+  productItems(state) {
+    return state.productItems;
+  },
 };

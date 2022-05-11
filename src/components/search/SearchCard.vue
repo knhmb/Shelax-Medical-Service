@@ -11,17 +11,17 @@
     <el-col :sm="24" :lg="12">
       <div class="card-content">
         <h4>{{ name }}</h4>
-        <p>{{ description }}</p>
+        <p>{{ earliestAppointment }} - {{ description }}</p>
         <el-rate
           :colors="colors"
-          v-model="finalRate"
+          :model-value="rate"
           show-score
           :score-template="rateNo"
           :disabled-void-color="voidColor"
           disabled
           text-color="#8D8D8D"
         />
-        <p class="earliest-appointment">{{ earliestAppointment }}</p>
+        <p class="earliest-appointment">最早可預約時間</p>
         <div class="appointment-time-date">
           <span>{{ date }}</span>
           <span>{{ time }}</span>
@@ -30,8 +30,8 @@
     </el-col>
     <el-col class="pricing" :sm="24" :lg="6">
       <div>
-        <p>{{ discountPrice }}</p>
-        <h6>{{ price }}</h6>
+        <p>HKD{{ discountPrice }}</p>
+        <h6>HKD{{ price }}</h6>
       </div>
       <el-button>立即預約</el-button>
     </el-col>
@@ -80,18 +80,6 @@ export default {
   /* height: 200px; */
 }
 
-@media screen and (max-width: 1024px) {
-  .right-section .box-card .card-img {
-    height: 500px;
-  }
-}
-
-@media screen and (max-width: 414px) {
-  .right-section .box-card .card-img {
-    height: 250px;
-  }
-}
-
 .right-section .box-card .card-content {
   margin-left: 1rem;
   position: relative;
@@ -126,11 +114,16 @@ export default {
 .right-section .box-card .card-content .appointment-time-date {
   border: 1px solid #e0e0e0;
   border-radius: 4px;
-  max-width: 150px;
+  /* max-width: 150px; */
+  width: 55%;
   padding: 8px 12px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+}
+
+.right-section .box-card .card-content .appointment-time-date span {
+  /* margin-right: 0.5rem; */
 }
 
 .right-section .box-card .pricing {
@@ -159,6 +152,18 @@ export default {
   background-color: #7690da;
   border-color: #7690da;
   color: #fff;
+}
+
+@media screen and (max-width: 1024px) {
+  .right-section .box-card .card-img {
+    height: 500px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .right-section .box-card .card-img {
+    height: 250px;
+  }
 }
 
 /* @media screen and (max-width: 1024px) {

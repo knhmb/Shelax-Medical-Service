@@ -113,6 +113,7 @@
       >
         <template v-for="item in menuItems" :key="item.id">
           <el-menu-item
+            @click="navigateItem(item.slug)"
             :index="item.displayOrder"
             v-if="item.slug !== 'servcat-genetic-testing'"
             >{{ item.name }}</el-menu-item
@@ -123,6 +124,7 @@
           >
             <template #title>{{ item.name }}</template>
             <el-menu-item
+              @click="navigateItem(menuItem.slug)"
               v-for="menuItem in subMenuItems"
               :key="menuItem.id"
               :index="item.displayOrder + '-' + menuItem.displayOrder"
@@ -222,6 +224,9 @@ export default {
     },
     logout() {
       this.$store.dispatch("auth/logout");
+    },
+    navigateItem(slug) {
+      this.$store.dispatch("search/searchMenuItem", slug);
     },
   },
   created() {

@@ -8,21 +8,22 @@
           arrow="always"
           class="hidden-sm-and-up"
         >
-          <el-carousel-item>
+          <el-carousel-item v-for="product in productItems" :key="product.id">
             <div class="slider">
               <el-row justify="space-around">
-                <el-col :sm="24" :md="5" :lg="5">
-                  <img
-                    src="../assets/icon-product-a@2x.png"
-                    class="product-img"
-                    alt=""
-                  />
-                  <p>抗疫產品</p>
+                <el-col
+                  @click="searchProduct(product.slug)"
+                  :sm="12"
+                  :md="5"
+                  :lg="5"
+                >
+                  <img :src="product.thumbnail" class="product-img" alt="" />
+                  <p>{{ product.name }}</p>
                 </el-col>
               </el-row>
             </div>
           </el-carousel-item>
-          <el-carousel-item>
+          <!-- <el-carousel-item>
             <div class="slider">
               <el-row justify="space-around">
                 <el-col :sm="24" :md="5" :lg="5">
@@ -77,7 +78,7 @@
                 </el-col>
               </el-row>
             </div>
-          </el-carousel-item>
+          </el-carousel-item> -->
         </el-carousel>
 
         <el-carousel
@@ -89,15 +90,18 @@
           <el-carousel-item>
             <div class="slider">
               <el-row justify="space-around">
-                <el-col :sm="24" :md="5" :lg="5">
-                  <img
-                    src="../assets/icon-product-a@2x.png"
-                    class="product-img"
-                    alt=""
-                  />
-                  <p>抗疫產品</p>
+                <el-col
+                  @click="searchProduct(product.slug)"
+                  v-for="product in productItems"
+                  :key="product.id"
+                  :sm="4"
+                  :md="4"
+                  :lg="4"
+                >
+                  <img :src="product.thumbnail" class="product-img" alt="" />
+                  <p>{{ product.name }}</p>
                 </el-col>
-                <el-col :sm="24" :md="5" :lg="5">
+                <!-- <el-col :sm="24" :md="5" :lg="5">
                   <img
                     src="../assets/icon-product-b@2x.png"
                     class="product-img"
@@ -128,7 +132,7 @@
                     alt=""
                   />
                   <p>醫療器械</p>
-                </el-col>
+                </el-col> -->
               </el-row>
             </div>
           </el-carousel-item>
@@ -137,6 +141,37 @@
     </base-content-container>
   </div>
 </template>
+
+<script>
+export default {
+  watch: {
+    lang() {
+      this.$store.dispatch("dashboard/getProductItems");
+    },
+  },
+  computed: {
+    productItems() {
+      return this.$store.getters["dashboard/productItems"];
+    },
+    lang() {
+      return this.$store.getters.lang;
+    },
+  },
+  methods: {
+    searchProduct(slug) {
+      this.$store.dispatch("search/searchProduct", slug).then(() => {
+        this.$router.push({
+          path: "search",
+          query: { q: `filter=productcat:${slug}` },
+        });
+      });
+    },
+  },
+  created() {
+    this.$store.dispatch("dashboard/getProductItems");
+  },
+};
+</script>
 
 <style>
 .all-content {
@@ -164,6 +199,7 @@
 
 .all-content .slider .el-col {
   margin: 1rem 0;
+  cursor: pointer;
 }
 
 .all-content .slider {
@@ -171,6 +207,13 @@
   /* display: flex;
   justify-content: ; */
   padding: 1rem 0 1rem 4rem;
+}
+
+.all-content
+  .medication
+  .el-carousel.el-carousel--horizontal
+  .el-carousel__container {
+  height: 25vh !important;
 }
 
 @media screen and (max-width: 1024px) {

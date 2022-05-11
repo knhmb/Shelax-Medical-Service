@@ -49,7 +49,7 @@
   <section class="content">
     <base-content-container>
       <h2>身體檢查</h2>
-      <el-row :gutter="10">
+      <el-row :gutter="30">
         <el-col :sm="24" :lg="6">
           <!-- <div class="google-maps">
             <img
@@ -71,6 +71,7 @@
               range
               :min="1"
               :max="10000"
+              @change="triggerSearch"
             >
             </el-slider>
             <div class="range">
@@ -128,16 +129,27 @@
           </div> -->
           <div class="area">
             <h3>區域</h3>
-            <div class="single-area">
-              <p>香港區</p>
-              <el-checkbox-group v-model="checkList">
-                <el-checkbox label="中西區" />
+            <div v-for="region in regions" :key="region" class="single-area">
+              <p>{{ region.name }}</p>
+              <el-checkbox-group @change="triggerSearch" v-model="checkList">
+                <template v-for="district in districts" :key="district">
+                  <el-checkbox
+                    v-if="district.parentCodexSlug === region.slug"
+                    :label="district.slug"
+                    >{{ district.name }}</el-checkbox
+                  >
+                </template>
+                <!-- <el-checkbox
+                  v-for="district in districts"
+                  :key="district"
+                  :label="district.name"
+                />
                 <el-checkbox label="東區" />
                 <el-checkbox label="南區" />
-                <el-checkbox label="灣仔區" />
+                <el-checkbox label="灣仔區" /> -->
               </el-checkbox-group>
             </div>
-            <div class="single-area">
+            <!-- <div class="single-area">
               <p>九龍區</p>
               <el-checkbox-group v-model="checkList">
                 <el-checkbox label="九龍城區" />
@@ -160,11 +172,14 @@
                 <el-checkbox label="屯門區" />
                 <el-checkbox label="元朗區" />
               </el-checkbox-group>
-            </div>
+            </div> -->
           </div>
         </el-col>
         <el-col :sm="24" :lg="18">
-          <search-right-section></search-right-section>
+          <search-right-section
+            @changedSort="setOption"
+            :is-active="isActive"
+          ></search-right-section>
         </el-col>
       </el-row>
     </base-content-container>
@@ -185,16 +200,48 @@ export default {
   },
   data() {
     return {
+      isActive: "recommendation",
       service: "",
       date: null,
       time: null,
-      value: [8, 10000],
+      value: [1, 10000],
       fiveStarRating: 5,
       fourStarRating: 4,
       threeStarRating: 3,
       twoStarRating: 2,
       checkList: [],
     };
+  },
+  computed: {
+    regions() {
+      return this.$store.getters["search/regions"];
+    },
+    districts() {
+      return this.$store.getters["search/districts"];
+    },
+  },
+  methods: {
+    triggerSearch() {
+      const data = {
+        price: this.value ? this.value : "",
+        location:
+          this.checkList.length > 0
+            ? this.checkList.toString().replaceAll(",", "|")
+            : "",
+        query: this.$route.query.q ? this.$route.query.q : "",
+        sort: this.isActive ? this.isActive : "",
+      };
+      console.log(data);
+      this.$store.dispatch("search/searchSpecificItem", data);
+    },
+    setOption(option) {
+      this.isActive = option;
+      this.triggerSearch();
+    },
+  },
+  created() {
+    this.$store.dispatch("search/getRegions");
+    this.$store.dispatch("search/getDistricts");
   },
 };
 </script>
@@ -391,9 +438,14 @@ export default {
 .content .area {
   border-bottom: 2px solid #e0e0e0;
   padding-bottom: 0.5rem;
+  /* margin-bottom: 1rem; */
 }
 
 .content .area h3 {
+  margin-bottom: 1rem;
+}
+
+.content .area .single-area {
   margin-bottom: 1rem;
 }
 

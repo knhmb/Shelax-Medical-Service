@@ -19,4 +19,7 @@ export default {
   SET_PRODUCT_CATEGORY(state, payload) {
     state.productCategory = payload;
   },
+  SET_PRODUCT_ITEMS(state, payload) {
+    state.productItems = payload;
+  },
 };
