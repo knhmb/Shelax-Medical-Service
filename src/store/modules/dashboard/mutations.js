@@ -13,4 +13,10 @@ export default {
   SET_THEMES(state, paylaod) {
     state.themes = paylaod;
   },
+  SET_SERVICE_CATEGORY(state, payload) {
+    state.serviceCategory = payload;
+  },
+  SET_PRODUCT_CATEGORY(state, payload) {
+    state.productCategory = payload;
+  },
 };

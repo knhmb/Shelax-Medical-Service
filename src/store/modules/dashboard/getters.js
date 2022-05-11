@@ -11,4 +11,10 @@ export default {
   themes(state) {
     return state.themes;
   },
+  serviceCategory(state) {
+    return state.serviceCategory;
+  },
+  productCategory(state) {
+    return state.productCategory;
+  },
 };

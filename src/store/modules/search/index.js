@@ -5,14 +5,7 @@ import getters from "./getters";
 export default {
   namespaced: true,
   state() {
-    return {
-      menuItems: [],
-      subMenuItems: [],
-      promoBanners: [],
-      themes: [],
-      serviceCategory: [],
-      productCategory: [],
-    };
+    return {};
   },
   getters,
   mutations,

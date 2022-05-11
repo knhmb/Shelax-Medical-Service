@@ -27,8 +27,21 @@ export default {
     FourthSection,
     // TheFooter,
   },
+  watch: {
+    lang() {
+      this.$store.dispatch("dashboard/getServiceCategory");
+      this.$store.dispatch("dashboard/getProductCategory");
+    },
+  },
+  computed: {
+    lang() {
+      return this.$store.getters.lang;
+    },
+  },
   created() {
     this.$store.dispatch("dashboard/getThemes");
+    this.$store.dispatch("dashboard/getServiceCategory");
+    this.$store.dispatch("dashboard/getProductCategory");
   },
 };
 </script>

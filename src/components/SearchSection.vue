@@ -35,18 +35,20 @@
                   <h5>{{ $t("common_services") }}</h5>
                   <el-row justify="space-between">
                     <el-col
+                      v-for="service in serviceCategory"
+                      :key="service.id"
                       class="service-option"
-                      :class="{ selected: currentOption === 'HPV疫苗' }"
+                      :class="{ selected: currentOption === service.name }"
                       :span="7"
                     >
                       <el-option
-                        @click="selectedOption('HPV疫苗')"
-                        :value="$t('hpv_vaccine')"
+                        @click="selectedOption(service.name)"
+                        :value="service.name"
                       >
-                        <p>{{ $t("hpv_vaccine") }}</p>
+                        <p>{{ service.name }}</p>
                       </el-option>
                     </el-col>
-                    <el-col
+                    <!-- <el-col
                       class="service-option"
                       :class="{ selected: currentOption === '四痘混合疫苗' }"
                       :span="7"
@@ -179,25 +181,27 @@
                       >
                         <p>{{ $t("child_health_checks") }}</p>
                       </el-option>
-                    </el-col>
+                    </el-col> -->
                   </el-row>
                 </div>
                 <div class="product-options">
                   <h5>{{ $t("product_type") }}</h5>
                   <el-row justify="space-between">
                     <el-col
+                      v-for="product in productCategory"
+                      :key="product.id"
                       class="service-option"
-                      :class="{ selected: currentOption === '抗疫產品' }"
+                      :class="{ selected: currentOption === product.name }"
                       :span="7"
                     >
                       <el-option
-                        @click="selectedOption('抗疫產品')"
-                        :value="$t('anti_epidemic_products')"
+                        @click="selectedOption(product.name)"
+                        :value="product.name"
                       >
-                        <p>{{ $t("anti_epidemic_products") }}</p>
+                        <p>{{ product.name }}</p>
                       </el-option>
                     </el-col>
-                    <el-col
+                    <!-- <el-col
                       class="service-option"
                       :class="{ selected: currentOption === '健康營養' }"
                       :span="7"
@@ -244,7 +248,7 @@
                       >
                         <p>{{ $t("medical_instruments") }}</p>
                       </el-option>
-                    </el-col>
+                    </el-col> -->
                     <el-col :span="7"></el-col>
                   </el-row>
                 </div>
@@ -422,7 +426,7 @@
             <!-- <p>上午 10:00</p> -->
           </el-col>
           <el-col :sm="24" :md="6" :lg="6">
-            <button>
+            <button @click="search">
               <img
                 src="../assets/icon-search@2x.png"
                 class="search-icon"
@@ -467,6 +471,12 @@ export default {
     language() {
       return this.$store.getters.lang;
     },
+    serviceCategory() {
+      return this.$store.getters["dashboard/serviceCategory"];
+    },
+    productCategory() {
+      return this.$store.getters["dashboard/productCategory"];
+    },
   },
   methods: {
     setActiveOption(option) {
@@ -474,6 +484,16 @@ export default {
     },
     selectedOption(option) {
       this.currentOption = option;
+    },
+    search() {
+      const data = {
+        option: this.isActive,
+        search: this.value,
+        time: this.timePicker,
+        date: this.datePicker,
+      };
+      console.log(data);
+      this.$store.dispatch("search/searchItem", data);
     },
   },
 };
