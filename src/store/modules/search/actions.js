@@ -4,15 +4,15 @@ export default {
   async searchItem(context, payload) {
     const lang = localStorage.getItem("lang") || "zh-HK";
     const response = await axios.get(
-      `/api/item?${payload.search ? `search=${payload.search}` : ""}${
+      `/api/item?${payload.search ? `search=${payload.search}&` : ""}${
         payload.option && payload.time && payload.date
-          ? `&filter=itemtype:${payload.option},bookingdate:${payload.date},bookingtime:${payload.time}`
+          ? `filter=itemtype:${payload.option},bookingdate:${payload.date},bookingtime:${payload.time}`
           : payload.option && payload.date
-          ? `&filter=itemtype:${payload.option},bookingdate:${payload.date}`
+          ? `filter=itemtype:${payload.option},bookingdate:${payload.date}`
           : payload.option && payload.time
-          ? `&filter=itemtype:${payload.option},bookingtime:${payload.time}`
+          ? `filter=itemtype:${payload.option},bookingtime:${payload.time}`
           : payload.option
-          ? `&filter=itemtype:${payload.option}`
+          ? `filter=itemtype:${payload.option}`
           : ""
       }`,
       {

@@ -63,7 +63,7 @@
             </div>
           </div> -->
           <div class="slider">
-            <h3>價錢</h3>
+            <h3>{{ $t("filter_by_price") }}</h3>
             <el-slider
               v-model="value"
               show-tooltip

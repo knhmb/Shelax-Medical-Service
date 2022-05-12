@@ -107,5 +107,11 @@
   "original_password": "Original password",
   "new_password": "New password",
   "confirm_new_password": "Confirm the new password",
-  "update_button": "Update"
+  "update_button": "Update",
+  "filter_by_price": "Filter by Price",
+  "filter_by_location": "Filter by Location",
+  "recommended": "Recommended",
+  "price_low_to_high": "Price from low to high",
+  "price_high_to_low": "Price from high to low",
+  "highest_rating": "Highest Rating"
 }

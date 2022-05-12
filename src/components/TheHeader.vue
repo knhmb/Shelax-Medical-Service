@@ -127,7 +127,7 @@
               @click="navigateItem(menuItem.slug)"
               v-for="menuItem in subMenuItems"
               :key="menuItem.id"
-              :index="item.displayOrder + '-' + menuItem.displayOrder"
+              :index="item.id + '-' + menuItem.id"
               >{{ menuItem.name }}</el-menu-item
             >
             <!-- <el-menu-item :index="item.displayOrder + '-' + '1'"
@@ -226,7 +226,12 @@ export default {
       this.$store.dispatch("auth/logout");
     },
     navigateItem(slug) {
-      this.$store.dispatch("search/searchMenuItem", slug);
+      this.$store.dispatch("search/searchMenuItem", slug).then(() => {
+        this.$router.push({
+          path: "search",
+          query: { q: `?filter=servicecat:${slug}` },
+        });
+      });
     },
   },
   created() {

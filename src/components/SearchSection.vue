@@ -507,7 +507,22 @@ export default {
       console.log(data);
       console.log(this.timePicker);
       this.$store.dispatch("search/searchItem", data).then(() => {
-        this.$router.push("/search");
+        this.$router.push({
+          path: "search",
+          query: {
+            q: `${data.search ? `search=${data.search}&` : ""}${
+              data.option && data.time && data.date
+                ? `filter=itemtype:${data.option},bookingdate:${data.date},bookingtime:${data.time}`
+                : data.option && data.date
+                ? `filter=itemtype:${data.option},bookingdate:${data.date}`
+                : data.option && data.time
+                ? `filter=itemtype:${data.option},bookingtime:${data.time}`
+                : data.option
+                ? `filter=itemtype:${data.option}`
+                : ""
+            }`,
+          },
+        });
         this.resetFields();
       });
     },

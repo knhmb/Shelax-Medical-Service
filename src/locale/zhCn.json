@@ -107,5 +107,11 @@
   "original_password": "原始密碼",
   "new_password": "新密碼",
   "confirm_new_password": "確認新密碼",
-  "update_button": "修改"
+  "update_button": "修改",
+  "filter_by_price": "价钱",
+  "filter_by_location": "区域",
+  "recommended": "推荐",
+  "price_low_to_high": "价钱由低至高",
+  "price_high_to_low": "价钱由高至低",
+  "highest_rating": "评级最高"
 }
