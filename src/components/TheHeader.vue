@@ -228,7 +228,7 @@ export default {
     navigateItem(slug) {
       this.$store.dispatch("search/searchMenuItem", slug).then(() => {
         this.$router.push({
-          path: "search",
+          name: "search",
           query: { q: `?filter=servicecat:${slug}` },
         });
       });

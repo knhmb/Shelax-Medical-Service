@@ -1,11 +1,11 @@
 <template>
   <section class="other-member">
     <base-member-card>
-      <h3>常用成員</h3>
+      <h3>{{ $t("regular_members") }}</h3>
       <div class="box">
         <el-avatar :size="50" />
         <el-icon @click="addMember" style="cursor: pointer"><plus /></el-icon>
-        <span class="text">新增常用成員</span>
+        <span class="text">{{ $t("add_regular_member") }}</span>
       </div>
 
       <!-- ====================================================== Edit Member ====================================================== -->
@@ -65,66 +65,74 @@
                   </el-col>
                   <el-col :sm="12" :md="5">
                     <el-form-item
-                      label="稱謂"
+                      :label="$t('title')"
                       :prop="'users.' + index + '.salutation'"
                       :rules="{
                         required: true,
-                        message: 'This Field is required',
+                        message: $t('salutation'),
                         trigger: 'change',
                       }"
                     >
                       <el-select v-model="item.salutation" placeholder="先生">
-                        <el-option label="先生" value="先生">先生</el-option>
-                        <el-option label="太太" value="太太">太太</el-option>
-                        <el-option label="小姐" value="小姐">小姐</el-option>
-                        <el-option label="女士" value="女士">女士</el-option>
+                        <el-option :label="$t('Mr')" :value="$t('Mr')">{{
+                          $t("Mr")
+                        }}</el-option>
+                        <el-option :label="$t('Mrs')" :value="$t('Mrs')">{{
+                          $t("Mrs")
+                        }}</el-option>
+                        <el-option :label="$t('Miss')" :value="$t('Miss')">{{
+                          $t("Miss")
+                        }}</el-option>
+                        <el-option :label="$t('Ms')" :value="$t('Ms')">{{
+                          $t("Ms")
+                        }}</el-option>
                       </el-select>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="8">
                     <el-form-item
-                      label="姓氏"
+                      :label="$t('last_name')"
                       :prop="'users.' + index + '.lastName'"
                       :rules="{
                         required: true,
-                        message: '請輸入姓氏',
+                        message: $t('last_name'),
                         trigger: 'blur',
                       }"
                     >
                       <el-input
-                        placeholder="請輸入姓氏"
+                        :placeholder="$t('last_name')"
                         v-model="item.lastName"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="8">
                     <el-form-item
-                      label="名字"
+                      :label="$t('first_name')"
                       :prop="'users.' + index + '.givenName'"
                       :rules="{
                         required: true,
-                        message: '請輸入名字',
+                        message: $t('first_name'),
                         trigger: 'blur',
                       }"
                     >
                       <el-input
-                        placeholder="請輸入名字"
+                        :placeholder="$t('first_name')"
                         v-model="item.givenName"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="5">
                     <el-form-item
-                      label="電話區號"
+                      :label="$t('country_code')"
                       :prop="'users.' + index + '.phoneCode'"
                       :rules="{
                         required: true,
-                        message: '請輸入電話區號',
+                        message: $t('country_code'),
                         trigger: 'blur',
                       }"
                     >
                       <el-select
-                        placeholder="請輸入電話區號"
+                        :placeholder="$t('country_code')"
                         v-model="item.phoneCode"
                       >
                         <el-option
@@ -138,49 +146,49 @@
                   </el-col>
                   <el-col :sm="12" :md="9">
                     <el-form-item
-                      label="電話號碼"
+                      :label="$t('phone_number')"
                       :prop="'users.' + index + '.phoneNo'"
                       :rules="{
                         required: true,
-                        message: '請輸入電話號碼',
+                        message: $t('phone_number'),
                         trigger: 'blur',
                       }"
                     >
                       <el-input
-                        placeholder="請輸入電話號碼"
+                        :placeholder="$t('phone_number')"
                         v-model="item.phoneNo"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="9">
                     <el-form-item
-                      label="電郵地址"
+                      :label="$t('email_address')"
                       :prop="'users.' + index + '.email'"
                       :rules="{
                         required: true,
-                        message: '請輸入電郵地址',
+                        message: $t('email_address'),
                         trigger: 'blur',
                         type: 'email',
                       }"
                     >
                       <el-input
-                        placeholder="請輸入電郵地址"
+                        :placeholder="$t('email_address')"
                         v-model="item.email"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="12">
                     <el-form-item
-                      label="居住國家 / 城市"
+                      :label="$t('city_of_residence')"
                       :prop="'users.' + index + '.placeOfResidence'"
                       :rules="{
                         required: true,
-                        message: '請輸入居住國家/城市',
+                        message: $t('city_of_residence'),
                         trigger: 'blur',
                       }"
                     >
                       <el-select
-                        placeholder="請輸入居住國家/城市"
+                        :placeholder="$t('city_of_residence')"
                         v-model="item.placeOfResidence"
                       >
                         <el-option
@@ -193,8 +201,12 @@
                     </el-form-item>
                   </el-col>
                   <el-col class="buttons">
-                    <el-button @click="item.memberEdit = false">取消</el-button>
-                    <el-button @click="edit(item)">儲存</el-button>
+                    <el-button @click="item.memberEdit = false">{{
+                      $t("cancel_button")
+                    }}</el-button>
+                    <el-button @click="edit(item)">{{
+                      $t("save_button")
+                    }}</el-button>
                   </el-col>
                 </el-row>
               </el-form>
@@ -261,66 +273,77 @@
                   </el-col>
                   <el-col :sm="12" :md="5">
                     <el-form-item
-                      label="稱謂"
+                      :label="$t('title')"
                       :prop="'dynamicContent.' + index + '.salutation'"
                       :rules="{
                         required: true,
-                        message: 'This Field is required',
+                        message: $t('salutation'),
                         trigger: 'change',
                       }"
                     >
-                      <el-select v-model="item.salutation" placeholder="先生">
-                        <el-option label="先生" value="先生">先生</el-option>
-                        <el-option label="太太" value="太太">太太</el-option>
-                        <el-option label="小姐" value="小姐">小姐</el-option>
-                        <el-option label="女士" value="女士">女士</el-option>
+                      <el-select
+                        v-model="item.salutation"
+                        :placeholder="$t('Mr')"
+                      >
+                        <el-option :label="$t('Mr')" :value="$t('Mr')">{{
+                          $t("Mr")
+                        }}</el-option>
+                        <el-option :label="$t('Mrs')" :value="$t('Mrs')">{{
+                          $t("Mrs")
+                        }}</el-option>
+                        <el-option :label="$t('Miss')" :value="$t('Miss')">{{
+                          $t("Miss")
+                        }}</el-option>
+                        <el-option :label="$t('Ms')" :value="$t('Ms')">{{
+                          $t("Ms")
+                        }}</el-option>
                       </el-select>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="8">
                     <el-form-item
-                      label="姓氏"
+                      :label="$t('last_name')"
                       :prop="'dynamicContent.' + index + '.lastName'"
                       :rules="{
                         required: true,
-                        message: '請輸入姓氏',
+                        message: $t('last_name'),
                         trigger: 'blur',
                       }"
                     >
                       <el-input
-                        placeholder="請輸入姓氏"
+                        :placeholder="$t('last_name')"
                         v-model="item.lastName"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="8">
                     <el-form-item
-                      label="名字"
+                      :label="$t('first_name')"
                       :prop="'dynamicContent.' + index + '.givenName'"
                       :rules="{
                         required: true,
-                        message: '請輸入名字',
+                        message: $t('first_name'),
                         trigger: 'blur',
                       }"
                     >
                       <el-input
-                        placeholder="請輸入名字"
+                        :placeholder="$t('first_name')"
                         v-model="item.givenName"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="5">
                     <el-form-item
-                      label="電話區號"
+                      :label="$t('country_code')"
                       :prop="'dynamicContent.' + index + '.phoneCode'"
                       :rules="{
                         required: true,
-                        message: '請輸入電話區號',
+                        message: $t('country_code'),
                         trigger: 'blur',
                       }"
                     >
                       <el-select
-                        placeholder="請輸入電話區號"
+                        :placeholder="$t('country_code')"
                         v-model="item.phoneCode"
                       >
                         <el-option
@@ -334,49 +357,49 @@
                   </el-col>
                   <el-col :sm="12" :md="9">
                     <el-form-item
-                      label="電話號碼"
+                      :label="$t('phone_number')"
                       :prop="'dynamicContent.' + index + '.phoneNo'"
                       :rules="{
                         required: true,
-                        message: '請輸入電話號碼',
+                        message: $t('phone_number'),
                         trigger: 'blur',
                       }"
                     >
                       <el-input
-                        placeholder="請輸入電話號碼"
+                        :placeholder="$t('phone_number')"
                         v-model="item.phoneNo"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="9">
                     <el-form-item
-                      label="電郵地址"
+                      :label="$t('email_address')"
                       :prop="'dynamicContent.' + index + '.email'"
                       :rules="{
                         required: true,
-                        message: '請輸入電郵地址',
+                        message: $t('email_address'),
                         trigger: 'blur',
                         type: 'email',
                       }"
                     >
                       <el-input
-                        placeholder="請輸入電郵地址"
+                        :placeholder="$t('email_address')"
                         v-model="item.email"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="12">
                     <el-form-item
-                      label="居住國家 / 城市"
+                      :label="$t('city_of_residence')"
                       :prop="'dynamicContent.' + index + '.placeOfResidence'"
                       :rules="{
                         required: true,
-                        message: '請輸入居住國家/城市',
+                        message: $t('city_of_residence'),
                         trigger: 'blur',
                       }"
                     >
                       <el-select
-                        placeholder="請輸入居住國家/城市"
+                        :placeholder="$t('city_of_residence')"
                         v-model="item.placeOfResidence"
                       >
                         <el-option
@@ -389,10 +412,12 @@
                     </el-form-item>
                   </el-col>
                   <el-col class="buttons">
-                    <el-button @click="item.contentVisible = false"
-                      >取消</el-button
-                    >
-                    <el-button @click="submit(item)">儲存</el-button>
+                    <el-button @click="item.contentVisible = false">{{
+                      $t("cancel_button")
+                    }}</el-button>
+                    <el-button @click="submit(item)">{{
+                      $t("save_button")
+                    }}</el-button>
                   </el-col>
                 </el-row>
               </el-form>
@@ -525,7 +550,7 @@ export default {
           this.$store.dispatch("profile/addServiceMember", data).then(() => {
             ElNotification({
               title: "Success",
-              message: "Member has been added",
+              message: this.$t("member_added"),
               type: "success",
             });
             this.$store.dispatch("profile/getServiceUsers");
@@ -542,7 +567,7 @@ export default {
           this.$store.dispatch("profile/addServiceMember", data).then(() => {
             ElNotification({
               title: "Success",
-              message: "Member has been added",
+              message: this.$t("member_added"),
               type: "success",
             });
             this.$store.dispatch("profile/getServiceUsers");
@@ -575,7 +600,7 @@ export default {
           // this.ruleForm.members.push({ ...item, memberEdit: false });
         } else {
           ElMessage({
-            message: "Please Fill All Fields",
+            message: this.$t("fill_fields"),
             type: "error",
           });
         }
@@ -588,7 +613,7 @@ export default {
           this.$store.dispatch("profile/editServiceUser", data).then(() => {
             ElNotification({
               title: "Success",
-              message: "Member has been updated",
+              message: this.$t("member_updated"),
               type: "success",
             });
             this.$store.dispatch("profile/getServiceUsers");
@@ -605,7 +630,7 @@ export default {
           this.$store.dispatch("profile/editServiceUser", data).then(() => {
             ElNotification({
               title: "Success",
-              message: "Member has been updated",
+              message: this.$t("member_updated"),
               type: "success",
             });
             this.$store.dispatch("profile/getServiceUsers");
@@ -640,7 +665,7 @@ export default {
           item.memberEdit = false;
         } else {
           ElMessage({
-            message: "Please Fill All Fields",
+            message: this.$t("fill_fields"),
             type: "error",
           });
         }
@@ -665,7 +690,7 @@ export default {
 
       if (file.type !== "image/jpeg" && file.type !== "image/png") {
         ElMessage({
-          message: "Image must be in jpeg or png format",
+          message: this.$t("image_format"),
           type: "error",
         });
       } else {
@@ -730,20 +755,16 @@ export default {
         });
     },
     deleteMember(id) {
-      ElMessageBox.confirm(
-        "This member will permanently be deletd. Continue?",
-        "Warning",
-        {
-          confirmButtonText: "OK",
-          cancelButtonText: "Cancel",
-          type: "warning",
-        }
-      )
+      ElMessageBox.confirm(this.$t("member_will_be_deleted"), "Warning", {
+        confirmButtonText: this.$t("ok_button"),
+        cancelButtonText: this.$t("cancel_button"),
+        type: "warning",
+      })
         .then(() => {
           this.$store.dispatch("profile/deleteServiceUser", id).then(() => {
             ElMessage({
               type: "success",
-              message: "Member deleted",
+              message: this.$t("member_deleted"),
             });
             this.$store.dispatch("profile/getServiceUsers");
           });
@@ -751,7 +772,7 @@ export default {
         .catch(() => {
           ElMessage({
             type: "info",
-            message: "Delete canceled",
+            message: this.$t("delete_canceled"),
           });
         });
     },

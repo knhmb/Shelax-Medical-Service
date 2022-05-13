@@ -113,5 +113,16 @@
   "recommended": "Recommended",
   "price_low_to_high": "Price from low to high",
   "price_high_to_low": "Price from high to low",
-  "highest_rating": "Highest Rating"
+  "highest_rating": "Highest Rating",
+  "salutation": "Salutation",
+  "add_regular_member": "Add regular member",
+  "member_added": "Member has been added!",
+  "fill_fields": "Please Fill All Fields!",
+  "member_updated": "Member has been updated!",
+  "member_will_be_deleted": "This member will permanently be deleted. Continue?",
+  "ok_button": "Ok",
+  "cancel_button": "Cancel",
+  "member_deleted": "Member deleted!",
+  "delete_canceled": "Delete canceled!",
+  "image_format": "Image must be in jpeg or png format!"
 }

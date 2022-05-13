@@ -113,5 +113,16 @@
   "recommended": "推荐",
   "price_low_to_high": "价钱由低至高",
   "price_high_to_low": "价钱由高至低",
-  "highest_rating": "评级最高"
+  "highest_rating": "评级最高",
+  "salutation": "稱呼",
+  "add_regular_member": "新增常用成員",
+  "member_added": "已添加成員",
+  "fill_fields": "請填寫所有字段",
+  "member_updated": "會員已更新",
+  "member_will_be_deleted": "該會員將被永久刪除。繼續？",
+  "ok_button": "行",
+  "cancel_button": "取消",
+  "member_deleted": "會員已刪除",
+  "delete_canceled": "刪除已取消",
+  "image_format": "圖片必須為 jpeg 或 png 格式"
 }
