@@ -46,6 +46,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      service: "",
+      date: null,
+      time: null,
+    };
+  },
+};
+</script>
+
 <style>
 .product-search-section {
   background-color: #4e68b2;
@@ -119,14 +131,3 @@
 }
 </style>
 
-<script>
-export default {
-  data() {
-    return {
-      service: "",
-      date: null,
-      time: null,
-    };
-  },
-};
-</script>

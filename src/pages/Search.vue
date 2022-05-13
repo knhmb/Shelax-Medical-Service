@@ -1,6 +1,14 @@
 <template>
   <!-- <the-header></the-header> -->
-  <section class="search-section">
+  <Product
+    @changedSort="setOption"
+    :is-active="isActive"
+    v-if="searchItems[0].searchItemType === 'product'"
+  />
+  <section
+    v-if="searchItems[0].searchItemType === 'service'"
+    class="search-section"
+  >
     <base-content-container>
       <el-form label-position="top">
         <el-row :gutter="10">
@@ -9,7 +17,7 @@
               <el-input
                 placeholder="身體檢查"
                 class="service"
-                v-model.trim="service"
+                v-model="service"
               ></el-input>
             </el-form-item>
           </el-col>
@@ -32,7 +40,7 @@
             </el-form-item>
           </el-col>
           <el-col :sm="24" :lg="6">
-            <button>
+            <button @click.prevent="searchItem">
               <img
                 src="../assets/icon-search@2x.png"
                 class="icon-search"
@@ -46,7 +54,7 @@
     </base-content-container>
   </section>
 
-  <section class="content">
+  <section class="content" v-if="searchItems[0].searchItemType === 'service'">
     <base-content-container>
       <h2>身體檢查</h2>
       <el-row :gutter="30">
@@ -128,7 +136,7 @@
             </el-checkbox>
           </div> -->
           <div class="area">
-            <h3>區域</h3>
+            <h3>{{ $t("filter_by_location") }}</h3>
             <div v-for="region in regions" :key="region" class="single-area">
               <p>{{ region.name }}</p>
               <el-checkbox-group @change="triggerSearch" v-model="checkList">
@@ -191,12 +199,15 @@
 // import TheHeader from "../components/TheHeader.vue";
 // import TheFooter from "../components/TheFooter.vue";
 import SearchRightSection from "../components/search/SearchRightSection.vue";
+import { ElNotification } from "element-plus";
+import Product from "../components/product-search/Product.vue";
 
 export default {
   components: {
     // TheHeader,
     // TheFooter,
     SearchRightSection,
+    Product,
   },
   data() {
     return {
@@ -219,6 +230,9 @@ export default {
     districts() {
       return this.$store.getters["search/districts"];
     },
+    searchItems() {
+      return this.$store.getters["search/searchItems"];
+    },
   },
   methods: {
     triggerSearch() {
@@ -232,11 +246,51 @@ export default {
         sort: this.isActive ? this.isActive : "",
       };
       console.log(data);
-      this.$store.dispatch("search/searchSpecificItem", data);
+      this.$store
+        .dispatch("search/searchSpecificItem", data)
+        .then(() => {})
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+        });
     },
     setOption(option) {
       this.isActive = option;
       this.triggerSearch();
+    },
+    searchItem() {
+      const data = {
+        search: this.service,
+        bookingDate: this.date ? this.date.replaceAll("-", "") : "",
+        bookingTime: this.time ? this.time.replace(":", "") : "",
+      };
+      console.log(data);
+      this.$router.push({
+        query: {
+          q: `${data.search ? `search=${data.search}&` : ""}${
+            data.bookingDate && data.bookingTime
+              ? `filter=bookingdate:${data.bookingDate},bookingtime:${data.bookingTime}`
+              : data.bookingDate
+              ? `filter=bookingdate:${data.bookingDate}`
+              : data.bookingTime
+              ? `filter=bookingtime:${data.bookingTime}`
+              : ""
+          }`,
+        },
+      });
+      this.$store
+        .dispatch("search/searchItems", data)
+        .then(() => {})
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+        });
     },
   },
   created() {

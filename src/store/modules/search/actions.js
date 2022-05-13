@@ -84,4 +84,25 @@ export default {
     console.log(response);
     context.commit("SET_SEARCH_ITEMS", response.data.items);
   },
+  async searchItems(context, payload) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+    const response = await axios.get(
+      `/api/item?${payload.search ? `search=${payload.search}&` : ""}${
+        payload.bookingDate && payload.bookingTime
+          ? `filter=bookingdate:${payload.bookingDate},bookingtime:${payload.bookingTime}`
+          : payload.bookingDate
+          ? `filter=bookingdate:${payload.bookingDate}`
+          : payload.bookingTime
+          ? `filter=bookingtime:${payload.bookingTime}`
+          : ""
+      }`,
+      {
+        headers: {
+          "accept-language-code": lang,
+        },
+      }
+    );
+    console.log(response);
+    context.commit("SET_SEARCH_ITEMS", response.data.items);
+  },
 };

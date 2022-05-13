@@ -38,7 +38,14 @@
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <p class="forgot-pass">{{ $t("forgot_password") }}</p>
+          <p
+            @click="
+              changeAuthOption({ name: 'forgotPassword', title: '忘記密碼' })
+            "
+            class="forgot-pass"
+          >
+            {{ $t("forgot_password") }}
+          </p>
         </el-col>
       </el-row>
 
@@ -98,9 +105,11 @@
         <el-col>
           <p class="login">
             {{ $t("dont_have_account") }}
-            <span @click="changeAuthOption" class="login-link">{{
-              $t("signup_now")
-            }}</span>
+            <span
+              @click="changeAuthOption({ name: 'register', title: '註冊' })"
+              class="login-link"
+              >{{ $t("signup_now") }}</span
+            >
           </p>
         </el-col>
       </el-row>
@@ -142,11 +151,15 @@ export default {
     };
   },
   methods: {
-    changeAuthOption() {
+    changeAuthOption({ name, title }) {
       this.$emit("authChanged", {
-        changedAuthOption: "register",
-        authTitle: "註冊",
+        changedAuthOption: name,
+        authTitle: title,
       });
+      // this.$emit("authChanged", {
+      //   changedAuthOption: "register",
+      //   authTitle: "註冊",
+      // });
     },
     login() {
       const data = {

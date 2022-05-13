@@ -124,5 +124,12 @@
   "cancel_button": "Cancel",
   "member_deleted": "Member deleted!",
   "delete_canceled": "Delete canceled!",
-  "image_format": "Image must be in jpeg or png format!"
+  "image_format": "Image must be in jpeg or png format!",
+  "error.item.no-result": "No matched results",
+  "book_button": "Book now",
+  "earliest_booking": "Earliest booking date and time",
+  "no_dates": "No Specified Dates",
+  "menu_forgot_password": "Forgot Password",
+  "forgot_password_button": "Next step",
+  "forgot_password_text": "Enter the email address you used to create your Shelax account and we'll send you a link to reset your password"
 }

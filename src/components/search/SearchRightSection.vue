@@ -8,7 +8,7 @@
           :sm="12"
           :md="6"
         >
-          <p>推薦</p>
+          <p>{{ $t("recommended") }}</p>
         </el-col>
         <el-col
           @click="setOption('+price')"
@@ -16,7 +16,7 @@
           :sm="12"
           :md="6"
         >
-          <p>價錢由低至高</p>
+          <p>{{ $t("price_low_to_high") }}</p>
         </el-col>
         <el-col
           @click="setOption('-price')"
@@ -24,7 +24,7 @@
           :sm="12"
           :md="6"
         >
-          <p>價錢由高至低</p>
+          <p>{{ $t("price_high_to_low") }}</p>
         </el-col>
         <el-col
           @click="setOption('rating')"
@@ -32,7 +32,7 @@
           :sm="12"
           :md="6"
         >
-          <p>評級最高</p>
+          <p>{{ $t("highest_rating") }}</p>
         </el-col>
       </el-row>
     </div>

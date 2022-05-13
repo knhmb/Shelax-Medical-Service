@@ -124,5 +124,12 @@
   "cancel_button": "取消",
   "member_deleted": "會員已刪除",
   "delete_canceled": "刪除已取消",
-  "image_format": "圖片必須為 jpeg 或 png 格式"
+  "image_format": "圖片必須為 jpeg 或 png 格式",
+  "error.item.no-result": "沒有匹配的結果",
+  "book_button": "立即預約",
+  "earliest_booking": "最早可預約時間",
+  "no_dates": "无指定日期",
+  "menu_forgot_password": "忘記密碼",
+  "forgot_password_button": "下一步",
+  "forgot_password_text": "輸入你用以創建Shelax帳號的電郵地址，我們會發送重設密碼的連結"
 }

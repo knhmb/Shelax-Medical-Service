@@ -143,6 +143,8 @@
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
+
 export default {
   watch: {
     lang() {
@@ -159,12 +161,21 @@ export default {
   },
   methods: {
     searchProduct(slug) {
-      this.$store.dispatch("search/searchProduct", slug).then(() => {
-        this.$router.push({
-          path: "search",
-          query: { q: `filter=productcat:${slug}` },
+      this.$store
+        .dispatch("search/searchProduct", slug)
+        .then(() => {
+          this.$router.push({
+            path: "search",
+            query: { q: `filter=productcat:${slug}` },
+          });
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
         });
-      });
     },
   },
   created() {

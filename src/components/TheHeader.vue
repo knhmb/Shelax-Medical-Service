@@ -109,7 +109,7 @@
         v-if="!isSteps"
         class="el-menu-demo bottom-header"
         mode="horizontal"
-        :ellipsis="false"
+        :ellipsis="true"
       >
         <template v-for="item in menuItems" :key="item.id">
           <el-menu-item
@@ -159,6 +159,7 @@
 
 <script>
 import Register from "./register/Register.vue";
+import { ElNotification } from "element-plus";
 
 export default {
   components: {
@@ -172,6 +173,16 @@ export default {
       // lang: null,
       trigger: 1,
     };
+  },
+  watch: {
+    $route() {
+      if (this.$route.path === "/forgot-password") {
+        this.selectedOption = "";
+        this.dialogVisible = true;
+      }
+      console.log(this.$route);
+      console.log(this.$route.path);
+    },
   },
   computed: {
     isSteps() {
@@ -226,12 +237,21 @@ export default {
       this.$store.dispatch("auth/logout");
     },
     navigateItem(slug) {
-      this.$store.dispatch("search/searchMenuItem", slug).then(() => {
-        this.$router.push({
-          name: "search",
-          query: { q: `?filter=servicecat:${slug}` },
+      this.$store
+        .dispatch("search/searchMenuItem", slug)
+        .then(() => {
+          this.$router.push({
+            name: "search",
+            query: { q: `?filter=servicecat:${slug}` },
+          });
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
         });
-      });
     },
   },
   created() {

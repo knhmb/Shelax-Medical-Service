@@ -5,6 +5,7 @@
       :title="authTitle"
       width="30%"
       :before-close="handleClose"
+      @close="$router.replace('/')"
     >
       <!-- <el-tabs v-model="activeName" :stretch="true">
         <el-tab-pane label="電郵地址" name="first">
@@ -24,6 +25,7 @@
         @authChanged="changedAuth"
         @closeDialog="closeDialog"
       ></login-form>
+      <forgot-password v-else></forgot-password>
       <!-- </el-tab-pane> -->
       <!-- <el-tab-pane label="手機號碼" name="second">
           <template #label>
@@ -41,6 +43,7 @@
 <script>
 import RegisterForm from "./RegisterForm.vue";
 import LoginForm from "../login/LoginForm.vue";
+import ForgotPassword from "../forgot-password/ForgotPassword.vue";
 
 export default {
   props: ["dialogVisible", "selectedOption"],
@@ -48,6 +51,7 @@ export default {
   components: {
     RegisterForm,
     LoginForm,
+    ForgotPassword,
   },
   data() {
     return {
@@ -64,9 +68,18 @@ export default {
       if (this.selectedOption === "register") {
         // this.authTitle = "註冊";
         this.authTitle = this.$t("menu_register");
-      } else {
+      } else if (this.selectedOption === "login") {
         // this.authTitle = "登入";
         this.authTitle = this.$t("menu_login");
+      } else {
+        this.authTitle = this.$t("menu_forgot_password");
+      }
+    },
+    $route() {
+      if (this.$route.path === "/forgot-password") {
+        this.authTitle = this.$t("menu_forgot_password");
+        this.$emit("toggleAuth", "forgotPassword");
+        this.authTitle = "忘記密碼";
       }
     },
   },
@@ -104,6 +117,9 @@ export default {
       } else if (event.changedAuthOption === "login") {
         // this.selectedAuthOption = event.changedAuthOption;
         this.$emit("toggleAuth", event.changedAuthOption);
+        this.authTitle = event.authTitle;
+      } else if (event.changedAuthOption === "forgotPassword") {
+        this.$emit("toggleAuth", event.authTitle);
         this.authTitle = event.authTitle;
       }
       console.log("changed");

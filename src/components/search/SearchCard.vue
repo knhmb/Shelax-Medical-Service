@@ -21,7 +21,7 @@
           disabled
           text-color="#8D8D8D"
         />
-        <p class="earliest-appointment">最早可預約時間</p>
+        <p class="earliest-appointment">{{ $t("earliest_booking") }}</p>
         <div class="appointment-time-date">
           <span>{{ date }}</span>
           <span>{{ time }}</span>
@@ -33,7 +33,7 @@
         <p>HKD{{ discountPrice }}</p>
         <h6>HKD{{ price }}</h6>
       </div>
-      <el-button>立即預約</el-button>
+      <el-button>{{ $t("book_button") }}</el-button>
     </el-col>
   </el-row>
 </template>
