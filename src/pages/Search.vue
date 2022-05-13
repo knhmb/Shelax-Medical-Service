@@ -200,7 +200,7 @@ export default {
   },
   data() {
     return {
-      isActive: "recommendation",
+      isActive: "",
       service: "",
       date: null,
       time: null,

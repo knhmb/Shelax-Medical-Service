@@ -62,7 +62,7 @@
                 ></latest-offers-card>
               </el-col>
             </el-row>
-            {{ getSlug }}
+            <!-- {{ getSlug }} -->
           </base-content-container>
           <!-- </base-container> -->
         </el-carousel-item>

@@ -24,7 +24,7 @@ export default {
     console.log(response);
     context.commit("SET_SEARCH_ITEMS", response.data.items);
   },
-  async searchMenuItem(_, slug) {
+  async searchMenuItem(context, slug) {
     const lang = localStorage.getItem("lang") || "zh-HK";
     const response = await axios.get(`/api/item?filter=servicecat:${slug}`, {
       headers: {
@@ -32,6 +32,7 @@ export default {
       },
     });
     console.log(response);
+    context.commit("SET_SEARCH_ITEMS", response.data.items);
   },
   async searchProduct(context, slug) {
     const lang = localStorage.getItem("lang") || "zh-HK";
