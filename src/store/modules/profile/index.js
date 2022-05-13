@@ -8,6 +8,7 @@ export default {
     return {
       userDetails: [],
       countryCodes: [],
+      serviceUsers: [],
     };
   },
   getters,

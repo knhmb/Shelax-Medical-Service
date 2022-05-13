@@ -5,4 +5,7 @@ export default {
   countryCodes(state) {
     return state.countryCodes;
   },
+  serviceUsers(state) {
+    return state.serviceUsers;
+  },
 };

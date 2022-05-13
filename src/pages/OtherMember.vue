@@ -9,24 +9,23 @@
       </div>
 
       <!-- ====================================================== Edit Member ====================================================== -->
-
-      <template v-if="ruleForm.members.length > 0">
+      <template v-if="ruleForm.users.length > 0">
         <div
-          v-for="(item, index) in ruleForm.members"
+          v-for="(item, index) in ruleForm.users"
           class="box-2"
-          :key="index"
+          :key="item.id"
         >
           <el-row>
             <el-col :xs="24" :sm="12">
-              <el-avatar :src="item.imgSrc" :size="50" />
-              <span>{{ item.firstName }}</span>
+              <el-avatar :size="50" />
+              <span>{{ item.givenName }}</span>
             </el-col>
             <el-col :xs="24" :sm="12">
               <div @click="showContent(item)" class="edit">
                 <el-icon><edit /></el-icon>
                 <span class="action">修改</span>
               </div>
-              <div class="delete">
+              <div @click="checkAccessTokenDelete(item.id)" class="delete">
                 <el-icon><delete /></el-icon>
                 <span class="action">刪除</span>
               </div>
@@ -67,14 +66,14 @@
                   <el-col :sm="12" :md="5">
                     <el-form-item
                       label="稱謂"
-                      :prop="'members.' + index + '.title'"
+                      :prop="'users.' + index + '.salutation'"
                       :rules="{
                         required: true,
                         message: 'This Field is required',
                         trigger: 'change',
                       }"
                     >
-                      <el-select v-model="item.title" placeholder="先生">
+                      <el-select v-model="item.salutation" placeholder="先生">
                         <el-option label="先生" value="先生">先生</el-option>
                         <el-option label="太太" value="太太">太太</el-option>
                         <el-option label="小姐" value="小姐">小姐</el-option>
@@ -85,7 +84,7 @@
                   <el-col :sm="12" :md="8">
                     <el-form-item
                       label="姓氏"
-                      :prop="'members.' + index + '.lastName'"
+                      :prop="'users.' + index + '.lastName'"
                       :rules="{
                         required: true,
                         message: '請輸入姓氏',
@@ -101,7 +100,7 @@
                   <el-col :sm="12" :md="8">
                     <el-form-item
                       label="名字"
-                      :prop="'members.' + index + '.firstName'"
+                      :prop="'users.' + index + '.givenName'"
                       :rules="{
                         required: true,
                         message: '請輸入名字',
@@ -110,30 +109,37 @@
                     >
                       <el-input
                         placeholder="請輸入名字"
-                        v-model="item.firstName"
+                        v-model="item.givenName"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="5">
                     <el-form-item
                       label="電話區號"
-                      :prop="'members.' + index + '.phoneAreaCode'"
+                      :prop="'users.' + index + '.phoneCode'"
                       :rules="{
                         required: true,
                         message: '請輸入電話區號',
                         trigger: 'blur',
                       }"
                     >
-                      <el-input
+                      <el-select
                         placeholder="請輸入電話區號"
-                        v-model="item.phoneAreaCode"
-                      ></el-input>
+                        v-model="item.phoneCode"
+                      >
+                        <el-option
+                          v-for="code in countryCodes"
+                          :key="code.id"
+                          :label="code.name + '(+' + code.isd + ')'"
+                          :value="code.alphaThree"
+                        ></el-option>
+                      </el-select>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="9">
                     <el-form-item
                       label="電話號碼"
-                      :prop="'members.' + index + '.phoneNumber'"
+                      :prop="'users.' + index + '.phoneNo'"
                       :rules="{
                         required: true,
                         message: '請輸入電話號碼',
@@ -142,14 +148,14 @@
                     >
                       <el-input
                         placeholder="請輸入電話號碼"
-                        v-model="item.phoneNumber"
+                        v-model="item.phoneNo"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="9">
                     <el-form-item
                       label="電郵地址"
-                      :prop="'members.' + index + '.email'"
+                      :prop="'users.' + index + '.email'"
                       :rules="{
                         required: true,
                         message: '請輸入電郵地址',
@@ -166,17 +172,24 @@
                   <el-col :sm="12" :md="12">
                     <el-form-item
                       label="居住國家 / 城市"
-                      :prop="'members.' + index + '.country'"
+                      :prop="'users.' + index + '.placeOfResidence'"
                       :rules="{
                         required: true,
                         message: '請輸入居住國家/城市',
                         trigger: 'blur',
                       }"
                     >
-                      <el-input
+                      <el-select
                         placeholder="請輸入居住國家/城市"
-                        v-model="item.country"
-                      ></el-input>
+                        v-model="item.placeOfResidence"
+                      >
+                        <el-option
+                          v-for="code in countryCodes"
+                          :key="code.id"
+                          :label="code.name + '(+' + code.isd + ')'"
+                          :value="code.alphaThree"
+                        ></el-option
+                      ></el-select>
                     </el-form-item>
                   </el-col>
                   <el-col class="buttons">
@@ -249,14 +262,14 @@
                   <el-col :sm="12" :md="5">
                     <el-form-item
                       label="稱謂"
-                      :prop="'dynamicContent.' + index + '.title'"
+                      :prop="'dynamicContent.' + index + '.salutation'"
                       :rules="{
                         required: true,
                         message: 'This Field is required',
                         trigger: 'change',
                       }"
                     >
-                      <el-select v-model="item.title" placeholder="先生">
+                      <el-select v-model="item.salutation" placeholder="先生">
                         <el-option label="先生" value="先生">先生</el-option>
                         <el-option label="太太" value="太太">太太</el-option>
                         <el-option label="小姐" value="小姐">小姐</el-option>
@@ -283,7 +296,7 @@
                   <el-col :sm="12" :md="8">
                     <el-form-item
                       label="名字"
-                      :prop="'dynamicContent.' + index + '.firstName'"
+                      :prop="'dynamicContent.' + index + '.givenName'"
                       :rules="{
                         required: true,
                         message: '請輸入名字',
@@ -292,30 +305,37 @@
                     >
                       <el-input
                         placeholder="請輸入名字"
-                        v-model="item.firstName"
+                        v-model="item.givenName"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="5">
                     <el-form-item
                       label="電話區號"
-                      :prop="'dynamicContent.' + index + '.phoneAreaCode'"
+                      :prop="'dynamicContent.' + index + '.phoneCode'"
                       :rules="{
                         required: true,
                         message: '請輸入電話區號',
                         trigger: 'blur',
                       }"
                     >
-                      <el-input
+                      <el-select
                         placeholder="請輸入電話區號"
-                        v-model="item.phoneAreaCode"
-                      ></el-input>
+                        v-model="item.phoneCode"
+                      >
+                        <el-option
+                          v-for="code in countryCodes"
+                          :key="code.id"
+                          :label="code.name + '(+' + code.isd + ')'"
+                          :value="code.alphaThree"
+                        ></el-option
+                      ></el-select>
                     </el-form-item>
                   </el-col>
                   <el-col :sm="12" :md="9">
                     <el-form-item
                       label="電話號碼"
-                      :prop="'dynamicContent.' + index + '.phoneNumber'"
+                      :prop="'dynamicContent.' + index + '.phoneNo'"
                       :rules="{
                         required: true,
                         message: '請輸入電話號碼',
@@ -324,7 +344,7 @@
                     >
                       <el-input
                         placeholder="請輸入電話號碼"
-                        v-model="item.phoneNumber"
+                        v-model="item.phoneNo"
                       ></el-input>
                     </el-form-item>
                   </el-col>
@@ -348,17 +368,24 @@
                   <el-col :sm="12" :md="12">
                     <el-form-item
                       label="居住國家 / 城市"
-                      :prop="'dynamicContent.' + index + '.country'"
+                      :prop="'dynamicContent.' + index + '.placeOfResidence'"
                       :rules="{
                         required: true,
                         message: '請輸入居住國家/城市',
                         trigger: 'blur',
                       }"
                     >
-                      <el-input
+                      <el-select
                         placeholder="請輸入居住國家/城市"
-                        v-model="item.country"
-                      ></el-input>
+                        v-model="item.placeOfResidence"
+                      >
+                        <el-option
+                          v-for="code in countryCodes"
+                          :key="code.id"
+                          :label="code.name + '(+' + code.isd + ')'"
+                          :value="code.alphaThree"
+                        ></el-option
+                      ></el-select>
                     </el-form-item>
                   </el-col>
                   <el-col class="buttons">
@@ -379,7 +406,7 @@
 
 <script>
 import { Plus, Camera, Edit, Delete } from "@element-plus/icons-vue";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElMessageBox, ElNotification } from "element-plus";
 
 export default {
   components: {
@@ -394,6 +421,7 @@ export default {
       imgSrc: null,
       ruleForm: {
         members: [],
+        users: [],
         // title: "",
         // lastName: "",
         // firstName: "",
@@ -415,7 +443,7 @@ export default {
         ],
       },
       rules: {
-        title: [
+        salutation: [
           {
             required: true,
             message: "This Field is required",
@@ -429,21 +457,21 @@ export default {
             trigger: "blur",
           },
         ],
-        firstName: [
+        givenName: [
           {
             required: true,
             message: "This Field is required",
             trigger: "blur",
           },
         ],
-        phoneAreaCode: [
+        phoneCode: [
           {
             required: true,
             message: "This Field is required",
             trigger: "blur",
           },
         ],
-        phoneNumber: [
+        phoneNo: [
           {
             required: true,
             message: "This Field is required",
@@ -458,7 +486,7 @@ export default {
             trigger: "blur",
           },
         ],
-        country: [
+        placeOfResidence: [
           {
             required: true,
             message: "This Field is required",
@@ -468,17 +496,83 @@ export default {
       },
     };
   },
+  watch: {
+    serviceUsers: {
+      deep: true,
+      handler() {
+        this.ruleForm.users = this.serviceUsers;
+      },
+    },
+  },
+  computed: {
+    serviceUsers() {
+      return this.$store.getters["profile/serviceUsers"];
+    },
+    countryCodes() {
+      return this.$store.getters["profile/countryCodes"];
+    },
+  },
   methods: {
     showContent(item) {
       // this.isContentVisible = true;
       // item.contentVisible = true;
       item.memberEdit = true;
     },
+    checkAccessTokenMember(data) {
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store.dispatch("profile/addServiceMember", data).then(() => {
+            ElNotification({
+              title: "Success",
+              message: "Member has been added",
+              type: "success",
+            });
+            this.$store.dispatch("profile/getServiceUsers");
+          });
+        })
+        .catch(() => {
+          this.checkRefreshTokenMember(data);
+        });
+    },
+    checkRefreshTokenMember(data) {
+      this.$store
+        .dispatch("auth/checkRefreshToken")
+        .then(() => {
+          this.$store.dispatch("profile/addServiceMember", data).then(() => {
+            ElNotification({
+              title: "Success",
+              message: "Member has been added",
+              type: "success",
+            });
+            this.$store.dispatch("profile/getServiceUsers");
+          });
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: err.response.data.message,
+            type: "error",
+          });
+          this.$router.replace("/");
+        });
+    },
     submit(item) {
       this.$refs.ruleFormRefAdd[0].validate((valid) => {
         if (valid) {
           item.contentVisible = false;
-          this.ruleForm.members.push({ ...item, memberEdit: false });
+          console.log(item);
+          const data = {
+            salutation: item.salutation,
+            lastName: item.lastName,
+            givenName: item.givenName,
+            phoneCode: item.phoneCode,
+            phoneNo: item.phoneNo,
+            email: item.email,
+            placeOfResidence: item.placeOfResidence,
+          };
+          this.checkAccessTokenMember(data);
+          // this.ruleForm.members.push({ ...item, memberEdit: false });
         } else {
           ElMessage({
             message: "Please Fill All Fields",
@@ -487,11 +581,62 @@ export default {
         }
       });
     },
+    checkAccessTokenEdit(data) {
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store.dispatch("profile/editServiceUser", data).then(() => {
+            ElNotification({
+              title: "Success",
+              message: "Member has been updated",
+              type: "success",
+            });
+            this.$store.dispatch("profile/getServiceUsers");
+          });
+        })
+        .catch(() => {
+          this.checkRefreshTokenEdit(data);
+        });
+    },
+    checkRefreshTokenEdit(data) {
+      this.$store
+        .dispatch("auth/checkRefreshToken")
+        .then(() => {
+          this.$store.dispatch("profile/editServiceUser", data).then(() => {
+            ElNotification({
+              title: "Success",
+              message: "Member has been updated",
+              type: "success",
+            });
+            this.$store.dispatch("profile/getServiceUsers");
+          });
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: err.response.data.message,
+            type: "error",
+          });
+          this.$router.replace("/");
+        });
+    },
     edit(item) {
       this.$refs.ruleFormRef[0].validate((valid) => {
         if (valid) {
-          console.log("editted");
+          const data = {
+            id: item.id,
+            salutation: item.salutation,
+            lastName: item.lastName,
+            givenName: item.givenName,
+            phoneCode: item.phoneCode,
+            phoneNo: item.phoneNo,
+            email: item.email,
+            placeOfResidence: item.placeOfResidence,
+          };
           console.log(item);
+          console.log(data);
+          this.checkAccessTokenEdit(data);
+
           item.memberEdit = false;
         } else {
           ElMessage({
@@ -503,13 +648,13 @@ export default {
     },
     addMember() {
       this.ruleForm.dynamicContent.push({
-        title: "",
+        salutation: "",
         lastName: "",
-        firstName: "",
-        phoneAreaCode: "",
-        phoneNumber: "",
+        givenName: "",
+        phoneCode: "",
+        phoneNo: "",
         email: "",
-        country: "",
+        placeOfResidence: "",
         contentVisible: true,
         imgSrc: null,
       });
@@ -527,6 +672,93 @@ export default {
         item.imgSrc = URL.createObjectURL(file);
       }
     },
+    checkAccessToken() {
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store.dispatch("profile/getServiceUsers").then(() => {
+            this.ruleForm.users = this.serviceUsers;
+            console.log(this.ruleForm.users);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          this.checkRefreshToken();
+        });
+    },
+    checkRefreshToken() {
+      this.$store
+        .dispatch("auth/checkRefreshToken")
+        .then(() => {
+          this.$store.dispatch("profile/getServiceUsers").then(() => {
+            this.ruleForm.users = this.serviceUsers;
+            console.log(this.ruleForm.users);
+          });
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+          this.$router.replace("/");
+        });
+    },
+    checkAccessTokenDelete(id) {
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.deleteMember(id);
+        })
+        .catch(() => {
+          this.checkRefreshTokenDelete(id);
+        });
+    },
+    checkRefreshTokenDelete(id) {
+      this.$store
+        .dispatch("auth/checkRefreshToken")
+        .then(() => {
+          this.deleteMember(id);
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+          this.$router.replace("/");
+        });
+    },
+    deleteMember(id) {
+      ElMessageBox.confirm(
+        "This member will permanently be deletd. Continue?",
+        "Warning",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning",
+        }
+      )
+        .then(() => {
+          this.$store.dispatch("profile/deleteServiceUser", id).then(() => {
+            ElMessage({
+              type: "success",
+              message: "Member deleted",
+            });
+            this.$store.dispatch("profile/getServiceUsers");
+          });
+        })
+        .catch(() => {
+          ElMessage({
+            type: "info",
+            message: "Delete canceled",
+          });
+        });
+    },
+  },
+  created() {
+    this.checkAccessToken();
+    // this.
   },
 };
 </script>

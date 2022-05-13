@@ -42,4 +42,44 @@ export default {
     });
     console.log(response);
   },
+  async getServiceUsers(context) {
+    const userToken = localStorage.getItem("accessToken");
+    const response = await axios.get("/api/service-users ", {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+    context.commit("SET_SERVICE_USERS", response.data.items);
+  },
+  async addServiceMember(_, payload) {
+    const userToken = localStorage.getItem("accessToken");
+    const response = await axios.post("/api/service-users", payload, {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+  },
+  async editServiceUser(_, payload) {
+    const userToken = localStorage.getItem("accessToken");
+    const response = await axios.put("/api/service-users", payload, {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+  },
+  async deleteServiceUser(_, payload) {
+    const userToken = localStorage.getItem("accessToken");
+    const response = await axios.delete("/api/service-users", {
+      data: {
+        id: payload,
+      },
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+  },
 };
