@@ -25,7 +25,7 @@
         @authChanged="changedAuth"
         @closeDialog="closeDialog"
       ></login-form>
-      <forgot-password v-else></forgot-password>
+      <forgot-password @closeDialog="closeDialog" v-else></forgot-password>
       <!-- </el-tab-pane> -->
       <!-- <el-tab-pane label="手機號碼" name="second">
           <template #label>
@@ -71,12 +71,14 @@ export default {
       } else if (this.selectedOption === "login") {
         // this.authTitle = "登入";
         this.authTitle = this.$t("menu_login");
+      } else if (this.$route.path === "/reset-password") {
+        this.authTitle = this.$t("reset_password_text");
       } else {
         this.authTitle = this.$t("menu_forgot_password");
       }
     },
     $route() {
-      if (this.$route.path === "/forgot-password") {
+      if (this.$route.path === "/reset-password") {
         this.authTitle = this.$t("menu_forgot_password");
         this.$emit("toggleAuth", "forgotPassword");
         this.authTitle = "忘記密碼";

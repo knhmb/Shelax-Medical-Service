@@ -57,4 +57,15 @@ export default {
       currentUser: response.data.item.username,
     });
   },
+  async forgetPassword(_, payload) {
+    // const lang = localStorage.getItem('lang') || 'zh-HK'
+    const response = await axios.post("/api/account/forget-password", {
+      username: payload,
+    });
+    console.log(response);
+  },
+  async resetPassword(_, payload) {
+    const response = await axios.post("/api/account/reset-password", payload);
+    console.log(response);
+  },
 };

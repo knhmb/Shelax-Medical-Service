@@ -176,7 +176,7 @@ export default {
   },
   watch: {
     $route() {
-      if (this.$route.path === "/forgot-password") {
+      if (this.$route.path === "/reset-password") {
         this.selectedOption = "";
         this.dialogVisible = true;
       }

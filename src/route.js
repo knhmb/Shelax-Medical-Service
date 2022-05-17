@@ -37,7 +37,7 @@ const router = createRouter({
   routes: [
     { path: "/", redirect: "/home" },
     { path: "/home", component: Home },
-    { path: "/forgot-password", component: Home },
+    { path: "/reset-password", component: Home },
     { path: "/search", component: Search, name: "search" },
     { path: "/service", component: Service },
     { path: "/contact-us", component: ContactUs },

@@ -13,14 +13,21 @@
         <el-button @click="send">{{ $t("forgot_password_button") }}</el-button>
       </el-form>
     </div>
-    <div class="second-step" v-if="isStepOneCompleted">khaled</div>
+    <div class="second-step" v-if="isStepOneCompleted">
+      <step-2 @closeDialog="$emit('closeDialog')"></step-2>
+    </div>
   </section>
 </template>
 
 <script>
 import { Message } from "@element-plus/icons-vue";
+import { ElNotification } from "element-plus";
+import Step2 from "./Step2.vue";
 
 export default {
+  components: {
+    Step2,
+  },
   data() {
     return {
       Message,
@@ -44,10 +51,32 @@ export default {
     send() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          this.isStepOneCompleted = true;
+          // this.isStepOneCompleted = true;
+          this.$store
+            .dispatch("auth/forgetPassword", this.ruleForm.email)
+            .then(() => {
+              ElNotification({
+                title: "Success",
+                message: this.$t("forgot_password_success"),
+                type: "success",
+              });
+              this.isStepOneCompleted = true;
+            })
+            .catch(() => {
+              ElNotification({
+                title: "Error",
+                message: this.$t("invalid_email"),
+                type: "error",
+              });
+            });
         }
       });
     },
+  },
+  created() {
+    if (this.$route.path === "/reset-password") {
+      this.isStepOneCompleted = true;
+    }
   },
 };
 </script>

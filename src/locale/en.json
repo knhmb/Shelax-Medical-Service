@@ -131,5 +131,11 @@
   "no_dates": "No Specified Dates",
   "menu_forgot_password": "Forgot Password",
   "forgot_password_button": "Next step",
-  "forgot_password_text": "Enter the email address you used to create your Shelax account and we'll send you a link to reset your password"
+  "forgot_password_text": "Enter the email address you used to create your Shelax account and we'll send you a link to reset your password",
+  "forgot_password_success": "Forgot password link has been sent to your email!",
+  "invalid_email": "This email does not exist!",
+  "reset_password_button": "Reset Password",
+  "reset_password_text": "Reset Password",
+  "password_changed_successfully": "The password has been changed successfully!",
+  "error_occurred": "An error occurred. Please try again later!"
 }

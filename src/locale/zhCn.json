@@ -131,5 +131,11 @@
   "no_dates": "无指定日期",
   "menu_forgot_password": "忘記密碼",
   "forgot_password_button": "下一步",
-  "forgot_password_text": "輸入你用以創建Shelax帳號的電郵地址，我們會發送重設密碼的連結"
+  "forgot_password_text": "輸入你用以創建Shelax帳號的電郵地址，我們會發送重設密碼的連結",
+  "forgot_password_success": "忘記密碼鏈接已發送至您的郵箱",
+  "invalid_email": "該郵箱不存在",
+  "reset_password_button": "重設密碼",
+  "reset_password_text": "重設密碼",
+  "password_changed_successfully": "密碼已成功更改",
+  "error_occurred": "發生錯誤。請稍後再試"
 }
