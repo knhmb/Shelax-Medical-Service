@@ -51,7 +51,6 @@ export default {
     send() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          // this.isStepOneCompleted = true;
           this.$store
             .dispatch("auth/forgetPassword", this.ruleForm.email)
             .then(() => {

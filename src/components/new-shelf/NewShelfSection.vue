@@ -2,7 +2,12 @@
   <div class="new-shelf">
     <section class="new-shelf-content">
       <base-content-container>
-        <h2 class="title">精選香港體檢中心</h2>
+        <template v-for="theme in themes" :key="theme.id">
+          <h2 v-if="theme.slug === 'theme-medical-consultancy'" class="title">
+            {{ theme.name }}
+          </h2>
+        </template>
+        <!-- <h2 class="title">精選香港體檢中心</h2> -->
       </base-content-container>
 
       <el-carousel
@@ -11,18 +16,21 @@
         indicator-position="none"
         class="hidden-sm-and-up"
       >
-        <el-carousel-item v-for="product in products" :key="product.id">
+        <el-carousel-item
+          v-for="theme in medicalConsultancyTheme"
+          :key="theme.id"
+        >
           <base-content-container>
             <el-row :gutter="12">
               <el-col :sm="6" :lg="6">
                 <latest-offers-card
-                  :name="product.name"
-                  :description="product.description"
-                  :price="product.price"
-                  :rate="product.rate"
-                  :image="product.image"
-                  :number-of-rate="product.numberOfRate"
-                  :discount="product.discountPrice"
+                  :name="theme.category"
+                  :description="theme.itemName"
+                  :price="theme.originalPrice"
+                  :rate="theme.rating"
+                  :number-of-rate="theme.reviewsCount"
+                  :discount="theme.discountedPrice"
+                  :image="theme.thumbnail"
                 ></latest-offers-card>
               </el-col>
             </el-row>
@@ -42,15 +50,19 @@
           <!-- <base-container> -->
           <base-content-container>
             <el-row :gutter="12">
-              <el-col :span="6" v-for="product in products" :key="product.id">
+              <el-col
+                :span="6"
+                v-for="theme in medicalConsultancyTheme"
+                :key="theme.id"
+              >
                 <latest-offers-card
-                  :name="product.name"
-                  :description="product.description"
-                  :price="product.price"
-                  :rate="product.rate"
-                  :image="product.image"
-                  :number-of-rate="product.numberOfRate"
-                  :discount="product.discountPrice"
+                  :name="theme.category"
+                  :description="theme.itemName"
+                  :price="theme.originalPrice"
+                  :rate="theme.rating"
+                  :number-of-rate="theme.reviewsCount"
+                  :discount="theme.discountedPrice"
+                  :image="theme.thumbnail"
                 ></latest-offers-card>
               </el-col>
             </el-row>
@@ -117,6 +129,23 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    themes() {
+      return this.$store.getters["dashboard/themes"];
+    },
+    getSlug() {
+      return this.themes.filter(
+        (item) => item.slug === "theme-medical-consultancy"
+      );
+    },
+    medicalConsultancyTheme() {
+      return this.$store.getters["dashboard/medicalConsultancyTheme"];
+    },
+  },
+  mounted() {
+    console.log(this.getSlug);
+    this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
   },
 };
 </script>

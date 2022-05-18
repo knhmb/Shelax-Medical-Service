@@ -63,7 +63,7 @@ export default {
         console.log(err);
       });
   },
-  getSingleTheme(_, item) {
+  getSingleTheme(context, item) {
     const lang = localStorage.getItem("lang") || "zh-HK";
     axios
       .get(`/api/item?filter=theme:${item[0].slug}&pagesize=4`, {
@@ -73,6 +73,22 @@ export default {
       })
       .then((res) => {
         console.log(res);
+        if (item[0].slug === "theme-prevent-cervical-cancer") {
+          context.commit("SET_CERVICAL_CANCER_THEME", res.data.items);
+          console.log("Cancer");
+        }
+        if (item[0].slug === "theme-medical-consultancy") {
+          context.commit("SET_MEDICAL_CONSULTANCY_THEME", res.data.items);
+          console.log("Medical");
+        }
+        if (item[0].slug === "theme-pre-pregnancy-check-up") {
+          context.commit("SET_PREGNANCY_THEME", res.data.items);
+          console.log("Pregnancy");
+        }
+        if (item[0].slug === "theme-other") {
+          context.commit("SET_OTHER_THEME", res.data.items);
+          console.log("OTHER");
+        }
       })
       .catch((err) => {
         console.log(err);

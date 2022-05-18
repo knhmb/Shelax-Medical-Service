@@ -18,18 +18,21 @@
         indicator-position="none"
         class="hidden-sm-and-up"
       >
-        <el-carousel-item v-for="product in products" :key="product.id">
+        <el-carousel-item
+          v-for="product in cervicalCancerTheme"
+          :key="product.id"
+        >
           <base-content-container>
             <el-row :gutter="12">
               <el-col :sm="6" :lg="6">
                 <latest-offers-card
-                  :name="product.name"
-                  :description="product.description"
-                  :price="product.price"
-                  :rate="product.rate"
-                  :image="product.image"
-                  :number-of-rate="product.numberOfRate"
-                  :discount="product.discountPrice"
+                  :name="theme.category"
+                  :description="theme.itemName"
+                  :price="theme.originalPrice"
+                  :rate="theme.rating"
+                  :number-of-rate="theme.reviewsCount"
+                  :discount="theme.discountedPrice"
+                  :image="theme.thumbnail"
                 ></latest-offers-card>
               </el-col>
             </el-row>
@@ -49,9 +52,12 @@
           <!-- <base-container> -->
           <base-content-container>
             <el-row :gutter="12">
-              <el-col :span="6" v-for="theme in themes" :key="theme.id">
+              <el-col
+                :span="6"
+                v-for="theme in cervicalCancerTheme"
+                :key="theme.id"
+              >
                 <latest-offers-card
-                  v-if="theme.slug === 'theme-prevent-cervical-cancer'"
                   :name="theme.category"
                   :description="theme.itemName"
                   :price="theme.originalPrice"
@@ -135,6 +141,9 @@ export default {
       return this.themes.filter(
         (item) => item.slug === "theme-prevent-cervical-cancer"
       );
+    },
+    cervicalCancerTheme() {
+      return this.$store.getters["dashboard/cervicalCancerTheme"];
     },
   },
   mounted() {

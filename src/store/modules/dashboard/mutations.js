@@ -22,4 +22,16 @@ export default {
   SET_PRODUCT_ITEMS(state, payload) {
     state.productItems = payload;
   },
+  SET_CERVICAL_CANCER_THEME(state, payload) {
+    state.cervicalCancerTheme = payload;
+  },
+  SET_PREGNANCY_THEME(state, payload) {
+    state.pregnancyTheme = payload;
+  },
+  SET_MEDICAL_CONSULTANCY_THEME(state, payload) {
+    state.medicalConsultancyTheme = payload;
+  },
+  SET_OTHER_THEME(state, payload) {
+    state.otherTheme = payload;
+  },
 };

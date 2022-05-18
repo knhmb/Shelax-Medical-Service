@@ -13,6 +13,10 @@ export default {
       serviceCategory: [],
       productCategory: [],
       productItems: [],
+      pregnancyTheme: [],
+      cervicalCancerTheme: [],
+      medicalConsultancyTheme: [],
+      otherTheme: [],
     };
   },
   getters,

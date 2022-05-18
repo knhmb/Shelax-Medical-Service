@@ -20,4 +20,16 @@ export default {
   productItems(state) {
     return state.productItems;
   },
+  pregnancyTheme(state) {
+    return state.pregnancyTheme;
+  },
+  cervicalCancerTheme(state) {
+    return state.cervicalCancerTheme;
+  },
+  medicalConsultancyTheme(state) {
+    return state.medicalConsultancyTheme;
+  },
+  otherTheme(state) {
+    return state.otherTheme;
+  },
 };
