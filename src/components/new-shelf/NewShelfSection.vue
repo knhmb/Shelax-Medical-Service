@@ -71,7 +71,14 @@
         </el-carousel-item>
       </el-carousel>
       <div class="new-shelf-btn">
-        <el-button class="btn">{{ $t("show_more_button") }}</el-button>
+        <template v-for="theme in themes" :key="theme.id">
+          <el-button
+            v-if="theme.slug === 'theme-medical-consultancy'"
+            @click="submit(theme.slug)"
+            class="btn"
+            >{{ $t("show_more_button") }}</el-button
+          >
+        </template>
       </div>
     </section>
   </div>
@@ -79,6 +86,7 @@
 
 <script>
 import LatestOffersCard from "../LatestOffersCard.vue";
+import { ElNotification } from "element-plus";
 
 export default {
   components: {
@@ -130,6 +138,11 @@ export default {
       ],
     };
   },
+  watch: {
+    lang() {
+      this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
+    },
+  },
   computed: {
     themes() {
       return this.$store.getters["dashboard/themes"];
@@ -141,6 +154,26 @@ export default {
     },
     medicalConsultancyTheme() {
       return this.$store.getters["dashboard/medicalConsultancyTheme"];
+    },
+    lang() {
+      return this.$store.getters.lang;
+    },
+  },
+  methods: {
+    submit(theme) {
+      console.log(theme);
+      this.$store
+        .dispatch("search/getTheme", theme)
+        .then(() => {
+          this.$router.push({ name: "search", query: { q: theme } });
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+        });
     },
   },
   mounted() {

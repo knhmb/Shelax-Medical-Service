@@ -31,6 +31,7 @@ export default {
     lang() {
       this.$store.dispatch("dashboard/getServiceCategory");
       this.$store.dispatch("dashboard/getProductCategory");
+      this.$store.dispatch("dashboard/getThemes");
     },
   },
   computed: {
