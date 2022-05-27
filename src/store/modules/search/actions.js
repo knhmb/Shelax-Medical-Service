@@ -115,4 +115,20 @@ export default {
     console.log(response);
     context.commit("SET_SEARCH_ITEMS", response.data.items);
   },
+  async getItemDetail(context, payload) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+    const response = await axios.get(
+      `api/item/${payload.itemId}/${payload.bookingDate}/${payload.bookingTime}`,
+      {
+        headers: {
+          "accept-language-code": lang,
+          authorization: localStorage.getItem("accessToken")
+            ? localStorage.getItem("accessToken")
+            : "",
+        },
+      }
+    );
+    console.log(response);
+    context.commit("SET_SINGLE_ITEM_DETIAL", response.data.item);
+  },
 };

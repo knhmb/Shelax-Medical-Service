@@ -8,4 +8,7 @@ export default {
   districts(state) {
     return state.destricts;
   },
+  singleItemDetail(state) {
+    return state.singleItemDetail;
+  },
 };

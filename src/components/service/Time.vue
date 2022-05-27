@@ -4,10 +4,18 @@
     <div class="am">
       <p class="divider"><span>上午</span></p>
       <el-row :gutter="10">
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>9:00</base-button>
+        <el-col
+          v-for="time in singleItemDetail.defaultDateTimeslots.slice(0, 6)"
+          :key="time.id"
+          :sm="24"
+          :md="6"
+          :lg="6"
+        >
+          <base-button>{{
+            `${time.sessionStart.slice(0, time.sessionStart.lastIndexOf(":"))}`
+          }}</base-button>
         </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
+        <!-- <el-col :sm="24" :md="6" :lg="6">
           <base-button>9:30</base-button>
         </el-col>
         <el-col :sm="24" :md="6" :lg="6">
@@ -21,17 +29,25 @@
         </el-col>
         <el-col :sm="24" :md="6" :lg="6">
           <base-button>11:30</base-button>
-        </el-col>
+        </el-col> -->
       </el-row>
     </div>
 
     <div class="pm">
       <p class="divider"><span>下午</span></p>
       <el-row :gutter="10">
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>12:00</base-button>
+        <el-col
+          v-for="time in singleItemDetail.defaultDateTimeslots.slice(6)"
+          :key="time.id"
+          :sm="24"
+          :md="6"
+          :lg="6"
+        >
+          <base-button>{{
+            `${time.sessionStart.slice(0, time.sessionStart.lastIndexOf(":"))}`
+          }}</base-button>
         </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
+        <!-- <el-col :sm="24" :md="6" :lg="6">
           <base-button>12:30</base-button>
         </el-col>
         <el-col :sm="24" :md="6" :lg="6">
@@ -69,7 +85,7 @@
         </el-col>
         <el-col :sm="24" :md="6" :lg="6">
           <base-button>18:30</base-button>
-        </el-col>
+        </el-col> -->
       </el-row>
     </div>
   </div>
@@ -106,6 +122,11 @@ export default {
     return {
       num: 1,
     };
+  },
+  computed: {
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
   },
 };
 </script>

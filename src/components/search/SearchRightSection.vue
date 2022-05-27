@@ -36,8 +36,9 @@
         </el-col>
       </el-row>
     </div>
-    <el-card class="box-card" v-for="item in searchItems" :key="item.id">
+    <el-card class="box-card" v-for="item in searchItems" :key="item.itemId">
       <search-card
+        :id="item.itemId"
         :name="item.itemName"
         :description="item.address"
         :rate="item.rating"
@@ -48,6 +49,8 @@
         :discountPrice="item.discountedPrice"
         :price="item.originalPrice"
         :image="item.thumbnail"
+        :search-date="date"
+        :search-time="time"
       ></search-card>
     </el-card>
   </div>
@@ -57,7 +60,7 @@
 import SearchCard from "./SearchCard.vue";
 
 export default {
-  props: ["isActive"],
+  props: ["isActive", "date", "time"],
   components: {
     SearchCard,
   },

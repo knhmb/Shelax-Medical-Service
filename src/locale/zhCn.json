@@ -137,5 +137,13 @@
   "reset_password_button": "重設密碼",
   "reset_password_text": "重設密碼",
   "password_changed_successfully": "密碼已成功更改",
-  "error_occurred": "發生錯誤。請稍後再試"
+  "error_occurred": "發生錯誤。請稍後再試",
+  "add_to_wishlist": "加入愿望清单",
+  "bookmarked": "加入愿望清单",
+  "singleItemDetail.basicInfo.validPeriod": "服务时间{validPeriod}小时",
+  "free_cancel": "免费取消",
+  "qr_code_redemption": "现场请出示电子凭證",
+  "from": "由",
+  "buy_now": "立即预约",
+  "shelax_points_rewarded": "可累积Shelax Points "
 }

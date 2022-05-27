@@ -11,4 +11,10 @@ export default {
   lang(state) {
     return state.lang;
   },
+  date(state) {
+    return state.date;
+  },
+  time(state) {
+    return state.time;
+  },
 };

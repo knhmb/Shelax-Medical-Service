@@ -105,9 +105,52 @@
         $route.path !== '/vendor-forgot-password'
       "
     >
+      <el-radio-group
+        class="hidden-md-and-up"
+        v-model="isCollapse"
+        style="margin-bottom: 20px"
+      >
+        <el-radio-button :label="false">expand</el-radio-button>
+        <el-radio-button :label="true">collapse</el-radio-button>
+      </el-radio-group>
+
+      <el-menu
+        v-if="!isSteps && isCollapse"
+        class="el-menu-demo bottom-header hidden-md-and-up"
+        :ellipsis="true"
+      >
+        <template v-for="item in menuItems" :key="item.id">
+          <el-menu-item
+            @click="navigateItem(item.slug)"
+            :index="item.displayOrder"
+            v-if="item.slug !== 'servcat-genetic-testing'"
+            >{{ item.name }}</el-menu-item
+          >
+          <el-sub-menu
+            v-if="item.slug === 'servcat-genetic-testing'"
+            :index="item.displayOrder"
+          >
+            <template #title>{{ item.name }}</template>
+            <el-menu-item
+              @click="navigateItem(menuItem.slug)"
+              v-for="menuItem in subMenuItems"
+              :key="menuItem.id"
+              :index="item.id + '-' + menuItem.id"
+              >{{ menuItem.name }}</el-menu-item
+            >
+            <!-- <el-menu-item :index="item.displayOrder + '-' + '1'"
+              >DNA基因檢查</el-menu-item
+            >
+            <el-menu-item :index="item.displayOrder + '-' + '2'"
+              >腫瘤基因檢查</el-menu-item
+            > -->
+          </el-sub-menu>
+        </template>
+      </el-menu>
+
       <el-menu
         v-if="!isSteps"
-        class="el-menu-demo bottom-header"
+        class="el-menu-demo bottom-header hidden-sm-and-down"
         mode="horizontal"
         :ellipsis="true"
       >
@@ -147,6 +190,7 @@
         </el-steps>
       </div>
     </div>
+
     <!-- </base-container> -->
   </header>
   <Register
@@ -168,6 +212,7 @@ export default {
   data() {
     return {
       dialogVisible: false,
+      isCollapse: true,
       selectedOption: "login",
       menuVal: "繁體中文",
       // lang: null,

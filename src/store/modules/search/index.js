@@ -9,6 +9,7 @@ export default {
       searchItems: [],
       regions: [],
       districts: [],
+      singleItemDetail: [],
     };
   },
   getters,

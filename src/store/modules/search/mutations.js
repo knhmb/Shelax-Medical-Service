@@ -8,4 +8,7 @@ export default {
   SET_DISTRICTS(state, payload) {
     state.destricts = payload;
   },
+  SET_SINGLE_ITEM_DETIAL(state, payload) {
+    state.singleItemDetail = payload;
+  },
 };

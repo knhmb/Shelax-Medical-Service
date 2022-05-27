@@ -1,7 +1,7 @@
 <template>
   <el-row class="wishlist-header">
     <el-col :sm="24" :md="12" :lg="12">
-      <h3>綜合個人健康體檢套餐</h3>
+      <h3>{{ singleItemDetail.basicInfo.itemName }}</h3>
     </el-col>
     <el-col class="wishlist" :sm="24" :md="12" :lg="12">
       <img
@@ -11,31 +11,43 @@
         :src="wishIcon"
         alt=""
       />
-      <span>加入願望清單</span>
+      <span>{{
+        !singleItemDetail.bookmarked ? $t("add_to_wishlist") : $t("bookmarked")
+      }}</span>
     </el-col>
   </el-row>
   <el-row class="wishlist-text">
     <el-col class="border">
       <img src="../../assets/icon-shop@2x.png" alt="" />
-      <span>ＸＸＸＸ健康中心</span>
+      <span>{{ singleItemDetail.basicInfo.providerName }}</span>
     </el-col>
     <el-col class="border">
       <img src="../../assets/icon-location@2x.png" alt="" />
-      <span>香港九龍城區九龍仔聯福道17號</span>
+      <span>{{ singleItemDetail.basicInfo.providerAddress }}</span>
     </el-col>
     <el-col :span="24">
       <el-row>
         <el-col class="border" :sm="24" :md="8" :lg="8">
           <img src="../../assets/icon-time@2x.png" alt="" />
-          <span>服務時間 10 小時</span>
+          <span>{{
+            $t("singleItemDetail.basicInfo.validPeriod", {
+              validPeriod: singleItemDetail.basicInfo.validPeriod,
+            })
+          }}</span>
         </el-col>
         <el-col class="border" :sm="24" :md="7" :lg="7">
           <img src="../../assets/icon-refund@2x.png" alt="" />
-          <span>免費取消</span>
+          <span>{{
+            singleItemDetail.basicInfo.isFreeCancel ? $t("free_cancel") : ""
+          }}</span>
         </el-col>
         <el-col class="border" :sm="24" :md="9" :lg="9">
           <img src="../../assets/icon-qrcode@2x.png" alt="" />
-          <span>現場請出示電子憑證與護照正本</span>
+          <span>{{
+            singleItemDetail.basicInfo.isQRCodeRedemption
+              ? $t("qr_code_redemption")
+              : ""
+          }}</span>
         </el-col>
       </el-row>
     </el-col>
@@ -43,15 +55,15 @@
   <el-row class="wishlist-p">
     <el-col>
       <p>
-        服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
+        {{ singleItemDetail.basicInfo.providerInformation }}
       </p>
     </el-col>
-    <el-col>
+    <!-- <el-col>
       <p>
         服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
       </p>
-    </el-col>
-    <el-col>
+    </el-col> -->
+    <!-- <el-col>
       <ul>
         <li>
           服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
@@ -69,7 +81,7 @@
           服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
         </li>
       </ul>
-    </el-col>
+    </el-col> -->
   </el-row>
 </template>
 
@@ -79,6 +91,11 @@ export default {
     return {
       wishIcon: require("../../assets/icon-wish-off@2x.png"),
     };
+  },
+  computed: {
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
   },
   methods: {
     imgHover() {
@@ -105,6 +122,9 @@ export default {
         this.wishIcon = require("../../assets/icon-wish-on@2x.png");
       }
     },
+  },
+  created() {
+    console.log(this.singleItemDetail);
   },
 };
 </script>

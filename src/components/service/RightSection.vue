@@ -4,29 +4,38 @@
       <div class="top-section">
         <el-row>
           <el-col>
-            <span class="from">from</span>
-            <span class="price">HKD 570</span>
-            <span class="discount">HK$ 800</span>
+            <span class="from">{{ $t("from") }}</span>
+            <span class="price">HKD{{ singleItemDetail.discountedPrice }}</span>
+            <span class="discount"
+              >HK$ {{ singleItemDetail.originalPrice }}</span
+            >
           </el-col>
           <el-col>
-            <span class="rate">4.2</span>
+            <span class="rate">{{
+              singleItemDetail.averageRating.slice(0, 3)
+            }}</span>
             <el-rate
-              model-value="5"
+              :model-value="singleItemDetail.averageRating"
               disabled
               show-score
               :colors="colors"
               text-color="#8D8D8D"
-              score-template="(138,370)"
+              :score-template="`(${singleItemDetail.commentsCount})`"
             />
           </el-col>
           <el-col>
-            <el-button>立即預約</el-button>
+            <el-button>{{ $t("book_button") }}</el-button>
           </el-col>
         </el-row>
       </div>
       <div class="bottom-section">
         <img src="../../assets/icon-bonuspoint@2x.png" alt="" />
-        <span>可累積 Shelax Points</span>
+        <!-- <span>可累積 Shelax Points</span> -->
+        <span>{{
+          singleItemDetail.basicInfo.pointsRewarded
+            ? $t("shelax_points_rewarded")
+            : ""
+        }}</span>
       </div>
     </div>
   </section>
@@ -38,6 +47,14 @@ export default {
     return {
       colors: ["#7690DA", "#7690DA", "#7690DA"],
     };
+  },
+  computed: {
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
+  },
+  created() {
+    console.log(this.singleItemDetail);
   },
 };
 </script>

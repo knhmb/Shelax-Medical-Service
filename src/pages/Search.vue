@@ -185,6 +185,8 @@
         </el-col>
         <el-col :sm="24" :lg="18">
           <search-right-section
+            :date="date"
+            :time="time"
             @changedSort="setOption"
             :is-active="isActive"
           ></search-right-section>
@@ -268,6 +270,10 @@ export default {
         bookingTime: this.time ? this.time.replace(":", "") : "",
       };
       console.log(data);
+      this.$store.commit("SET_SEARCH_VALUES", {
+        date: this.date,
+        time: this.time,
+      });
       this.$router.push({
         query: {
           q: `${data.search ? `search=${data.search}&` : ""}${

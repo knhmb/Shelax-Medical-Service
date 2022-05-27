@@ -14,4 +14,8 @@ export default {
   SET_LANG(state, payload) {
     state.lang = payload;
   },
+  SET_SEARCH_VALUES(state, payload) {
+    state.date = payload.date;
+    state.time = payload.time;
+  },
 };

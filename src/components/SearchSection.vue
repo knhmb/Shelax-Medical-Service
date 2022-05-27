@@ -507,6 +507,10 @@ export default {
       console.log(data);
       console.log(this.timePicker);
       this.$store.dispatch("search/searchItem", data).then(() => {
+        this.$store.commit("SET_SEARCH_VALUES", {
+          date: this.datePicker,
+          time: this.timePicker,
+        });
         this.$router.push({
           path: "search",
           query: {

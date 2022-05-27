@@ -33,12 +33,14 @@
         <p>HKD{{ discountPrice }}</p>
         <h6>HKD{{ price }}</h6>
       </div>
-      <el-button>{{ $t("book_button") }}</el-button>
+      <el-button @click="getItemDetail">{{ $t("book_button") }}</el-button>
     </el-col>
   </el-row>
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   props: [
     "name",
@@ -51,6 +53,9 @@ export default {
     "discountPrice",
     "price",
     "image",
+    "id",
+    "searchDate",
+    "searchTime",
   ],
   data() {
     return {
@@ -58,6 +63,31 @@ export default {
       voidColor: "#C6C6C6",
       finalRate: this.rate,
     };
+  },
+  computed: {
+    dateSearchValue() {
+      return this.$store.getters.date;
+    },
+    timeSearchValue() {
+      return this.$store.getters.time;
+    },
+  },
+  methods: {
+    getItemDetail() {
+      const data = {
+        itemId: this.id,
+        bookingDate: this.dateSearchValue
+          ? moment(this.dateSearchValue).format("YYYYMMDD")
+          : moment(new Date()).format("YYYYMMDD"),
+        bookingTime: this.timeSearchValue
+          ? this.timeSearchValue.replace(":", "")
+          : "-",
+      };
+      console.log(data);
+      this.$store.dispatch("search/getItemDetail", data).then(() => {
+        this.$router.push("/service");
+      });
+    },
   },
 };
 </script>

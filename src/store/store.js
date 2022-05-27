@@ -16,6 +16,8 @@ const store = createStore({
       step: 0,
       isLoggedIn: false,
       lang: localStorage.getItem("lang"),
+      date: null,
+      time: null,
     };
   },
   actions,
