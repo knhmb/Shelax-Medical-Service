@@ -105,14 +105,24 @@
         $route.path !== '/vendor-forgot-password'
       "
     >
-      <el-radio-group
+      <!-- <el-radio-group
         class="hidden-md-and-up"
         v-model="isCollapse"
         style="margin-bottom: 20px"
       >
         <el-radio-button :label="false">expand</el-radio-button>
         <el-radio-button :label="true">collapse</el-radio-button>
-      </el-radio-group>
+      </el-radio-group> -->
+
+      <div
+        @click="isCollapse = !isCollapse"
+        :class="{ open: openNav }"
+        class="nav hidden-md-and-up"
+      >
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+      </div>
 
       <el-menu
         v-if="!isSteps && isCollapse"
@@ -212,7 +222,7 @@ export default {
   data() {
     return {
       dialogVisible: false,
-      isCollapse: true,
+      isCollapse: false,
       selectedOption: "login",
       menuVal: "繁體中文",
       // lang: null,
@@ -285,6 +295,7 @@ export default {
       this.$store
         .dispatch("search/searchMenuItem", slug)
         .then(() => {
+          this.isCollapse = false;
           this.$router.push({
             name: "search",
             query: { q: `?filter=servicecat:${slug}` },
@@ -322,20 +333,65 @@ export default {
   /* min-width: 320px; */
 }
 
+.header .nav div {
+  height: 0.125rem;
+  background: black;
+  margin: 0.3125rem 0;
+  border-radius: 1.5rem;
+  position: absolute;
+  transition: 0.5s ease-out;
+}
+
+.header .nav {
+  display: block;
+  /* margin-left: 2rem; */
+  width: 2.8125rem;
+  /* background: #111; */
+  height: 2.8125rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  z-index: 2;
+  transition: 0.5s ease-out;
+}
+
+.header .one {
+  width: 50%;
+  right: 0.75rem;
+  transform: translateY(-0.5rem);
+}
+
+.header .two {
+  width: 50%;
+  right: 0.75rem;
+}
+.header .three {
+  width: 50%;
+  right: 0.75rem;
+  transform: translateY(0.5rem);
+}
+
+/* .header .nav:hover div.two {
+  width: 50%;
+} */
+
 .header .el-row {
   align-items: center;
 }
 
-.header .el-menu--horizontal {
+.header .el-menu {
   border-bottom: none;
   background: transparent;
 }
 
-.el-menu--horizontal > .el-menu-item {
+.el-menu > .el-menu-item {
   border: none !important;
 }
 
-.header .el-menu--horizontal > .el-menu-item.is-active {
+.header .el-menu > .el-menu-item.is-active {
   color: #303133 !important;
   border: none !important;
 }
@@ -456,6 +512,13 @@ export default {
   font-size: 12px;
 }
 
+@media screen and (max-width: 991px) {
+  .header .logo {
+    margin: 1rem auto;
+    display: block;
+  }
+}
+
 @media screen and (max-width: 865px) {
   .header .bottom-container .steps {
     padding: 0 7rem;
@@ -464,17 +527,12 @@ export default {
 
 @media screen and (max-width: 540px) {
   .header .el-menu--horizontal.top-header {
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .header .el-menu--horizontal.top-header .el-menu-item,
   .header .el-menu--horizontal.top-header .el-sub-menu .el-sub-menu__title {
     padding: 0 1rem 0 0;
-  }
-
-  .header .logo {
-    margin: 1rem auto;
-    display: block;
   }
 }
 

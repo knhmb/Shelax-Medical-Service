@@ -14,4 +14,10 @@
     padding: 0 3rem;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .content-container {
+    padding: 0 1rem;
+  }
+}
 </style>

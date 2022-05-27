@@ -3,9 +3,9 @@
     <base-content-container>
       <div class="search-content">
         <el-row justify="space-between">
-          <el-col class="first-column" :sm="24" :md="6" :lg="6">
-            <div :class="{ 'first-column-content': language !== 'en-US' }">
-              <el-row v-if="language !== 'en-US'" class="select-search-option">
+          <el-col class="first-column" :span="6">
+            <div>
+              <!-- <el-row v-if="language !== 'en-US'" class="select-search-option">
                 <el-col
                   @click="setActiveOption('service')"
                   :class="{ 'is-active': isActive === 'service' }"
@@ -20,10 +20,8 @@
                 >
                   <p>產品</p>
                 </el-col>
-              </el-row>
-              <p v-if="language === 'en-US'" class="title">
-                Search services or products
-              </p>
+              </el-row> -->
+              <p class="title">{{ $t("search_title") }}</p>
               <el-select
                 popper-class="service-dropdown"
                 v-model="value"
@@ -39,7 +37,8 @@
                       :key="service.id"
                       class="service-option"
                       :class="{ selected: currentOption === service.name }"
-                      :span="7"
+                      :md="7"
+                      :sm="12"
                     >
                       <el-option
                         @click="selectedOption(service.name)"
@@ -48,140 +47,6 @@
                         <p>{{ service.name }}</p>
                       </el-option>
                     </el-col>
-                    <!-- <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '四痘混合疫苗' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('四痘混合疫苗')"
-                        :value="$t('mmrv')"
-                      >
-                        <p>{{ $t("mmrv") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '兒童疫苗' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('兒童疫苗')"
-                        :value="$t('children_vaccine')"
-                      >
-                        <p>{{ $t("children_vaccine") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{
-                        selected: currentOption === '13價肺炎球菌疫苗',
-                      }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('13價肺炎球菌疫苗')"
-                        :value="$t('pcv13')"
-                      >
-                        <p>{{ $t("pcv13") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '孕前檢查' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('孕前檢查')"
-                        :value="$t('pre-pregnancy_checkup')"
-                      >
-                        <p>{{ $t("pre-pregnancy_checkup") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '人工受孕' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('人工受孕')"
-                        :value="$t('ivf')"
-                      >
-                        <p>{{ $t("ivf") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '凍卵' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('凍卵')"
-                        :value="$t('social_egg_freezing')"
-                      >
-                        <p>{{ $t("social_egg_freezing") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '身體檢查' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('身體檢查')"
-                        :value="$t('body_check')"
-                      >
-                        <p>{{ $t("body_check") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '基因檢查' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('基因檢查')"
-                        :value="$t('genetic_testing')"
-                      >
-                        <p>{{ $t("genetic_testing") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === 'DNA基因檢查' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('DNA基因檢查')"
-                        :value="$t('dna_genetic_testing')"
-                      >
-                        <p>{{ $t("dna_genetic_testing") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '腫瘤基因檢查' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('腫瘤基因檢查')"
-                        :value="$t('cancer_genetic_testing')"
-                      >
-                        <p>{{ $t("cancer_genetic_testing") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '兒科檢查' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('兒科檢查')"
-                        :value="$t('child_health_checks')"
-                      >
-                        <p>{{ $t("child_health_checks") }}</p>
-                      </el-option>
-                    </el-col> -->
                   </el-row>
                 </div>
                 <div class="product-options">
@@ -192,7 +57,8 @@
                       :key="product.id"
                       class="service-option"
                       :class="{ selected: currentOption === product.name }"
-                      :span="7"
+                      :md="7"
+                      :sm="12"
                     >
                       <el-option
                         @click="selectedOption(product.name)"
@@ -201,61 +67,13 @@
                         <p>{{ product.name }}</p>
                       </el-option>
                     </el-col>
-                    <!-- <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '健康營養' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('健康營養')"
-                        :value="$t('health_and_nutrition')"
-                      >
-                        <p>{{ $t("health_and_nutrition") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '復康保健' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('復康保健')"
-                        :value="$t('rehabilitation')"
-                      >
-                        <p>{{ $t("rehabilitation") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '舒緩痛症' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('舒緩痛症')"
-                        :value="$t('pain_relief')"
-                      >
-                        <p>{{ $t("pain_relief") }}</p>
-                      </el-option>
-                    </el-col>
-                    <el-col
-                      class="service-option"
-                      :class="{ selected: currentOption === '醫療器械' }"
-                      :span="7"
-                    >
-                      <el-option
-                        @click="selectedOption('醫療器械')"
-                        :value="$t('medical_instruments')"
-                      >
-                        <p>{{ $t("medical_instruments") }}</p>
-                      </el-option>
-                    </el-col> -->
                     <el-col :span="7"></el-col>
                   </el-row>
                 </div>
               </el-select>
             </div>
           </el-col>
-          <el-col :sm="24" :md="4" :lg="4">
+          <el-col :span="6">
             <p class="title">{{ $t("booking_date") }}</p>
             <el-date-picker
               v-model="datePicker"
@@ -263,9 +81,8 @@
               :placeholder="$t('booking_date_placeholder')"
             >
             </el-date-picker>
-            <!-- <p>2021/12/20</p> -->
           </el-col>
-          <el-col :sm="24" :md="4" :lg="4">
+          <el-col :span="6">
             <p class="title">{{ $t("booking_time") }}</p>
             <el-select
               popper-class="time-dropdown"
@@ -425,7 +242,7 @@
             </el-select>
             <!-- <p>上午 10:00</p> -->
           </el-col>
-          <el-col :sm="24" :md="6" :lg="6">
+          <el-col :span="6">
             <button @click="search">
               <img
                 src="../assets/icon-search@2x.png"
@@ -536,7 +353,7 @@ export default {
 
 <style>
 .search {
-  background-color: #e5e5e5;
+  background-color: #e6eaf0;
   padding: 2rem 0;
   /* min-width: 320px; */
 }
@@ -735,10 +552,15 @@ export default {
   max-height: 100%;
 }
 
+.search
+  .el-input.el-input--prefix.el-input--suffix.el-date-editor.el-date-editor--date {
+  width: 100%;
+}
+
 @media screen and (max-width: 768px) {
   .search .search-content {
-    border-radius: 16px;
-    text-align: center;
+    /* border-radius: 16px; */
+    text-align: start;
     margin-top: 0;
     padding-left: 8px;
   }
@@ -751,4 +573,59 @@ export default {
     text-align: center;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .search button {
+    background-color: #7690da;
+    border: 1px solid #7690da;
+    width: 100%;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    line-height: 28px;
+    padding: 1rem;
+  }
+
+  .search .search-content .el-col {
+    text-align: center;
+  }
+  .search .search-content .el-col .el-input__inner {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .search .search-content .el-col .el-input__inner {
+    text-align: center;
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width: 395px) {
+  .search button {
+    padding: 0.8rem;
+  }
+}
+
+/* @media screen and (max-width: 540px) {
+  .search ::placeholder {
+    font-size: 10px;
+  }
+
+  .search .title {
+    font-size: 10px;
+  }
+
+  .search .el-input .el-input__inner {
+    padding: 0;
+  }
+
+  .search .search-content .el-col .el-input__inner {
+    text-align: center;
+  }
+} */
 </style>

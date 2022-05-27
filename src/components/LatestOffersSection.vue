@@ -188,7 +188,7 @@ export default {
 
 <style>
 .latest-offers {
-  background-color: #e5e5e5;
+  background-color: #e6eaf0;
   padding: 2rem 0;
   /* min-width: 320px; */
 }
@@ -212,8 +212,10 @@ export default {
   /* margin-top: 0.5rem; */
   padding: 8px 120px;
   border-radius: 8px;
-  border: 1px solid #4b4b4b;
+  border: 1px solid #7690da;
   margin-top: 0.5rem;
+  background: #7690da;
+  color: #fff;
 }
 
 .latest-offers .el-carousel.el-carousel--horizontal .el-carousel__container {

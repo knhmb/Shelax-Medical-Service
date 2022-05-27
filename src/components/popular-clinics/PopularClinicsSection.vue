@@ -208,8 +208,10 @@ export default {
   /* margin-top: 0.5rem; */
   padding: 8px 120px;
   border-radius: 8px;
-  border: 1px solid #4b4b4b;
+  border: 1px solid #7690da;
   margin-top: 0.5rem;
+  background: #7690da;
+  color: #fff;
 }
 
 .popular-clinics .el-carousel.el-carousel--horizontal .el-carousel__container {

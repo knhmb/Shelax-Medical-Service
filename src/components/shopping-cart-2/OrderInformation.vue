@@ -113,21 +113,21 @@ export default {
         ],
         areaCode: [
           {
-            required: true,
+            required: false,
             message: "Area code is required",
             trigger: "blur",
           },
         ],
         phoneNumber: [
           {
-            required: true,
+            required: false,
             message: "Phone number is required",
             trigger: "blur",
           },
         ],
         emailAddress: [
           {
-            required: true,
+            required: false,
             type: "email",
             message: "Email is required",
             trigger: "blur",
@@ -135,7 +135,7 @@ export default {
         ],
         cityOfResidence: [
           {
-            required: true,
+            required: false,
             message: "City is required",
             trigger: "blur",
           },

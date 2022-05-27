@@ -186,7 +186,7 @@ export default {
 
 <style>
 .all-content {
-  background-color: #e5e5e5;
+  background-color: #e6eaf0;
   /* min-width: 100vh; */
   padding: 2rem 0;
   /* min-width: 320px; */

@@ -88,7 +88,7 @@ export default {
 <style scoped>
 .shopping-cart {
   padding-top: 2rem;
-  background: #e5e5e5;
+  background: #e6eaf0;
 }
 
 .shopping-cart h2 {

@@ -64,63 +64,67 @@ export default {
   font-size: 2rem;
 }
 
-@media screen and (max-width: 1024px) {
-  .carousel .carousel-img {
-    /* object-fit: contain; */
-  }
+.carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
+  height: 50vh !important;
+}
 
-  .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
+@media screen and (max-width: 1024px) {
+  /* .carousel .carousel-img {
+    object-fit: contain;
+  } */
+
+  /* .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
     height: 256px !important;
-  }
+  } */
 }
 
 @media screen and (max-width: 768px) {
-  .carousel .carousel-img {
-    /* object-fit: contain; */
-  }
+  /* .carousel .carousel-img {
+    object-fit: contain;
+  } */
 
-  .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
+  /* .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
     height: 192px !important;
-  }
+  } */
 }
 
 @media screen and (max-width: 540px) {
-  .carousel .carousel-img {
+  /* .carousel .carousel-img {
     object-fit: contain;
-  }
+  } */
 
-  .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
+  /* .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
     height: 135px !important;
-  }
+  } */
 }
 
-@media screen and (max-width: 414px) {
-  .carousel .carousel-img {
+@media screen and (max-width: 490px) {
+  /* .carousel .carousel-img {
     object-fit: contain;
-  }
+  } */
 
-  .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
+  /* .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
     height: 104px !important;
-  }
+  } */
 }
 
 @media screen and (max-width: 375px) {
-  .carousel .carousel-img {
+  /* .carousel .carousel-img {
     object-fit: contain;
-  }
+  } */
 
-  .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
+  /* .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
     height: 95px !important;
-  }
+  } */
 }
 
 @media screen and (max-width: 320px) {
-  .carousel .carousel-img {
+  /* .carousel .carousel-img {
     object-fit: contain;
   }
 
   .carousel .el-carousel.el-carousel--horizontal .el-carousel__container {
     height: 80px !important;
-  }
+  } */
 }
 </style>

@@ -220,7 +220,7 @@ export default {
 .right-section .box-card {
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .content .right-section .options {

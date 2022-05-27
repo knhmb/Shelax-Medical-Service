@@ -496,8 +496,8 @@ export default {
 }
 
 .content .area {
-  border-bottom: 2px solid #e0e0e0;
-  padding-bottom: 0.5rem;
+  /* border-bottom: 2px solid #e0e0e0; */
+  /* padding-bottom: 0.5rem; */
   /* margin-bottom: 1rem; */
 }
 
