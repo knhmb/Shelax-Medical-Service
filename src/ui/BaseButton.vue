@@ -15,7 +15,8 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover,
+button.is-active {
   background-color: #7690da;
   color: white;
   border-color: #7690da;

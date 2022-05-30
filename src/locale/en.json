@@ -146,5 +146,12 @@
   "from": "from",
   "buy_now": "Buy Now",
   "shelax_points_rewarded": "Shelax Points Rewarded",
-  "search_title": "Search product or service"
+  "search_title": "Search product or service",
+  "service_description": "Service Description",
+  "things_to_note_before_purchasing": "Things To Note Before Purchasing",
+  "service_location": "Service Location",
+  "cancellation_policy": "Cancellation Policy",
+  "customers_review": "Customers’ Review",
+  "show_more": "Show More",
+  "comments_count": "{commentsCount} reviews"
 }

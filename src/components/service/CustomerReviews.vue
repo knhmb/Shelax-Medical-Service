@@ -1,22 +1,32 @@
 <template>
   <div id="customer-reviews">
     <div class="customer-reviews-content">
-      <h4>顧客評價</h4>
+      <h4>{{ $t("customers_review") }}</h4>
       <el-row :gutter="10">
         <el-col :sm="24" :md="2" :lg="2">
           <div class="rating">
-            <span class="rate">4.2</span>
+            <span class="rate">{{
+              singleItemDetail.averageRating
+                ? singleItemDetail.averageRating.slice(0, 3)
+                : "0"
+            }}</span>
           </div>
         </el-col>
         <el-col class="input-rate" :sm="24" :md="6" :lg="6">
           <el-rate
             :colors="colors"
-            v-model="value"
+            :model-value="singleItemDetail.averageRating"
             disabled
             text-color="#ff9900"
           >
           </el-rate>
-          <p class="rate-text">301 則顧客評價</p>
+          <p class="rate-text">
+            {{
+              $t("comments_count", {
+                commentsCount: singleItemDetail.commentsCount,
+              })
+            }}
+          </p>
         </el-col>
         <el-col :sm="24" :md="16" :lg="16">
           <div class="select-input">
@@ -29,27 +39,26 @@
       </el-row>
     </div>
     <div class="bottom-section">
-      <el-row>
+      <el-row v-for="comment in singleItemDetail.comments" :key="comment.id">
         <el-col :sm="24" :md="2" :lg="2">
-          <el-avatar
-            :size="50"
-            src="https://www.w3schools.com/howto/img_avatar2.png"
-          ></el-avatar>
+          <el-avatar :size="50" :src="comment.avatar"></el-avatar>
         </el-col>
         <el-col class="avatar" :sm="24" :md="22" :lg="22">
-          <p class="avatar-name">Flores Juanita</p>
+          <p class="avatar-name">
+            {{ comment.lastName }} {{ comment.givenName }}
+          </p>
           <el-rate
             :colors="colors"
-            v-model="value"
+            :model-value="comment.rating"
             disabled
             text-color="#8d8d8d"
             show-score
-            score-template="2021/12/20"
+            :score-template="comment.comments"
           >
           </el-rate>
-          <Comment />
+          <Comment :updated-at="comment.updatedAt" />
           <div class="submit-review-btn">
-            <el-button>顯示更多</el-button>
+            <el-button>{{ $t("show_more") }}</el-button>
           </div>
         </el-col>
       </el-row>
@@ -91,6 +100,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
   },
 };
 </script>

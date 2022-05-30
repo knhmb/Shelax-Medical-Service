@@ -146,5 +146,12 @@
   "from": "由",
   "buy_now": "立即預約",
   "shelax_points_rewarded": "可累積Shelax Points",
-  "search_title": "搜尋服務"
+  "search_title": "搜尋服務",
+  "service_description": "服務說明",
+  "things_to_note_before_purchasing": "購買需知",
+  "service_location": "服務地點",
+  "cancellation_policy": "取消政策",
+  "customers_review": "顧客評價",
+  "show_more": "顯示更多",
+  "comments_count": "{commentsCount} 則顧客評價"
 }

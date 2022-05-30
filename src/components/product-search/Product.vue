@@ -104,7 +104,9 @@
                 disabled-void-color="#c6c6c6"
               />
               <p class="price">HKD {{ item.discountedPrice }}</p>
-              <el-button>Add to the cart</el-button>
+              <el-button @click="searchProduct(item.itemId)"
+                >Add to the cart</el-button
+              >
             </div>
           </div>
         </el-col>
@@ -115,6 +117,7 @@
 
 <script>
 import { ElNotification } from "element-plus";
+import moment from "moment";
 
 export default {
   props: ["isActive"],
@@ -134,6 +137,18 @@ export default {
   methods: {
     setOption(option) {
       this.$emit("changedSort", option);
+    },
+    searchProduct(itemId) {
+      console.log(itemId);
+      const data = {
+        itemId: itemId,
+        bookingDate: moment(new Date()).format("YYYYMMDD"),
+        bookingTime: "-",
+      };
+      console.log(data);
+      this.$store.dispatch("search/getItemDetail", data).then(() => {
+        this.$router.push("/service");
+      });
     },
     searchItem() {
       const data = {

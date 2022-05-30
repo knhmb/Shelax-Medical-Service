@@ -4,9 +4,15 @@
     <p class="comment-description">
       內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
     </p>
-    <p class="comment-date">於 2021/12/23 評價</p>
+    <p class="comment-date">於 {{ updatedAt }} 評價</p>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["updatedAt"],
+};
+</script>
 
 
 <style scoped>

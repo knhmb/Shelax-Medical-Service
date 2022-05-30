@@ -1,8 +1,18 @@
 <template>
   <div id="cancellation-policy">
-    <h4>取消政策</h4>
+    <h4>{{ $t("cancellation_policy") }}</h4>
     <p>
-      服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
+      {{ singleItemDetail.basicInfo.cancellationPolicy }}
     </p>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
+  },
+};
+</script>

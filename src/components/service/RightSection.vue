@@ -5,14 +5,22 @@
         <el-row>
           <el-col>
             <span class="from">{{ $t("from") }}</span>
-            <span class="price">HKD{{ singleItemDetail.discountedPrice }}</span>
-            <span class="discount"
+            <span class="price" v-if="singleItemDetail.itemType === 'service'"
+              >HKD{{ singleItemDetail.discountedPrice }}</span
+            >
+            <span
+              :class="{
+                price: singleItemDetail.itemType === 'product',
+                discount: singleItemDetail.itemType === 'service',
+              }"
               >HK$ {{ singleItemDetail.originalPrice }}</span
             >
           </el-col>
           <el-col>
             <span class="rate">{{
-              singleItemDetail.averageRating.slice(0, 3)
+              singleItemDetail.averageRating
+                ? singleItemDetail.averageRating.slice(0, 3)
+                : "0"
             }}</span>
             <el-rate
               :model-value="singleItemDetail.averageRating"

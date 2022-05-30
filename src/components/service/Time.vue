@@ -1,9 +1,10 @@
 <template>
-  <div class="time-section">
+  <div class="time-section" v-if="singleItemDetail.itemType === 'service'">
     <p>選擇時間</p>
     <div class="am">
       <p class="divider"><span>上午</span></p>
       <el-row :gutter="10">
+        <!-- <template> -->
         <el-col
           v-for="time in singleItemDetail.defaultDateTimeslots.slice(0, 6)"
           :key="time.id"
@@ -11,9 +12,25 @@
           :md="6"
           :lg="6"
         >
-          <base-button>{{
-            `${time.sessionStart.slice(0, time.sessionStart.lastIndexOf(":"))}`
-          }}</base-button>
+          <base-button
+            :class="{
+              'is-active':
+                isActive ===
+                time.sessionStart.slice(0, time.sessionStart.lastIndexOf(':')),
+            }"
+            @click="
+              isActive = time.sessionStart.slice(
+                0,
+                time.sessionStart.lastIndexOf(':')
+              )
+            "
+            >{{
+              `${time.sessionStart.slice(
+                0,
+                time.sessionStart.lastIndexOf(":")
+              )}`
+            }}</base-button
+          >
         </el-col>
         <!-- <el-col :sm="24" :md="6" :lg="6">
           <base-button>9:30</base-button>
@@ -43,9 +60,25 @@
           :md="6"
           :lg="6"
         >
-          <base-button>{{
-            `${time.sessionStart.slice(0, time.sessionStart.lastIndexOf(":"))}`
-          }}</base-button>
+          <base-button
+            :class="{
+              'is-active':
+                isActive ===
+                time.sessionStart.slice(0, time.sessionStart.lastIndexOf(':')),
+            }"
+            @click="
+              isActive = time.sessionStart.slice(
+                0,
+                time.sessionStart.lastIndexOf(':')
+              )
+            "
+            >{{
+              `${time.sessionStart.slice(
+                0,
+                time.sessionStart.lastIndexOf(":")
+              )}`
+            }}</base-button
+          >
         </el-col>
         <!-- <el-col :sm="24" :md="6" :lg="6">
           <base-button>12:30</base-button>
@@ -89,7 +122,7 @@
       </el-row>
     </div>
   </div>
-  <div class="time-footer">
+  <div class="time-footer" v-if="singleItemDetail.itemType === 'product'">
     <el-row>
       <el-col>
         <p class="quantity">數量</p>
@@ -98,10 +131,15 @@
         <div class="quantity-range">
           <el-row>
             <el-col :span="12">
-              <p>人數</p>
+              <p>{{ singleItemDetail.basicInfo.itemName }}</p>
             </el-col>
             <el-col class="quantity-input" :span="12">
-              <el-input-number size="small" v-model="num" :min="1" :max="10" />
+              <el-input-number
+                size="small"
+                @change="updatePrice"
+                v-model="num"
+                :min="1"
+              />
             </el-col>
           </el-row>
         </div>
@@ -121,12 +159,35 @@ export default {
   data() {
     return {
       num: 1,
+      isActive: "",
     };
   },
   computed: {
     singleItemDetail() {
       return this.$store.getters["search/singleItemDetail"];
     },
+  },
+  methods: {
+    updatePrice() {
+      const data = {
+        itemId: this.singleItemDetail.basicInfo.id,
+        quantity: this.num,
+      };
+
+      this.$store.dispatch("search/updatePrice", data);
+      console.log(this.num);
+      console.log(this.singleItemDetail.basicInfo.id);
+    },
+  },
+  created() {
+    console.log(this.singleItemDetail);
+    if (this.singleItemDetail.itemType === "service") {
+      this.isActive = this.singleItemDetail.defaultBookingTime.slice(
+        0,
+        this.singleItemDetail.defaultBookingTime.lastIndexOf(":")
+      );
+    }
+    // sessionStart.slice(0, time.sessionStart.lastIndexOf(":"))
   },
 };
 </script>

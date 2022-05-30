@@ -2,25 +2,8 @@
   <h3>選擇預約日期及時間</h3>
   <div class="content">
     <el-row :gutter="20">
-      <el-col :sm="24" :lg="12">
+      <el-col :sm="24" :lg="12" v-if="singleItemDetail.itemType === 'service'">
         <p>選擇日期</p>
-        <!-- <el-date-picker
-          v-model="value"
-          type="date"
-          placeholder="Pick a day"
-          format="YYYY/MM/DD"
-          value-format="YYYY-MM-DD"
-        >
-          <template #default="cell">
-            <div class="cell" :class="{ current: cell.isCurrent }">
-              <span class="holiday"
-                >{{ cell.text }}
-                <p style="margin: 0">570 起</p>
-              </span>
-              <span v-if="isHoliday(cell)" class="holiday"></span>
-            </div>
-          </template>
-        </el-date-picker> -->
         <div class="date-content">
           <div class="date-header">
             <el-row>
@@ -385,6 +368,11 @@ export default {
     return {
       isSelected: "13",
     };
+  },
+  computed: {
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
   },
   methods: {
     setClass(option) {

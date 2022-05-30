@@ -11,4 +11,9 @@ export default {
   SET_SINGLE_ITEM_DETIAL(state, payload) {
     state.singleItemDetail = payload;
   },
+  SET_UPDATED_PRICE(state, payload) {
+    console.log(state.singleItemDetail);
+    state.singleItemDetail.originalPrice = payload;
+    console.log(payload);
+  },
 };

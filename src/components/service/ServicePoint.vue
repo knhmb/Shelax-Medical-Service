@@ -1,12 +1,11 @@
 <template>
-  <div id="service-point">
-    <h4>服務地點</h4>
+  <div id="service-point" v-if="singleItemDetail.itemType === 'service'">
+    <h4>{{ $t("service_location") }}</h4>
     <div class="maps-header">
       <h6>ＸＸＸＸ健康中心</h6>
       <p>地址：香港九龍城區九龍仔聯福道17號</p>
     </div>
     <div class="maps-body">
-      <!-- <p>khaled</p> -->
       <google-maps></google-maps>
     </div>
   </div>
@@ -18,6 +17,14 @@ import GoogleMaps from "./GoogleMaps.vue";
 export default {
   components: {
     GoogleMaps,
+  },
+  computed: {
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
+  },
+  created() {
+    console.log(this.singleItemDetail);
   },
 };
 </script>

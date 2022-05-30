@@ -131,4 +131,11 @@ export default {
     console.log(response);
     context.commit("SET_SINGLE_ITEM_DETIAL", response.data.item);
   },
+  async updatePrice(context, payload) {
+    const response = await axios.get(
+      `/api/item/enquire-stock/itemid/${payload.itemId}/quantity/${payload.quantity}`
+    );
+    console.log(response);
+    context.commit("SET_UPDATED_PRICE", response.data.item.price);
+  },
 };
