@@ -153,5 +153,7 @@
   "cancellation_policy": "Cancellation Policy",
   "customers_review": "Customers’ Review",
   "show_more": "Show More",
-  "comments_count": "{commentsCount} reviews"
+  "comments_count": "{commentsCount} reviews",
+  "quantity": "Quantity",
+  "number_of_people": "Number of people"
 }

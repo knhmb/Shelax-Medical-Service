@@ -12,8 +12,17 @@ export default {
     state.singleItemDetail = payload;
   },
   SET_UPDATED_PRICE(state, payload) {
-    console.log(state.singleItemDetail);
     state.singleItemDetail.originalPrice = payload;
-    console.log(payload);
+  },
+  GET_NEW_COMMENTS(state, payload) {
+    state.singleItemDetail.comments = payload;
+  },
+  updateItemDetails(state, payload) {
+    state.singleItemDetail.discountedPrice = payload.discountedPrice;
+    state.singleItemDetail.originalPrice = payload.originalPrice;
+    state.singleItemDetail.defaultDateTimeslots = payload.defaultDateTimeslots;
+    state.singleItemDetail.defaultBookingDate = payload.defaultBookingDate;
+    state.singleItemDetail.defaultBookingTime = payload.defaultBookingTime;
+    state.calendarViewDates = payload.calendarViewDates;
   },
 };

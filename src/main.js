@@ -21,14 +21,7 @@ import BaseCard from "./ui/BaseCard.vue";
 import BaseMemberCard from "./ui/BaseMemberCard.vue";
 import i18n from "./i18n.js";
 
-// import ElementPlus from 'element-plus'
-
-// import axios from "axios";
-
-// Axios
-// const lang = localStorage.getItem("lang");
-// console.log(lang);
-// axios.defaults.headers.common["accept-language-code"] = lang;
+import "v-calendar/dist/style.css";
 
 const app = createApp(App);
 

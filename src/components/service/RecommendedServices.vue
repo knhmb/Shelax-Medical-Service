@@ -113,6 +113,9 @@ export default {
       ],
     };
   },
+  created() {
+    this.$store.dispatch("search/getRecommendations");
+  },
 };
 </script>
 

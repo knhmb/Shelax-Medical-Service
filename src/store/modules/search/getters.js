@@ -11,4 +11,7 @@ export default {
   singleItemDetail(state) {
     return state.singleItemDetail;
   },
+  calendarViewDates(state) {
+    return state.calendarViewDates;
+  },
 };

@@ -10,6 +10,7 @@ export default {
       regions: [],
       districts: [],
       singleItemDetail: [],
+      calendarViewDates: [],
     };
   },
   getters,

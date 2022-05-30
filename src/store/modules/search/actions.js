@@ -138,4 +138,30 @@ export default {
     console.log(response);
     context.commit("SET_UPDATED_PRICE", response.data.item.price);
   },
+  async loadComments(context, payload) {
+    const response = await axios.get(
+      `/api/item/more-comments/itemid/${payload.itemId}/size/${payload.size}`
+    );
+    console.log(response);
+    context.commit("GET_NEW_COMMENTS", response.data.items);
+  },
+  async getRecommendations() {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+    const response = await axios.get(
+      "/api/item/sort=recommendation&pagesize=4",
+      {
+        headers: {
+          "accept-language-code": lang,
+        },
+      }
+    );
+    console.log(response);
+  },
+  async getDates(context, payload) {
+    const response = await axios.get(
+      `/api/item/enquire-by-month/${payload.itemId}/${payload.dateFrom}/${payload.dateTo}/${payload.quantity}`
+    );
+    console.log(response);
+    context.commit("updateItemDetails", response.data.item);
+  },
 };

@@ -153,5 +153,7 @@
   "cancellation_policy": "取消政策",
   "customers_review": "顾客评价",
   "show_more": "显示更多",
-  "comments_count": "{commentsCount} 则顾客评价"
+  "comments_count": "{commentsCount} 则顾客评价",
+  "quantity": "數量",
+  "number_of_people": "人數"
 }

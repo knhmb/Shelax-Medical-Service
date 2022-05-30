@@ -32,21 +32,6 @@
             }}</base-button
           >
         </el-col>
-        <!-- <el-col :sm="24" :md="6" :lg="6">
-          <base-button>9:30</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>10:00</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>10:30</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>11:00</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>11:30</base-button>
-        </el-col> -->
       </el-row>
     </div>
 
@@ -80,45 +65,6 @@
             }}</base-button
           >
         </el-col>
-        <!-- <el-col :sm="24" :md="6" :lg="6">
-          <base-button>12:30</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>13:00</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>13:30</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>14:00</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>14:30</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>15:00</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>15:30</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>16:00</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>16:30</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>17:00</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>17:30</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>18:00</base-button>
-        </el-col>
-        <el-col :sm="24" :md="6" :lg="6">
-          <base-button>18:30</base-button>
-        </el-col> -->
       </el-row>
     </div>
   </div>
@@ -152,15 +98,63 @@
       </el-col>
     </el-row>
   </div>
+  <div class="time-footer" v-if="singleItemDetail.itemType === 'service'">
+    <el-row>
+      <el-col>
+        <p class="quantity">{{ $t("quantity") }}</p>
+      </el-col>
+      <el-col>
+        <div class="quantity-range">
+          <el-row>
+            <el-col :span="12">
+              <p>{{ $t("number_of_people") }}</p>
+            </el-col>
+            <el-col class="quantity-input" :span="12">
+              <el-input-number
+                size="small"
+                @change="updateIndividuals"
+                v-model="noOfPeople"
+                :min="1"
+              />
+            </el-col>
+          </el-row>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col class="btns">
+        <el-button type="primary">加入購物車</el-button>
+        <el-button type="success">立即預約</el-button>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
 export default {
+  props: ["dateData"],
   data() {
     return {
       num: 1,
       isActive: "",
+      noOfPeople: 1,
     };
+  },
+  watch: {
+    noOfPeople() {
+      this.$emit("noOfPeople", this.noOfPeople);
+    },
+    singleItemDetail: {
+      deep: true,
+      handler() {
+        if (this.singleItemDetail.itemType === "service") {
+          this.isActive = this.singleItemDetail.defaultBookingTime.slice(
+            0,
+            this.singleItemDetail.defaultBookingTime.lastIndexOf(":")
+          );
+        }
+      },
+    },
   },
   computed: {
     singleItemDetail() {
@@ -187,6 +181,7 @@ export default {
         this.singleItemDetail.defaultBookingTime.lastIndexOf(":")
       );
     }
+    this.$emit("noOfPeople", this.noOfPeople);
     // sessionStart.slice(0, time.sessionStart.lastIndexOf(":"))
   },
 };

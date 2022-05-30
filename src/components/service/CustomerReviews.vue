@@ -57,11 +57,11 @@
           >
           </el-rate>
           <Comment :updated-at="comment.updatedAt" />
-          <div class="submit-review-btn">
-            <el-button>{{ $t("show_more") }}</el-button>
-          </div>
         </el-col>
       </el-row>
+      <div class="submit-review-btn">
+        <el-button @click="showMore()">{{ $t("show_more") }}</el-button>
+      </div>
     </div>
   </div>
 </template>
@@ -104,6 +104,16 @@ export default {
   computed: {
     singleItemDetail() {
       return this.$store.getters["search/singleItemDetail"];
+    },
+  },
+  methods: {
+    showMore() {
+      const data = {
+        itemId: this.singleItemDetail.basicInfo.id,
+        size: this.singleItemDetail.comments.length + 10,
+      };
+      console.log(data);
+      this.$store.dispatch("search/loadComments", data);
     },
   },
 };
