@@ -155,5 +155,7 @@
   "show_more": "显示更多",
   "comments_count": "{commentsCount} 则顾客评价",
   "quantity": "數量",
-  "number_of_people": "人數"
+  "number_of_people": "人數",
+  "price": "{price} 起",
+  "add_to_shopping_cart": "加入購物車"
 }

@@ -155,5 +155,7 @@
   "show_more": "Show More",
   "comments_count": "{commentsCount} reviews",
   "quantity": "Quantity",
-  "number_of_people": "Number of people"
+  "number_of_people": "Number of people",
+  "price": "From {price}",
+  "add_to_shopping_cart": "Add to Shopping Cart"
 }

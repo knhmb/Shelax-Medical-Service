@@ -13,6 +13,7 @@
           @update:from-page="fromPage"
           :disabled-dates="disabledDates"
           :attributes="attributes"
+          @dayclick="selectedDay"
         ></date-picker>
       </el-col>
       <el-col :sm="24" :lg="12">
@@ -64,15 +65,6 @@ export default {
       dateData: {},
       noOfPeople: 1,
       date: new Date(),
-      attributes: [
-        {
-          dot: true,
-          popover: {
-            label: "red",
-          },
-          dates: this.availableDates,
-        },
-      ],
     };
   },
   watch: {
@@ -83,12 +75,12 @@ export default {
         this.locale = "zh";
       }
     },
-    singleItemDetail: {
-      deep: true,
-      handler() {
-        this.date = this.singleItemDetail.defaultBookingDate;
-      },
-    },
+    // singleItemDetail: {
+    //   deep: true,
+    //   handler() {
+    //     this.date = this.singleItemDetail.defaultBookingDate;
+    //   },
+    // },
   },
   computed: {
     singleItemDetail() {
@@ -120,6 +112,14 @@ export default {
       }
       return arr;
     },
+    attributes() {
+      return this.calendarViewDates.map((date) => ({
+        dates: date.bookingDate,
+        popover: {
+          label: this.$t("price", { price: date.price }),
+        },
+      }));
+    },
   },
   methods: {
     setClass(option) {
@@ -139,15 +139,25 @@ export default {
       this.dateData = data;
       console.log(this.dateData);
       this.$store.dispatch("search/getDates", data).then(() => {
-        console.log(this.calendarViewDates);
-        console.log(this.disabledDates);
-        console.log(this.availableDates);
-        console.log(this.attributes);
+        this.date = this.singleItemDetail.defaultBookingDate;
       });
     },
     getNoOfPeople(event) {
       this.noOfPeople = event;
       console.log(this.noOfPeople);
+    },
+    selectedDay(day) {
+      if (day.el.classList.contains("is-disabled")) {
+        return;
+      }
+      console.log(day);
+      const data = {
+        itemId: this.singleItemDetail.basicInfo.id,
+        bookingDate: moment(day.id).format("YYYYMMDD"),
+        quantity: this.noOfPeople,
+      };
+      console.log(data);
+      this.$store.dispatch("search/getSelectedDate", data);
     },
   },
   created() {
@@ -181,5 +191,9 @@ export default {
 .content :deep(.vc-pane-container .vc-highlight),
 .content :deep(.vc-pane-container .vc-day-content):hover {
   border-radius: 4px !important;
+}
+
+.content :deep(.vc-day-content.vc-focusable.is-disabled) {
+  cursor: not-allowed;
 }
 </style>

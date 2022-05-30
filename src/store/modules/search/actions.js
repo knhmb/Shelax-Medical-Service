@@ -164,4 +164,24 @@ export default {
     console.log(response);
     context.commit("updateItemDetails", response.data.item);
   },
+  async getSelectedDate(context, payload) {
+    const response = await axios.get(
+      `/api/item/enquire-by-date/${payload.itemId}/${payload.bookingDate}/${payload.quantity}`
+    );
+    console.log(response);
+    context.commit("SET_UPDATED_ITEM_DATA", response.data.item);
+  },
+  async getTime(context, payload) {
+    const response = await axios.get(
+      `/api/item/select-timeslot/timeslotid/${payload.timeslotId}/quantity/${payload.quantity}`
+    );
+    console.log(response);
+    context.commit("SET_UPDATE_PRICE", response.data.item);
+  },
+  // async updateIndividuals(_, payload) {
+  //   const response = await axios.get(
+  //     `/api/item/enquire-by-month/${payload.itemId}/${payload.dateFrom}/${payload.dateTo}/${payload.quantity}`
+  //   );
+  //   console.log(response);
+  // },
 };

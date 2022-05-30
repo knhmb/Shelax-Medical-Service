@@ -25,4 +25,14 @@ export default {
     state.singleItemDetail.defaultBookingTime = payload.defaultBookingTime;
     state.calendarViewDates = payload.calendarViewDates;
   },
+  SET_UPDATED_ITEM_DATA(state, payload) {
+    state.singleItemDetail.discountedPrice = payload.discountedPrice;
+    state.singleItemDetail.originalPrice = payload.originalPrice;
+    state.singleItemDetail.defaultBookingTime = payload.defaultBookingTime;
+    state.singleItemDetail.defaultDateTimeslots = payload.timeslots;
+  },
+  SET_UPDATE_PRICE(state, payload) {
+    state.singleItemDetail.originalPrice = payload.originalPrice;
+    state.singleItemDetail.discountedPrice = payload.discountedPrice;
+  },
 };

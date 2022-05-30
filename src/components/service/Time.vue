@@ -18,12 +18,7 @@
                 isActive ===
                 time.sessionStart.slice(0, time.sessionStart.lastIndexOf(':')),
             }"
-            @click="
-              isActive = time.sessionStart.slice(
-                0,
-                time.sessionStart.lastIndexOf(':')
-              )
-            "
+            @click="setTime(time)"
             >{{
               `${time.sessionStart.slice(
                 0,
@@ -51,12 +46,7 @@
                 isActive ===
                 time.sessionStart.slice(0, time.sessionStart.lastIndexOf(':')),
             }"
-            @click="
-              isActive = time.sessionStart.slice(
-                0,
-                time.sessionStart.lastIndexOf(':')
-              )
-            "
+            @click="setTime(time)"
             >{{
               `${time.sessionStart.slice(
                 0,
@@ -123,14 +113,19 @@
     </el-row>
     <el-row>
       <el-col class="btns">
-        <el-button type="primary">加入購物車</el-button>
-        <el-button type="success">立即預約</el-button>
+        <el-button type="primary" :disabled="isDisabled">{{
+          $t("add_to_shopping_cart")
+        }}</el-button>
+        <el-button type="success" :disabled="isDisabled">{{
+          $t("book_button")
+        }}</el-button>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
 export default {
   props: ["dateData"],
   data() {
@@ -138,6 +133,7 @@ export default {
       num: 1,
       isActive: "",
       noOfPeople: 1,
+      isDisabled: false,
     };
   },
   watch: {
@@ -171,6 +167,42 @@ export default {
       this.$store.dispatch("search/updatePrice", data);
       console.log(this.num);
       console.log(this.singleItemDetail.basicInfo.id);
+    },
+    setTime(time) {
+      console.log(time);
+      this.isActive = time.sessionStart.slice(
+        0,
+        time.sessionStart.lastIndexOf(":")
+      );
+      const data = {
+        timeslotId: time.id,
+        quantity: this.noOfPeople,
+      };
+      console.log(data);
+      this.$store.dispatch("search/getTime", data);
+    },
+    updateIndividuals() {
+      const data = {
+        itemId: this.singleItemDetail.basicInfo.id,
+        dateFrom: this.dateData.dateFrom,
+        dateTo: this.dateData.dateTo,
+        quantity: this.noOfPeople,
+      };
+
+      console.log(data);
+      this.$store
+        .dispatch("search/getDates", data)
+        .then(() => {
+          this.isDisabled = false;
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: err.response.data.message,
+            type: "error",
+          });
+          this.isDisabled = true;
+        });
     },
   },
   created() {
