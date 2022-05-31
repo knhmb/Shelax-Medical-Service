@@ -179,7 +179,7 @@ export default {
         });
     },
   },
-  mounted() {
+  created() {
     console.log(this.getSlug);
     this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
   },

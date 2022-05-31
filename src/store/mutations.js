@@ -18,4 +18,7 @@ export default {
     state.date = payload.date;
     state.time = payload.time;
   },
+  GET_LANGUAGE(state) {
+    state.lang = localStorage.getItem("lang");
+  },
 };

@@ -1,23 +1,23 @@
 <template>
   <the-header></the-header>
-  <el-config-provider :locale="locale">
-    <router-view></router-view>
-  </el-config-provider>
+  <!-- <el-config-provider :locale="locale"> -->
+  <router-view></router-view>
+  <!-- </el-config-provider> -->
   <the-footer></the-footer>
 </template>
 
 <script>
 import TheHeader from "./components/TheHeader.vue";
 import TheFooter from "./components/TheFooter.vue";
-import { ElConfigProvider } from "element-plus";
-import zhCn from "element-plus/es/locale/lang/zh-cn";
-import en from "element-plus/es/locale/lang/en";
+// import { ElConfigProvider } from "element-plus";
+// import zhCn from "element-plus/es/locale/lang/zh-cn";
+// import en from "element-plus/es/locale/lang/en";
 
 export default {
   components: {
     TheHeader,
     TheFooter,
-    ElConfigProvider,
+    // ElConfigProvider,
   },
   data() {
     return {
@@ -25,24 +25,32 @@ export default {
     };
   },
   watch: {
-    language(newVal) {
-      if (newVal === "en-US") {
-        this.locale = en;
-      } else {
-        this.locale = zhCn;
-      }
-    },
+    // language() {
+    //   if (this.language === "en-US") {
+    //     // this.locale = en;
+    //     this.$i18n.locale = en;
+    //   } else {
+    //     // this.locale = zhTw;
+    //     this.$i18n.locale = zhCn;
+    //   }
+    // },
   },
   computed: {
     language() {
       return this.$store.getters.lang;
     },
   },
+  beforeCreate() {
+    localStorage.setItem("lang", "zh-HK");
+  },
   created() {
+    this.$store.commit("GET_LANGUAGE");
     if (this.language === "en-US") {
-      this.locale = en;
+      // this.locale = en;
+      this.$i18n.locale = "en-US";
     } else {
-      this.locale = zhCn;
+      // this.locale = zhTw;
+      this.$i18n.locale = "zh-HK";
     }
   },
 };
