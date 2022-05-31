@@ -375,7 +375,7 @@ export default {
 .search .search-content {
   background-color: #fff;
   border-radius: 128px;
-  padding: 8px 8px 8px 20px;
+  padding: 3px 3px 3px 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
   margin-top: -70px;
   position: relative;

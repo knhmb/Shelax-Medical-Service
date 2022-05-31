@@ -114,7 +114,7 @@
         <el-radio-button :label="true">collapse</el-radio-button>
       </el-radio-group> -->
 
-      <div
+      <!-- <div
         @click="isCollapse = !isCollapse"
         :class="{ open: openNav }"
         class="nav hidden-md-and-up"
@@ -148,21 +148,59 @@
               :index="item.id + '-' + menuItem.id"
               >{{ menuItem.name }}</el-menu-item
             >
-            <!-- <el-menu-item :index="item.displayOrder + '-' + '1'"
+          </el-sub-menu>
+        </template>
+      </el-menu> -->
+
+      <carousel :breakpoints="breakpoints" class="hidden-md-and-up">
+        <slide v-for="item in menuItems" :key="item.id">
+          <el-menu
+            v-if="!isSteps"
+            class="el-menu-demo bottom-header"
+            :ellipsis="false"
+            mode="horizontal"
+          >
+            <!-- <template v-for="item in menuItems" :key="item.id"> -->
+            <el-menu-item
+              @click="navigateItem(item.slug)"
+              :index="item.displayOrder"
+              v-if="item.slug !== 'servcat-genetic-testing'"
+              >{{ item.name }}</el-menu-item
+            >
+            <el-sub-menu
+              v-if="item.slug === 'servcat-genetic-testing'"
+              :index="item.displayOrder"
+            >
+              <template #title>{{ item.name }}</template>
+              <el-menu-item
+                @click="navigateItem(menuItem.slug)"
+                v-for="menuItem in subMenuItems"
+                :key="menuItem.id"
+                :index="item.id + '-' + menuItem.id"
+                >{{ menuItem.name }}</el-menu-item
+              >
+              <!-- <el-menu-item :index="item.displayOrder + '-' + '1'"
               >DNA基因檢查</el-menu-item
             >
             <el-menu-item :index="item.displayOrder + '-' + '2'"
               >腫瘤基因檢查</el-menu-item
             > -->
-          </el-sub-menu>
+            </el-sub-menu>
+            <!-- </template> -->
+          </el-menu>
+        </slide>
+
+        <template #addons>
+          <navigation />
+          <!-- <pagination /> -->
         </template>
-      </el-menu>
+      </carousel>
 
       <el-menu
         v-if="!isSteps"
         class="el-menu-demo bottom-header hidden-sm-and-down"
         mode="horizontal"
-        :ellipsis="true"
+        :ellipsis="false"
       >
         <template v-for="item in menuItems" :key="item.id">
           <el-menu-item
@@ -183,12 +221,6 @@
               :index="item.id + '-' + menuItem.id"
               >{{ menuItem.name }}</el-menu-item
             >
-            <!-- <el-menu-item :index="item.displayOrder + '-' + '1'"
-              >DNA基因檢查</el-menu-item
-            >
-            <el-menu-item :index="item.displayOrder + '-' + '2'"
-              >腫瘤基因檢查</el-menu-item
-            > -->
           </el-sub-menu>
         </template>
       </el-menu>
@@ -214,10 +246,15 @@
 <script>
 import Register from "./register/Register.vue";
 import { ElNotification } from "element-plus";
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
 
 export default {
   components: {
     Register,
+    Carousel,
+    Slide,
+    Navigation,
   },
   data() {
     return {
@@ -227,6 +264,22 @@ export default {
       menuVal: "繁體中文",
       // lang: null,
       trigger: 1,
+      breakpoints: {
+        300: {
+          itemsToShow: 2.5,
+          snapAlign: "center",
+        },
+        // 700px and up
+        700: {
+          itemsToShow: 3.5,
+          snapAlign: "center",
+        },
+        // 1024 and up
+        1024: {
+          itemsToShow: 5,
+          snapAlign: "start",
+        },
+      },
     };
   },
   watch: {
@@ -506,6 +559,11 @@ export default {
 .header .cart-icon {
   width: 15px;
   margin-right: 0.2rem;
+}
+
+.header .carousel__prev,
+.header .carousel__next {
+  display: none;
 }
 
 .el-menu--horizontal.language .el-menu-item {
