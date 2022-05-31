@@ -3,7 +3,7 @@
     <base-content-container>
       <div class="search-content">
         <el-row justify="space-between">
-          <el-col class="first-column" :span="6">
+          <el-col class="first-column" :span="7">
             <div>
               <!-- <el-row v-if="language !== 'en-US'" class="select-search-option">
                 <el-col
@@ -21,7 +21,7 @@
                   <p>產品</p>
                 </el-col>
               </el-row> -->
-              <p class="title">{{ $t("search_title") }}</p>
+              <p class="title left">{{ $t("search_title") }}</p>
               <el-select
                 popper-class="service-dropdown"
                 v-model="value"
@@ -83,7 +83,7 @@
             </el-date-picker>
           </el-col>
           <el-col :span="6">
-            <p class="title">{{ $t("booking_time") }}</p>
+            <p class="title left">{{ $t("booking_time") }}</p>
             <el-select
               popper-class="time-dropdown"
               v-model="timePicker"
@@ -242,7 +242,7 @@
             </el-select>
             <!-- <p>上午 10:00</p> -->
           </el-col>
-          <el-col :span="6">
+          <el-col :span="5">
             <button @click="search">
               <img
                 src="../assets/icon-search@2x.png"
@@ -570,7 +570,7 @@ export default {
   }
   .search .search-content .el-col,
   .search .search-content .el-col .el-input__inner {
-    text-align: center;
+    text-align: left;
   }
 }
 
@@ -591,41 +591,70 @@ export default {
   }
 
   .search .search-content .el-col {
-    text-align: center;
+    text-align: left;
   }
+  /* .search .search-content .el-col .el-input__inner {
+    text-align: left;
+  } */
+
   .search .search-content .el-col .el-input__inner {
-    text-align: center;
+    text-align: left;
+    padding: 0;
+    /* padding: 0 15px; */
+  }
+
+  .search .search-content .el-col .el-input {
+    /* margin-left: 1rem; */
+    margin: 0 0.5rem;
+  }
+
+  .search .search-content .el-col .el-select .el-input {
+    margin-left: 0.5rem;
+  }
+
+  .search .search-content p.title {
+    /* margin-left: 1rem; */
+    margin: 0 0.5rem;
+  }
+
+  .search .search-content p.title.left {
+    margin-left: 0.5rem;
+  }
+
+  .search button {
+    /* padding: 0.6rem/; */
   }
 }
 
 @media screen and (max-width: 400px) {
   .search .search-content .el-col .el-input__inner {
-    text-align: center;
-    padding: 0 15px;
-  }
-}
-
-@media screen and (max-width: 395px) {
-  .search button {
-    padding: 0.8rem;
-  }
-}
-
-/* @media screen and (max-width: 540px) {
-  .search ::placeholder {
-    font-size: 10px;
-  }
-
-  .search .title {
-    font-size: 10px;
-  }
-
-  .search .el-input .el-input__inner {
+    text-align: left;
     padding: 0;
+    /* padding: 0 15px; */
   }
 
-  .search .search-content .el-col .el-input__inner {
-    text-align: center;
+  .search .search-content .el-col .el-input {
+    /* margin-left: 1rem; */
+    margin: 0 0.8rem;
   }
-} */
+
+  .search .search-content .el-col .el-select .el-input {
+    margin-left: 0.5rem;
+  }
+
+  .search .search-content p.title {
+    /* margin-left: 1rem; */
+    margin: 0 0.8rem;
+  }
+
+  .search .search-content p.title.left {
+    margin-left: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 464px) {
+  .search button {
+    padding: 0.4rem;
+  }
+}
 </style>
