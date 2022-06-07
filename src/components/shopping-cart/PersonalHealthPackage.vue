@@ -21,7 +21,7 @@
     <el-row class="top">
       <el-col :xs="24" :sm="1" :md="1">
         <el-checkbox
-          @change="changedSelection(item.selected)"
+          @change="changedSelection(item)"
           v-model="item.selected"
         ></el-checkbox>
         <!-- <el-checkbox
@@ -108,7 +108,10 @@
   >
     <el-row class="top">
       <el-col :xs="24" :sm="1" :md="1">
-        <el-checkbox @change="valChanged" v-model="item.selected"></el-checkbox>
+        <el-checkbox
+          @change="changedSelection(item)"
+          v-model="item.selected"
+        ></el-checkbox>
         <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
       </el-col>
       <el-col :xs="24" :sm="3" :md="3">
@@ -285,7 +288,34 @@ export default {
       this.selectAllProduct = false;
     },
     changedSelection(item) {
-      console.log(item);
+      if (item.isService) {
+        const data = [
+          {
+            shoppingCartItemId: item.shoppingCartItemId,
+            reservedItemId: item.reservedItemId,
+            isService: item.isService,
+            isProduct: item.isProduct,
+            timeslotId: item.timeslotId,
+            quantity: item.quantity,
+            selected: item.selected,
+          },
+        ];
+        console.log(data);
+        this.checkAccessToken({ type: "service", data: data });
+      } else if (item.isProduct) {
+        const data = [
+          {
+            shoppingCartItemId: item.shoppingCartItemId,
+            reservedItemId: item.reservedItemId,
+            isService: item.isService,
+            isProduct: item.isProduct,
+            quantity: item.quantity,
+            selected: item.selected,
+          },
+        ];
+        console.log(data);
+        this.checkAccessToken({ type: "service", data: data });
+      }
     },
     handleCheckAllChangeProduct({ type }) {
       if (this.checkAllProduct === true) {
