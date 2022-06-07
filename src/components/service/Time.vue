@@ -83,8 +83,10 @@
     </el-row>
     <el-row>
       <el-col class="btns">
-        <el-button type="primary">加入購物車</el-button>
-        <el-button type="success">立即預約</el-button>
+        <el-button type="primary" @click="addToShoppingCart">{{
+          $t("add_to_shopping_cart")
+        }}</el-button>
+        <el-button type="success">{{ $t("book_button") }}</el-button>
       </el-col>
     </el-row>
   </div>
@@ -113,9 +115,12 @@
     </el-row>
     <el-row>
       <el-col class="btns">
-        <el-button type="primary" :disabled="isDisabled">{{
-          $t("add_to_shopping_cart")
-        }}</el-button>
+        <el-button
+          @click="addToShoppingCart"
+          type="primary"
+          :disabled="isDisabled"
+          >{{ $t("add_to_shopping_cart") }}</el-button
+        >
         <el-button type="success" :disabled="isDisabled">{{
           $t("book_button")
         }}</el-button>
@@ -127,13 +132,14 @@
 <script>
 import { ElNotification } from "element-plus";
 export default {
-  props: ["dateData"],
+  props: ["dateData", "selectedDate"],
   data() {
     return {
       num: 1,
       isActive: "",
       noOfPeople: 1,
       isDisabled: false,
+      timeslotId: null,
     };
   },
   watch: {
@@ -170,6 +176,7 @@ export default {
     },
     setTime(time) {
       console.log(time);
+      this.timeslotId = time.id;
       this.isActive = time.sessionStart.slice(
         0,
         time.sessionStart.lastIndexOf(":")
@@ -204,6 +211,62 @@ export default {
           this.isDisabled = true;
         });
     },
+    addToShoppingCart() {
+      if (this.singleItemDetail.itemType === "service") {
+        const data = {
+          itemId: this.singleItemDetail.basicInfo.id,
+          reservedDate: this.selectedDate,
+          reservedTime: this.isActive.replace(":", ""),
+          timeslotId: this.timeslotId,
+          quantity: this.noOfPeople,
+          totalPrice: this.singleItemDetail.discountedPrice + ".00",
+        };
+        console.log(data);
+        this.checkAccessToken(data);
+      } else {
+        const data = {
+          itemId: this.singleItemDetail.basicInfo.id,
+          quantity: this.num,
+          totalPrice: this.singleItemDetail.originalPrice + ".00",
+        };
+        console.log(data);
+        this.checkAccessToken(data);
+      }
+    },
+    checkAccessToken(data) {
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.sendShoppingCartData(data);
+        })
+        .catch(() => {
+          this.checkRefreshToken(data);
+        });
+    },
+    checkRefreshToken(data) {
+      this.$store
+        .dispatch("auth/checkRefreshToken")
+        .then(() => {
+          this.sendShoppingCartData(data);
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+          this.$router.replace("/");
+        });
+    },
+    sendShoppingCartData(data) {
+      this.$store.dispatch("shoppingCart/addToShoppingCart", data).then(() => {
+        ElNotification({
+          title: "Success",
+          message: this.$t("added_to_shopping_cart"),
+          type: "success",
+        });
+      });
+    },
   },
   created() {
     console.log(this.singleItemDetail);
@@ -214,7 +277,7 @@ export default {
       );
     }
     this.$emit("noOfPeople", this.noOfPeople);
-    // sessionStart.slice(0, time.sessionStart.lastIndexOf(":"))
+    this.timeslotId = this.singleItemDetail.selectedTimeslotId;
   },
 };
 </script>

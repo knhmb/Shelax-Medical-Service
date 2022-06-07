@@ -35,6 +35,7 @@
               >
             </el-sub-menu>
             <el-menu-item
+              @click="$router.push('/shopping-cart')"
               index="2"
               v-if="
                 isLoggedIn &&

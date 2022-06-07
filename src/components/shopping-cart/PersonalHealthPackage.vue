@@ -1,9 +1,40 @@
 <template>
-  <div class="packages">
+  <!-- =================================== SERVICE ITEMS SECTION =================================== -->
+
+  <div
+    class="packages"
+    v-for="item in shoppingCartItems.validServiceItems"
+    :key="item"
+  >
     <el-row class="top">
+      <el-col :xs="24" :sm="1" :md="1">
+        <el-checkbox
+          @change="checkboxChanged(1)"
+          v-model="item.selected"
+        ></el-checkbox>
+        <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
+      </el-col>
+      <el-col :xs="24" :sm="3" :md="3">
+        <img :src="item.thumbnail" alt="" />
+      </el-col>
+      <el-col :xs="24" :sm="15" :md="15">
+        <div class="text">
+          <h3>{{ item.itemName }}</h3>
+          <p>地址: {{ item.providerName }} - {{ item.address }}</p>
+          <p>
+            預約日期及時間: {{ item.reservedDateDisplay }} -
+            {{ item.reservedTime }}
+          </p>
+        </div>
+      </el-col>
+      <el-col class="input-range" :xs="24" :sm="5" :md="5">
+        <p>人數</p>
+        <el-input-number :min="1" v-model="item.quantity" size="small" />
+      </el-col>
+    </el-row>
+    <!-- <el-row class="top">
       <el-col :xs="24" :sm="1" :md="1">
         <el-checkbox @change="checkboxChanged(1)" v-model="val1"></el-checkbox>
-        <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
       </el-col>
       <el-col :xs="24" :sm="3" :md="3">
         <img src="../../assets/Rectangle-77.png" alt="" />
@@ -19,7 +50,7 @@
         <p>人數</p>
         <el-input-number v-model="num" size="small" />
       </el-col>
-    </el-row>
+    </el-row> -->
 
     <el-row class="bottom">
       <el-col :xs="24" :sm="14">
@@ -27,46 +58,15 @@
         <span>刪除</span>
       </el-col>
       <el-col :xs="24" :sm="10">
-        <p>HKD 1,140</p>
+        <p>HKD {{ item.price }}</p>
       </el-col>
     </el-row>
   </div>
 
-  <div class="packages">
-    <el-row class="top">
-      <el-col :xs="24" :sm="1" :md="1">
-        <el-checkbox @change="checkboxChanged(2)" v-model="val2"></el-checkbox>
-        <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
-      </el-col>
-      <el-col :xs="24" :sm="3" :md="3">
-        <img src="../../assets/Rectangle-77.png" alt="" />
-      </el-col>
-      <el-col :xs="24" :sm="15" :md="15">
-        <div class="text">
-          <h3>綜合個人健康體檢套餐</h3>
-          <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
-          <p>預約日期及時間: 2022年1月21日 - 14:30</p>
-        </div>
-      </el-col>
-      <el-col class="input-range" :xs="24" :sm="5" :md="5">
-        <p>人數</p>
-        <el-input-number v-model="num" size="small" />
-      </el-col>
-    </el-row>
-
-    <el-row class="bottom">
-      <el-col :xs="24" :sm="14">
-        <span>更改</span>
-        <span>刪除</span>
-      </el-col>
-      <el-col :xs="24" :sm="10">
-        <p>HKD 570</p>
-      </el-col>
-    </el-row>
-  </div>
+  <!-- =================================== PRODUCT ITEMS SECTION =================================== -->
 
   <div class="title">
-    <h2>產品類型</h2>
+    <h2>{{ $t("product_items") }}</h2>
   </div>
 
   <div class="selection">
@@ -77,27 +77,28 @@
     <span>全選</span>
     <span @click="unSelectAll" style="cursor: pointer">刪除已選產品</span>
   </div>
-  <div class="packages">
+  <div
+    class="packages"
+    v-for="item in shoppingCartItems.validProductItems"
+    :key="item"
+  >
     <el-row class="top">
       <el-col :xs="24" :sm="1" :md="1">
-        <el-checkbox
-          @change="valChanged"
-          v-model="firstProductCheckbox"
-        ></el-checkbox>
+        <el-checkbox @change="valChanged" v-model="item.selected"></el-checkbox>
         <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
       </el-col>
       <el-col :xs="24" :sm="3" :md="3">
-        <img src="../../assets/product-search-image.png" alt="" />
+        <img :src="item.thumbnail" alt="" />
       </el-col>
       <el-col :xs="24" :sm="15" :md="15">
         <div class="text">
-          <h3>產品名稱 A</h3>
-          <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
+          <h3>{{ item.itemName }}</h3>
+          <p>地址: {{ item.providerName }} - {{ item.address }}</p>
         </div>
       </el-col>
       <el-col class="input-range" :xs="24" :sm="5" :md="5">
         <p>人數</p>
-        <el-input-number v-model="num" size="small" />
+        <el-input-number :min="1" v-model="item.quantity" size="small" />
       </el-col>
     </el-row>
 
@@ -107,18 +108,17 @@
         <span>刪除</span>
       </el-col>
       <el-col :xs="24" :sm="10">
-        <p>HKD 160</p>
+        <p>HKD {{ item.price }}</p>
       </el-col>
     </el-row>
   </div>
-  <div class="packages">
+  <!-- <div class="packages">
     <el-row class="top">
       <el-col :xs="24" :sm="1" :md="1">
         <el-checkbox
           @change="valChanged"
           v-model="secondProductCheckbox"
         ></el-checkbox>
-        <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
       </el-col>
       <el-col :xs="24" :sm="3" :md="3">
         <img src="../../assets/product-search-image-2.png" alt="" />
@@ -144,32 +144,38 @@
         <p>HKD 120</p>
       </el-col>
     </el-row>
-  </div>
+  </div> -->
 
   <div class="expired-section">
-    <h2>以下服務已失效需重新確認</h2>
+    <h2>{{ $t("invalid_items") }}</h2>
     <div class="title">
-      <h2>服務類型</h2>
+      <h2>{{ $t("service_items") }}</h2>
     </div>
-    <div class="packages">
+    <div
+      class="packages"
+      v-for="item in shoppingCartItems.invalidServiceItems"
+      :key="item"
+    >
       <el-row class="top">
         <el-col :xs="24" :sm="1" :md="1">
-          <el-checkbox></el-checkbox>
-          <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
+          <el-checkbox v-model="item.selected" disabled></el-checkbox>
         </el-col>
         <el-col :xs="24" :sm="2" :md="2">
-          <img src="../../assets/Rectangle-77.png" alt="" />
+          <img :src="item.thumbnail" alt="" />
         </el-col>
         <el-col :xs="24" :sm="16" :md="16">
           <div class="text">
-            <h3>綜合個人健康體檢套餐</h3>
-            <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
-            <p>預約日期及時間: 2022年1月21日 - 14:30</p>
+            <h3>{{ item.itemName }}</h3>
+            <p>地址: {{ item.providerName }} - {{ item.address }}</p>
+            <p>
+              預約日期及時間: {{ item.reservedDateDisplay }} -
+              {{ item.reservedTime }}
+            </p>
           </div>
         </el-col>
         <el-col class="input-range" :xs="24" :sm="5" :md="5">
           <p>人數</p>
-          <el-input-number disabled v-model="num" size="small" />
+          <el-input-number disabled v-model="item.quantity" size="small" />
         </el-col>
       </el-row>
 
@@ -179,30 +185,35 @@
           <span>刪除</span>
         </el-col>
         <el-col :xs="24" :sm="12">
-          <p>服務已失效，請重新選擇後購買</p>
+          <p>{{ $t("item_invalid_text") }}</p>
         </el-col>
       </el-row>
     </div>
 
-    <div class="packages">
+    <div v-if="shoppingCartItems.invalidProductItems.length > 0" class="title">
+      <h2>{{ $t("product_items") }}</h2>
+    </div>
+    <div
+      class="packages"
+      v-for="item in shoppingCartItems.invalidProductItems"
+      :key="item"
+    >
       <el-row class="top">
         <el-col :xs="24" :sm="1" :md="1">
-          <el-checkbox></el-checkbox>
-          <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
+          <el-checkbox v-model="item.selected" disabled></el-checkbox>
         </el-col>
         <el-col :xs="24" :sm="2" :md="2">
-          <img src="../../assets/Rectangle-77.png" alt="" />
+          <img :src="item.thumbnail" alt="" />
         </el-col>
         <el-col :xs="24" :sm="16" :md="16">
           <div class="text">
-            <h3>綜合個人健康體檢套餐</h3>
-            <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
-            <p>預約日期及時間: 2022年1月21日 - 14:30</p>
+            <h3>{{ item.itemName }}</h3>
+            <p>地址: {{ item.providerName }} - {{ item.address }}</p>
           </div>
         </el-col>
         <el-col class="input-range" :xs="24" :sm="5" :md="5">
           <p>人數</p>
-          <el-input-number disabled v-model="num" size="small" />
+          <el-input-number disabled v-model="item.quantity" size="small" />
         </el-col>
       </el-row>
 
@@ -212,7 +223,7 @@
           <span>刪除</span>
         </el-col>
         <el-col :xs="24" :sm="12">
-          <p>服務已失效，請重新選擇後購買</p>
+          <p>{{ $t("item_invalid_text") }}</p>
         </el-col>
       </el-row>
     </div>
@@ -238,6 +249,11 @@ export default {
     },
     personalHealthCheckbox2() {
       this.val2 = this.personalHealthCheckbox2;
+    },
+  },
+  computed: {
+    shoppingCartItems() {
+      return this.$store.getters["shoppingCart/shoppingCartItems"];
     },
   },
   methods: {
@@ -267,6 +283,9 @@ export default {
       this.secondProductCheckbox = false;
       this.selectAllProduct = false;
     },
+  },
+  created() {
+    console.log(this.shoppingCartItems);
   },
 };
 </script>

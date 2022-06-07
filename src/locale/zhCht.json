@@ -157,5 +157,10 @@
   "quantity": "數量",
   "number_of_people": "人數",
   "price": "{price} 起",
-  "add_to_shopping_cart": "加入購物車"
+  "add_to_shopping_cart": "加入購物車",
+  "added_to_shopping_cart": "商品已添加到購物車",
+  "service_items": "服務類型",
+  "product_items": "產品類型",
+  "invalid_items": "以下服務已失效需重新確認",
+  "item_invalid_text": "服務已失效，請重新選擇後購買"
 }

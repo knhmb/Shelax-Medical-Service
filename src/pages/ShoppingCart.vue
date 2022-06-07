@@ -3,7 +3,7 @@
     <base-content-container>
       <el-row :gutter="20">
         <el-col :sm="24" :lg="18">
-          <h2>服務類型</h2>
+          <h2>{{ $t("service_items") }}</h2>
           <div class="selection">
             <el-checkbox @change="applyAll" v-model="checkboxVal"></el-checkbox>
             <span>全選</span>
@@ -27,6 +27,7 @@
 <script>
 import PersonalHealthPackage from "../components/shopping-cart/PersonalHealthPackage.vue";
 import TotalActivities from "../components/shopping-cart/TotalActivities.vue";
+import { ElNotification } from "element-plus";
 
 export default {
   components: {
@@ -74,10 +75,35 @@ export default {
       this.personalHealthCheckbox2 = false;
       this.checkboxVal = false;
     },
+    checkAccessToken() {
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store.dispatch("shoppingCart/getShoppingCartItems");
+        })
+        .catch(() => {
+          this.checkRefreshToken();
+        });
+    },
+    checkRefreshToken() {
+      this.$store
+        .dispatch("auth/checkRefreshToken")
+        .then(() => {
+          this.$store.dispatch("shoppingCart/getShoppingCartItems");
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+        });
+    },
   },
   created() {
     this.$store.dispatch("toggleSteps", true);
     this.$store.dispatch("setStep", 0);
+    this.checkAccessToken();
   },
   beforeUnmount() {
     this.$store.dispatch("toggleSteps", false);

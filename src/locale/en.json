@@ -157,5 +157,10 @@
   "quantity": "Quantity",
   "number_of_people": "Number of people",
   "price": "From {price}",
-  "add_to_shopping_cart": "Add to Shopping Cart"
+  "add_to_shopping_cart": "Add to Shopping Cart",
+  "added_to_shopping_cart": "Item has been added to the shopping cart!",
+  "service_items": "Service Items",
+  "product_items": "Product Items",
+  "invalid_items": "The following items are invalid. Please re-confirm.",
+  "item_invalid_text": "Invalid. Please select again."
 }

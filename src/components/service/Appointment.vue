@@ -17,7 +17,11 @@
         ></date-picker>
       </el-col>
       <el-col :sm="24" :lg="12">
-        <Time @noOfPeople="getNoOfPeople" :date-data="dateData" />
+        <Time
+          @noOfPeople="getNoOfPeople"
+          :selected-date="selectedDate"
+          :date-data="dateData"
+        />
       </el-col>
     </el-row>
   </div>
@@ -65,6 +69,7 @@ export default {
       dateData: {},
       noOfPeople: 1,
       date: new Date(),
+      selectedDate: "",
     };
   },
   watch: {
@@ -158,11 +163,15 @@ export default {
       };
       console.log(data);
       this.$store.dispatch("search/getSelectedDate", data);
+      this.selectedDate = moment(day.id).format("YYYYMMDD");
     },
   },
   created() {
     this.locale = this.lang;
     this.date = this.singleItemDetail.defaultBookingDate;
+    this.selectedDate = moment(this.singleItemDetail.defaultBookingDate).format(
+      "YYYYMMDD"
+    );
   },
 };
 </script>
