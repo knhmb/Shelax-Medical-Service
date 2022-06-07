@@ -2,16 +2,28 @@
   <div class="total-activities">
     <div class="top">
       <p>合計:</p>
-      <p class="price">HKD 1710</p>
-      <el-button>前往付款</el-button>
+      <p class="price">HKD {{ shoppingCartItems.totalPrice }}</p>
+      <el-button>{{ $t("check_out_button") }}</el-button>
     </div>
     <div class="bottom">
       <img src="../../assets/icon-bonuspoint@2x.png" alt="" />
       <span>你可以獲得</span>
-      <span class="points">17 Shelax Points</span>
+      <span class="points"
+        >{{ shoppingCartItems.totalPoints }} Shelax Points</span
+      >
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    shoppingCartItems() {
+      return this.$store.getters["shoppingCart/shoppingCartItems"];
+    },
+  },
+};
+</script>
 
 <style scoped>
 .total-activities {

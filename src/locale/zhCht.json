@@ -162,5 +162,7 @@
   "service_items": "服務類型",
   "product_items": "產品類型",
   "invalid_items": "以下服務已失效需重新確認",
-  "item_invalid_text": "服務已失效，請重新選擇後購買"
+  "item_invalid_text": "服務已失效，請重新選擇後購買",
+  "check_out_button": "前往付款",
+  "select_all": "全選"
 }

@@ -1,6 +1,18 @@
 <template>
   <!-- =================================== SERVICE ITEMS SECTION =================================== -->
-
+  <div class="selection">
+    <el-checkbox
+      @change="handleCheckAllChangeService({ type: 'service' })"
+      v-model="checkAllService"
+    ></el-checkbox>
+    <span
+      >{{ $t("select_all") }} ({{
+        shoppingCartItems.validServiceItems.length
+      }})</span
+    >
+    <span style="cursor: pointer">刪除已選活動</span>
+    <span>刪除已失效活動</span>
+  </div>
   <div
     class="packages"
     v-for="item in shoppingCartItems.validServiceItems"
@@ -9,10 +21,13 @@
     <el-row class="top">
       <el-col :xs="24" :sm="1" :md="1">
         <el-checkbox
-          @change="checkboxChanged(1)"
+          @change="changedSelection(item.selected)"
           v-model="item.selected"
         ></el-checkbox>
-        <!-- <img src="../../assets/Rectangle-77.png" alt="" /> -->
+        <!-- <el-checkbox
+          @change="checkboxChanged(1)"
+          v-model="item.selected"
+        ></el-checkbox> -->
       </el-col>
       <el-col :xs="24" :sm="3" :md="3">
         <img :src="item.thumbnail" alt="" />
@@ -29,7 +44,12 @@
       </el-col>
       <el-col class="input-range" :xs="24" :sm="5" :md="5">
         <p>人數</p>
-        <el-input-number :min="1" v-model="item.quantity" size="small" />
+        <el-input-number
+          @change="quantityChanged(item)"
+          :min="1"
+          v-model="item.quantity"
+          size="small"
+        />
       </el-col>
     </el-row>
     <!-- <el-row class="top">
@@ -71,10 +91,14 @@
 
   <div class="selection">
     <el-checkbox
-      v-model="selectAllProduct"
-      @change="toggleSelectAll"
+      v-model="checkAllProduct"
+      @change="handleCheckAllChangeProduct({ type: 'product' })"
     ></el-checkbox>
-    <span>全選</span>
+    <span
+      >{{ $t("select_all") }} ({{
+        shoppingCartItems.validProductItems.length
+      }})</span
+    >
     <span @click="unSelectAll" style="cursor: pointer">刪除已選產品</span>
   </div>
   <div
@@ -98,7 +122,12 @@
       </el-col>
       <el-col class="input-range" :xs="24" :sm="5" :md="5">
         <p>人數</p>
-        <el-input-number :min="1" v-model="item.quantity" size="small" />
+        <el-input-number
+          @change="quantityChanged(item)"
+          :min="1"
+          v-model="item.quantity"
+          size="small"
+        />
       </el-col>
     </el-row>
 
@@ -112,39 +141,6 @@
       </el-col>
     </el-row>
   </div>
-  <!-- <div class="packages">
-    <el-row class="top">
-      <el-col :xs="24" :sm="1" :md="1">
-        <el-checkbox
-          @change="valChanged"
-          v-model="secondProductCheckbox"
-        ></el-checkbox>
-      </el-col>
-      <el-col :xs="24" :sm="3" :md="3">
-        <img src="../../assets/product-search-image-2.png" alt="" />
-      </el-col>
-      <el-col :xs="24" :sm="15" :md="15">
-        <div class="text">
-          <h3>產品名稱 A</h3>
-          <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
-        </div>
-      </el-col>
-      <el-col class="input-range" :xs="24" :sm="5" :md="5">
-        <p>人數</p>
-        <el-input-number v-model="num" size="small" />
-      </el-col>
-    </el-row>
-
-    <el-row class="bottom">
-      <el-col :xs="24" :sm="14">
-        <span>更改</span>
-        <span>刪除</span>
-      </el-col>
-      <el-col :xs="24" :sm="10">
-        <p>HKD 120</p>
-      </el-col>
-    </el-row>
-  </div> -->
 
   <div class="expired-section">
     <h2>{{ $t("invalid_items") }}</h2>
@@ -231,6 +227,7 @@
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
 export default {
   props: ["personalHealthCheckbox1", "personalHealthCheckbox2"],
   data() {
@@ -241,6 +238,10 @@ export default {
       firstProductCheckbox: false,
       secondProductCheckbox: false,
       selectAllProduct: false,
+      checkAllService: false,
+      checkAllProduct: false,
+      productArr: [],
+      serviceArr: [],
     };
   },
   watch: {
@@ -282,6 +283,161 @@ export default {
       this.firstProductCheckbox = false;
       this.secondProductCheckbox = false;
       this.selectAllProduct = false;
+    },
+    changedSelection(item) {
+      console.log(item);
+    },
+    handleCheckAllChangeProduct({ type }) {
+      if (this.checkAllProduct === true) {
+        this.$store.commit("shoppingCart/TOGGLE_CHECKBOX", {
+          value: true,
+          type: type,
+        });
+        this.shoppingCartItems.validProductItems.filter((item) => {
+          if (item.selected) {
+            this.productArr.push({
+              shoppingCartItemId: item.shoppingCartItemId,
+              reservedItemId: item.reservedItemId,
+              isService: item.isService,
+              isProduct: item.isProduct,
+              quantity: item.quantity,
+              selected: item.selected,
+            });
+          }
+        });
+        console.log(this.productArr);
+        console.log(this.shoppingCartItems);
+        this.checkAccessToken({ type: type, data: this.productArr });
+      } else {
+        this.productArr = [];
+
+        this.$store.commit("shoppingCart/TOGGLE_CHECKBOX", {
+          value: false,
+          type: type,
+        });
+        this.shoppingCartItems.validProductItems.filter((item) => {
+          this.productArr.push({
+            shoppingCartItemId: item.shoppingCartItemId,
+            reservedItemId: item.reservedItemId,
+            isService: item.isService,
+            isProduct: item.isProduct,
+            quantity: item.quantity,
+            selected: item.selected,
+          });
+        });
+        console.log(this.productArr);
+        console.log(this.shoppingCartItems);
+        this.checkAccessToken({ type: type, data: this.productArr });
+      }
+    },
+    handleCheckAllChangeService({ type }) {
+      if (this.checkAllService === true) {
+        this.$store.commit("shoppingCart/TOGGLE_CHECKBOX", {
+          value: true,
+          type: type,
+        });
+        this.shoppingCartItems.validServiceItems.filter((item) => {
+          if (item.selected) {
+            this.serviceArr.push({
+              shoppingCartItemId: item.shoppingCartItemId,
+              reservedItemId: item.reservedItemId,
+              isService: item.isService,
+              isProduct: item.isProduct,
+              timeslotId: item.timeslotId,
+              quantity: item.quantity,
+              selected: item.selected,
+            });
+          }
+        });
+        console.log(this.serviceArr);
+        console.log(this.shoppingCartItems);
+        this.checkAccessToken({ type: type, data: this.serviceArr });
+      } else {
+        this.serviceArr = [];
+
+        this.$store.commit("shoppingCart/TOGGLE_CHECKBOX", {
+          value: false,
+          type: type,
+        });
+        this.shoppingCartItems.validServiceItems.filter((item) => {
+          this.serviceArr.push({
+            shoppingCartItemId: item.shoppingCartItemId,
+            reservedItemId: item.reservedItemId,
+            isService: item.isService,
+            isProduct: item.isProduct,
+            timeslotId: item.timeslotId,
+            quantity: item.quantity,
+            selected: item.selected,
+          });
+        });
+        console.log(this.serviceArr);
+        console.log(this.shoppingCartItems);
+        this.checkAccessToken({ type: type, data: this.serviceArr });
+      }
+    },
+    quantityChanged(item) {
+      console.log(item);
+      if (item.isService === true) {
+        const data = [
+          {
+            shoppingCartItemId: item.shoppingCartItemId,
+            reservedItemId: item.reservedItemId,
+            isService: item.isService,
+            isProduct: item.isProduct,
+            timeslotId: item.timeslotId,
+            quantity: item.quantity,
+            selected: item.selected,
+          },
+        ];
+        console.log(data);
+        this.checkAccessToken({ type: "service", data: data });
+      } else if (item.isProduct === true) {
+        const data = [
+          {
+            shoppingCartItemId: item.shoppingCartItemId,
+            reservedItemId: item.reservedItemId,
+            isService: item.isService,
+            isProduct: item.isProduct,
+            quantity: item.quantity,
+            selected: item.selected,
+          },
+        ];
+        console.log(data);
+        this.checkAccessToken({ type: "service", data: data });
+      }
+    },
+    checkAccessToken({ type, data }) {
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          if (type === "service") {
+            this.$store.dispatch("shoppingCart/updateCart", data);
+          } else {
+            this.$store.dispatch("shoppingCart/updateCart", data);
+          }
+        })
+        .catch(() => {
+          this.checkRefreshToken({ type: type, data: data });
+        });
+    },
+    checkRefreshToken({ type, data }) {
+      this.$store
+        .dispatch("auth/checkRefreshToken")
+        .then(() => {
+          if (type === "service") {
+            this.$store.dispatch("shoppingCart/updateCart", data);
+          } else {
+            this.$store.dispatch("shoppingCart/updateCart", data);
+          }
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+          this.$router.replace("/");
+        });
     },
   },
   created() {

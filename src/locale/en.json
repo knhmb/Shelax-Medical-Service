@@ -162,5 +162,7 @@
   "service_items": "Service Items",
   "product_items": "Product Items",
   "invalid_items": "The following items are invalid. Please re-confirm.",
-  "item_invalid_text": "Invalid. Please select again."
+  "item_invalid_text": "Invalid. Please select again.",
+  "check_out_button": "Check out",
+  "select_all": "Select All"
 }

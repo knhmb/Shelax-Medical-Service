@@ -20,4 +20,14 @@ export default {
     console.log(response);
     context.commit("SET_SHOPPING_CART_ITEMS", response.data.item);
   },
+  async updateCart(context, payload) {
+    const userToken = localStorage.getItem("accessToken");
+    const response = await axios.put("/api/shopping-cart", payload, {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+    context.commit("SET_SHOPPING_CART_ITEMS", response.data.item);
+  },
 };

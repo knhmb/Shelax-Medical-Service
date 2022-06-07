@@ -2,21 +2,21 @@
   <section class="shopping-cart">
     <base-content-container>
       <el-row :gutter="20">
-        <el-col :sm="24" :lg="18">
+        <el-col :sm="24" :lg="17">
           <h2>{{ $t("service_items") }}</h2>
-          <div class="selection">
+          <!-- <div class="selection">
             <el-checkbox @change="applyAll" v-model="checkboxVal"></el-checkbox>
             <span>全選</span>
             <span @click="unSelect" style="cursor: pointer">刪除已選活動</span>
             <span>刪除已失效活動</span>
-          </div>
+          </div> -->
           <personal-health-package
             :personal-health-checkbox1="personalHealthCheckbox1"
             :personal-health-checkbox2="personalHealthCheckbox2"
             @val1Changed="toggleCheckbox"
           ></personal-health-package>
         </el-col>
-        <el-col :sm="24" :lg="6">
+        <el-col :sm="24" :lg="7">
           <total-activities></total-activities>
         </el-col>
       </el-row>

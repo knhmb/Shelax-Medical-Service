@@ -225,7 +225,13 @@
           </el-sub-menu>
         </template>
       </el-menu>
-      <div v-else class="steps">
+      <div
+        v-if="
+          $route.path === '/shopping-cart' ||
+          $route.path === '/shopping-cart-step-2'
+        "
+        class="steps"
+      >
         <el-steps :active="step" finish-status="success">
           <el-step title="選擇訂單"></el-step>
           <el-step title="填寫資料"></el-step>
