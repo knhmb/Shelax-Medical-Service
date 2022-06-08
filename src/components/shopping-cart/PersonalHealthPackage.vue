@@ -218,6 +218,7 @@
   <update-reservation
     :dialog-visible="dialogVisible"
     @dialogClosed="dialogVisible = $event"
+    :item="currentSelectedItem"
   ></update-reservation>
 </template>
 
@@ -246,6 +247,7 @@ export default {
       productArr: [],
       serviceArr: [],
       dialogVisible: false,
+      currentSelectedItem: null,
     };
   },
   watch: {
@@ -438,6 +440,7 @@ export default {
       }
     },
     openDialog(item) {
+      this.currentSelectedItem = item;
       this.dialogVisible = true;
       const year = new Date(item.reservedDate).getFullYear();
       const month = new Date(item.reservedDate).getMonth() + 1;
