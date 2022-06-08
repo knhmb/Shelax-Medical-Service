@@ -164,5 +164,6 @@
   "invalid_items": "以下服務已失效需重新確認",
   "item_invalid_text": "服務已失效，請重新選擇後購買",
   "check_out_button": "前往付款",
-  "select_all": "全選"
+  "select_all": "全選",
+  "update_reservation_date": "更改預約時間"
 }

@@ -52,30 +52,18 @@
         />
       </el-col>
     </el-row>
-    <!-- <el-row class="top">
-      <el-col :xs="24" :sm="1" :md="1">
-        <el-checkbox @change="checkboxChanged(1)" v-model="val1"></el-checkbox>
-      </el-col>
-      <el-col :xs="24" :sm="3" :md="3">
-        <img src="../../assets/Rectangle-77.png" alt="" />
-      </el-col>
-      <el-col :xs="24" :sm="15" :md="15">
-        <div class="text">
-          <h3>綜合個人健康體檢套餐</h3>
-          <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
-          <p>預約日期及時間: 2022年1月21日 - 14:30</p>
-        </div>
-      </el-col>
-      <el-col class="input-range" :xs="24" :sm="5" :md="5">
-        <p>人數</p>
-        <el-input-number v-model="num" size="small" />
-      </el-col>
-    </el-row> -->
 
     <el-row class="bottom">
-      <el-col :xs="24" :sm="14">
-        <span>更改</span>
-        <span>刪除</span>
+      <el-col class="actions" :xs="24" :sm="14">
+        <div @click="openDialog(item)" class="edit-section">
+          <Edit />
+          <span class="edit">{{ $t("update_reservation_date") }}</span>
+        </div>
+
+        <div class="delete-section">
+          <Delete />
+          <span>刪除</span>
+        </div>
       </el-col>
       <el-col :xs="24" :sm="10">
         <p>HKD {{ item.price }}</p>
@@ -136,7 +124,7 @@
 
     <el-row class="bottom">
       <el-col :xs="24" :sm="14">
-        <span>更改</span>
+        <!-- <span>更改</span> -->
         <span>刪除</span>
       </el-col>
       <el-col :xs="24" :sm="10">
@@ -180,7 +168,7 @@
 
       <el-row class="bottom">
         <el-col :xs="24" :sm="12">
-          <span>更改</span>
+          <!-- <span class="edit">{{ $t("update_reservation_date") }}</span> -->
           <span>刪除</span>
         </el-col>
         <el-col :xs="24" :sm="12">
@@ -218,7 +206,7 @@
 
       <el-row class="bottom">
         <el-col :xs="24" :sm="12">
-          <span>更改</span>
+          <!-- <span>更改</span> -->
           <span>刪除</span>
         </el-col>
         <el-col :xs="24" :sm="12">
@@ -227,11 +215,23 @@
       </el-row>
     </div>
   </div>
+  <update-reservation
+    :dialog-visible="dialogVisible"
+    @dialogClosed="dialogVisible = $event"
+  ></update-reservation>
 </template>
 
 <script>
 import { ElNotification } from "element-plus";
+import { Edit, Delete } from "@element-plus/icons-vue";
+import UpdateReservation from "./UpdateReservation.vue";
+import moment from "moment";
 export default {
+  components: {
+    Edit,
+    Delete,
+    UpdateReservation,
+  },
   props: ["personalHealthCheckbox1", "personalHealthCheckbox2"],
   data() {
     return {
@@ -245,6 +245,7 @@ export default {
       checkAllProduct: false,
       productArr: [],
       serviceArr: [],
+      dialogVisible: false,
     };
   },
   watch: {
@@ -436,6 +437,23 @@ export default {
         this.checkAccessToken({ type: "service", data: data });
       }
     },
+    openDialog(item) {
+      this.dialogVisible = true;
+      const year = new Date(item.reservedDate).getFullYear();
+      const month = new Date(item.reservedDate).getMonth() + 1;
+      const firstDay = new Date(year, month - 1);
+      const lastDay = new Date(year, month, 0);
+
+      const data = {
+        itemId: item.reservedItemId,
+        quantity: item.quantity,
+        dateFrom: moment(firstDay).format("YYYYMMDD"),
+        dateTo: moment(lastDay).format("YYYYMMDD"),
+      };
+      console.log(data);
+
+      this.$store.dispatch("search/getDates", data);
+    },
     checkAccessToken({ type, data }) {
       this.$store
         .dispatch("auth/checkAccessToken")
@@ -599,9 +617,9 @@ export default {
 }
 
 .shopping-cart .packages .bottom span:last-of-type {
-  border-left: 1px solid #c6c6c6;
-  padding-left: 2rem;
-  padding-right: 0;
+  /* border-left: 1px solid #c6c6c6; */
+  /* padding-left: 2rem;
+  padding-right: 0; */
 }
 
 .shopping-cart .packages .bottom p {
@@ -633,6 +651,36 @@ export default {
 .shopping-cart .expired-section .packages .bottom p {
   color: #fa5757;
   font-weight: normal;
+}
+
+.shopping-cart .el-col.actions .icon {
+  width: 1.2rem;
+  height: fit-content;
+  vertical-align: middle;
+  color: grey;
+  margin-right: 0.3rem;
+}
+
+.shopping-cart .edit-section {
+  display: inline-block;
+  border-right: 1px solid #c6c6c6;
+  cursor: pointer;
+  padding-right: 1rem;
+}
+
+.shopping-cart .packages .bottom .edit-section span {
+  padding-right: 0;
+}
+
+.shopping-cart .delete-section {
+  display: inline-block;
+  padding-left: 1rem;
+  cursor: pointer;
+}
+
+.shopping-cart .el-col.actions {
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1230px) {

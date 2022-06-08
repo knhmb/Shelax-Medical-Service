@@ -164,5 +164,6 @@
   "invalid_items": "The following items are invalid. Please re-confirm.",
   "item_invalid_text": "Invalid. Please select again.",
   "check_out_button": "Check out",
-  "select_all": "Select All"
+  "select_all": "Select All",
+  "update_reservation_date": "Update Reservation Date"
 }
