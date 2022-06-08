@@ -165,5 +165,6 @@
   "item_invalid_text": "Invalid. Please select again.",
   "check_out_button": "Check out",
   "select_all": "Select All",
-  "update_reservation_date": "Update Reservation Date"
+  "update_reservation_date": "Update Reservation Date",
+  "item_removed_from_cart": "Item has been removed from the cart!"
 }

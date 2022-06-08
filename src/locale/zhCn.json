@@ -165,5 +165,6 @@
   "item_invalid_text": "服务已失效，请重新选择後购买",
   "check_out_button": "前往付款",
   "select_all": "全选",
-  "update_reservation_date": "更改预约时间"
+  "update_reservation_date": "更改预约时间",
+  "item_removed_from_cart": "商品已從購物車中移除"
 }

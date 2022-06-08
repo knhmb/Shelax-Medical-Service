@@ -10,8 +10,12 @@
         shoppingCartItems.validServiceItems.length
       }})</span
     >
-    <span style="cursor: pointer">刪除已選活動</span>
-    <span>刪除已失效活動</span>
+    <span @click="deleteAllSelectedService" style="cursor: pointer"
+      >刪除已選活動</span
+    >
+    <span @click="deleteAllSelectedInvalidService" style="cursor: pointer"
+      >刪除已失效活動</span
+    >
   </div>
   <div
     class="packages"
@@ -124,8 +128,24 @@
 
     <el-row class="bottom">
       <el-col :xs="24" :sm="14">
+        <!-- <div @click="openDialog(item)" class="edit-section">
+          <Edit />
+          <span class="edit">{{ $t("update_reservation_date") }}</span>
+        </div> -->
+
+        <div
+          @click="deleteSingleProduct(item.shoppingCartItemId)"
+          class="delete-section"
+        >
+          <Delete />
+          <span style="cursor: pointer">刪除</span>
+        </div>
         <!-- <span>更改</span> -->
-        <span>刪除</span>
+        <!-- <span
+          style="cursor: pointer"
+          @click="deleteSingleProduct(item.shoppingCartItemId)"
+          >刪除</span
+        > -->
       </el-col>
       <el-col :xs="24" :sm="10">
         <p>HKD {{ item.price }}</p>
@@ -457,6 +477,70 @@ export default {
 
       this.$store.dispatch("search/getDates", data);
     },
+    deleteAllSelectedService() {
+      const arr = [];
+      this.shoppingCartItems.validServiceItems.filter((item) => {
+        if (item.selected) {
+          arr.push(item.shoppingCartItemId);
+        }
+      });
+      if (arr.length <= 0) {
+        return;
+      }
+      this.deleteCartItem(arr);
+    },
+    deleteAllSelectedInvalidService() {
+      const arr = [];
+      this.shoppingCartItems.invalidServiceItems.filter((item) => {
+        console.log(item);
+        arr.push(item.shoppingCartItemId);
+      });
+      this.deleteCartItem(arr);
+      console.log(arr);
+    },
+    deleteSingleProduct(item) {
+      const arr = [];
+      arr.push(item);
+      this.deleteCartItem(arr);
+    },
+    deleteCartItem(data) {
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store.dispatch("shoppingCart/deleteCartItem", data).then(() => {
+            ElNotification({
+              title: "Success",
+              message: this.$t("item_removed_from_cart"),
+              type: "success",
+            });
+            this.$store.dispatch("shoppingCart/getShoppingCartItems");
+          });
+        })
+        .catch(() => {
+          this.$store
+            .dispatch("auth/checkRefreshToken")
+            .then(() => {
+              this.$store
+                .dispatch("shoppingCart/deleteCartItem", data)
+                .then(() => {
+                  ElNotification({
+                    title: "Success",
+                    message: this.$t("item_removed_from_cart"),
+                    type: "success",
+                  });
+                  this.$store.dispatch("shoppingCart/getShoppingCartItems");
+                });
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+              this.$router.replace("/");
+            });
+        });
+    },
     checkAccessToken({ type, data }) {
       this.$store
         .dispatch("auth/checkAccessToken")
@@ -656,7 +740,7 @@ export default {
   font-weight: normal;
 }
 
-.shopping-cart .el-col.actions .icon {
+.shopping-cart .el-col .icon {
   width: 1.2rem;
   height: fit-content;
   vertical-align: middle;

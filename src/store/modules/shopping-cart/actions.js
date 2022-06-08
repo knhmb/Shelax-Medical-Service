@@ -30,4 +30,14 @@ export default {
     console.log(response);
     context.commit("SET_SHOPPING_CART_ITEMS", response.data.item);
   },
+  async deleteCartItem(_, payload) {
+    const userToken = localStorage.getItem("accessToken");
+    const response = await axios.delete("/api/shopping-cart", {
+      headers: {
+        authorization: userToken,
+      },
+      data: payload,
+    });
+    console.log(response);
+  },
 };
