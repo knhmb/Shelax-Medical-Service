@@ -166,5 +166,9 @@
   "check_out_button": "前往付款",
   "select_all": "全选",
   "update_reservation_date": "更改预约时间",
-  "item_removed_from_cart": "商品已從購物車中移除"
+  "item_removed_from_cart": "商品已從購物車中移除",
+  "delete_selected_service": "删除已选服务",
+  "delete_all_invalid_service": "删除已失效服务",
+  "delete_product_item": "删除已选产品",
+  "delete_all_invalid_product": "删除已失效产品"
 }

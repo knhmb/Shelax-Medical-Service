@@ -97,6 +97,7 @@ export default {
             message: this.$t(err.response.data.message),
             type: "error",
           });
+          this.$router.replace("/");
         });
     },
   },
@@ -115,6 +116,7 @@ export default {
 .shopping-cart {
   padding-top: 2rem;
   background: #e6eaf0;
+  height: 100vh;
 }
 
 .shopping-cart h2 {

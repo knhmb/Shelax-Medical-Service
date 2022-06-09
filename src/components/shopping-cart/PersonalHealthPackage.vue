@@ -10,12 +10,12 @@
         shoppingCartItems.validServiceItems.length
       }})</span
     >
-    <span @click="deleteAllSelectedService" style="cursor: pointer"
-      >刪除已選活動</span
-    >
-    <span @click="deleteAllSelectedInvalidService" style="cursor: pointer"
-      >刪除已失效活動</span
-    >
+    <span @click="deleteAllSelectedService" style="cursor: pointer">{{
+      $t("delete_selected_service")
+    }}</span>
+    <span @click="deleteAllSelectedInvalidService" style="cursor: pointer">{{
+      $t("delete_all_invalid_service")
+    }}</span>
   </div>
   <div
     class="packages"
@@ -91,12 +91,12 @@
         shoppingCartItems.validProductItems.length
       }})</span
     >
-    <span @click="deleteAllSelectedValidProduct" style="cursor: pointer"
-      >刪除已選產品</span
-    >
-    <span @click="deleteAllInvalidProduct" style="cursor: pointer"
-      >刪除已失效活動</span
-    >
+    <span @click="deleteAllSelectedValidProduct" style="cursor: pointer">{{
+      $t("delete_product_item")
+    }}</span>
+    <span @click="deleteAllInvalidProduct" style="cursor: pointer">{{
+      $t("delete_all_invalid_product")
+    }}</span>
   </div>
   <div
     class="packages"
