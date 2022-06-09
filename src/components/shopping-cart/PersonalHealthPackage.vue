@@ -91,7 +91,12 @@
         shoppingCartItems.validProductItems.length
       }})</span
     >
-    <span @click="unSelectAll" style="cursor: pointer">刪除已選產品</span>
+    <span @click="deleteAllSelectedValidProduct" style="cursor: pointer"
+      >刪除已選產品</span
+    >
+    <span @click="deleteAllInvalidProduct" style="cursor: pointer"
+      >刪除已失效活動</span
+    >
   </div>
   <div
     class="packages"
@@ -153,7 +158,13 @@
     </el-row>
   </div>
 
-  <div class="expired-section">
+  <div
+    class="expired-section"
+    v-if="
+      shoppingCartItems.invalidServiceItems.length > 0 ||
+      shoppingCartItems.invalidProductItems.length > 0
+    "
+  >
     <h2>{{ $t("invalid_items") }}</h2>
     <div class="title">
       <h2>{{ $t("service_items") }}</h2>
@@ -502,6 +513,27 @@ export default {
       const arr = [];
       arr.push(item);
       this.deleteCartItem(arr);
+    },
+    deleteAllSelectedValidProduct() {
+      const arr = [];
+      this.shoppingCartItems.validProductItems.filter((item) => {
+        if (item.selected) {
+          arr.push(item.shoppingCartItemId);
+        }
+      });
+      if (arr.length <= 0) {
+        return;
+      }
+      this.deleteCartItem(arr);
+    },
+    deleteAllInvalidProduct() {
+      const arr = [];
+      this.shoppingCartItems.invalidProductItems.filter((item) => {
+        console.log(item);
+        arr.push(item.shoppingCartItemId);
+      });
+      this.deleteCartItem(arr);
+      console.log(arr);
     },
     deleteCartItem(data) {
       this.$store
