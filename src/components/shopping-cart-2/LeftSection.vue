@@ -1,10 +1,10 @@
 <template>
   <div class="left-section-cart">
     <div class="header">
-      <h2>填寫資料</h2>
+      <h2>{{ $t("fill_in_the_information") }}</h2>
     </div>
     <div class="body">
-      <p class="body-title">預訂資料</p>
+      <p class="body-title">{{ $t("order_information") }}</p>
       <Form />
       <order-information></order-information>
       <promo-code></promo-code>

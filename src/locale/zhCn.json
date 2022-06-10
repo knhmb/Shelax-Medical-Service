@@ -170,5 +170,8 @@
   "delete_selected_service": "删除已选服务",
   "delete_all_invalid_service": "删除已失效服务",
   "delete_product_item": "删除已选产品",
-  "delete_all_invalid_product": "删除已失效产品"
+  "delete_all_invalid_product": "删除已失效产品",
+  "fill_in_the_information": "填写资料",
+  "order_information": "预订资料",
+  "information_of_service_user": "参加成员{index}资料"
 }

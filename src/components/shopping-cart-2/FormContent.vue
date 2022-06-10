@@ -6,114 +6,116 @@
       :rules="rules"
       label-position="top"
     >
-      <div
-        class="dynamic-form"
-        v-for="(item, index) in ruleForm.dynamicItem"
-        :key="index"
-      >
-        <p>參加成員{{ index + 1 }} 資料</p>
-        <el-row :gutter="10">
-          <el-col>
-            <el-form-item label="選擇常用成員(如有)">
-              <el-select
-                v-model="item.avatarSelect"
-                class="avatar"
-                placeholder="請選擇常用成員"
-                size="large"
-              >
-              </el-select>
-              <img
-                src="https://www.w3schools.com/howto/img_avatar.png"
-                alt=""
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :sm="24" :md="6">
-            <el-form-item label="稱謂" prop="title">
-              <el-select v-model="item.title" placeholder="選擇稱謂">
-                <el-option label="先生" value="先生">先生</el-option>
-                <el-option label="太太" value="太太">太太</el-option>
-                <el-option label="小姐" value="小姐">小姐</el-option>
-                <el-option label="女士" value="女士">女士</el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-
-          <el-col :sm="24" :md="9">
-            <el-form-item label="姓氏" prop="firstName">
-              <el-input
-                v-model="item.firstName"
-                placeholder="請輸入姓氏"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :sm="24" :md="9">
-            <el-form-item label="名字" prop="lastName">
-              <el-input
-                v-model="item.lastName"
-                placeholder="請輸入名字"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-
-          <el-col :sm="24" :md="6">
-            <el-form-item label="電話區號" prop="areaCode">
-              <el-input
-                v-model="item.areaCode"
-                placeholder="選擇電話區號"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :sm="24" :md="9">
-            <el-form-item label="電話號碼" prop="phoneNumber">
-              <el-input
-                v-model="item.phoneNumber"
-                placeholder="請輸入電話號碼"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :sm="24" :md="9">
-            <el-form-item label="電郵地址" prop="emailAddress">
-              <el-input
-                v-model="item.emailAddress"
-                placeholder="請輸入電郵地址"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :sm="24" :md="12">
-            <el-form-item label="居住國家 / 城市" prop="cityOfResidence">
-              <el-input
-                v-model="item.cityOfResidence"
-                class="email-input"
-                placeholder="請輸入電郵地址"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :sm="24" :md="12">
-            <div class="form-btn">
-              <el-form-item>
-                <el-button @click="addItem" :icon="Plus"
-                  >新增為常用成員</el-button
+      <template v-for="(item, index) in ruleForm.dynamicItem" :key="index">
+        <div
+          class="dynamic-form"
+          v-if="singleItemDetail.itemType === 'service'"
+        >
+          <p>{{ $t("information_of_service_user", { index: index + 1 }) }}</p>
+          <el-row :gutter="10">
+            <el-col>
+              <el-form-item label="選擇常用成員(如有)">
+                <el-select
+                  v-model="item.avatarSelect"
+                  class="avatar"
+                  placeholder="請選擇常用成員"
+                  size="large"
                 >
+                </el-select>
+                <img
+                  src="https://www.w3schools.com/howto/img_avatar.png"
+                  alt=""
+                />
               </el-form-item>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="other-information">
-        <p>其他資料</p>
-        <el-row>
-          <el-col>
-            <el-form-item label="如有任何特別要求, 請在下方輸入">
-              <el-input
-                rows="3"
-                placeholder="請輸入"
-                type="textarea"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </div>
+            </el-col>
+            <el-col :sm="24" :md="6">
+              <el-form-item label="稱謂" prop="title">
+                <el-select v-model="item.title" placeholder="選擇稱謂">
+                  <el-option label="先生" value="先生">先生</el-option>
+                  <el-option label="太太" value="太太">太太</el-option>
+                  <el-option label="小姐" value="小姐">小姐</el-option>
+                  <el-option label="女士" value="女士">女士</el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+
+            <el-col :sm="24" :md="9">
+              <el-form-item label="姓氏" prop="firstName">
+                <el-input
+                  v-model="item.firstName"
+                  placeholder="請輸入姓氏"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="24" :md="9">
+              <el-form-item label="名字" prop="lastName">
+                <el-input
+                  v-model="item.lastName"
+                  placeholder="請輸入名字"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+
+            <el-col :sm="24" :md="6">
+              <el-form-item label="電話區號" prop="areaCode">
+                <el-input
+                  v-model="item.areaCode"
+                  placeholder="選擇電話區號"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="24" :md="9">
+              <el-form-item label="電話號碼" prop="phoneNumber">
+                <el-input
+                  v-model="item.phoneNumber"
+                  placeholder="請輸入電話號碼"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="24" :md="9">
+              <el-form-item label="電郵地址" prop="emailAddress">
+                <el-input
+                  v-model="item.emailAddress"
+                  placeholder="請輸入電郵地址"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="24" :md="12">
+              <el-form-item label="居住國家 / 城市" prop="cityOfResidence">
+                <el-input
+                  v-model="item.cityOfResidence"
+                  class="email-input"
+                  placeholder="請輸入電郵地址"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="24" :md="12">
+              <div class="form-btn">
+                <el-form-item>
+                  <el-button @click="addItem" :icon="Plus"
+                    >新增為常用成員</el-button
+                  >
+                </el-form-item>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+        <div class="other-information">
+          <p>其他資料</p>
+          <el-row>
+            <el-col>
+              <el-form-item label="如有任何特別要求, 請在下方輸入">
+                <el-input
+                  rows="3"
+                  placeholder="請輸入"
+                  type="textarea"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </div>
+      </template>
     </el-form>
   </div>
 </template>
@@ -121,6 +123,7 @@
 <script>
 import { Plus } from "@element-plus/icons-vue";
 export default {
+  props: ["quantity"],
   data() {
     return {
       Plus,
@@ -201,6 +204,14 @@ export default {
       },
     };
   },
+  computed: {
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
+    orderItem() {
+      return this.$store.getters["order/orderItem"];
+    },
+  },
   methods: {
     addItem() {
       this.ruleForm.dynamicItem.push({
@@ -214,6 +225,22 @@ export default {
         cityOfResidence: "",
       });
     },
+  },
+  created() {
+    console.log(this.singleItemDetail);
+    console.log(this.orderItem);
+    for (let i = 1; i < this.quantity; i++) {
+      this.ruleForm.dynamicItem.push({
+        avatarSelect: "",
+        title: "",
+        lastName: "",
+        firstName: "",
+        areaCode: "",
+        phoneNumber: "",
+        emailAddress: "",
+        cityOfResidence: "",
+      });
+    }
   },
 };
 </script>

@@ -7,6 +7,7 @@ import authModule from "./modules/auth/index";
 import profileModule from "./modules/profile/index";
 import searchModule from "./modules/search/index";
 import shoppingCartModule from "./modules/shopping-cart";
+import OrderModule from "./modules/order";
 import createPersistedState from "vuex-persistedstate";
 
 const store = createStore({
@@ -30,6 +31,7 @@ const store = createStore({
     profile: profileModule,
     search: searchModule,
     shoppingCart: shoppingCartModule,
+    order: OrderModule,
   },
 });
 

@@ -86,7 +86,9 @@
         <el-button type="primary" @click="addToShoppingCart">{{
           $t("add_to_shopping_cart")
         }}</el-button>
-        <el-button type="success">{{ $t("book_button") }}</el-button>
+        <el-button @click="bookNow" type="success">{{
+          $t("book_button")
+        }}</el-button>
       </el-col>
     </el-row>
   </div>
@@ -121,7 +123,7 @@
           :disabled="isDisabled"
           >{{ $t("add_to_shopping_cart") }}</el-button
         >
-        <el-button type="success" :disabled="isDisabled">{{
+        <el-button @click="bookNow" type="success" :disabled="isDisabled">{{
           $t("book_button")
         }}</el-button>
       </el-col>
@@ -232,6 +234,82 @@ export default {
         console.log(data);
         this.checkAccessToken(data);
       }
+    },
+    bookNow() {
+      let data = {};
+      if (this.singleItemDetail.itemType === "service") {
+        data = {
+          itemId: this.singleItemDetail.basicInfo.id,
+          itemName: this.singleItemDetail.basicInfo.itemName,
+          isService:
+            this.singleItemDetail.itemType === "service" ? true : false,
+          isProduct:
+            this.singleItemDetail.itemType === "product" ? true : false,
+          bookingDate: this.selectedDate,
+          bookingTime: this.isActive,
+          timeslotId: this.timeslotId,
+          quantity: this.noOfPeople,
+          price: this.singleItemDetail.discountedPrice + ".00",
+        };
+        console.log(data);
+      } else if (this.singleItemDetail.itemType === "product") {
+        data = {
+          itemId: this.singleItemDetail.basicInfo.id,
+          itemName: this.singleItemDetail.basicInfo.itemName,
+          isService:
+            this.singleItemDetail.itemType === "service" ? true : false,
+          isProduct:
+            this.singleItemDetail.itemType === "product" ? true : false,
+          quantity: this.noOfPeople,
+          price: this.singleItemDetail.discountedPrice + ".00",
+        };
+      }
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store
+            .dispatch("order/createOrder", {
+              orderingItems: [data],
+            })
+            .then(() => {
+              this.$router.push("/shopping-cart-step-2");
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: err.response.data.message,
+                type: "error",
+              });
+            });
+        })
+        .catch(() => {
+          this.$store
+            .dispatch("auth/checkRefreshToken")
+            .then(() => {
+              this.$store
+                .dispatch("order/createOrder", {
+                  orderingItems: [data],
+                })
+                .then(() => {
+                  this.$router.push("/shopping-cart-step-2");
+                })
+                .catch((err) => {
+                  ElNotification({
+                    title: "Error",
+                    message: err.response.data.message,
+                    type: "error",
+                  });
+                });
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: err.response.data.message,
+                type: "error",
+              });
+              this.$router.replace("/");
+            });
+        });
     },
     checkAccessToken(data) {
       this.$store

@@ -170,5 +170,8 @@
   "delete_selected_service": "Delete Selected Service",
   "delete_all_invalid_service": "Delete Invalid Service",
   "delete_product_item": "Delete Selected Products",
-  "delete_all_invalid_product": "Delete Invalid Products"
+  "delete_all_invalid_product": "Delete Invalid Products",
+  "fill_in_the_information": "Fill in the information",
+  "order_information": "Order Information",
+  "information_of_service_user": "Information of Service User {index}"
 }

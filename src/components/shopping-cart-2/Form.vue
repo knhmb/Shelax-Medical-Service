@@ -1,23 +1,30 @@
 <template>
-  <div class="shopping-cart-form">
+  <div
+    class="shopping-cart-form"
+    v-for="item in orderItem.orderingItems"
+    :key="item.itemId"
+  >
     <div class="form-header">
       <el-row :gutter="12">
         <el-col :sm="24" :md="3">
-          <img src="../../assets/Rectangle-77.png" alt="" />
+          <img :src="item.thumbnail" alt="" />
         </el-col>
         <el-col :sm="24" :md="21">
-          <h3>綜合個人健康體檢套餐</h3>
-          <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
-          <p>預約日期及時間: 2022年1月21日 - 14:30</p>
-          <p>人數: 2人</p>
+          <h3>{{ item.itemName }}</h3>
+          <p>地址: {{ item.providerName }} - {{ item.providerAddress }}</p>
+          <p>
+            預約日期及時間: {{ item.bookingDateDisplay }} -
+            {{ item.bookingTime }}
+          </p>
+          <p>人數: {{ item.quantity }}人</p>
         </el-col>
       </el-row>
     </div>
     <div class="form-body">
-      <form-content></form-content>
+      <form-content :quantity="item.quantity"></form-content>
     </div>
   </div>
-  <div class="shopping-cart-form">
+  <!-- <div class="shopping-cart-form">
     <div class="form-header">
       <el-row :gutter="12">
         <el-col :sm="24" :md="3">
@@ -34,8 +41,8 @@
     <div class="form-body">
       <form-content></form-content>
     </div>
-  </div>
-  <div class="shopping-cart-form">
+  </div> -->
+  <!-- <div class="shopping-cart-form">
     <div class="form-header">
       <el-row :gutter="12">
         <el-col :sm="24" :md="3">
@@ -47,12 +54,12 @@
           <p>數量: 2件</p>
         </el-col>
       </el-row>
-    </div>
-    <!-- <div class="form-body">
+    </div> -->
+  <!-- <div class="form-body">
       <form-content></form-content>
     </div> -->
-  </div>
-  <div class="shopping-cart-form">
+  <!-- </div> -->
+  <!-- <div class="shopping-cart-form">
     <div class="form-header">
       <el-row :gutter="12">
         <el-col :sm="24" :md="3">
@@ -64,11 +71,11 @@
           <p>數量: 1件</p>
         </el-col>
       </el-row>
-    </div>
-    <!-- <div class="form-body">
+    </div> -->
+  <!-- <div class="form-body">
       <form-content></form-content>
     </div> -->
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -77,6 +84,14 @@ import FormContent from "./FormContent.vue";
 export default {
   components: {
     FormContent,
+  },
+  computed: {
+    orderItem() {
+      return this.$store.getters["order/orderItem"];
+    },
+  },
+  created() {
+    console.log(this.orderItem);
   },
 };
 </script>
