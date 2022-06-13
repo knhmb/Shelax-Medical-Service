@@ -173,5 +173,21 @@
   "delete_all_invalid_product": "Delete Invalid Products",
   "fill_in_the_information": "Fill in the information",
   "order_information": "Order Information",
-  "information_of_service_user": "Information of Service User {index}"
+  "information_of_service_user": "Information of Service User {index}",
+  "other_information": "Other Information",
+  "add_service_user": "Add Service User",
+  "service_type": "Service Type",
+  "date": "Date",
+  "time": "Time",
+  "no_of_participants": "No. of participants",
+  "unit_price": "Unit Price",
+  "price_total": "Price",
+  "total_price": "Total Price",
+  "discount": "Discount",
+  "amount_to_be_paid": "Amount to be Paid",
+  "you_can_earn": "You can earn",
+  "select_members": "Select frequent members (if any)",
+  "select_a_member": "Please select a frequent member",
+  "any_requests": "If you have any special request, please enter below",
+  "enter_a request": "Enter a request"
 }

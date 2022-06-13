@@ -579,7 +579,8 @@ export default {
             message: err.response.data.message,
             type: "error",
           });
-          this.$router.replace("/");
+          // this.$router.replace("/");
+          this.$store.dispatch("auth/logout");
         });
     },
     submit(item) {
@@ -642,7 +643,8 @@ export default {
             message: err.response.data.message,
             type: "error",
           });
-          this.$router.replace("/");
+          // this.$router.replace("/");
+          this.$store.dispatch("auth/logout");
         });
     },
     edit(item) {
@@ -726,7 +728,8 @@ export default {
             message: this.$t(err.response.data.message),
             type: "error",
           });
-          this.$router.replace("/");
+          // this.$router.replace("/");
+          this.$store.dispatch("auth/logout");
         });
     },
     checkAccessTokenDelete(id) {
@@ -751,7 +754,8 @@ export default {
             message: this.$t(err.response.data.message),
             type: "error",
           });
-          this.$router.replace("/");
+          // this.$router.replace("/");
+          this.$store.dispatch("auth/logout");
         });
     },
     deleteMember(id) {

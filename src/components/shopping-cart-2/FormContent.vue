@@ -14,13 +14,18 @@
           <p>{{ $t("information_of_service_user", { index: index + 1 }) }}</p>
           <el-row :gutter="10">
             <el-col>
-              <el-form-item label="選擇常用成員(如有)">
+              <el-form-item :label="$t('select_members')">
                 <el-select
                   v-model="item.avatarSelect"
                   class="avatar"
-                  placeholder="請選擇常用成員"
+                  :placeholder="$t('select_a_member')"
                   size="large"
                 >
+                  <el-option
+                    v-for="user in serviceUsers"
+                    :key="user"
+                    :label="user"
+                  ></el-option>
                 </el-select>
                 <img
                   src="https://www.w3schools.com/howto/img_avatar.png"
@@ -29,8 +34,8 @@
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="6">
-              <el-form-item label="稱謂" prop="title">
-                <el-select v-model="item.title" placeholder="選擇稱謂">
+              <el-form-item :label="$t('salutation')" prop="title">
+                <el-select v-model="item.title" :placeholder="$t('Mr')">
                   <el-option label="先生" value="先生">先生</el-option>
                   <el-option label="太太" value="太太">太太</el-option>
                   <el-option label="小姐" value="小姐">小姐</el-option>
@@ -40,61 +45,71 @@
             </el-col>
 
             <el-col :sm="24" :md="9">
-              <el-form-item label="姓氏" prop="firstName">
+              <el-form-item :label="$t('last_name')" prop="lastName">
                 <el-input
                   v-model="item.firstName"
-                  placeholder="請輸入姓氏"
+                  :placeholder="$t('last_name')"
                 ></el-input>
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="9">
-              <el-form-item label="名字" prop="lastName">
+              <el-form-item :label="$t('first_name')" prop="firstName">
                 <el-input
                   v-model="item.lastName"
-                  placeholder="請輸入名字"
+                  :placeholder="$t('first_name')"
                 ></el-input>
               </el-form-item>
             </el-col>
 
             <el-col :sm="24" :md="6">
-              <el-form-item label="電話區號" prop="areaCode">
-                <el-input
+              <el-form-item :label="$t('country_code')" prop="areaCode">
+                <el-select
                   v-model="item.areaCode"
-                  placeholder="選擇電話區號"
-                ></el-input>
+                  :placeholder="$t('country_code')"
+                >
+                  <el-option
+                    v-for="code in countryCodes"
+                    :key="code.id"
+                    :label="code.name + '(+' + code.isd + ')'"
+                    :value="code.alphaThree"
+                  />
+                </el-select>
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="9">
-              <el-form-item label="電話號碼" prop="phoneNumber">
+              <el-form-item :label="$t('phone_number')" prop="phoneNumber">
                 <el-input
                   v-model="item.phoneNumber"
-                  placeholder="請輸入電話號碼"
+                  :placeholder="$t('phone_number')"
                 ></el-input>
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="9">
-              <el-form-item label="電郵地址" prop="emailAddress">
+              <el-form-item :label="$t('email_address')" prop="emailAddress">
                 <el-input
                   v-model="item.emailAddress"
-                  placeholder="請輸入電郵地址"
+                  :placeholder="$t('email_address')"
                 ></el-input>
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="12">
-              <el-form-item label="居住國家 / 城市" prop="cityOfResidence">
+              <el-form-item
+                :label="$t('city_of_residence')"
+                prop="cityOfResidence"
+              >
                 <el-input
                   v-model="item.cityOfResidence"
                   class="email-input"
-                  placeholder="請輸入電郵地址"
+                  :placeholder="$t('city_of_residence')"
                 ></el-input>
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="12">
               <div class="form-btn">
                 <el-form-item>
-                  <el-button @click="addItem" :icon="Plus"
-                    >新增為常用成員</el-button
-                  >
+                  <el-button @click="addItem" :icon="Plus">{{
+                    $t("add_service_user")
+                  }}</el-button>
                 </el-form-item>
               </div>
             </el-col>
@@ -102,13 +117,13 @@
         </div>
 
         <div class="other-information">
-          <p>其他資料</p>
+          <p>{{ $t("other_information") }}</p>
           <el-row>
             <el-col>
-              <el-form-item label="如有任何特別要求, 請在下方輸入">
+              <el-form-item :label="$t('any_requests')">
                 <el-input
                   rows="3"
-                  placeholder="請輸入"
+                  :placeholder="$t('enter_a request')"
                   type="textarea"
                 ></el-input>
               </el-form-item>
@@ -138,16 +153,16 @@ export default {
         emailAddress: "",
         cityOfResidence: "",
         dynamicItem: [
-          {
-            avatarSelect: "Chan Tai Man",
-            title: "Mr.",
-            lastName: "Tai Man",
-            firstName: "Chan",
-            areaCode: "香港(+852)",
-            phoneNumber: "6123 4567",
-            emailAddress: "chantaiman@email.com",
-            cityOfResidence: "香港",
-          },
+          // {
+          //   avatarSelect: "Chan Tai Man",
+          //   title: "Mr.",
+          //   lastName: "Tai Man",
+          //   firstName: "Chan",
+          //   areaCode: "香港(+852)",
+          //   phoneNumber: "6123 4567",
+          //   emailAddress: "chantaiman@email.com",
+          //   cityOfResidence: "香港",
+          // },
         ],
       },
       rules: {
@@ -211,6 +226,12 @@ export default {
     orderItem() {
       return this.$store.getters["order/orderItem"];
     },
+    serviceUsers() {
+      return this.$store.getters["profile/serviceUsers"];
+    },
+    countryCodes() {
+      return this.$store.getters["profile/countryCodes"];
+    },
   },
   methods: {
     addItem() {
@@ -229,6 +250,21 @@ export default {
   created() {
     console.log(this.singleItemDetail);
     console.log(this.orderItem);
+    this.$store.dispatch("profile/getServiceUsers").then(() => {
+      const user = {
+        avatarSelect: this.serviceUsers.givenName,
+        title: this.serviceUsers.salutation,
+        lastName: this.serviceUsers.lastName,
+        firstName: this.serviceUsers.givenName,
+        areaCode: this.serviceUsers.phoneCode,
+        phoneNumber: this.serviceUsers.phoneNo,
+        emailAddress: this.serviceUsers.email,
+        cityOfResidence: this.serviceUsers.placeOfResidence,
+      };
+      this.ruleForm.dynamicItem.push(user);
+    });
+    console.log(this.ruleForm.dynamicItem);
+    this.$store.dispatch("profile/getCountryCode");
     for (let i = 1; i < this.quantity; i++) {
       this.ruleForm.dynamicItem.push({
         avatarSelect: "",
@@ -241,11 +277,22 @@ export default {
         cityOfResidence: "",
       });
     }
+    console.log(this.serviceUsers);
   },
 };
 </script>
 
 <style>
+.shopping-cart-step-2
+  .left-section-cart
+  .body
+  .shopping-cart-form
+  .form-content
+  .el-input
+  .el-input__inner::placeholder {
+  color: #c0c4cc;
+}
+
 .shopping-cart-step-2
   .left-section-cart
   .body

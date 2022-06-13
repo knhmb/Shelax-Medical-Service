@@ -173,5 +173,21 @@
   "delete_all_invalid_product": "刪除已失效產品",
   "fill_in_the_information": "填寫資料",
   "order_information": "預訂資料",
-  "information_of_service_user": "參加成員{index}資料"
+  "information_of_service_user": "參加成員{index}資料",
+  "other_information": "其他資料",
+  "add_service_user": "新增為常用成員",
+  "service_type": "服務類型",
+  "date": "日期",
+  "time": "時間",
+  "no_of_participants": "人數",
+  "unit_price": "單價",
+  "price_total": "價格",
+  "total_price": "總價格",
+  "discount": "折扣優惠",
+  "amount_to_be_paid": "付款金額",
+  "you_can_earn": "你可以獲得",
+  "select_members": "選擇常用成員(如有)",
+  "select_a_member": "請選擇常用成員",
+  "any_requests": "如有任何特別要求, 請在下方輸入",
+  "enter_a request": "請輸入"
 }

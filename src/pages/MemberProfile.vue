@@ -296,7 +296,8 @@ export default {
             message: this.$t(err.response.data.message),
             type: "error",
           });
-          this.$router.replace("/");
+          // this.$router.replace("/");
+          this.$store.dispatch("auth/logout");
         });
     },
   },

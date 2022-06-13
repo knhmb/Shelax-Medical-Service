@@ -1,52 +1,57 @@
 <template>
   <div class="right-section">
-    <h2>服務類型</h2>
-    <div class="card">
-      <div class="header">
-        <h3>綜合個人健康體檢套餐</h3>
-        <p>ＸＸＸＸ健康中心</p>
-        <p>香港九龍城區九龍仔聯福道17號</p>
+    <h2 v-if="singleItemDetail.itemType === 'service'">
+      {{ $t("service_type") }}
+    </h2>
+    <template v-for="item in orderItem.orderingItems" :key="item.itemId">
+      <div class="card" v-if="singleItemDetail.itemType === 'service'">
+        <div class="header">
+          <h3>{{ item.itemName }}</h3>
+          <p>{{ item.providerName }}</p>
+          <p>{{ item.providerAddress }}</p>
+        </div>
+        <div class="body">
+          <el-row>
+            <el-col :span="12">
+              <p class="key">{{ $t("date") }}</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="value">{{ item.bookingDateDisplay }}</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="key">{{ $t("time") }}</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="value">{{ item.bookingTime }}</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="key">{{ $t("no_of_participants") }}</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="value">{{ item.quantity }}人</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="key">{{ $t("unit_price") }}</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="value">HKD{{ item.unitPrice }}</p>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="footer">
+          <el-row>
+            <el-col :span="12">
+              <p class="key">{{ $t("price_total") }}</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="value">HKD{{ item.price }}</p>
+            </el-col>
+          </el-row>
+        </div>
       </div>
-      <div class="body">
-        <el-row>
-          <el-col :span="12">
-            <p class="key">日期</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="value">2022年1月21日</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="key">時間</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="value">14:30</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="key">人數</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="value">2人</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="key">單價</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="value">HKD570</p>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="footer">
-        <el-row>
-          <el-col :span="12">
-            <p class="key">價格</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="value">HKD1,140</p>
-          </el-col>
-        </el-row>
-      </div>
-    </div>
-    <div class="card">
+    </template>
+
+    <!-- <div class="card">
       <div class="header">
         <h3>綜合個人健康體檢套餐</h3>
         <p>ＸＸＸＸ健康中心</p>
@@ -90,43 +95,48 @@
           </el-col>
         </el-row>
       </div>
-    </div>
+    </div> -->
 
-    <h2>產品類型</h2>
-    <div class="card">
-      <div class="header">
-        <h3>綜合個人健康體檢套餐</h3>
-        <p>ＸＸＸＸ健康中心</p>
-        <p>香港九龍城區九龍仔聯福道17號</p>
+    <h2 v-if="singleItemDetail.itemType === 'product'">
+      {{ $t("product_type") }}
+    </h2>
+    <template v-for="item in orderItem.orderingItems" :key="item.itemId">
+      <div class="card" v-if="singleItemDetail.itemType === 'product'">
+        <div class="header">
+          <h3>{{ item.itemName }}</h3>
+          <p>{{ item.providerName }}</p>
+          <p>{{ item.providerAddress }}</p>
+        </div>
+        <div class="body">
+          <el-row>
+            <el-col :span="12">
+              <p class="key">{{ $t("quantity") }}</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="value">{{ item.quantity }}件</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="key">{{ $t("unit_price") }}</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="value">HKD{{ item.unitPrice }}</p>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="footer">
+          <el-row>
+            <el-col :span="12">
+              <p class="key">{{ $t("price_total") }}</p>
+            </el-col>
+            <el-col :span="12">
+              <p class="value">HKD{{ item.price }}</p>
+            </el-col>
+          </el-row>
+        </div>
       </div>
-      <div class="body">
-        <el-row>
-          <el-col :span="12">
-            <p class="key">數量</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="value">2件</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="key">單價</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="value">HKD80</p>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="footer">
-        <el-row>
-          <el-col :span="12">
-            <p class="key">價格</p>
-          </el-col>
-          <el-col :span="12">
-            <p class="value">HKD160</p>
-          </el-col>
-        </el-row>
-      </div>
-    </div>
-    <div class="card">
+    </template>
+
+    <!-- <div class="card">
       <div class="header">
         <h3>綜合個人健康體檢套餐</h3>
         <p>ＸＸＸＸ健康中心</p>
@@ -158,45 +168,63 @@
           </el-col>
         </el-row>
       </div>
-    </div>
+    </div> -->
 
     <div class="card price">
       <div class="body">
         <el-row>
           <el-col :span="12">
-            <p class="key">總價格</p>
+            <p class="key">{{ $t("total_price") }}</p>
           </el-col>
           <el-col :span="12">
-            <p class="value">HKD2,280</p>
+            <p class="value">HKD{{ orderItem.totalPrice }}</p>
           </el-col>
           <el-col :span="12">
-            <p class="key">折扣優惠</p>
+            <p class="key">{{ $t("discount") }}</p>
           </el-col>
           <el-col :span="12">
             <p class="value discount">-HKD200</p>
           </el-col>
           <el-col :span="12">
-            <p class="key">付款金額</p>
+            <p class="key">{{ $t("amount_to_be_paid") }}</p>
           </el-col>
           <el-col :span="12">
-            <p class="value payment-amount">HKD2,080</p>
+            <p class="value payment-amount">HKD{{ orderItem.totalPrice }}</p>
           </el-col>
         </el-row>
       </div>
       <div class="footer">
         <el-row>
           <el-col :span="10">
-            <p class="key">你可以獲得</p>
+            <p class="key">{{ $t("you_can_earn") }}</p>
           </el-col>
           <el-col :span="14">
             <img src="../../assets/icon-bonuspoint@2x.png" alt="" />
-            <p class="value">171 Shelax Points</p>
+            <p class="value">
+              {{ orderItem.totalPointsRewarded }} Shelax Points
+            </p>
           </el-col>
         </el-row>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    orderItem() {
+      return this.$store.getters["order/orderItem"];
+    },
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
+  },
+  created() {
+    console.log(this.orderItem);
+  },
+};
+</script>
 
 <style scoped>
 .right-section h2 {
