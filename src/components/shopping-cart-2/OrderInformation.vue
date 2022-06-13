@@ -1,7 +1,7 @@
 <template>
   <div class="order-information">
-    <h3>訂購人資料</h3>
-    <p>如訂單有任何變動，我們會通知你</p>
+    <h3>{{ $t("customers_information") }}</h3>
+    <p>{{ $t("change_in_order") }}</p>
     <el-form
       label-position="top"
       ref="ruleFormRef"
@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
 export default {
   data() {
     return {
@@ -142,6 +143,28 @@ export default {
         ],
       },
     };
+  },
+  created() {
+    this.$store
+      .dispatch("auth/checkAccessToken")
+      .then(() => {
+        this.$store.dispatch("profile/getAccount");
+      })
+      .catch(() => {
+        this.$store
+          .dispatch("auth/checkRefreshToken")
+          .then(() => {
+            this.$store.dispatch("profile/getAccount");
+          })
+          .catch((err) => {
+            ElNotification({
+              title: "Error",
+              message: this.$t(err.response.data.message),
+              type: "error",
+            });
+            this.$store.dispatch("auth/logout");
+          });
+      });
   },
 };
 </script>

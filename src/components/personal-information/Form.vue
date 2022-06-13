@@ -233,7 +233,7 @@ export default {
         .catch((err) => {
           ElNotification({
             title: "Error",
-            message: err.response.data.message,
+            message: this.$t(err.response.data.message),
             type: "error",
           });
           // this.$router.replace("/");

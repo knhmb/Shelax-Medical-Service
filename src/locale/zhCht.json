@@ -189,5 +189,7 @@
   "select_members": "選擇常用成員(如有)",
   "select_a_member": "請選擇常用成員",
   "any_requests": "如有任何特別要求, 請在下方輸入",
-  "enter_a request": "請輸入"
+  "enter_a request": "請輸入",
+  "customers_information": "訂購人資料",
+  "change_in_order": "如訂單有任何變動，我們會通知你"
 }

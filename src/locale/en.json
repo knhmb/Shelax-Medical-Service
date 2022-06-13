@@ -189,5 +189,7 @@
   "select_members": "Select frequent members (if any)",
   "select_a_member": "Please select a frequent member",
   "any_requests": "If you have any special request, please enter below",
-  "enter_a request": "Enter a request"
+  "enter_a request": "Enter a request",
+  "customers_information": "Customer's Information",
+  "change_in_order": "If there is any change in the order, we will notify you"
 }

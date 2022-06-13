@@ -16,15 +16,17 @@
             <el-col>
               <el-form-item :label="$t('select_members')">
                 <el-select
-                  v-model="item.avatarSelect"
+                  v-model="item.givenName"
                   class="avatar"
                   :placeholder="$t('select_a_member')"
                   size="large"
+                  @change="changeUser({ item: item, index: index })"
                 >
                   <el-option
                     v-for="user in serviceUsers"
                     :key="user"
-                    :label="user"
+                    :label="user.givenName"
+                    :value="user.givenName"
                   ></el-option>
                 </el-select>
                 <img
@@ -34,8 +36,16 @@
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="6">
-              <el-form-item :label="$t('salutation')" prop="title">
-                <el-select v-model="item.title" :placeholder="$t('Mr')">
+              <el-form-item
+                :label="$t('salutation')"
+                :prop="'dynamicItem.' + index + '.salutation'"
+                :rules="{
+                  required: true,
+                  message: $t('salutation'),
+                  trigger: 'change',
+                }"
+              >
+                <el-select v-model="item.salutation" :placeholder="$t('Mr')">
                   <el-option label="先生" value="先生">先生</el-option>
                   <el-option label="太太" value="太太">太太</el-option>
                   <el-option label="小姐" value="小姐">小姐</el-option>
@@ -45,26 +55,50 @@
             </el-col>
 
             <el-col :sm="24" :md="9">
-              <el-form-item :label="$t('last_name')" prop="lastName">
+              <el-form-item
+                :label="$t('last_name')"
+                :prop="'dynamicItem.' + index + '.lastName'"
+                :rules="{
+                  required: true,
+                  message: $t('last_name'),
+                  trigger: 'blur',
+                }"
+              >
                 <el-input
-                  v-model="item.firstName"
+                  v-model="item.lastName"
                   :placeholder="$t('last_name')"
                 ></el-input>
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="9">
-              <el-form-item :label="$t('first_name')" prop="firstName">
+              <el-form-item
+                :label="$t('first_name')"
+                :prop="'dynamicItem.' + index + '.givenName'"
+                :rules="{
+                  required: true,
+                  message: $t('first_name'),
+                  trigger: 'blur',
+                }"
+              >
                 <el-input
-                  v-model="item.lastName"
+                  v-model="item.givenName"
                   :placeholder="$t('first_name')"
                 ></el-input>
               </el-form-item>
             </el-col>
 
             <el-col :sm="24" :md="6">
-              <el-form-item :label="$t('country_code')" prop="areaCode">
+              <el-form-item
+                :label="$t('country_code')"
+                :prop="'dynamicItem.' + index + '.phoneCode'"
+                :rules="{
+                  required: false,
+                  message: $t('country_code'),
+                  trigger: 'blur',
+                }"
+              >
                 <el-select
-                  v-model="item.areaCode"
+                  v-model="item.phoneCode"
                   :placeholder="$t('country_code')"
                 >
                   <el-option
@@ -77,17 +111,34 @@
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="9">
-              <el-form-item :label="$t('phone_number')" prop="phoneNumber">
+              <el-form-item
+                :label="$t('phone_number')"
+                :prop="'dynamicItem.' + index + '.phoneNo'"
+                :rules="{
+                  required: false,
+                  message: $t('phone_number'),
+                  trigger: 'blur',
+                }"
+              >
                 <el-input
-                  v-model="item.phoneNumber"
+                  v-model="item.phoneNo"
                   :placeholder="$t('phone_number')"
                 ></el-input>
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="9">
-              <el-form-item :label="$t('email_address')" prop="emailAddress">
+              <el-form-item
+                :label="$t('email_address')"
+                :prop="'dynamicItem.' + index + '.email'"
+                :rules="{
+                  required: false,
+                  message: $t('email_address'),
+                  trigger: 'blur',
+                  type: 'email',
+                }"
+              >
                 <el-input
-                  v-model="item.emailAddress"
+                  v-model="item.email"
                   :placeholder="$t('email_address')"
                 ></el-input>
               </el-form-item>
@@ -95,19 +146,35 @@
             <el-col :sm="24" :md="12">
               <el-form-item
                 :label="$t('city_of_residence')"
-                prop="cityOfResidence"
+                :prop="'dynamicItem.' + index + '.placeOfResidence'"
+                :rules="{
+                  required: false,
+                  message: $t('city_of_residence'),
+                  trigger: 'blur',
+                }"
               >
-                <el-input
+                <!-- <el-input
                   v-model="item.cityOfResidence"
                   class="email-input"
                   :placeholder="$t('city_of_residence')"
-                ></el-input>
+                ></el-input> -->
+                <el-select
+                  v-model="item.placeOfResidence"
+                  :placeholder="$t('city_of_residence')"
+                >
+                  <el-option
+                    v-for="code in countryCodes"
+                    :key="code.id"
+                    :label="code.name + '(+' + code.isd + ')'"
+                    :value="code.alphaThree"
+                  />
+                </el-select>
               </el-form-item>
             </el-col>
             <el-col :sm="24" :md="12">
               <div class="form-btn">
                 <el-form-item>
-                  <el-button @click="addItem" :icon="Plus">{{
+                  <el-button @click="addItem(item)" :icon="Plus">{{
                     $t("add_service_user")
                   }}</el-button>
                 </el-form-item>
@@ -137,6 +204,7 @@
 
 <script>
 import { Plus } from "@element-plus/icons-vue";
+import { ElNotification } from "element-plus";
 export default {
   props: ["quantity"],
   data() {
@@ -145,13 +213,13 @@ export default {
       otherInformation: "請輸入",
       ruleForm: {
         avatarSelect: "",
-        title: "",
+        salutation: "",
         lastName: "",
-        firstName: "",
-        areaCode: "",
-        phoneNumber: "",
-        emailAddress: "",
-        cityOfResidence: "",
+        givenName: "",
+        phoneCode: "",
+        phoneNo: "",
+        email: "",
+        placeOfResidence: "",
         dynamicItem: [
           // {
           //   avatarSelect: "Chan Tai Man",
@@ -166,7 +234,7 @@ export default {
         ],
       },
       rules: {
-        title: [
+        salutation: [
           {
             required: true,
             message: "This field is required",
@@ -176,32 +244,32 @@ export default {
         lastName: [
           {
             required: true,
-            message: "Lastname is required",
+            message: "Last name is required",
             trigger: "blur",
           },
         ],
-        firstName: [
+        givenName: [
           {
             required: true,
-            message: "Firstname is required",
+            message: "First name is required",
             trigger: "blur",
           },
         ],
-        areaCode: [
+        phoneCode: [
           {
             required: false,
             message: "Area code is required",
-            trigger: "blur",
+            trigger: "change",
           },
         ],
-        phoneNumber: [
+        phoneNo: [
           {
             required: false,
             message: "Phone number is required",
             trigger: "blur",
           },
         ],
-        emailAddress: [
+        email: [
           {
             required: false,
             type: "email",
@@ -209,7 +277,7 @@ export default {
             trigger: "blur",
           },
         ],
-        cityOfResidence: [
+        placeOfResidence: [
           {
             required: false,
             message: "City is required",
@@ -234,50 +302,142 @@ export default {
     },
   },
   methods: {
-    addItem() {
-      this.ruleForm.dynamicItem.push({
-        avatarSelect: "",
-        title: "",
-        lastName: "",
-        firstName: "",
-        areaCode: "",
-        phoneNumber: "",
-        emailAddress: "",
-        cityOfResidence: "",
+    addItem(item) {
+      this.$refs.ruleFormRef.validate((valid) => {
+        if (valid) {
+          const data = {
+            salutation: item.salutation,
+            lastName: item.lastName,
+            givenName: item.givenName,
+            phoneCode: item.phoneCode,
+            phoneNo: item.phoneNo,
+            email: item.email,
+            placeOfResidence: item.placeOfResidence,
+          };
+          console.log(data);
+          this.$store
+            .dispatch("auth/checkAccessToken")
+            .then(() => {
+              this.$store
+                .dispatch("profile/addServiceMember", data)
+                .then(() => {
+                  ElNotification({
+                    title: "Success",
+                    message: this.$t("member_added"),
+                    type: "success",
+                  });
+                  this.$store.dispatch("profile/getServiceUsers");
+                });
+            })
+            .catch(() => {
+              this.$store
+                .dispatch("auth/checkRefreshToken")
+                .then(() => {
+                  this.$store
+                    .dispatch("profile/addServiceMember", data)
+                    .then(() => {
+                      ElNotification({
+                        title: "Success",
+                        message: this.$t("member_added"),
+                        type: "success",
+                      });
+                      this.$store.dispatch("profile/getServiceUsers");
+                    });
+                })
+                .catch((err) => {
+                  ElNotification({
+                    title: "Error",
+                    message: this.$t(err.response.data.message),
+                    type: "error",
+                  });
+                  this.$store.dispatch("auth/logout");
+                });
+            });
+        }
       });
+      // this.ruleForm.dynamicItem.push({
+      //   avatarSelect: "",
+      //   title: "",
+      //   lastName: "",
+      //   firstName: "",
+      //   areaCode: "",
+      //   phoneNumber: "",
+      //   emailAddress: "",
+      //   cityOfResidence: "",
+      // });
+    },
+    changeUser({ item, index }) {
+      const currentUser = this.serviceUsers.find(
+        (user) => user.givenName === item.givenName
+      );
+
+      this.ruleForm.dynamicItem[index].salutation = currentUser.salutation;
+      this.ruleForm.dynamicItem[index].lastName = currentUser.lastName;
+      this.ruleForm.dynamicItem[index].givenName = currentUser.givenName;
+      this.ruleForm.dynamicItem[index].phoneCode = currentUser.phoneCode;
+      this.ruleForm.dynamicItem[index].phoneNo = currentUser.phoneNo;
+      this.ruleForm.dynamicItem[index].placeOfResidence =
+        currentUser.placeOfResidence;
+      this.ruleForm.dynamicItem[index].email = currentUser.email;
     },
   },
   created() {
-    console.log(this.singleItemDetail);
-    console.log(this.orderItem);
-    this.$store.dispatch("profile/getServiceUsers").then(() => {
-      const user = {
-        avatarSelect: this.serviceUsers.givenName,
-        title: this.serviceUsers.salutation,
-        lastName: this.serviceUsers.lastName,
-        firstName: this.serviceUsers.givenName,
-        areaCode: this.serviceUsers.phoneCode,
-        phoneNumber: this.serviceUsers.phoneNo,
-        emailAddress: this.serviceUsers.email,
-        cityOfResidence: this.serviceUsers.placeOfResidence,
-      };
-      this.ruleForm.dynamicItem.push(user);
-    });
-    console.log(this.ruleForm.dynamicItem);
-    this.$store.dispatch("profile/getCountryCode");
-    for (let i = 1; i < this.quantity; i++) {
-      this.ruleForm.dynamicItem.push({
-        avatarSelect: "",
-        title: "",
-        lastName: "",
-        firstName: "",
-        areaCode: "",
-        phoneNumber: "",
-        emailAddress: "",
-        cityOfResidence: "",
+    this.$store
+      .dispatch("auth/checkAccessToken")
+      .then(() => {
+        this.$store.dispatch("profile/getServiceUsers").then(() => {
+          this.serviceUsers.forEach((item) => {
+            console.log(item);
+            this.ruleForm.dynamicItem.push(item);
+          });
+          for (let i = 1; i < this.quantity; i++) {
+            this.ruleForm.dynamicItem.push({
+              avatarSelect: "",
+              salutation: "",
+              lastName: "",
+              givenName: "",
+              phoneCode: "",
+              phoneNo: "",
+              email: "",
+              placeOfResidence: "",
+            });
+          }
+          console.log(this.ruleForm.dynamicItem);
+          console.log(this.serviceUsers);
+        });
+      })
+      .catch(() => {
+        this.$store
+          .dispatch("auth/checkRefreshToken")
+          .then(() => {
+            this.$store.dispatch("profile/getServiceUsers").then(() => {
+              this.serviceUsers.forEach((item) => {
+                this.ruleForm.dynamicItem.push(item);
+              });
+              for (let i = 1; i < this.quantity; i++) {
+                this.ruleForm.dynamicItem.push({
+                  avatarSelect: "",
+                  salutation: "",
+                  lastName: "",
+                  givenName: "",
+                  phoneCode: "",
+                  phoneNo: "",
+                  email: "",
+                  placeOfResidence: "",
+                });
+              }
+            });
+          })
+          .catch((err) => {
+            ElNotification({
+              title: "Error",
+              message: this.$t(err.response.data.message),
+              type: "error",
+            });
+            this.$store.dispatch("auth/logout");
+          });
       });
-    }
-    console.log(this.serviceUsers);
+    this.$store.dispatch("profile/getCountryCode");
   },
 };
 </script>
