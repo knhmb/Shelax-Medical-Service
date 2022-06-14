@@ -197,5 +197,6 @@
   "coupon_code": "優惠碼",
   "enter_coupon_code": "請輸入優惠碼",
   "error.coupon.not-applicable": "無效的優惠券",
-  "use_shelax_points": "使用"
+  "use_shelax_points": "使用",
+  "member_points_used": "已使用{memberPointsUsed} Shelax Points "
 }

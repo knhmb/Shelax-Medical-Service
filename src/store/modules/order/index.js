@@ -9,6 +9,9 @@ export default {
       orderItem: [],
       specifiedDistricts: [],
       couponDetails: [],
+      isPromoApplied: false,
+      memberPoints: "",
+      memberPointsDetails: [],
     };
   },
   getters,

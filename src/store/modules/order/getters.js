@@ -11,4 +11,10 @@ export default {
   isPromoApplied(state) {
     return state.isPromoApplied;
   },
+  memberPoints(state) {
+    return state.memberPoints;
+  },
+  memberPointsDetails(state) {
+    return state.memberPointsDetails;
+  },
 };

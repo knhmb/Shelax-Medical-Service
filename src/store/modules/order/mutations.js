@@ -11,4 +11,13 @@ export default {
     state.couponDetails = payload;
     state.isPromoApplied = true;
   },
+  SET_MEMBER_POINTS(state, payload) {
+    state.memberPoints = payload;
+  },
+  SET_MEMBER_POINTS_DETAILS(state, payload) {
+    state.memberPointsDetails = payload;
+    state.memberPoints = payload.memberPointsBalance;
+    state.couponDetails.newTotalDiscount = payload.newTotalDiscount;
+    state.couponDetails.amountToBePaid = payload.amountToBePaid;
+  },
 };

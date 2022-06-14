@@ -197,5 +197,6 @@
   "coupon_code": "Coupon Code",
   "enter_coupon_code": "Please enter coupon code",
   "error.coupon.not-applicable": "Invalid Coupon!",
-  "use_shelax_points": "Use"
+  "use_shelax_points": "Use",
+  "member_points_used": "{memberPointsUsed} Shelax points used"
 }
