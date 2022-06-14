@@ -21,7 +21,10 @@
       </el-row>
     </div>
     <div class="form-body">
-      <form-content :quantity="item.quantity"></form-content>
+      <form-content
+        @dataChanged="setNewData"
+        :quantity="item.quantity"
+      ></form-content>
     </div>
   </div>
   <!-- <div class="shopping-cart-form">
@@ -88,6 +91,11 @@ export default {
   computed: {
     orderItem() {
       return this.$store.getters["order/orderItem"];
+    },
+  },
+  methods: {
+    setNewData(item) {
+      this.$emit("newData", item);
     },
   },
   created() {

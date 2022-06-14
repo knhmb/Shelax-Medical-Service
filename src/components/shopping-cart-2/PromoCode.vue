@@ -20,7 +20,7 @@
         <p>點擊按鈕後，你的訂單將會自動提交。請在下一頁選擇付款方式</p>
       </el-col>
       <el-col :sm="24" :md="8">
-        <el-button type="primary">付款</el-button>
+        <el-button @click="payment" type="primary">付款</el-button>
       </el-col>
     </el-row>
   </div>
@@ -34,6 +34,7 @@ export default {
   components: {
     ShelaxPoints,
   },
+  props: ["orderData", "singleOrderInformation"],
   data() {
     return {
       couponCode: "",
@@ -42,6 +43,9 @@ export default {
   computed: {
     orderItem() {
       return this.$store.getters["order/orderItem"];
+    },
+    serviceUsers() {
+      return this.$store.getters["profile/serviceUsers"];
     },
   },
   methods: {
@@ -73,6 +77,58 @@ export default {
           });
         });
     },
+    payment() {
+      // console.log(this.orderData);
+      // console.log(this.orderItem);
+      // console.log(this.serviceUsers);
+      console.log(this.singleOrderInformation);
+      const orderItems = [];
+      const orderItemPartcp = [];
+      this.serviceUsers.filter((user) => {
+        orderItemPartcp.push({
+          serviceUserId: user.id,
+          salutation: user.salutation,
+          lastName: user.lastName,
+          givenName: user.givenName,
+          phoneCode: user.phoneCode,
+          phoneNo: user.phoneNo,
+          email: user.email,
+          placeOfResidence: user.placeOfResidence,
+          specialRequest: this.singleOrderInformation.find(
+            (order) => order.id === user.id
+          ).specialRequest,
+        });
+      });
+      this.orderItem.orderingItems.forEach((item) => {
+        orderItems.push({
+          orderItemId: item.orderItemId,
+          orderItemPartcp: orderItemPartcp,
+        });
+      });
+      console.log(orderItems);
+      // const customerInfo = {
+      //   salutation: this.orderData.title,
+      //   lastName: this.orderData.lastName,
+      //   givenName: this.orderData.firstName,
+      //   phoneCode: this.orderData.areaCode,
+      //   phoneNo: this.orderData.phoneNumber,
+      //   placeOfResidence: this.orderData.cityOfResidence,
+      //   region: this.orderData.region,
+      //   district: this.orderData.district,
+      //   address: this.orderData.address,
+      //   isUpdatedProfile: this.orderData.updateProfile,
+      // };
+      // const data = {
+      //   orderId: this.orderItem.orderId,
+      //   customerInfo: customerInfo,
+      //   orderItems:
+      // };
+      // console.log(data);
+    },
+  },
+  created() {
+    console.log(this.orderItem);
+    console.log(this.orderData);
   },
 };
 </script>

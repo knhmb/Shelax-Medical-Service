@@ -11,7 +11,11 @@
       <el-row :gutter="10">
         <el-col :sm="24" :md="6">
           <el-form-item :label="$t('salutation')" prop="title">
-            <el-select v-model="ruleForm.title" :placeholder="$t('Mr')">
+            <el-select
+              @change="changed"
+              v-model="ruleForm.title"
+              :placeholder="$t('Mr')"
+            >
               <el-option label="先生" value="先生">先生</el-option>
               <el-option label="太太" value="太太">太太</el-option>
               <el-option label="小姐" value="小姐">小姐</el-option>
@@ -23,6 +27,7 @@
         <el-col :sm="24" :md="9">
           <el-form-item :label="$t('last_name')" prop="lastName">
             <el-input
+              @input="changed"
               v-model="ruleForm.lastName"
               :placeholder="$t('last_name')"
             ></el-input>
@@ -31,6 +36,7 @@
         <el-col :sm="24" :md="9">
           <el-form-item label="名字" prop="firstName">
             <el-input
+              @input="changed"
               v-model="ruleForm.firstName"
               :placeholder="$t('first_name')"
             ></el-input>
@@ -40,6 +46,7 @@
         <el-col :sm="24" :md="6">
           <el-form-item :label="$t('country_code')" prop="areaCode">
             <el-select
+              @change="changed"
               v-model="ruleForm.areaCode"
               :placeholder="$t('country_code')"
             >
@@ -55,6 +62,7 @@
         <el-col :sm="24" :md="9">
           <el-form-item :label="$t('phone_number')" prop="phoneNumber">
             <el-input
+              @input="changed"
               v-model="ruleForm.phoneNumber"
               :placeholder="$t('phone_number')"
             ></el-input>
@@ -63,6 +71,7 @@
         <el-col :sm="24" :md="9">
           <el-form-item :label="$t('email_address')" prop="emailAddress">
             <el-input
+              @input="changed"
               v-model="ruleForm.emailAddress"
               :placeholder="$t('email_address')"
             ></el-input>
@@ -71,6 +80,7 @@
         <el-col class="place-of-residence-section" :sm="24" :md="24">
           <el-form-item :label="$t('city_of_residence')" prop="cityOfResidence">
             <el-select
+              @changed="changed"
               class="email-input"
               :placeholder="$t('city_of_residence')"
               v-model="ruleForm.cityOfResidence"
@@ -94,7 +104,11 @@
                 :value="region.slug"
               />
             </el-select>
-            <el-select placeholder="請輸入電郵地址" v-model="ruleForm.district">
+            <el-select
+              @change="changed"
+              placeholder="請輸入電郵地址"
+              v-model="ruleForm.district"
+            >
               <el-option
                 v-for="district in specifiedDistricts"
                 :key="district.id"
@@ -103,6 +117,7 @@
               />
             </el-select>
             <el-input
+              @input="changed"
               :placeholder="$t('address')"
               class="address"
               v-model="ruleForm.address"
@@ -111,6 +126,7 @@
         </el-col>
         <el-col :sm="24" :md="24">
           <el-checkbox
+            @change="changed"
             v-model="ruleForm.updateProfile"
             :label="$t('update_user_profile')"
           ></el-checkbox>
@@ -241,6 +257,10 @@ export default {
         .then(() => {
           this.ruleForm.district = "";
         });
+      this.changed();
+    },
+    changed() {
+      this.$emit("orderInformation", this.ruleForm);
     },
   },
   created() {
@@ -276,6 +296,7 @@ export default {
     this.$store.dispatch("search/getRegions").then(() => {
       console.log(this.regions);
     });
+    this.$emit("orderInformation", this.ruleForm);
   },
 };
 </script>

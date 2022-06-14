@@ -45,7 +45,11 @@
                   trigger: 'change',
                 }"
               >
-                <el-select v-model="item.salutation" :placeholder="$t('Mr')">
+                <el-select
+                  @change="changed(item)"
+                  v-model="item.salutation"
+                  :placeholder="$t('Mr')"
+                >
                   <el-option label="先生" value="先生">先生</el-option>
                   <el-option label="太太" value="太太">太太</el-option>
                   <el-option label="小姐" value="小姐">小姐</el-option>
@@ -65,6 +69,7 @@
                 }"
               >
                 <el-input
+                  @input="changed(item)"
                   v-model="item.lastName"
                   :placeholder="$t('last_name')"
                 ></el-input>
@@ -81,6 +86,7 @@
                 }"
               >
                 <el-input
+                  @input="changed(item)"
                   v-model="item.givenName"
                   :placeholder="$t('first_name')"
                 ></el-input>
@@ -98,6 +104,7 @@
                 }"
               >
                 <el-select
+                  @change="changed(item)"
                   v-model="item.phoneCode"
                   :placeholder="$t('country_code')"
                 >
@@ -121,6 +128,7 @@
                 }"
               >
                 <el-input
+                  @input="changed(item)"
                   v-model="item.phoneNo"
                   :placeholder="$t('phone_number')"
                 ></el-input>
@@ -138,6 +146,7 @@
                 }"
               >
                 <el-input
+                  @input="changed(item)"
                   v-model="item.email"
                   :placeholder="$t('email_address')"
                 ></el-input>
@@ -159,6 +168,7 @@
                   :placeholder="$t('city_of_residence')"
                 ></el-input> -->
                 <el-select
+                  @change="changed(item)"
                   v-model="item.placeOfResidence"
                   :placeholder="$t('city_of_residence')"
                 >
@@ -187,8 +197,18 @@
           <p>{{ $t("other_information") }}</p>
           <el-row>
             <el-col>
-              <el-form-item :label="$t('any_requests')">
+              <el-form-item
+                :label="$t('any_requests')"
+                :prop="'dynamicItem.' + index + '.specialRequest'"
+                :rules="{
+                  required: false,
+                  message: 'Special request is required',
+                  trigger: 'blur',
+                }"
+              >
                 <el-input
+                  @input="changed(item)"
+                  v-model="item.specialRequest"
                   rows="3"
                   :placeholder="$t('enter_a request')"
                   type="textarea"
@@ -210,6 +230,7 @@ export default {
   data() {
     return {
       Plus,
+      arr: [],
       otherInformation: "請輸入",
       ruleForm: {
         avatarSelect: "",
@@ -220,6 +241,7 @@ export default {
         phoneNo: "",
         email: "",
         placeOfResidence: "",
+        specialRequest: "",
         dynamicItem: [
           // {
           //   avatarSelect: "Chan Tai Man",
@@ -281,6 +303,13 @@ export default {
           {
             required: false,
             message: "City is required",
+            trigger: "blur",
+          },
+        ],
+        specialRequest: [
+          {
+            required: false,
+            message: "Special request is required",
             trigger: "blur",
           },
         ],
@@ -370,6 +399,7 @@ export default {
       const currentUser = this.serviceUsers.find(
         (user) => user.givenName === item.givenName
       );
+      console.log(currentUser);
 
       this.ruleForm.dynamicItem[index].salutation = currentUser.salutation;
       this.ruleForm.dynamicItem[index].lastName = currentUser.lastName;
@@ -380,6 +410,12 @@ export default {
         currentUser.placeOfResidence;
       this.ruleForm.dynamicItem[index].email = currentUser.email;
     },
+    changed(item) {
+      this.arr = this.arr.filter((a) => a.id !== item.id);
+      this.arr.push(item);
+      console.log(this.arr);
+      this.$emit("dataChanged", this.arr);
+    },
   },
   created() {
     this.$store
@@ -388,8 +424,19 @@ export default {
         this.$store.dispatch("profile/getServiceUsers").then(() => {
           this.serviceUsers.forEach((item) => {
             console.log(item);
-            this.ruleForm.dynamicItem.push(item);
+            console.log(this.ruleForm.dynamicItem);
+            // this.ruleForm.dynamicItem
+            this.ruleForm.dynamicItem.push({
+              ...item,
+              specialRequest: "",
+            });
+            this.arr = this.arr.filter((a) => a.id !== item.id);
+            this.arr.push({ ...item, specialRequest: "" });
+            console.log(this.arr);
+            this.$emit("dataChanged", this.arr);
+            // this.$emit("dataChanged", { ...item, specialRequest: "" });
           });
+
           for (let i = 1; i < this.quantity; i++) {
             this.ruleForm.dynamicItem.push({
               avatarSelect: "",
@@ -400,6 +447,7 @@ export default {
               phoneNo: "",
               email: "",
               placeOfResidence: "",
+              specialRequest: "",
             });
           }
           console.log(this.ruleForm.dynamicItem);
@@ -424,6 +472,7 @@ export default {
                   phoneNo: "",
                   email: "",
                   placeOfResidence: "",
+                  specialRequest: "",
                 });
               }
             });
