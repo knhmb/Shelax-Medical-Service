@@ -7,6 +7,8 @@ export default {
   state() {
     return {
       orderItem: [],
+      specifiedDistricts: [],
+      couponDetails: [],
     };
   },
   getters,

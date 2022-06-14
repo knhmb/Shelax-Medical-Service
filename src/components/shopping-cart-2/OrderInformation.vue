@@ -10,66 +10,110 @@
     >
       <el-row :gutter="10">
         <el-col :sm="24" :md="6">
-          <el-form-item label="稱謂" prop="title">
-            <el-select
-              v-model="ruleForm.title"
-              placeholder="選擇稱謂"
-            ></el-select>
+          <el-form-item :label="$t('salutation')" prop="title">
+            <el-select v-model="ruleForm.title" :placeholder="$t('Mr')">
+              <el-option label="先生" value="先生">先生</el-option>
+              <el-option label="太太" value="太太">太太</el-option>
+              <el-option label="小姐" value="小姐">小姐</el-option>
+              <el-option label="女士" value="女士">女士</el-option>
+            </el-select>
           </el-form-item>
         </el-col>
 
         <el-col :sm="24" :md="9">
-          <el-form-item label="姓氏" prop="firstName">
+          <el-form-item :label="$t('last_name')" prop="lastName">
             <el-input
-              v-model="ruleForm.firstName"
-              placeholder="請輸入姓氏"
+              v-model="ruleForm.lastName"
+              :placeholder="$t('last_name')"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
-          <el-form-item label="名字" prop="lastName">
+          <el-form-item label="名字" prop="firstName">
             <el-input
-              v-model="ruleForm.lastName"
-              placeholder="請輸入名字"
+              v-model="ruleForm.firstName"
+              :placeholder="$t('first_name')"
             ></el-input>
           </el-form-item>
         </el-col>
 
         <el-col :sm="24" :md="6">
-          <el-form-item label="電話區號" prop="areaCode">
+          <el-form-item :label="$t('country_code')" prop="areaCode">
             <el-select
               v-model="ruleForm.areaCode"
-              placeholder="選擇電話區號"
-            ></el-select>
+              :placeholder="$t('country_code')"
+            >
+              <el-option
+                v-for="code in countryCodes"
+                :key="code.id"
+                :label="code.name + '(+' + code.isd + ')'"
+                :value="code.alphaThree"
+              />
+            </el-select>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
-          <el-form-item label="電話號碼" prop="phoneNumber">
+          <el-form-item :label="$t('phone_number')" prop="phoneNumber">
             <el-input
               v-model="ruleForm.phoneNumber"
-              placeholder="請輸入電話號碼"
+              :placeholder="$t('phone_number')"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="9">
-          <el-form-item label="電郵地址" prop="emailAddress">
+          <el-form-item :label="$t('email_address')" prop="emailAddress">
             <el-input
               v-model="ruleForm.emailAddress"
-              placeholder="請輸入電郵地址"
+              :placeholder="$t('email_address')"
             ></el-input>
           </el-form-item>
         </el-col>
-        <el-col :sm="24" :md="12">
-          <el-form-item label="居住國家 / 城市" prop="cityOfResidence">
+        <el-col class="place-of-residence-section" :sm="24" :md="24">
+          <el-form-item :label="$t('city_of_residence')" prop="cityOfResidence">
             <el-select
               class="email-input"
-              placeholder="請輸入電郵地址"
+              :placeholder="$t('city_of_residence')"
               v-model="ruleForm.cityOfResidence"
-            ></el-select>
+            >
+              <el-option
+                v-for="code in countryCodes"
+                :key="code.id"
+                :label="code.name + '(+' + code.isd + ')'"
+                :value="code.alphaThree"
+              />
+            </el-select>
+            <el-select
+              placeholder="請輸入電郵地址"
+              v-model="ruleForm.region"
+              @change="setRegion"
+            >
+              <el-option
+                v-for="region in regions"
+                :key="region.id"
+                :label="region.name"
+                :value="region.slug"
+              />
+            </el-select>
+            <el-select placeholder="請輸入電郵地址" v-model="ruleForm.district">
+              <el-option
+                v-for="district in specifiedDistricts"
+                :key="district.id"
+                :label="district.name"
+                :value="district.slug"
+              />
+            </el-select>
+            <el-input
+              :placeholder="$t('address')"
+              class="address"
+              v-model="ruleForm.address"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :sm="24" :md="24">
-          <el-checkbox checked label="同時更新會員資料"></el-checkbox>
+          <el-checkbox
+            v-model="ruleForm.updateProfile"
+            :label="$t('update_user_profile')"
+          ></el-checkbox>
         </el-col>
       </el-row>
     </el-form>
@@ -82,20 +126,24 @@ export default {
   data() {
     return {
       ruleForm: {
-        title: "Mr.",
-        lastName: "Tai Man",
-        firstName: "Chan",
-        areaCode: "香港(+852)",
-        phoneNumber: "6123 4567",
-        emailAddress: "chantaiman@email.com",
-        cityOfResidence: "香港",
+        title: "",
+        lastName: "",
+        firstName: "",
+        areaCode: "",
+        phoneNumber: "",
+        emailAddress: "",
+        cityOfResidence: "",
+        region: "",
+        district: "",
+        address: "",
+        updateProfile: false,
       },
       rules: {
         title: [
           {
             required: true,
             message: "This field is required",
-            trigger: "blur",
+            trigger: "change",
           },
         ],
         lastName: [
@@ -116,7 +164,7 @@ export default {
           {
             required: false,
             message: "Area code is required",
-            trigger: "blur",
+            trigger: "change",
           },
         ],
         phoneNumber: [
@@ -138,17 +186,77 @@ export default {
           {
             required: false,
             message: "City is required",
+            trigger: "change",
+          },
+        ],
+        region: [
+          {
+            required: false,
+            message: "Region is required",
+            trigger: "change",
+          },
+        ],
+        district: [
+          {
+            required: false,
+            message: "District is required",
+            trigger: "change",
+          },
+        ],
+        address: [
+          {
+            required: false,
+            message: "Address is required",
             trigger: "blur",
+          },
+        ],
+        updateProfile: [
+          {
+            required: false,
+            trigger: "change",
           },
         ],
       },
     };
   },
+  computed: {
+    userDetails() {
+      return this.$store.getters["profile/userDetails"];
+    },
+    countryCodes() {
+      return this.$store.getters["profile/countryCodes"];
+    },
+    regions() {
+      return this.$store.getters["search/regions"];
+    },
+    specifiedDistricts() {
+      return this.$store.getters["order/specifiedDistricts"];
+    },
+  },
+  methods: {
+    setRegion() {
+      console.log(this.ruleForm.region);
+      this.$store
+        .dispatch("order/getSpecifiedDistrict", this.ruleForm.region)
+        .then(() => {
+          this.ruleForm.district = "";
+        });
+    },
+  },
   created() {
     this.$store
       .dispatch("auth/checkAccessToken")
       .then(() => {
-        this.$store.dispatch("profile/getAccount");
+        this.$store.dispatch("profile/getAccount").then(() => {
+          console.log(this.userDetails);
+          this.ruleForm.title = this.userDetails.salutation;
+          this.ruleForm.lastName = this.userDetails.lastName;
+          this.ruleForm.firstName = this.userDetails.givenName;
+          this.ruleForm.areaCode = this.userDetails.phoneCode;
+          this.ruleForm.emailAddress = this.userDetails.email;
+          this.ruleForm.cityOfResidence = this.userDetails.placeOfResidence;
+          this.ruleForm.phoneNumber = this.userDetails.phoneNo;
+        });
       })
       .catch(() => {
         this.$store
@@ -165,6 +273,9 @@ export default {
             this.$store.dispatch("auth/logout");
           });
       });
+    this.$store.dispatch("search/getRegions").then(() => {
+      console.log(this.regions);
+    });
   },
 };
 </script>
@@ -237,5 +348,23 @@ export default {
   .el-checkbox__inner {
   background-color: #7690da;
   border-color: #7690da;
+}
+
+.shopping-cart-step-2
+  .left-section-cart
+  .order-information
+  .el-col.place-of-residence-section
+  .el-select {
+  width: 8rem;
+  display: inline-block;
+}
+
+.shopping-cart-step-2
+  .left-section-cart
+  .order-information
+  .el-col.place-of-residence-section
+  .el-input.address {
+  display: inline-block;
+  width: 16.2rem;
 }
 </style>

@@ -183,13 +183,20 @@
             <p class="key">{{ $t("discount") }}</p>
           </el-col>
           <el-col :span="12">
-            <p class="value discount">-HKD200</p>
+            <p class="value discount">
+              -HKD{{ couponDetails.newTotalDiscount }}
+            </p>
           </el-col>
           <el-col :span="12">
             <p class="key">{{ $t("amount_to_be_paid") }}</p>
           </el-col>
           <el-col :span="12">
-            <p class="value payment-amount">HKD{{ orderItem.totalPrice }}</p>
+            <p v-if="!isPromoApplied" class="value payment-amount">
+              HKD{{ orderItem.totalPrice }}
+            </p>
+            <p v-else class="value payment-amount">
+              HKD{{ couponDetails.amountToBePaid }}
+            </p>
           </el-col>
         </el-row>
       </div>
@@ -218,6 +225,12 @@ export default {
     },
     singleItemDetail() {
       return this.$store.getters["search/singleItemDetail"];
+    },
+    couponDetails() {
+      return this.$store.getters["order/couponDetails"];
+    },
+    isPromoApplied() {
+      return this.$store.getters["order/isPromoApplied"];
     },
   },
   created() {

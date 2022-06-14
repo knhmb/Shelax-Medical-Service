@@ -191,5 +191,11 @@
   "any_requests": "如有任何特別要求, 請在下方輸入",
   "enter_a request": "請輸入",
   "customers_information": "訂購人資料",
-  "change_in_order": "如訂單有任何變動，我們會通知你"
+  "change_in_order": "如訂單有任何變動，我們會通知你",
+  "address": "輸入地址",
+  "update_user_profile": "同時更新會員資料",
+  "coupon_code": "優惠碼",
+  "enter_coupon_code": "請輸入優惠碼",
+  "error.coupon.not-applicable": "無效的優惠券",
+  "use_shelax_points": "使用"
 }

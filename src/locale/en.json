@@ -191,5 +191,11 @@
   "any_requests": "If you have any special request, please enter below",
   "enter_a request": "Enter a request",
   "customers_information": "Customer's Information",
-  "change_in_order": "If there is any change in the order, we will notify you"
+  "change_in_order": "If there is any change in the order, we will notify you",
+  "address": "Enter Address",
+  "update_user_profile": "Update User Profile as well",
+  "coupon_code": "Coupon Code",
+  "enter_coupon_code": "Please enter coupon code",
+  "error.coupon.not-applicable": "Invalid Coupon!",
+  "use_shelax_points": "Use"
 }

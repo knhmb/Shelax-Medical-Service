@@ -1,14 +1,20 @@
 <template>
   <div class="promo-code">
-    <h3>優惠碼</h3>
+    <h3>{{ $t("coupon_code") }}</h3>
     <el-row :gutter="10">
       <el-col :sm="24" :md="7">
-        <el-input placeholder="請輸入優惠碼"></el-input>
+        <el-input
+          v-model="couponCode"
+          :placeholder="$t('enter_coupon_code')"
+        ></el-input>
       </el-col>
       <el-col :sm="24" :md="5">
-        <el-button>添加優惠碼</el-button>
+        <el-button @click="applyCoupon" :disabled="!couponCode"
+          >添加優惠碼</el-button
+        >
       </el-col>
     </el-row>
+    <shelax-points></shelax-points>
     <el-row>
       <el-col :sm="24" :md="16">
         <p>點擊按鈕後，你的訂單將會自動提交。請在下一頁選擇付款方式</p>
@@ -19,6 +25,57 @@
     </el-row>
   </div>
 </template>
+
+<script>
+import { ElNotification } from "element-plus";
+import ShelaxPoints from "../shopping-cart-2/ShelaxPoints.vue";
+
+export default {
+  components: {
+    ShelaxPoints,
+  },
+  data() {
+    return {
+      couponCode: "",
+    };
+  },
+  computed: {
+    orderItem() {
+      return this.$store.getters["order/orderItem"];
+    },
+  },
+  methods: {
+    applyCoupon() {
+      const items = [];
+      this.orderItem.orderingItems.filter((order) => {
+        items.push({
+          id: order.itemId,
+          price: order.price * order.quantity,
+        });
+      });
+      const data = {
+        couponCode: this.couponCode,
+        totalPrice: this.orderItem.totalPrice,
+        currentCouponDiscount: 0,
+        currentTotalDiscount: 0,
+        items: items,
+      };
+      console.log(data);
+      console.log(this.orderItem);
+      this.$store
+        .dispatch("order/applyCoupon", data)
+        .then(() => {})
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+        });
+    },
+  },
+};
+</script>
 
 <style scoped>
 .promo-code {
