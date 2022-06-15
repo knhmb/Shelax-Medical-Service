@@ -5,13 +5,14 @@
     </div>
     <div class="body">
       <p class="body-title">{{ $t("order_information") }}</p>
-      <Form @newData="setNewData" />
+      <Form @newData="setNewData" @specialRequestData="setSpecialRequest" />
       <order-information
         @orderInformation="setOrderInformation"
       ></order-information>
       <promo-code
         :single-order-information="singleOrderInformation"
         :order-data="orderData"
+        :special-request="specialRequest"
       ></promo-code>
     </div>
   </div>
@@ -32,6 +33,7 @@ export default {
     return {
       orderData: "",
       singleOrderInformation: null,
+      specialRequest: "",
     };
   },
   methods: {
@@ -42,6 +44,9 @@ export default {
     setNewData(order) {
       this.singleOrderInformation = order;
       console.log(this.singleOrderInformation);
+    },
+    setSpecialRequest(item) {
+      this.specialRequest = item;
     },
   },
 };

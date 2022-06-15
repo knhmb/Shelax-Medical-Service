@@ -7,10 +7,7 @@
       label-position="top"
     >
       <template v-for="(item, index) in ruleForm.dynamicItem" :key="index">
-        <div
-          class="dynamic-form"
-          v-if="singleItemDetail.itemType === 'service'"
-        >
+        <div class="dynamic-form" v-if="isService.isService">
           <p>{{ $t("information_of_service_user", { index: index + 1 }) }}</p>
           <el-row :gutter="10">
             <el-col>
@@ -192,32 +189,24 @@
             </el-col>
           </el-row>
         </div>
-
-        <div class="other-information">
-          <p>{{ $t("other_information") }}</p>
-          <el-row>
-            <el-col>
-              <el-form-item
-                :label="$t('any_requests')"
-                :prop="'dynamicItem.' + index + '.specialRequest'"
-                :rules="{
-                  required: false,
-                  message: 'Special request is required',
-                  trigger: 'blur',
-                }"
-              >
-                <el-input
-                  @input="changed(item)"
-                  v-model="item.specialRequest"
-                  rows="3"
-                  :placeholder="$t('enter_a request')"
-                  type="textarea"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
       </template>
+
+      <div class="other-information">
+        <p>{{ $t("other_information") }}</p>
+        <el-row>
+          <el-col>
+            <el-form-item :label="$t('any_requests')" prop="specialRequest">
+              <el-input
+                @input="changeRequest"
+                v-model="ruleForm.specialRequest"
+                rows="3"
+                :placeholder="$t('enter_a request')"
+                type="textarea"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </div>
     </el-form>
   </div>
 </template>
@@ -226,7 +215,7 @@
 import { Plus } from "@element-plus/icons-vue";
 import { ElNotification } from "element-plus";
 export default {
-  props: ["quantity"],
+  props: ["quantity", "id"],
   data() {
     return {
       Plus,
@@ -329,6 +318,29 @@ export default {
     countryCodes() {
       return this.$store.getters["profile/countryCodes"];
     },
+    shoppingCartItems() {
+      return this.$store.getters["shoppingCart/shoppingCartItems"];
+    },
+    getOrderData() {
+      return this.allData.filter((o) => {
+        return o.reservedItemId;
+      });
+    },
+    isService() {
+      return this.getOrderData.find((i) => {
+        return i.reservedItemId === this.id;
+      });
+    },
+    allData() {
+      let data = [];
+      this.shoppingCartItems.validServiceItems.find((item) => {
+        data.push(item);
+      });
+      this.shoppingCartItems.validProductItems.find((item) => {
+        data.push(item);
+      });
+      return data;
+    },
   },
   methods: {
     addItem(item) {
@@ -416,6 +428,9 @@ export default {
       console.log(this.arr);
       this.$emit("dataChanged", this.arr);
     },
+    changeRequest() {
+      this.$emit("specialRequestChanged", this.ruleForm.specialRequest);
+    },
   },
   created() {
     this.$store
@@ -423,15 +438,15 @@ export default {
       .then(() => {
         this.$store.dispatch("profile/getServiceUsers").then(() => {
           this.serviceUsers.forEach((item) => {
-            console.log(item);
-            console.log(this.ruleForm.dynamicItem);
+            // console.log(item);
+            // console.log(this.ruleForm.dynamicItem);
             // this.ruleForm.dynamicItem
             this.ruleForm.dynamicItem.push({
               ...item,
-              specialRequest: "",
+              // specialRequest: "",
             });
             this.arr = this.arr.filter((a) => a.id !== item.id);
-            this.arr.push({ ...item, specialRequest: "" });
+            this.arr.push({ ...item });
             console.log(this.arr);
             this.$emit("dataChanged", this.arr);
             // this.$emit("dataChanged", { ...item, specialRequest: "" });
@@ -447,11 +462,11 @@ export default {
               phoneNo: "",
               email: "",
               placeOfResidence: "",
-              specialRequest: "",
+              // specialRequest: "",
             });
           }
-          console.log(this.ruleForm.dynamicItem);
-          console.log(this.serviceUsers);
+          // console.log(this.ruleForm.dynamicItem);
+          // console.log(this.serviceUsers);
         });
       })
       .catch(() => {
@@ -472,7 +487,7 @@ export default {
                   phoneNo: "",
                   email: "",
                   placeOfResidence: "",
-                  specialRequest: "",
+                  // specialRequest: "",
                 });
               }
             });
@@ -487,6 +502,8 @@ export default {
           });
       });
     this.$store.dispatch("profile/getCountryCode");
+    // console.log(this.singleItemDetail);
+    console.log(this.orderItem);
   },
 };
 </script>

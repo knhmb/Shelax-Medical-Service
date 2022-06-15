@@ -36,7 +36,12 @@
         </el-col>
       </el-row>
     </div>
-    <el-card class="box-card" v-for="item in searchItems" :key="item.itemId">
+    <el-card
+      @click="getItemDetail(item.itemId)"
+      class="box-card"
+      v-for="item in searchItems"
+      :key="item.itemId"
+    >
       <search-card
         :id="item.itemId"
         :name="item.itemName"
@@ -51,6 +56,9 @@
         :image="item.thumbnail"
         :search-date="date"
         :search-time="time"
+        :dummy="item"
+        :timeslotId="item.earliestTimeslotId"
+        :item-type="item.searchItemType"
       ></search-card>
     </el-card>
   </div>
@@ -58,6 +66,7 @@
 
 <script>
 import SearchCard from "./SearchCard.vue";
+import moment from "moment";
 
 export default {
   props: ["isActive", "date", "time"],
@@ -205,10 +214,31 @@ export default {
     searchItems() {
       return this.$store.getters["search/searchItems"];
     },
+    dateSearchValue() {
+      return this.$store.getters.date;
+    },
+    timeSearchValue() {
+      return this.$store.getters.time;
+    },
   },
   methods: {
     setOption(option) {
       this.$emit("changedSort", option);
+    },
+    getItemDetail(id) {
+      const data = {
+        itemId: id,
+        bookingDate: this.dateSearchValue
+          ? moment(this.dateSearchValue).format("YYYYMMDD")
+          : moment(new Date()).format("YYYYMMDD"),
+        bookingTime: this.timeSearchValue
+          ? this.timeSearchValue.replace(":", "")
+          : "-",
+      };
+      console.log(data);
+      this.$store.dispatch("search/getItemDetail", data).then(() => {
+        this.$router.push("/service");
+      });
     },
   },
 };
@@ -221,6 +251,7 @@ export default {
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .content .right-section .options {

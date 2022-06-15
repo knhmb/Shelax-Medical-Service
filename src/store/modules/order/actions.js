@@ -65,4 +65,14 @@ export default {
     console.log(response);
     context.commit("SET_MEMBER_POINTS_DETAILS", response.data.item);
   },
+  async confirmOrder(_, payload) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.post("/api/order/confirm-order", payload, {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+  },
 };

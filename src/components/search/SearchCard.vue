@@ -30,16 +30,18 @@
     </el-col>
     <el-col class="pricing" :sm="24" :lg="6">
       <div>
-        <p>HKD{{ discountPrice }}</p>
-        <h6>HKD{{ price }}</h6>
+        <p>HKD{{ price }}</p>
+        <h6>HKD{{ discountPrice }}</h6>
       </div>
-      <el-button @click="getItemDetail">{{ $t("book_button") }}</el-button>
+      <el-button @click.stop="bookNow">{{ $t("book_button") }}</el-button>
+      <!-- <el-button @click.stop="getItemDetail">{{ $t("book_button") }}</el-button> -->
     </el-col>
   </el-row>
 </template>
 
 <script>
 import moment from "moment";
+import { ElNotification } from "element-plus";
 
 export default {
   props: [
@@ -56,6 +58,9 @@ export default {
     "id",
     "searchDate",
     "searchTime",
+    "dummy",
+    "timeslotId",
+    "itemType",
   ],
   data() {
     return {
@@ -71,22 +76,98 @@ export default {
     timeSearchValue() {
       return this.$store.getters.time;
     },
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
   },
   methods: {
-    getItemDetail() {
-      const data = {
-        itemId: this.id,
-        bookingDate: this.dateSearchValue
-          ? moment(this.dateSearchValue).format("YYYYMMDD")
-          : moment(new Date()).format("YYYYMMDD"),
-        bookingTime: this.timeSearchValue
-          ? this.timeSearchValue.replace(":", "")
-          : "-",
-      };
-      console.log(data);
-      this.$store.dispatch("search/getItemDetail", data).then(() => {
-        this.$router.push("/service");
-      });
+    // getItemDetail() {
+    //   const data = {
+    //     itemId: this.id,
+    //     bookingDate: this.dateSearchValue
+    //       ? moment(this.dateSearchValue).format("YYYYMMDD")
+    //       : moment(new Date()).format("YYYYMMDD"),
+    //     bookingTime: this.timeSearchValue
+    //       ? this.timeSearchValue.replace(":", "")
+    //       : "-",
+    //   };
+    //   console.log(data);
+    //   this.$store.dispatch("search/getItemDetail", data).then(() => {
+    //     this.$router.push("/service");
+    //   });
+    // },
+    bookNow() {
+      let data = {};
+      if (this.itemType === "service") {
+        data = {
+          itemId: this.id,
+          itemName: this.name,
+          isService: this.itemType === "service" ? true : false,
+          isProduct: this.itemType === "product" ? true : false,
+          bookingDate: moment(this.date).format("YYYYMMDD"),
+          bookingTime: this.time.substr(0, this.time.lastIndexOf(":")),
+          timeslotId: this.timeslotId,
+          quantity: 1,
+          price: this.discountPrice + ".00",
+        };
+        console.log(data);
+      } else if (this.itemType === "product") {
+        data = {
+          itemId: this.id,
+          itemName: this.name,
+          isService: this.itemType === "service" ? true : false,
+          isProduct: this.itemType === "product" ? true : false,
+          quantity: 1,
+          price: this.discountPrice + ".00",
+        };
+      }
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store
+            .dispatch("order/createOrder", {
+              orderingItems: [data],
+            })
+            .then(() => {
+              this.$router.push("/shopping-cart-step-2");
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+            });
+        })
+        .catch(() => {
+          this.$store
+            .dispatch("auth/checkRefreshToken")
+            .then(() => {
+              this.$store
+                .dispatch("order/createOrder", {
+                  orderingItems: [data],
+                })
+                .then(() => {
+                  this.$router.push("/shopping-cart-step-2");
+                })
+                .catch((err) => {
+                  ElNotification({
+                    title: "Error",
+                    message: this.$t(err.response.data.message),
+                    type: "error",
+                  });
+                });
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+              // this.$router.replace("/");
+              this.$store.dispatch("auth/logout");
+            });
+        });
     },
   },
 };

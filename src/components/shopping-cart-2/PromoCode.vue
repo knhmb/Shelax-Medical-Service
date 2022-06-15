@@ -14,7 +14,7 @@
         >
       </el-col>
     </el-row>
-    <shelax-points></shelax-points>
+    <shelax-points @memberPointsApplied="memberPointsApplied"></shelax-points>
     <el-row>
       <el-col :sm="24" :md="16">
         <p>點擊按鈕後，你的訂單將會自動提交。請在下一頁選擇付款方式</p>
@@ -34,10 +34,12 @@ export default {
   components: {
     ShelaxPoints,
   },
-  props: ["orderData", "singleOrderInformation"],
+  props: ["orderData", "singleOrderInformation", "specialRequest"],
   data() {
     return {
       couponCode: "",
+      isCouponApplied: false,
+      isMemberPointsApplied: false,
     };
   },
   computed: {
@@ -46,6 +48,15 @@ export default {
     },
     serviceUsers() {
       return this.$store.getters["profile/serviceUsers"];
+    },
+    couponDetails() {
+      return this.$store.getters["order/couponDetails"];
+    },
+    memberPointsDetails() {
+      return this.$store.getters["order/memberPointsDetails"];
+    },
+    shoppingCartItems() {
+      return this.$store.getters["shoppingCart/shoppingCartItems"];
     },
   },
   methods: {
@@ -68,7 +79,9 @@ export default {
       console.log(this.orderItem);
       this.$store
         .dispatch("order/applyCoupon", data)
-        .then(() => {})
+        .then(() => {
+          this.isCouponApplied = true;
+        })
         .catch((err) => {
           ElNotification({
             title: "Error",
@@ -77,12 +90,12 @@ export default {
           });
         });
     },
+    memberPointsApplied(value) {
+      this.isMemberPointsApplied = value;
+    },
     payment() {
-      // console.log(this.orderData);
-      // console.log(this.orderItem);
-      // console.log(this.serviceUsers);
-      console.log(this.singleOrderInformation);
-      const orderItems = [];
+      console.log(this.shoppingCartItems);
+      let orderItems = [];
       const orderItemPartcp = [];
       this.serviceUsers.filter((user) => {
         orderItemPartcp.push({
@@ -94,36 +107,113 @@ export default {
           phoneNo: user.phoneNo,
           email: user.email,
           placeOfResidence: user.placeOfResidence,
-          specialRequest: this.singleOrderInformation.find(
-            (order) => order.id === user.id
-          ).specialRequest,
+          // specialRequest: this.singleOrderInformation.find(
+          //   (order) => order.id === user.id
+          // ).specialRequest,
         });
       });
+      console.log(this.orderData);
       this.orderItem.orderingItems.forEach((item) => {
+        console.log(item);
+        // orderItems.filter((order) => order.orderItemId !== item.orderItemId);
+
         orderItems.push({
           orderItemId: item.orderItemId,
           orderItemPartcp: orderItemPartcp,
+          specialRequest: this.specialRequest,
+          shoppingCartItemId: item.shoppingCartItemId
+            ? item.shoppingCartItemId
+            : null,
         });
       });
       console.log(orderItems);
-      // const customerInfo = {
-      //   salutation: this.orderData.title,
-      //   lastName: this.orderData.lastName,
-      //   givenName: this.orderData.firstName,
-      //   phoneCode: this.orderData.areaCode,
-      //   phoneNo: this.orderData.phoneNumber,
-      //   placeOfResidence: this.orderData.cityOfResidence,
-      //   region: this.orderData.region,
-      //   district: this.orderData.district,
-      //   address: this.orderData.address,
-      //   isUpdatedProfile: this.orderData.updateProfile,
-      // };
-      // const data = {
-      //   orderId: this.orderItem.orderId,
-      //   customerInfo: customerInfo,
-      //   orderItems:
-      // };
-      // console.log(data);
+      const customerInfo = {
+        salutation: this.orderData.title,
+        lastName: this.orderData.lastName,
+        givenName: this.orderData.firstName,
+        phoneCode: this.orderData.areaCode,
+        phoneNo: this.orderData.phoneNumber,
+        placeOfResidence: this.orderData.cityOfResidence,
+        region: this.orderData.region,
+        district: this.orderData.district,
+        address: this.orderData.address,
+        isUpdatedProfile: this.orderData.updateProfile,
+      };
+      const finalPrice = this.isMemberPointsApplied
+        ? this.couponDetails.amountToBePaid
+        : this.isCouponApplied
+        ? this.couponDetails.amountToBePaid
+        : this.orderItem.totalPrice;
+      const data = {
+        orderId: this.orderItem.orderId,
+        customerInfo: customerInfo,
+        orderItems: orderItems,
+        couponId: this.isCouponApplied ? this.couponDetails.couponId : null,
+        totalPrice: this.orderItem.totalPrice,
+        discount: this.isMemberPointsApplied
+          ? this.couponDetails.newTotalDiscount
+          : this.isCouponApplied
+          ? this.couponDetails.newTotalDiscount
+          : 0,
+        finalPrice: finalPrice === null ? 0 : finalPrice,
+        memberPointsRewarded: this.orderItem.totalPointsRewarded,
+        memberPointsUsed: this.isMemberPointsApplied
+          ? this.memberPointsDetails.memberPointsUsed
+          : null,
+        memberPointsToPriceAmount: this.isMemberPointsApplied
+          ? this.memberPointsDetails.memberPointsToPriceAmount
+          : null,
+        paymentMethod: [
+          {
+            transactionRefNo: "sddhfdkfdfklr8t9853495749534",
+            paymentMethod: "pymtmethod-visa",
+            amount: finalPrice === null ? 0 : finalPrice,
+          },
+        ],
+      };
+      Object.keys(data).forEach((key) => {
+        if (data[key] === null) {
+          delete data[key];
+        }
+      });
+      console.log(data);
+      // this.$store
+      //   .dispatch("auth/checkAccessToken")
+      //   .then(() => {
+      //     this.$store.dispatch("order/confirmOrder", data).then(() => {
+      //       ElNotification({
+      //         title: "Success",
+      //         message: "Order Confirmed",
+      //         type: "success",
+      //       });
+      //       this.$store.commit("order/DISABLE_PROMO", false);
+      //       this.$router.replace("/");
+      //     });
+      //   })
+      //   .catch(() => {
+      //     this.$store
+      //       .dispatch("checkRefreshToken")
+      //       .then(() => {
+      //         this.$store.dispatch("order/confirmOrder", data).then(() => {
+      //           ElNotification({
+      //             title: "Success",
+      //             message: "Order Confirmed",
+      //             type: "success",
+      //           });
+      //           this.$store.commit("order/DISABLE_PROMO", false);
+
+      //           this.$router.replace("/");
+      //         });
+      //       })
+      //       .catch((err) => {
+      //         ElNotification({
+      //           title: "Error",
+      //           message: err.response.data.message,
+      //           type: "error",
+      //         });
+      //         this.$store.dispatch("auth/logout");
+      //       });
+      //   });
     },
   },
   created() {

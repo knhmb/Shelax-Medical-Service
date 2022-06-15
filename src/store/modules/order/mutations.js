@@ -19,5 +19,9 @@ export default {
     state.memberPoints = payload.memberPointsBalance;
     state.couponDetails.newTotalDiscount = payload.newTotalDiscount;
     state.couponDetails.amountToBePaid = payload.amountToBePaid;
+    state.isPromoApplied = true;
+  },
+  DISABLE_PROMO(state, payload) {
+    state.isPromoApplied = payload;
   },
 };

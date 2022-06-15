@@ -1,10 +1,10 @@
 <template>
   <div class="right-section">
-    <h2 v-if="singleItemDetail.itemType === 'service'">
+    <h2>
       {{ $t("service_type") }}
     </h2>
     <template v-for="item in orderItem.orderingItems" :key="item.itemId">
-      <div class="card" v-if="singleItemDetail.itemType === 'service'">
+      <div class="card">
         <div class="header">
           <h3>{{ item.itemName }}</h3>
           <p>{{ item.providerName }}</p>
@@ -97,11 +97,11 @@
       </div>
     </div> -->
 
-    <h2 v-if="singleItemDetail.itemType === 'product'">
+    <h2>
       {{ $t("product_type") }}
     </h2>
     <template v-for="item in orderItem.orderingItems" :key="item.itemId">
-      <div class="card" v-if="singleItemDetail.itemType === 'product'">
+      <div class="card">
         <div class="header">
           <h3>{{ item.itemName }}</h3>
           <p>{{ item.providerName }}</p>
@@ -184,7 +184,7 @@
           </el-col>
           <el-col :span="12">
             <p class="value discount">
-              -HKD{{ couponDetails.newTotalDiscount }}
+              -HKD{{ isPromoApplied ? couponDetails.newTotalDiscount : 0 }}
             </p>
           </el-col>
           <el-col :span="12">

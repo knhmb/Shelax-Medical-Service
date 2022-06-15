@@ -64,7 +64,10 @@
           <span class="edit">{{ $t("update_reservation_date") }}</span>
         </div>
 
-        <div class="delete-section">
+        <div
+          @click="deleteSingleProduct(item.shoppingCartItemId)"
+          class="delete-section"
+        >
           <Delete />
           <span>刪除</span>
         </div>

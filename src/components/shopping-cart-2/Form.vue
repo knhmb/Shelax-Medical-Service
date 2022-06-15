@@ -5,6 +5,11 @@
     :key="item.itemId"
   >
     <div class="form-header">
+      <!-- {{
+        isService.find((i) => {
+          return i.reservedItemId === item.itemId;
+        })
+      }} -->
       <el-row :gutter="12">
         <el-col :sm="24" :md="3">
           <img :src="item.thumbnail" alt="" />
@@ -23,7 +28,9 @@
     <div class="form-body">
       <form-content
         @dataChanged="setNewData"
+        @specialRequestChanged="specialRequestChanged"
         :quantity="item.quantity"
+        :id="item.itemId"
       ></form-content>
     </div>
   </div>
@@ -92,10 +99,46 @@ export default {
     orderItem() {
       return this.$store.getters["order/orderItem"];
     },
+    shoppingCartItems() {
+      return this.$store.getters["shoppingCart/shoppingCartItems"];
+    },
+    allData() {
+      let data = [];
+      this.shoppingCartItems.validServiceItems.find((item) => {
+        data.push(item);
+      });
+      this.shoppingCartItems.validProductItems.find((item) => {
+        data.push(item);
+      });
+      return data;
+    },
+    isService() {
+      return this.allData.filter((o) => {
+        return o.reservedItemId;
+      });
+      // let data = "";
+      // data = this.allData.find((item) => {
+      //   return item.isProduct;
+      // });
+      // return data;
+    },
+    order() {
+      return this.orderItem.orderingItems.filter((item) => {
+        return item;
+      });
+      // let data = "1";
+      // data = this.orderItem.orderingItems.find((item) => {
+      //   return item;
+      // });
+      // return data;
+    },
   },
   methods: {
     setNewData(item) {
       this.$emit("newData", item);
+    },
+    specialRequestChanged(specialRequest) {
+      this.$emit("specialRequestData", specialRequest);
     },
   },
   created() {

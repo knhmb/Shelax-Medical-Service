@@ -1,5 +1,5 @@
 <template>
-  <section v-if="memberPoints <= 100" class="apply-shelax-points">
+  <section v-if="memberPoints >= 100" class="apply-shelax-points">
     <h3>{{ $t("use_shelax_points") }} Shelax Points</h3>
     <div class="shelax-points-section">
       <div class="content">
@@ -49,6 +49,7 @@ export default {
   },
   methods: {
     applyMemberPoints() {
+      this.$emit("memberPointsApplied", this.isChecked);
       if (this.isChecked) {
         const data = {
           totalPrice: this.orderItem.totalPrice,

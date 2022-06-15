@@ -3,7 +3,7 @@
     <div class="top">
       <p>合計:</p>
       <p class="price">HKD {{ shoppingCartItems.totalPrice }}</p>
-      <el-button>{{ $t("check_out_button") }}</el-button>
+      <el-button @click="checkOut">{{ $t("check_out_button") }}</el-button>
     </div>
     <div class="bottom">
       <img src="../../assets/icon-bonuspoint@2x.png" alt="" />
@@ -16,10 +16,96 @@
 </template>
 
 <script>
+import moment from "moment";
+import { ElNotification } from "element-plus";
+
 export default {
   computed: {
     shoppingCartItems() {
       return this.$store.getters["shoppingCart/shoppingCartItems"];
+    },
+  },
+  methods: {
+    checkOut() {
+      const arr = [];
+      console.log(this.shoppingCartItems);
+      this.shoppingCartItems.validServiceItems.forEach((item) => {
+        if (item.selected) {
+          arr.push({
+            shoppingCartItemId: item.shoppingCartItemId,
+            itemId: item.reservedItemId,
+            itemName: item.itemName,
+            isService: item.isService,
+            isProduct: item.isProduct,
+            quantity: item.quantity,
+            price: item.price,
+            bookingDate: moment(item.reservedDate).format("YYYYMMDD"),
+            bookingTime: item.reservedTime,
+            timeslotId: item.timeslotId,
+          });
+        }
+      });
+      this.shoppingCartItems.validProductItems.forEach((item) => {
+        if (item.selected) {
+          arr.push({
+            shoppingCartItemId: item.shoppingCartItemId,
+            itemId: item.reservedItemId,
+            itemName: item.itemName,
+            isService: item.isService,
+            isProduct: item.isProduct,
+            quantity: item.quantity,
+            price: item.price,
+          });
+        }
+      });
+      console.log(arr);
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store
+            .dispatch("order/createOrder", {
+              orderingItems: arr,
+            })
+            .then(() => {
+              this.$router.push("/shopping-cart-step-2");
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+            });
+        })
+        .catch(() => {
+          this.$store
+            .dispatch("auth/checkRefreshToken")
+            .then(() => {
+              this.$store
+                .dispatch("order/createOrder", {
+                  orderingItems: arr,
+                })
+                .then(() => {
+                  this.$router.push("/shopping-cart-step-2");
+                })
+                .catch((err) => {
+                  ElNotification({
+                    title: "Error",
+                    message: this.$t(err.response.data.message),
+                    type: "error",
+                  });
+                });
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+              // this.$router.replace("/");
+              this.$store.dispatch("auth/logout");
+            });
+        });
     },
   },
 };
