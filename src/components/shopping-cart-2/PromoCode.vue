@@ -116,15 +116,20 @@ export default {
       this.orderItem.orderingItems.forEach((item) => {
         console.log(item);
         // orderItems.filter((order) => order.orderItemId !== item.orderItemId);
-
-        orderItems.push({
-          orderItemId: item.orderItemId,
-          orderItemPartcp: orderItemPartcp,
-          specialRequest: this.specialRequest,
-          shoppingCartItemId: item.shoppingCartItemId
-            ? item.shoppingCartItemId
-            : null,
-        });
+        if (item.shoppingCartItemId) {
+          orderItems.push({
+            orderItemId: item.orderItemId,
+            orderItemPartcp: orderItemPartcp,
+            specialRequest: this.specialRequest,
+            shoppingCartItemId: item.shoppingCartItemId,
+          });
+        } else {
+          orderItems.push({
+            orderItemId: item.orderItemId,
+            orderItemPartcp: orderItemPartcp,
+            specialRequest: this.specialRequest,
+          });
+        }
       });
       console.log(orderItems);
       const customerInfo = {
@@ -176,44 +181,45 @@ export default {
           delete data[key];
         }
       });
-      console.log(data);
-      // this.$store
-      //   .dispatch("auth/checkAccessToken")
-      //   .then(() => {
-      //     this.$store.dispatch("order/confirmOrder", data).then(() => {
-      //       ElNotification({
-      //         title: "Success",
-      //         message: "Order Confirmed",
-      //         type: "success",
-      //       });
-      //       this.$store.commit("order/DISABLE_PROMO", false);
-      //       this.$router.replace("/");
-      //     });
-      //   })
-      //   .catch(() => {
-      //     this.$store
-      //       .dispatch("checkRefreshToken")
-      //       .then(() => {
-      //         this.$store.dispatch("order/confirmOrder", data).then(() => {
-      //           ElNotification({
-      //             title: "Success",
-      //             message: "Order Confirmed",
-      //             type: "success",
-      //           });
-      //           this.$store.commit("order/DISABLE_PROMO", false);
 
-      //           this.$router.replace("/");
-      //         });
-      //       })
-      //       .catch((err) => {
-      //         ElNotification({
-      //           title: "Error",
-      //           message: err.response.data.message,
-      //           type: "error",
-      //         });
-      //         this.$store.dispatch("auth/logout");
-      //       });
-      //   });
+      console.log(data);
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store.dispatch("order/confirmOrder", data).then(() => {
+            ElNotification({
+              title: "Success",
+              message: "Order Confirmed",
+              type: "success",
+            });
+            this.$store.commit("order/DISABLE_PROMO", false);
+            this.$router.replace("/");
+          });
+        })
+        .catch(() => {
+          this.$store
+            .dispatch("checkRefreshToken")
+            .then(() => {
+              this.$store.dispatch("order/confirmOrder", data).then(() => {
+                ElNotification({
+                  title: "Success",
+                  message: "Order Confirmed",
+                  type: "success",
+                });
+                this.$store.commit("order/DISABLE_PROMO", false);
+
+                this.$router.replace("/");
+              });
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: err.response.data.message,
+                type: "error",
+              });
+              this.$store.dispatch("auth/logout");
+            });
+        });
     },
   },
   created() {
