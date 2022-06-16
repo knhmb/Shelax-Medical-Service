@@ -1,7 +1,7 @@
 <template>
-  <section class="wishlist-first-tab">
+  <section class="wishlist-second-tab">
     <template v-for="item in wishlists" :key="item.wishlistId">
-      <div class="box" v-if="item.isService">
+      <div class="box" v-if="item.isProduct">
         <el-row>
           <el-col :sm="24" :md="7">
             <img :src="item.thumbnail" alt="" />
@@ -103,35 +103,35 @@ export default {
 </script>
 
 <style>
-.wishlist-first-tab .box {
+.wishlist-second-tab .box {
   background: #ffffff;
   border: 0.8px solid #e0e0e0;
   border-radius: 8px;
   margin-bottom: 1rem;
 }
 
-.wishlist-first-tab .box img {
+.wishlist-second-tab .box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.wishlist-first-tab .box .close {
+.wishlist-second-tab .box .close {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.wishlist-first-tab .box .close img.close-icon {
+.wishlist-second-tab .box .close img.close-icon {
   width: 1.5rem;
   cursor: pointer;
 }
 
-.wishlist-first-tab .box .el-col:nth-of-type(2) {
+.wishlist-second-tab .box .el-col:nth-of-type(2) {
   padding: 16px 12px;
 }
 
-.wishlist-first-tab .box h4 {
+.wishlist-second-tab .box h4 {
   font-family: "Noto Sans HK";
   font-style: normal;
   font-weight: 500;
@@ -140,7 +140,7 @@ export default {
   color: #262626;
 }
 
-.wishlist-first-tab .box p {
+.wishlist-second-tab .box p {
   font-family: "Noto Sans HK";
   font-style: normal;
   font-weight: 400;
@@ -151,15 +151,15 @@ export default {
   margin-top: 0.5rem;
 }
 
-.wishlist-first-tab .box .el-rate {
+.wishlist-second-tab .box .el-rate {
   margin-top: 0.5rem;
 }
 
-.wishlist-first-tab .box .el-rate .el-rate__item .el-rate__icon {
+.wishlist-second-tab .box .el-rate .el-rate__item .el-rate__icon {
   margin-right: 0;
 }
 
-.wishlist-first-tab .box .el-rate .el-rate__text {
+.wishlist-second-tab .box .el-rate .el-rate__text {
   font-family: "Noto Sans HK";
   font-style: normal;
   font-weight: 400;
@@ -169,7 +169,7 @@ export default {
   color: #8d8d8d !important;
 }
 
-.wishlist-first-tab .box p.date-time {
+.wishlist-second-tab .box p.date-time {
   font-family: "Noto Sans HK";
   font-style: normal;
   font-weight: 400;
@@ -181,7 +181,7 @@ export default {
   margin-bottom: 0.5rem;
 }
 
-.wishlist-first-tab .box .date-content {
+.wishlist-second-tab .box .date-content {
   background: #ffffff;
   border: 0.8px solid #e0e0e0;
   border-radius: 4px;
@@ -191,7 +191,7 @@ export default {
   justify-content: space-between;
 }
 
-.wishlist-first-tab .box .date-content span {
+.wishlist-second-tab .box .date-content span {
   font-family: "Noto Sans HK";
   font-style: normal;
   font-weight: 700;
@@ -201,7 +201,7 @@ export default {
   color: #525252;
 }
 
-.wishlist-first-tab .box .original-price {
+.wishlist-second-tab .box .original-price {
   font-family: "Noto Sans HK";
   font-style: normal;
   font-weight: 400;
@@ -212,7 +212,7 @@ export default {
   color: #8d8d8d;
 }
 
-.wishlist-first-tab .box .discount-price {
+.wishlist-second-tab .box .discount-price {
   font-family: "Noto Sans HK";
   font-style: normal;
   font-weight: 500;
@@ -222,7 +222,7 @@ export default {
   margin-left: 0.5rem;
 }
 
-.wishlist-first-tab .box .all-prices {
+.wishlist-second-tab .box .all-prices {
   text-align: end;
 }
 </style>

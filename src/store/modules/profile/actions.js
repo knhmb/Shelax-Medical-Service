@@ -82,4 +82,40 @@ export default {
     });
     console.log(response);
   },
+  async getWishlist(context) {
+    const userToken = localStorage.getItem("accessToken");
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/wishlist", {
+      headers: {
+        authorization: userToken,
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_WISHLISTS", response.data.items);
+  },
+  async addWishlist(context, payload) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.post("/api/wishlist", payload, {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+    context.commit("UPDATE_BOOKMARK", true);
+  },
+  async removeWishlist(context, payload) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.delete("/api/wishlist", {
+      data: payload,
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+    context.commit("UPDATE_BOOKMARK", false);
+  },
 };

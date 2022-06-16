@@ -139,7 +139,7 @@
   "password_changed_successfully": "The password has been changed successfully!",
   "error_occurred": "An error occurred. Please try again later!",
   "add_to_wishlist": "Add To Wishlist",
-  "bookmarked": "Bookmarked",
+  "bookmarked": "Remove from Wishlist",
   "singleItemDetail.basicInfo.validPeriod": "Service Period: {validPeriod} hrs",
   "free_cancel": "Free Cancel",
   "qr_code_redemption": "E-voucher",

@@ -9,6 +9,7 @@ export default {
       userDetails: [],
       countryCodes: [],
       serviceUsers: [],
+      wishlists: [],
     };
   },
   getters,

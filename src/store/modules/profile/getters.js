@@ -8,4 +8,7 @@ export default {
   serviceUsers(state) {
     return state.serviceUsers;
   },
+  wishlists(state) {
+    return state.wishlists;
+  },
 };

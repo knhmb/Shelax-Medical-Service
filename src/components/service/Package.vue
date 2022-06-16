@@ -58,34 +58,12 @@
         {{ singleItemDetail.basicInfo.providerInformation }}
       </p>
     </el-col>
-    <!-- <el-col>
-      <p>
-        服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
-      </p>
-    </el-col> -->
-    <!-- <el-col>
-      <ul>
-        <li>
-          服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
-        </li>
-        <li>
-          服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
-        </li>
-        <li>
-          服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
-        </li>
-        <li>
-          服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
-        </li>
-        <li>
-          服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容服務內容
-        </li>
-      </ul>
-    </el-col> -->
   </el-row>
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
+
 export default {
   data() {
     return {
@@ -115,16 +93,69 @@ export default {
     imgSelected() {
       if (this.wishIcon === require("../../assets/icon-wish-on@2x.png")) {
         this.wishIcon = require("../../assets/icon-wish-off@2x.png");
+        this.$store
+          .dispatch("auth/checkAccessToken")
+          .then(() => {
+            this.$store.dispatch("profile/removeWishlist", {
+              itemId: this.singleItemDetail.basicInfo.id,
+            });
+          })
+          .catch(() => {
+            this.$store
+              .dispatch("auth/checkRefreshToken")
+              .then(() => {
+                this.$store.dispatch("profile/removeWishlist", {
+                  itemId: this.singleItemDetail.basicInfo.id,
+                });
+              })
+              .catch((err) => {
+                ElNotification({
+                  title: "Error",
+                  message: this.$t(err.response.data.message),
+                  type: "error",
+                });
+                this.$store.dispatch("auth/logout");
+              });
+          });
       } else if (
         this.wishIcon === require("../../assets/icon-wish-off@2x.png") ||
         this.wishIcon === require("../../assets/icon-wish-hover@2x.png")
       ) {
         this.wishIcon = require("../../assets/icon-wish-on@2x.png");
+        this.$store
+          .dispatch("auth/checkAccessToken")
+          .then(() => {
+            this.$store.dispatch("profile/addWishlist", {
+              itemId: this.singleItemDetail.basicInfo.id,
+            });
+          })
+          .catch(() => {
+            this.$store
+              .dispatch("auth/checkRefreshToken")
+              .then(() => {
+                this.$store.dispatch("profile/addWishlist", {
+                  itemId: this.singleItemDetail.basicInfo.id,
+                });
+              })
+              .catch((err) => {
+                ElNotification({
+                  title: "Error",
+                  message: this.$t(err.response.data.message),
+                  type: "error",
+                });
+                this.$store.dispatch("auth/logout");
+              });
+          });
       }
     },
   },
   created() {
     console.log(this.singleItemDetail);
+    if (this.singleItemDetail.bookmarked) {
+      this.wishIcon = require("../../assets/icon-wish-on@2x.png");
+    } else {
+      this.wishIcon = require("../../assets/icon-wish-off@2x.png");
+    }
   },
 };
 </script>

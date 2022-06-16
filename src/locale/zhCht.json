@@ -139,7 +139,7 @@
   "password_changed_successfully": "密碼已成功更改",
   "error_occurred": "發生錯誤。請稍後再試",
   "add_to_wishlist": "加入願望清單",
-  "bookmarked": "加入願望清單",
+  "bookmarked": "從願望清單移除",
   "singleItemDetail.basicInfo.validPeriod": "服務時間{validPeriod}小時",
   "free_cancel": "免費取消",
   "qr_code_redemption": "現場請出示電子憑證",

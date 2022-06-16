@@ -7,7 +7,7 @@
           <first-tab></first-tab>
         </el-tab-pane>
         <el-tab-pane label="產品類" name="second">
-          <p>Second Tab</p>
+          <second-tab></second-tab>
         </el-tab-pane>
       </el-tabs>
     </base-member-card>
@@ -15,16 +15,41 @@
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
 import FirstTab from "../components/wishlist/FirstTab.vue";
+import SecondTab from "../components/wishlist/SecondTab.vue";
 
 export default {
   components: {
     FirstTab,
+    SecondTab,
   },
   data() {
     return {
       activeName: "first",
     };
+  },
+  created() {
+    this.$store
+      .dispatch("auth/checkAccessToken")
+      .then(() => {
+        this.$store.dispatch("profile/getWishlist");
+      })
+      .catch(() => {
+        this.$store
+          .dispatch("auth/checkRefreshToken")
+          .then(() => {
+            this.$store.dispatch("profile/getWishlist");
+          })
+          .catch((err) => {
+            ElNotification({
+              title: "Error",
+              message: this.$t(err.response.data.message),
+              type: "error",
+            });
+            this.$store.dispatch("auth/logout");
+          });
+      });
   },
 };
 </script>
