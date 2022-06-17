@@ -198,5 +198,11 @@
   "enter_coupon_code": "Please enter coupon code",
   "error.coupon.not-applicable": "Invalid Coupon!",
   "use_shelax_points": "Use",
-  "member_points_used": "{memberPointsUsed} Shelax points used"
+  "member_points_used": "{memberPointsUsed} Shelax points used",
+  "current_valid_points": "Current valid points",
+  "order_number": "Order No.",
+  "points_rewarded": "Points Rewarded",
+  "points_used": "Points Used",
+  "expiry_date": "Expiry Date",
+  "expired": "Expired"
 }

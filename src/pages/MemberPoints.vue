@@ -3,9 +3,9 @@
     <base-member-card :invisible="true">
       <h3>Shelax Points</h3>
       <p>
-        目前可使用點數:
+        {{ $t("current_valid_points") }}:
         <img src="../assets/Group-110.png" alt="" />
-        <span>999</span>
+        <span>{{ memberPoints }}</span>
       </p>
     </base-member-card>
     <how-to-use></how-to-use>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
 import HowToUse from "../components/member-points/HowToUse.vue";
 import Table from "../components/member-points/Table.vue";
 
@@ -21,6 +22,54 @@ export default {
   components: {
     HowToUse,
     Table,
+  },
+  computed: {
+    memberPoints() {
+      return this.$store.getters["profile/memberPoints"];
+    },
+  },
+  created() {
+    this.$store
+      .dispatch("auth/checkAccessToken")
+      .then(() => {
+        this.$store.dispatch("profile/getMemberPoints");
+      })
+      .catch(() => {
+        this.$store
+          .dispatch("auth/checkRefreshToken")
+          .then(() => {
+            this.$store.dispatch("profile/getMemberPoints");
+          })
+          .catch((err) => {
+            ElNotification({
+              title: "Error",
+              message: this.$t(err.response.data.message),
+              type: "error",
+            });
+            this.$store.dispatch("auth/logout");
+          });
+      });
+
+    this.$store
+      .dispatch("auth/checkAccessToken")
+      .then(() => {
+        this.$store.dispatch("profile/getMemberPointsHistory");
+      })
+      .catch(() => {
+        this.$store
+          .dispatch("auth/checkRefreshToken")
+          .then(() => {
+            this.$store.dispatch("profile/getMemberPointsHistory");
+          })
+          .catch((err) => {
+            ElNotification({
+              title: "Error",
+              message: this.$t(err.response.data.message),
+              type: "error",
+            });
+            this.$store.dispatch("auth/logout");
+          });
+      });
   },
 };
 </script>

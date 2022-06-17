@@ -131,4 +131,26 @@ export default {
     console.log(response);
     context.commit("SET_ORDER_HISTORY", response.data.items);
   },
+  async getMemberPoints(context) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.get("/api/member-points", {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+    context.commit("SET_MEMBER_POINTS", response.data.item);
+  },
+  async getMemberPointsHistory(context) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.get("/api/member-points/history", {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+    context.commit("SET_MEMBER_POINTS_HISTORY", response.data.items);
+  },
 };

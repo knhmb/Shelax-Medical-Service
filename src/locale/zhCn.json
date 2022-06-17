@@ -197,5 +197,12 @@
   "coupon_code": "优惠码",
   "enter_coupon_code": "请输入优惠码",
   "error.coupon.not-applicable": "無效的優惠券",
-  "use_shelax_points": "你有"
+  "use_shelax_points": "你有",
+  "member_points_used": "已使用{memberPointsUsed} Shelax Points",
+  "current_valid_points": "目前可使用点数",
+  "order_number": "订单号码",
+  "points_rewarded": "获得点数",
+  "points_used": "已使用点数",
+  "expiry_date": "有效期至",
+  "expired": "已失效"
 }

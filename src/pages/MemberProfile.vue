@@ -117,7 +117,7 @@
                   <p>
                     <img :src="pointsImg" alt="" />{{ $t("member_points") }}
                   </p>
-                  <span>999</span>
+                  <span>{{ memberPoints }}</span>
                 </li>
               </router-link>
 
@@ -206,6 +206,9 @@ export default {
   computed: {
     userDetails() {
       return this.$store.getters["profile/userDetails"];
+    },
+    memberPoints() {
+      return this.$store.getters["profile/memberPoints"];
     },
   },
   methods: {

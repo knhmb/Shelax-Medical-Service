@@ -11,6 +11,8 @@ export default {
       serviceUsers: [],
       wishlists: [],
       orderHistory: [],
+      memberPoints: null,
+      memberPointsHistory: [],
     };
   },
   getters,

@@ -14,4 +14,10 @@ export default {
   orderHistory(state) {
     return state.orderHistory;
   },
+  memberPoints(state) {
+    return state.memberPoints;
+  },
+  memberPointsHistory(state) {
+    return state.memberPointsHistory;
+  },
 };

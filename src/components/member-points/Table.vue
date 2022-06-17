@@ -3,37 +3,21 @@
     <base-member-card>
       <h3>點數記錄</h3>
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="orderNumber" label="訂單號碼" width="180" />
+        <el-table-column
+          prop="orderNumber"
+          :label="$t('order_number')"
+          width="180"
+        />
         <el-table-column
           class-name="points"
           prop="earnPoints"
-          label="獲得點數"
+          :label="$t('points_rewarded')"
           width="180"
         />
-        <el-table-column prop="validUntil" label="有效期至" />
+        <el-table-column prop="pointsUsed" :label="$t('points_used')" />
+        <el-table-column prop="validUntil" :label="$t('expiry_date')" />
+        <el-table-column prop="expired" />
       </el-table>
-      <!-- <el-row>
-        <el-col :span="8">
-          <p>訂單號碼</p>
-        </el-col>
-        <el-col :span="8">
-          <p>獲得點數</p>
-        </el-col>
-        <el-col :span="8">
-          <p>有效期至</p>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="8">
-          <p>訂單號碼</p>
-        </el-col>
-        <el-col :span="8">
-          <p>獲得點數</p>
-        </el-col>
-        <el-col :span="8">
-          <p>有效期至</p>
-        </el-col>
-      </el-row> -->
     </base-member-card>
   </section>
 </template>
@@ -43,23 +27,44 @@ export default {
   data() {
     return {
       tableData: [
-        {
-          orderNumber: "651535",
-          earnPoints: "400",
-          validUntil: "2022/10/10",
-        },
-        {
-          orderNumber: "267400",
-          earnPoints: "400",
-          validUntil: "2022/10/10",
-        },
-        {
-          orderNumber: "449003",
-          earnPoints: "400",
-          validUntil: "2022/10/10",
-        },
+        // {
+        //   orderNumber: "651535",
+        //   earnPoints: "400",
+        //   validUntil: "2022/10/10",
+        // },
+        // {
+        //   orderNumber: "267400",
+        //   earnPoints: "400",
+        //   validUntil: "2022/10/10",
+        // },
+        // {
+        //   orderNumber: "449003",
+        //   earnPoints: "400",
+        //   validUntil: "2022/10/10",
+        // },
       ],
     };
+  },
+  computed: {
+    memberPointsHistory() {
+      return this.$store.getters["profile/memberPointsHistory"];
+    },
+  },
+  created() {
+    console.log(this.memberPointsHistory);
+    this.memberPointsHistory.forEach((order) => {
+      console.log(order);
+      this.tableData.push({
+        orderNumber: order.orderNo,
+        earnPoints:
+          order.transactionType === "DEPOSIT" ? order.pointsRewarded : "",
+        pointsUsed:
+          order.transactionType === "WITHDRAWAL" ? order.pointsUsed : "",
+        validUntil: order.expiryDate,
+        expired: order.expired ? this.$t("expired") : order.invalid ? "" : "",
+      });
+    });
+    console.log(this.tableData);
   },
 };
 </script>
