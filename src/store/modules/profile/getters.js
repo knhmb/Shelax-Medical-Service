@@ -11,4 +11,7 @@ export default {
   wishlists(state) {
     return state.wishlists;
   },
+  orderHistory(state) {
+    return state.orderHistory;
+  },
 };

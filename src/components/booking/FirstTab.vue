@@ -1,33 +1,38 @@
 <template>
   <section class="booking-first-tab">
-    <div class="box">
-      <el-row :gutter="20">
-        <el-col :xs="24" :sm="6">
-          <img src="../../assets/Rectangle-77.png" alt="" />
-        </el-col>
-        <el-col :xs="24" :sm="18">
-          <p>綜合個人健康體檢套餐</p>
-          <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
-          <p>預約日期及時間: 2022年1月21日 - 14:30</p>
-          <p class="price">HKD 570</p>
-        </el-col>
-      </el-row>
-    </div>
-    <div class="box">
-      <el-row :gutter="20">
-        <el-col :xs="24" :sm="6">
-          <img src="../../assets/Rectangle-77-1.png" alt="" />
-        </el-col>
-        <el-col :xs="24" :sm="18">
-          <p>綜合個人健康體檢套餐</p>
-          <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
-          <p>預約日期及時間: 2022年1月21日 - 14:30</p>
-          <p class="price">HKD 570</p>
-        </el-col>
-      </el-row>
-    </div>
+    <template v-for="order in orderHistory" :key="order.orderId">
+      <div class="box" v-if="order.isService">
+        <el-row :gutter="20">
+          <el-col :xs="24" :sm="6">
+            <img :src="order.thumbnail" alt="" />
+          </el-col>
+          <el-col :xs="24" :sm="18">
+            <p>{{ order.itemName }}</p>
+            <p>地址: {{ order.providerName }} - {{ order.providerAddress }}</p>
+            <p v-if="order.isProduct">
+              {{ $t("quantity") }}: {{ order.quantity }} - 14:30
+            </p>
+            <p v-if="order.isService">
+              預約日期及時間: {{ order.reservedDate }} -
+              {{ order.reservedTime }}
+            </p>
+            <p class="price">HKD {{ order.price }}</p>
+          </el-col>
+        </el-row>
+      </div>
+    </template>
   </section>
 </template>
+
+<script>
+export default {
+  computed: {
+    orderHistory() {
+      return this.$store.getters["profile/orderHistory"];
+    },
+  },
+};
+</script>
 
 <style scoped>
 .booking-first-tab .box {

@@ -3,11 +3,11 @@
     <base-member-card :invisible="true">
       <h3>預約記錄</h3>
       <el-tabs v-model="activeName" class="demo-tabs">
-        <el-tab-pane label="服務類" name="first">
+        <el-tab-pane :label="$t('service_type')" name="first">
           <first-tab></first-tab>
         </el-tab-pane>
-        <el-tab-pane label="產品類" name="second">
-          <!-- <second-tab></second-tab> -->
+        <el-tab-pane :label="$t('product_type')" name="second">
+          <second-tab></second-tab>
         </el-tab-pane>
       </el-tabs>
     </base-member-card>
@@ -15,18 +15,41 @@
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
 import FirstTab from "../components/booking/FirstTab.vue";
-// import SecondTab from "../components/booking/SecondTab.vue";
+import SecondTab from "../components/booking/SecondTab.vue";
 
 export default {
   components: {
     FirstTab,
-    // SecondTab,
+    SecondTab,
   },
   data() {
     return {
       activeName: "first",
     };
+  },
+  created() {
+    this.$store
+      .dispatch("auth/checkAccessToken")
+      .then(() => {
+        this.$store.dispatch("profile/getOrderHistory");
+      })
+      .catch(() => {
+        this.$store
+          .dispatch("auth/checkRefreshToken")
+          .then(() => {
+            this.$store.dispatch("profile/getOrderHistory");
+          })
+          .catch((err) => {
+            ElNotification({
+              title: "Error",
+              message: this.$t(err.response.data.message),
+              type: "error",
+            });
+            this.$store.dispatch("auth/logout");
+          });
+      });
   },
 };
 </script>

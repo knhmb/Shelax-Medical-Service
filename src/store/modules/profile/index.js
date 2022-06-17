@@ -10,6 +10,7 @@ export default {
       countryCodes: [],
       serviceUsers: [],
       wishlists: [],
+      orderHistory: [],
     };
   },
   getters,

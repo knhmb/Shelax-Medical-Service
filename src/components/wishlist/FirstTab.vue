@@ -25,10 +25,10 @@
               :score-template="item.reviewsCount"
               show-score
             />
-            <p class="date-time">最早可預約時間</p>
+            <p v-if="item.isService" class="date-time">最早可預約時間</p>
             <el-row>
               <el-col :xs="24" :sm="12">
-                <div class="date-content">
+                <div v-if="item.isService" class="date-content">
                   <span>{{ item.earliestBookingDate }}</span>
                   <span>{{ item.earliestBookingTime }}</span>
                 </div>

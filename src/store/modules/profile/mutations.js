@@ -14,4 +14,7 @@ export default {
   SET_WISHLISTS(state, payload) {
     state.wishlists = payload;
   },
+  SET_ORDER_HISTORY(state, payload) {
+    state.orderHistory = payload;
+  },
 };

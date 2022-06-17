@@ -118,4 +118,17 @@ export default {
     console.log(response);
     context.commit("UPDATE_BOOKMARK", false);
   },
+  async getOrderHistory(context) {
+    const userToken = localStorage.getItem("accessToken");
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/order", {
+      headers: {
+        authorization: userToken,
+        "accept-langauge-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_ORDER_HISTORY", response.data.items);
+  },
 };
