@@ -204,5 +204,12 @@
   "points_rewarded": "获得点数",
   "points_used": "已使用点数",
   "expiry_date": "有效期至",
-  "expired": "已失效"
+  "expired": "已失效",
+  "not_yet_commented": "未评价预约",
+  "commented": "已评价预约",
+  "leave_comment": "留下评价",
+  "rate_experience": "请为这次体验评级(最高5颗星)",
+  "submit_button": "送出",
+  "edit": "修改",
+  "delete": "删除"
 }

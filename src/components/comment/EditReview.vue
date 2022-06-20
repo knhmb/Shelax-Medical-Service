@@ -1,5 +1,5 @@
 <template>
-  <section class="add-review">
+  <section v-if="editForm" class="edit-review">
     <p>{{ $t("rate_experience") }}</p>
     <el-rate
       :void-color="'#c6c6c6'"
@@ -27,7 +27,7 @@
       </el-row>
       <div class="btn-actions">
         <el-button @click="cancel">{{ $t("cancel_button") }}</el-button>
-        <el-button @click="submit">{{ $t("submit_button") }}</el-button>
+        <el-button @click="edit">{{ $t("submit_button") }}</el-button>
       </div>
     </el-form>
   </section>
@@ -36,7 +36,7 @@
 <script>
 import { ElNotification } from "element-plus";
 export default {
-  props: ["itemId", "orderId", "orderItemId"],
+  props: ["editForm", "commentsId", "rating", "comments"],
   data() {
     return {
       colors: ["#7690DA", "#7690DA", "#7690DA"],
@@ -46,40 +46,38 @@ export default {
     };
   },
   methods: {
-    submit() {
+    edit() {
       const data = {
         rating: this.value,
         comments: this.description,
-        itemId: this.itemId,
-        orderId: this.orderId,
-        orderItemId: this.orderItemId,
+        commentsId: this.commentsId,
       };
       console.log(data);
       this.$store
         .dispatch("auth/checkAccessToken")
         .then(() => {
-          this.$store.dispatch("profile/postComment", data).then(() => {
+          this.$store.dispatch("profile/editComment", data).then(() => {
             ElNotification({
               title: "Success",
-              message: "Comment has been added",
+              message: "Comment has been editted",
               type: "success",
             });
             this.$store.dispatch("profile/getComments");
-            this.$emit("closeAddReview");
+            this.$emit("closeEditReview");
           });
         })
         .catch(() => {
           this.$store
             .dispatch("auth/checkRefreshToken")
             .then(() => {
-              this.$store.dispatch("profile/postComment", data).then(() => {
+              this.$store.dispatch("profile/editComment", data).then(() => {
                 ElNotification({
                   title: "Success",
-                  message: "Comment has been added",
+                  message: "Comment has been editted",
                   type: "success",
                 });
                 this.$store.dispatch("profile/getComments");
-                this.$emit("closeAddReview");
+                this.$emit("closeEditReview");
               });
             })
             .catch((err) => {
@@ -93,16 +91,18 @@ export default {
         });
     },
     cancel() {
-      this.value = 3;
-      this.description = "";
-      this.$emit("closeAddReview");
+      this.$emit("closeEditReview");
     },
+  },
+  created() {
+    this.value = this.rating;
+    this.description = this.comments;
   },
 };
 </script>
 
-<style>
-.first-tab .card .add-review p {
+<style scoped>
+.edit-review p {
   font-family: "Noto Sans HK";
   font-style: normal;
   font-weight: 400;
@@ -114,16 +114,16 @@ export default {
   margin-bottom: 1rem;
 }
 
-.first-tab .card .add-review .el-rate .el-icon {
+.edit-review .el-rate :deep(.el-icon) {
   font-size: 30px;
 }
 
-.first-tab .card .add-review .el-row {
+.edit-review .el-row {
   margin-top: 2rem;
   border-bottom: 0.8px solid #e0e0e0;
 }
 
-.first-tab .card .add-review .el-form .el-form-item__label {
+.edit-review .el-form :deep(.el-form-item__label) {
   padding-bottom: 0.5rem;
   font-family: "Noto Sans HK";
   font-style: normal;
@@ -134,11 +134,11 @@ export default {
   color: #262626;
 }
 
-.first-tab .card .add-review .btn-actions {
+.edit-review .btn-actions {
   text-align: end;
 }
 
-.first-tab .card .add-review .btn-actions .el-button {
+.edit-review .btn-actions .el-button {
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -149,12 +149,12 @@ export default {
   padding: 12px 1.5rem;
 }
 
-.first-tab .card .add-review .btn-actions .el-button:first-of-type {
+.edit-review .btn-actions .el-button:first-of-type {
   color: #525252;
   border: none;
 }
 
-.first-tab .card .add-review .btn-actions .el-button:last-of-type {
+.edit-review .btn-actions .el-button:last-of-type {
   color: #fff;
   background: #2d99a0;
   border-radius: 4px;

@@ -3,10 +3,10 @@
     <base-member-card :invisible="true">
       <h3>評價管理</h3>
       <el-tabs v-model="activeName" class="demo-tabs">
-        <el-tab-pane label="未評價預約" name="first">
+        <el-tab-pane :label="$t('not_yet_commented')" name="first">
           <first-tab></first-tab>
         </el-tab-pane>
-        <el-tab-pane label="已評價預約" name="second">
+        <el-tab-pane :label="$t('commented')" name="second">
           <past-comment></past-comment>
         </el-tab-pane>
       </el-tabs>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
 import FirstTab from "../components/comment/FirstTab.vue";
 import PastComment from "../components/comment/PastComment.vue";
 
@@ -27,6 +28,28 @@ export default {
     return {
       activeName: "first",
     };
+  },
+  created() {
+    this.$store
+      .dispatch("auth/checkAccessToken")
+      .then(() => {
+        this.$store.dispatch("profile/getComments");
+      })
+      .catch(() => {
+        this.$store
+          .dispatch("auth/checkRefreshToken")
+          .then(() => {
+            this.$store.dispatch("profile/getComments");
+          })
+          .catch((err) => {
+            ElNotification({
+              title: "Error",
+              message: this.$t(err.response.data.message),
+              type: "error",
+            });
+            this.$store.dispatch("auth/logout");
+          });
+      });
   },
 };
 </script>

@@ -13,6 +13,7 @@ export default {
       orderHistory: [],
       memberPoints: null,
       memberPointsHistory: [],
+      comments: [],
     };
   },
   getters,

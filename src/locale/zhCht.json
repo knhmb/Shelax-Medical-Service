@@ -204,5 +204,12 @@
   "points_rewarded": "獲得點數",
   "points_used": "已使用點數",
   "expiry_date": "有效期至",
-  "expired": "已失效"
+  "expired": "已失效",
+  "not_yet_commented": "未評價預約",
+  "commented": "已評價預約",
+  "leave_comment": "留下評價",
+  "rate_experience": "請為這次體驗評級(最高5顆星)",
+  "submit_button": "送出",
+  "edit": "修改",
+  "delete": "刪除"
 }

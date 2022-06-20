@@ -23,4 +23,7 @@ export default {
   SET_MEMBER_POINTS_HISTORY(state, payload) {
     state.memberPointsHistory = payload;
   },
+  SET_COMMENTS(state, payload) {
+    state.comments = payload;
+  },
 };

@@ -204,5 +204,12 @@
   "points_rewarded": "Points Rewarded",
   "points_used": "Points Used",
   "expiry_date": "Expiry Date",
-  "expired": "Expired"
+  "expired": "Expired",
+  "not_yet_commented": "Not Yet Commented",
+  "commented": "Commented",
+  "leave_comment": "Leave Comments",
+  "rate_experience": "Please rate this experience (Highest 5 stars)",
+  "submit_button": "Submit",
+  "edit": "Edit",
+  "delete": "Delete"
 }

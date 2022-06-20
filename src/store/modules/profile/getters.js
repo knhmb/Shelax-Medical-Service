@@ -20,4 +20,7 @@ export default {
   memberPointsHistory(state) {
     return state.memberPointsHistory;
   },
+  comments(state) {
+    return state.comments;
+  },
 };

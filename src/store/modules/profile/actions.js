@@ -153,4 +153,48 @@ export default {
     console.log(response);
     context.commit("SET_MEMBER_POINTS_HISTORY", response.data.items);
   },
+  async getComments(context) {
+    const userToken = localStorage.getItem("accessToken");
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/item-comments", {
+      headers: {
+        authorization: userToken,
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_COMMENTS", response.data.items);
+  },
+  async postComment(_, payload) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.post("/api/item-comments", payload, {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+  },
+  async editComment(_, payload) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.put("/api/item-comments", payload, {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+  },
+  async deleteComment(_, payload) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.delete("/api/item-comments", {
+      data: payload,
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+  },
 };

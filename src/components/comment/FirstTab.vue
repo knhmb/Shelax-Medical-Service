@@ -1,22 +1,38 @@
 <template>
   <section class="first-tab">
-    <div class="card">
-      <el-row :gutter="20">
-        <el-col :xs="24" :sm="4">
-          <img src="../../assets/Rectangle-77.png" alt="" />
-        </el-col>
-        <el-col :xs="24" :sm="20">
-          <h4>綜合個人健康體檢套餐</h4>
-          <p>地址: ＸＸＸＸ健康中心 - 香港九龍城區九龍仔聯福道17號</p>
-          <p>預約日期及時間: 2022年1月21日 - 14:30</p>
-        </el-col>
-      </el-row>
-      <div v-if="!isAddReview" class="btn-content">
-        <el-button @click="isAddReview = true">留下評價</el-button>
+    <template v-for="comment in comments" :key="comment">
+      <div v-if="!comment.commented" class="card">
+        <el-row :gutter="20">
+          <el-col :xs="24" :sm="4">
+            <img :src="comment.thumbnail" alt="" />
+          </el-col>
+          <el-col :xs="24" :sm="20">
+            <h4>{{ comment.itemName }}</h4>
+            <p>
+              地址: {{ comment.providerName }} - {{ comment.providerAddress }}
+            </p>
+            <p>
+              預約日期及時間: {{ comment.reservedDate }} -
+              {{ comment.reservedTime }}
+            </p>
+          </el-col>
+        </el-row>
+        <div v-if="!comment.isAddReview" class="btn-content">
+          <el-button @click="comment.isAddReview = true">{{
+            $t("leave_comment")
+          }}</el-button>
+        </div>
+        <add-review
+          :item-id="comment.itemId"
+          :order-id="comment.orderId"
+          :order-item-id="comment.orderItemId"
+          @closeAddReview="comment.isAddReview = false"
+          v-else
+        ></add-review>
       </div>
-      <add-review @closeAddReview="isAddReview = false" v-else></add-review>
-    </div>
-    <div class="card">
+    </template>
+
+    <!-- <div class="card">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="4">
           <img src="../../assets/Rectangle-77-1.png" alt="" />
@@ -30,7 +46,7 @@
       <div class="btn-content">
         <el-button>留下評價</el-button>
       </div>
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -45,6 +61,11 @@ export default {
     return {
       isAddReview: false,
     };
+  },
+  computed: {
+    comments() {
+      return this.$store.getters["profile/comments"];
+    },
   },
 };
 </script>
