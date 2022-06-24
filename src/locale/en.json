@@ -211,5 +211,7 @@
   "rate_experience": "Please rate this experience (Highest 5 stars)",
   "submit_button": "Submit",
   "edit": "Edit",
-  "delete": "Delete"
+  "delete": "Delete",
+  "purchase_notes": "Purchase Notes",
+  "service_point": "Service Location"
 }

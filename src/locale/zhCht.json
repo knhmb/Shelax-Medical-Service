@@ -211,5 +211,7 @@
   "rate_experience": "請為這次體驗評級(最高5顆星)",
   "submit_button": "送出",
   "edit": "修改",
-  "delete": "刪除"
+  "delete": "刪除",
+  "purchase_notes": "購買須知",
+  "service_point": "服務地點"
 }

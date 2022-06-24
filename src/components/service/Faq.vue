@@ -52,7 +52,7 @@
             :class="{ 'faq-selected': faqSelected === 'service-description' }"
             class="faq-navigation"
           >
-            服務說明
+            {{ $t("service_description") }}
           </a>
           <a
             href="#purchase-notes"
@@ -60,7 +60,7 @@
             :class="{ 'faq-selected': faqSelected === 'purchase-notes' }"
             class="faq-navigation"
           >
-            購買須知
+            {{ $t("purchase_notes") }}
           </a>
           <a
             href="#service-point"
@@ -68,7 +68,7 @@
             :class="{ 'faq-selected': faqSelected === 'service-point' }"
             class="faq-navigation"
           >
-            服務地點
+            {{ $t("service_point") }}
           </a>
           <a
             href="#cancellation-policy"
@@ -76,7 +76,7 @@
             :class="{ 'faq-selected': faqSelected === 'cancellation-policy' }"
             class="faq-navigation"
           >
-            取消政策
+            {{ $t("cancellation_policy") }}
           </a>
           <a
             href="#customer-reviews"
@@ -84,7 +84,7 @@
             :class="{ 'faq-selected': faqSelected === 'customer-reviews' }"
             class="faq-navigation"
           >
-            顧客評價(738)
+            {{ $t("customers_review") }}
           </a>
         </el-col>
       </el-row>
