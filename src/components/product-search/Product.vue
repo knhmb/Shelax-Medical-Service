@@ -5,6 +5,7 @@
         <el-row :gutter="10">
           <el-col :sm="24" :lg="6">
             <el-form-item>
+              <p class="input-label">{{ $t("search_service_or_product") }}</p>
               <el-input
                 placeholder="身體檢查"
                 class="service"
@@ -14,6 +15,7 @@
           </el-col>
           <el-col :sm="24" :lg="6">
             <el-form-item>
+              <p class="input-label">{{ $t("search_date") }}</p>
               <el-input
                 disabled
                 class="appointment-date"
@@ -24,6 +26,7 @@
           </el-col>
           <el-col :sm="24" :lg="6">
             <el-form-item>
+              <p class="input-label">{{ $t("search_time") }}</p>
               <el-input
                 disabled
                 class="appointment-time"
@@ -39,7 +42,7 @@
                 class="icon-search"
                 alt=""
               />
-              搜尋
+              {{ $t("search_button") }}
             </button>
           </el-col>
         </el-row>
@@ -204,17 +207,25 @@ export default {
   /* padding: 16px 26px 16px 24px; */
 }
 
-.product-search-category .el-form-item__content > .service::before {
+.product-search-category .el-form-item__content p.input-label {
+  position: absolute;
+  top: -0.4rem;
+  left: 1rem;
+  color: #333;
+  z-index: 1;
+}
+
+/* .product-search-category .el-form-item__content > .service::before {
   content: "搜尋服務或產品";
-}
+} */
 
-.product-search-category .el-form-item__content > .appointment-date::before {
+/* .product-search-category .el-form-item__content > .appointment-date::before {
   content: "預約日期";
-}
+} */
 
-.product-search-category .el-form-item__content > .appointment-time::before {
+/* .product-search-category .el-form-item__content > .appointment-time::before {
   content: "預約時間";
-}
+} */
 
 .product-search-category .el-form-item__content > .el-input::before {
   /* content: "選擇服務"; */

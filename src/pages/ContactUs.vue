@@ -3,7 +3,7 @@
     <el-row :gutter="20">
       <el-col :sm="24" :md="12">
         <div class="contact-us-content">
-          <h2>聯絡我們</h2>
+          <h2>{{ $t("contact_us") }}</h2>
           <el-form
             label-position="top"
             :model="ruleForm"
@@ -13,20 +13,28 @@
           >
             <el-row :gutter="20">
               <el-col :sm="12" :md="9">
-                <el-form-item label="稱謂" prop="title">
-                  <el-select v-model="ruleForm.title" placeholder="選擇稱謂">
-                    <el-option label="先生" value="先生">先生</el-option>
-                    <el-option label="太太" value="太太">太太</el-option>
-                    <el-option label="小姐" value="小姐">小姐</el-option>
-                    <el-option label="女士" value="女士">女士</el-option>
+                <el-form-item :label="$t('title')" prop="title">
+                  <el-select v-model="ruleForm.title" :placeholder="$t('Mr')">
+                    <el-option :label="$t('Mr')" :value="$t('Mr')">{{
+                      $t("Mr")
+                    }}</el-option>
+                    <el-option :label="$t('Mrs')" :value="$t('Mrs')">{{
+                      $t("Mrs")
+                    }}</el-option>
+                    <el-option :label="$t('Miss')" :value="$t('Miss')">{{
+                      $t("Miss")
+                    }}</el-option>
+                    <el-option :label="$t('Ms')" :value="$t('Ms')">{{
+                      $t("Ms")
+                    }}</el-option>
                   </el-select>
                 </el-form-item>
               </el-col>
               <el-col :sm="12" :md="15">
-                <el-form-item label="姓名" prop="name">
+                <el-form-item :label="$t('name')" prop="name">
                   <el-input
                     v-model="ruleForm.name"
-                    placeholder="請輸入姓名"
+                    :placeholder="$t('enter_name')"
                   ></el-input>
                 </el-form-item>
               </el-col>
@@ -66,7 +74,7 @@
               </el-col>
               <el-col>
                 <el-form-item>
-                  <el-button @click="submit">送出</el-button>
+                  <el-button @click="submit">{{ $t("send_button") }}</el-button>
                 </el-form-item>
               </el-col>
             </el-row>

@@ -1,6 +1,6 @@
 <template>
   <div class="time-section" v-if="singleItemDetail.itemType === 'service'">
-    <p>選擇時間</p>
+    <p>{{ $t("booking_time") }}</p>
     <div class="am">
       <p class="divider"><span>上午</span></p>
       <el-row :gutter="10">

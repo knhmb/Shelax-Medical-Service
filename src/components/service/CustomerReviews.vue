@@ -30,7 +30,7 @@
         </el-col>
         <el-col :sm="24" :md="16" :lg="16">
           <div class="select-input">
-            <el-select class="m-2" placeholder="最高至最低分">
+            <el-select class="m-2" :placeholder="$t('highest_to_lowest_score')">
               <el-option>最高至最低分</el-option>
               <el-option>最低至最高分</el-option>
             </el-select>

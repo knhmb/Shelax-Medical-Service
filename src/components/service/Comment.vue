@@ -1,10 +1,13 @@
 <template>
   <div class="comment">
-    <p class="comment-title">標題標題標題標題標題標題</p>
+    <p class="comment-title">{{ $t("comment_title") }}</p>
     <p class="comment-description">
-      內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
+      {{ $t("comment_description") }}
     </p>
-    <p class="comment-date">於 {{ updatedAt }} 評價</p>
+    <p v-if="$i18n.locale === 'en-US'" class="comment-date">
+      Reviewed on {{ updatedAt }}
+    </p>
+    <p v-else class="comment-date">於 {{ updatedAt }} 評價</p>
   </div>
 </template>
 

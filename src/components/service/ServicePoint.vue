@@ -2,8 +2,12 @@
   <div id="service-point" v-if="singleItemDetail.itemType === 'service'">
     <h4>{{ $t("service_location") }}</h4>
     <div class="maps-header">
-      <h6>ＸＸＸＸ健康中心</h6>
-      <p>地址：香港九龍城區九龍仔聯福道17號</p>
+      <h6>{{ singleItemDetail.basicInfo.providerName }}</h6>
+      <p>
+        {{ $t("address_text") }}：{{
+          singleItemDetail.basicInfo.providerAddress
+        }}
+      </p>
     </div>
     <div class="maps-body">
       <google-maps></google-maps>

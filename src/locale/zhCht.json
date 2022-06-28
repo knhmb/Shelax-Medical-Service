@@ -213,5 +213,16 @@
   "edit": "修改",
   "delete": "刪除",
   "purchase_notes": "購買須知",
-  "service_point": "服務地點"
+  "service_point": "服務地點",
+  "search_service_or_product": "搜尋服務或產品",
+  "search_date": "預約日期",
+  "search_time": "預約時間",
+  "booking_date_and_time": "選擇預約日期及時間",
+  "address_text": "地址",
+  "comment_title": "標題標題標題標題標題標題",
+  "comment_description": "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+  "highest_to_lowest_score": "最高至最低分",
+  "name": "姓名",
+  "enter_name": "請輸入姓名",
+  "send_button": "送出"
 }

@@ -213,5 +213,16 @@
   "edit": "Edit",
   "delete": "Delete",
   "purchase_notes": "Purchase Notes",
-  "service_point": "Service Location"
+  "service_point": "Service Location",
+  "search_service_or_product": "Search for a service or product",
+  "search_date": "Select date",
+  "search_time": "Selection period",
+  "booking_date_and_time": "Booking date and time",
+  "address_text": "Address",
+  "comment_title": "title title title title title title",
+  "comment_description": "content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content",
+  "highest_to_lowest_score": "Highest to lowest score",
+  "name": "Name",
+  "enter_name": "Please enter your name",
+  "send_button": "Send"
 }

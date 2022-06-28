@@ -1,9 +1,9 @@
 <template>
-  <h3>選擇預約日期及時間</h3>
+  <h3>{{ $t("booking_date_and_time") }}</h3>
   <div class="content">
     <el-row :gutter="20">
       <el-col :sm="24" :lg="12" v-if="singleItemDetail.itemType === 'service'">
-        <p>選擇日期</p>
+        <p>{{ $t("booking_date") }}</p>
         <date-picker
           v-model="date"
           :locale="locale"
