@@ -25,7 +25,9 @@
               :score-template="item.reviewsCount"
               show-score
             />
-            <p v-if="item.isService" class="date-time">最早可預約時間</p>
+            <p v-if="item.isService" class="date-time">
+              {{ $t("earliest_appointment_time") }}
+            </p>
             <el-row>
               <el-col :xs="24" :sm="12">
                 <div v-if="item.isService" class="date-content">

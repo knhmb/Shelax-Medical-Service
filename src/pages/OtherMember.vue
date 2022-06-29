@@ -23,11 +23,11 @@
             <el-col :xs="24" :sm="12">
               <div @click="showContent(item)" class="edit">
                 <el-icon><edit /></el-icon>
-                <span class="action">修改</span>
+                <span class="action">{{ $t("edit") }}</span>
               </div>
               <div @click="checkAccessTokenDelete(item.id)" class="delete">
                 <el-icon><delete /></el-icon>
-                <span class="action">刪除</span>
+                <span class="action">{{ $t("delete") }}</span>
               </div>
             </el-col>
           </el-row>

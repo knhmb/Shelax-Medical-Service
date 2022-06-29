@@ -8,12 +8,15 @@
           </el-col>
           <el-col :xs="24" :sm="18">
             <p>{{ order.itemName }}</p>
-            <p>地址: {{ order.providerName }} - {{ order.providerAddress }}</p>
+            <p>
+              {{ $t("address_text") }}: {{ order.providerName }} -
+              {{ order.providerAddress }}
+            </p>
             <p v-if="order.isProduct">
               {{ $t("quantity") }}: {{ order.quantity }} - 14:30
             </p>
             <p v-if="order.isService">
-              預約日期及時間: {{ order.reservedDate }} -
+              {{ $t("booking_date_and_time") }}: {{ order.reservedDate }} -
               {{ order.reservedTime }}
             </p>
             <p class="price">HKD {{ order.price }}</p>

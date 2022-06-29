@@ -1,7 +1,7 @@
 <template>
   <section class="comment">
     <base-member-card :invisible="true">
-      <h3>評價管理</h3>
+      <h3>{{ $t("reviews_management") }}</h3>
       <el-tabs v-model="activeName" class="demo-tabs">
         <el-tab-pane :label="$t('not_yet_commented')" name="first">
           <first-tab></first-tab>

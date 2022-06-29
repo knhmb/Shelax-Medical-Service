@@ -1,7 +1,7 @@
 <template>
   <section class="table">
     <base-member-card>
-      <h3>點數記錄</h3>
+      <h3>{{ $t("shelax_points_history") }}</h3>
       <el-table :data="tableData" style="width: 100%">
         <el-table-column
           prop="orderNumber"

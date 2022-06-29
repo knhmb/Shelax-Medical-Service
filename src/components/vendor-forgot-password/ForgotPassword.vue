@@ -2,13 +2,18 @@
   <el-form label-position="top">
     <el-row>
       <el-col>
-        <h3>忘記密碼</h3>
+        <h3>{{ $t("vendor_forgot_password") }}</h3>
       </el-col>
       <el-col>
-        <el-input :prefix-icon="Message"></el-input>
+        <el-input
+          :placeholder="$t('email_address')"
+          :prefix-icon="Message"
+        ></el-input>
       </el-col>
       <el-col>
-        <el-button @click="$emit('changeStep', 2)">下一步</el-button>
+        <el-button @click="$emit('changeStep', 2)">{{
+          $t("next_button")
+        }}</el-button>
       </el-col>
     </el-row>
   </el-form>

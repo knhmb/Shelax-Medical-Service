@@ -1,23 +1,23 @@
 <template>
   <section class="shelax-banner">
     <base-content-container>
-      <h3>Shelax Points 介紹</h3>
-      <p>你發位王珠借立乍村文遠前把石象</p>
+      <h3>{{ $t("shelax_points") }}</h3>
+      <p>{{ $t("about_page_text") }}</p>
       <el-row justify="space-between">
         <el-col :sm="10" :md="5">
           <img src="../../assets/visual-sample1.png" alt="" />
-          <p>1. 成為會員</p>
-          <p>吃申三旦力未歡們了同半干十跳而菜用未歡</p>
+          <p>{{ $t("become_a_member") }}</p>
+          <p>{{ $t("about_page_image_description") }}</p>
         </el-col>
         <el-col :sm="10" :md="5">
           <img src="../../assets/visual-sample1.png" alt="" />
-          <p>2. 累積點數</p>
-          <p>吃申三旦力未歡們了同半干十跳而菜用未歡</p>
+          <p>{{ $t("accumulate_points") }}</p>
+          <p>{{ $t("about_page_image_description") }}</p>
         </el-col>
         <el-col :sm="10" :md="5">
           <img src="../../assets/visual-sample1.png" alt="" />
-          <p>3. 好禮兌換</p>
-          <p>吃申三旦力未歡們了同半干十跳而菜用未歡</p>
+          <p>{{ $t("gift_exchange") }}</p>
+          <p>{{ $t("about_page_image_description") }}</p>
         </el-col>
       </el-row>
     </base-content-container>

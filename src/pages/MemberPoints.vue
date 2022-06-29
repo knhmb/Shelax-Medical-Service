@@ -1,7 +1,7 @@
 <template>
   <section class="member-points">
     <base-member-card :invisible="true">
-      <h3>Shelax Points</h3>
+      <h3>{{ $t("shelax_points") }}</h3>
       <p>
         {{ $t("current_valid_points") }}:
         <img src="../assets/Group-110.png" alt="" />

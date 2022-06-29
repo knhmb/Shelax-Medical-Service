@@ -9,10 +9,11 @@
           <el-col :xs="24" :sm="20">
             <h4>{{ comment.itemName }}</h4>
             <p>
-              地址: {{ comment.providerName }} - {{ comment.providerAddress }}
+              {{ $t("address_text") }}: {{ comment.providerName }} -
+              {{ comment.providerAddress }}
             </p>
             <p>
-              預約日期及時間: {{ comment.reservedDate }} -
+              {{ $t("booking_date_and_time") }}: {{ comment.reservedDate }} -
               {{ comment.reservedTime }}
             </p>
           </el-col>

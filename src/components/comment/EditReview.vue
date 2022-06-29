@@ -15,10 +15,10 @@
           </el-form-item>
         </el-col> -->
         <el-col>
-          <el-form-item label="告訴我們你的想法">
+          <el-form-item :label="$t('tell_us_what_you_think')">
             <el-input
               v-model="description"
-              placeholder="你覺得這次的體驗如何呢？請跟我們分享你的想法"
+              :placeholder="$t('your_experience')"
               type="textarea"
               rows="5"
             ></el-input>

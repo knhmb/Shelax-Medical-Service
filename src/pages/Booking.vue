@@ -1,7 +1,7 @@
 <template>
   <section class="booking">
     <base-member-card :invisible="true">
-      <h3>預約記錄</h3>
+      <h3>{{ $t("booking_records") }}</h3>
       <el-tabs v-model="activeName" class="demo-tabs">
         <el-tab-pane :label="$t('service_type')" name="first">
           <first-tab></first-tab>

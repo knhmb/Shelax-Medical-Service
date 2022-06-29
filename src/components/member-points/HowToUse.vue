@@ -1,26 +1,26 @@
 <template>
   <section class="how-to-use">
     <base-member-card :invisible="true">
-      <h3>怎樣使用點數？</h3>
-      <p>Shelax Points 可於下次訂購扣減訂單金額，每100點可減HKD1.00。</p>
-      <p>如何獲得點數</p>
+      <h3>{{ $t("how_to_use_shelax_points") }}</h3>
+      <p>{{ $t("shelax_point_usage") }}</p>
+      <p>{{ $t("how_to_get_shelax_points") }}</p>
       <el-row :gutter="10">
         <el-col :xs="24" :sm="8">
           <div class="box">
-            <h4>預訂行程</h4>
-            <p>消費金額 HKD 100 可得 1 點，快註冊會員賺取點數！</p>
+            <h4>{{ $t("book_a_trip") }}</h4>
+            <p>{{ $t("book_a_trip_method") }}</p>
           </div>
         </el-col>
         <el-col :xs="24" :sm="8">
           <div class="box">
-            <h4>開用何少</h4>
-            <p>斗央棵知叫風文山好示室牠吧風發吧實！</p>
+            <h4>{{ $t("how_much_to_use") }}</h4>
+            <p>{{ $t("how_much_to_use_text") }}</p>
           </div>
         </el-col>
         <el-col :xs="24" :sm="8">
           <div class="box">
-            <h4>開用何少</h4>
-            <p>斗央棵知叫風文山好示室牠吧風發吧實！</p>
+            <h4>{{ $t("how_much_to_use") }}</h4>
+            <p>{{ $t("how_much_to_use_text") }}</p>
           </div>
         </el-col>
       </el-row>

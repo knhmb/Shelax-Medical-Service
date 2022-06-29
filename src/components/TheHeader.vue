@@ -381,6 +381,7 @@ export default {
     }
     this.getMenuItems();
     this.getSubMenuItems();
+    console.log(this.isSteps);
   },
 };
 </script>

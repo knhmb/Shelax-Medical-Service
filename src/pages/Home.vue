@@ -43,6 +43,7 @@ export default {
     this.$store.dispatch("dashboard/getThemes");
     this.$store.dispatch("dashboard/getServiceCategory");
     this.$store.dispatch("dashboard/getProductCategory");
+    this.$store.dispatch("toggleSteps", false);
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <div class="recommended-services">
     <section class="recommended-services-content">
       <base-content-container>
-        <h2 class="title">更多推薦服務</h2>
+        <h2 class="title">{{ $t("more_recommended_services") }}</h2>
       </base-content-container>
 
       <el-carousel
@@ -72,46 +72,100 @@ export default {
       products: [
         {
           id: 1,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
+          name: this.$t("body_checkup"),
+          price: "570",
+          discountPrice: "800",
+          description: this.$t("personal_health_checkup"),
           rate: 4,
           numberOfRate: "(138,370)",
           image: require("../../assets/Rectangle-77.png"),
         },
         {
           id: 2,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
+          name: this.$t("body_checkup"),
+          price: "570",
+          discountPrice: "800",
+          description: this.$t("personal_health_checkup"),
           rate: 4,
           numberOfRate: "(138,370)",
           image: require("../../assets/Rectangle-77-1.png"),
         },
         {
           id: 3,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
+          name: this.$t("body_checkup"),
+          price: "570",
+          discountPrice: "800",
+          description: this.$t("personal_health_checkup"),
           rate: 4,
           numberOfRate: "(138,370)",
           image: require("../../assets/Rectangle-77-3.png"),
         },
         {
           id: 4,
-          name: "身體檢查",
+          name: this.$t("body_checkup"),
           price: "HK$ 570",
           discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
+          description: this.$t("personal_health_checkup"),
           rate: 4,
           numberOfRate: "(138,370)",
           image: require("../../assets/Rectangle-77-2.png"),
         },
       ],
     };
+  },
+  watch: {
+    lang: {
+      deep: true,
+      handler() {
+        this.products = [
+          {
+            id: 1,
+            name: this.$t("body_checkup"),
+            price: "570",
+            discountPrice: "800",
+            description: this.$t("personal_health_checkup"),
+            rate: 4,
+            numberOfRate: "(138,370)",
+            image: require("../../assets/Rectangle-77.png"),
+          },
+          {
+            id: 2,
+            name: this.$t("body_checkup"),
+            price: "570",
+            discountPrice: "800",
+            description: this.$t("personal_health_checkup"),
+            rate: 4,
+            numberOfRate: "(138,370)",
+            image: require("../../assets/Rectangle-77-1.png"),
+          },
+          {
+            id: 3,
+            name: this.$t("body_checkup"),
+            price: "570",
+            discountPrice: "800",
+            description: this.$t("personal_health_checkup"),
+            rate: 4,
+            numberOfRate: "(138,370)",
+            image: require("../../assets/Rectangle-77-3.png"),
+          },
+          {
+            id: 4,
+            name: this.$t("body_checkup"),
+            price: "HK$ 570",
+            discountPrice: "HK$ 800",
+            description: this.$t("personal_health_checkup"),
+            rate: 4,
+            numberOfRate: "(138,370)",
+            image: require("../../assets/Rectangle-77-2.png"),
+          },
+        ];
+      },
+    },
+  },
+  computed: {
+    lang() {
+      return this.$store.getters.lang;
+    },
   },
   created() {
     this.$store.dispatch("search/getRecommendations");
@@ -130,6 +184,7 @@ export default {
   font-weight: 700;
   font-size: 32px;
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .recommended-services

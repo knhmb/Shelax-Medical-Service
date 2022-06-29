@@ -286,5 +286,16 @@
   "merchant_partnership_submitted": "我們已經收到您的商戶合作申請，本公司將有專人與閣下聯絡跟進。",
   "complete_button": "完成",
   "merchant_login": "商戶登入",
-  "sign_in": "登入帳號"
+  "sign_in": "登入帳號",
+  "vendor_forgot_password": "忘記密碼",
+  "become_a_member": "1. 成為會員",
+  "accumulate_points": "2. 累積點數",
+  "gift_exchange": "3. 好禮兌換",
+  "tell_us_what_you_think": "告訴我們你的想法",
+  "your_experience": "你覺得這次的體驗如何呢？請跟我們分享你的想法",
+  "services": "服務類",
+  "products": "產品類",
+  "earliest_appointment_time": "最早可預約時間",
+  "shelax_points_history": "點數記錄",
+  "more_recommended_services": "更多推薦服務"
 }

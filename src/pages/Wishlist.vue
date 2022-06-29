@@ -1,12 +1,12 @@
 <template>
   <section class="wishlist-bookmark">
     <base-member-card :invisible="true">
-      <h3>我的收藏</h3>
+      <h3>{{ $t("my_wishlist") }}</h3>
       <el-tabs v-model="activeName" class="demo-tabs">
-        <el-tab-pane label="服務類" name="first">
+        <el-tab-pane :label="$t('services')" name="first">
           <first-tab></first-tab>
         </el-tab-pane>
-        <el-tab-pane label="產品類" name="second">
+        <el-tab-pane :label="$t('products')" name="second">
           <second-tab></second-tab>
         </el-tab-pane>
       </el-tabs>
