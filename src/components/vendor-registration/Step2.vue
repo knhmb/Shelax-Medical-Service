@@ -7,65 +7,70 @@
   >
     <el-row :gutter="20">
       <el-col>
-        <p>申請人資料</p>
+        <p>{{ $t("applicant_information") }}</p>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-form-item label="申請人姓名" prop="name">
+        <el-form-item :label="$t('applicant_name')" prop="name">
           <el-input
             v-model="ruleForm.name"
-            placeholder="輸入申請人姓名"
+            :placeholder="$t('enter_applicant_name')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-form-item label="出生日期" prop="dob">
+        <el-form-item :label="$t('dob')" prop="dob">
           <el-input
             v-model="ruleForm.dob"
-            placeholder="輸入出生日期"
+            :placeholder="$t('enter_dob')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="24">
-        <el-form-item label="香港身份證號碼" prop="idCardNumber">
+        <el-form-item
+          :label="$t('hong_kong_identity_card_number')"
+          prop="idCardNumber"
+        >
           <el-input
             v-model="ruleForm.idCardNumber"
-            placeholder="輸入電郵地址"
+            :placeholder="$t('enter_hong_kong_identity_card_number')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="9">
-        <el-form-item label="電郵地址" prop="email">
+        <el-form-item :label="$t('email_address')" prop="email">
           <el-input
             v-model="ruleForm.email"
-            placeholder="輸入電郵地址"
+            :placeholder="$t('enter_email_address')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="6">
-        <el-button class="verification-code">獲取驗證碼</el-button>
+        <el-button class="verification-code">{{
+          $t("get_verification_code")
+        }}</el-button>
       </el-col>
       <el-col :sm="24" :md="9">
-        <el-form-item label="驗證碼" prop="verificationCode">
+        <el-form-item :label="$t('verification_code')" prop="verificationCode">
           <el-input
             v-model="ruleForm.verificationCode"
-            placeholder="輸入驗證碼"
+            :placeholder="$t('enter_verification_code')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-form-item label="密碼" prop="password">
+        <el-form-item :label="$t('password')" prop="password">
           <el-input
             v-model="ruleForm.password"
-            placeholder="輸入密碼"
+            :placeholder="$t('enter_password')"
             type="password"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-form-item label="確認密碼" prop="confirmPassword">
+        <el-form-item :label="$t('confirm_password')" prop="confirmPassword">
           <el-input
             v-model="ruleForm.confirmPassword"
-            placeholder="再次輸入密碼"
+            :placeholder="$t('enter_confirm_password')"
             type="password"
           ></el-input>
         </el-form-item>
@@ -74,15 +79,19 @@
         <el-form-item prop="checkbox">
           <el-checkbox
             v-model="ruleForm.checkbox"
-            label="我已閱讀並同意Shelax的使用條款及隱私政策。"
+            :label="$t('applicant_terms_and_conditions')"
           ></el-checkbox>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-button @click="nextStep('step-1')" class="return"> 返回 </el-button>
+        <el-button @click="nextStep('step-1')" class="return">
+          {{ $t("previous_button") }}
+        </el-button>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-button @click="nextStep('step-3')" class="next"> 下一步 </el-button>
+        <el-button @click="nextStep('step-3')" class="next">{{
+          $t("next_button")
+        }}</el-button>
       </el-col>
     </el-row>
   </el-form>

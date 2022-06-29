@@ -7,61 +7,63 @@
   >
     <el-row :gutter="20">
       <el-col>
-        <p>公司資料</p>
+        <p>{{ $t("company_information") }}</p>
       </el-col>
       <el-col>
-        <el-form-item label="公司名稱" prop="companyName">
+        <el-form-item :label="$t('company_name')" prop="companyName">
           <el-input
             v-model="ruleForm.companyName"
-            placeholder="輸入公司名稱"
+            :placeholder="$t('enter_company_name')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-form-item label="公司聯絡人姓名" prop="contactName">
+        <el-form-item :label="$t('company_contact_person')" prop="contactName">
           <el-input
             v-model="ruleForm.contactName"
-            placeholder="輸入公司聯絡人姓名"
+            :placeholder="$t('enter_company_contact_person')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-form-item label="公司電話" prop="companyPhone">
+        <el-form-item :label="$t('company_phone_number')" prop="companyPhone">
           <el-input
             v-model="ruleForm.companyPhone"
-            placeholder="輸入公司電話"
+            :placeholder="$t('enter_company_phone_number')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="24">
-        <el-form-item label="公司地址" prop="companyAddress">
+        <el-form-item :label="$t('company_address')" prop="companyAddress">
           <el-input
             v-model="ruleForm.companyAddress"
-            placeholder="輸入公司地址"
+            :placeholder="$t('enter_company_address')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-form-item label="銀行名稱" prop="bankName">
+        <el-form-item :label="$t('bank_name')" prop="bankName">
           <el-input
             v-model="ruleForm.bankName"
-            placeholder="輸入銀行名稱"
+            :placeholder="$t('enter_bank_name')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-form-item label="銀行號碼" prop="bankNumber">
+        <el-form-item :label="$t('bank_number')" prop="bankNumber">
           <el-input
             v-model="ruleForm.bankNumber"
-            placeholder="輸入銀行號碼"
+            :placeholder="$t('enter_bank_address')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-button class="return"> 返回 </el-button>
+        <el-button class="return"> {{ $t("previous_button") }} </el-button>
       </el-col>
       <el-col :sm="24" :md="12">
-        <el-button @click="nextStep('step-2')" class="next"> 下一步 </el-button>
+        <el-button @click="nextStep('step-2')" class="next">
+          {{ $t("next_button") }}
+        </el-button>
       </el-col>
     </el-row>
   </el-form>

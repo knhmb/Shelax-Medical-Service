@@ -2,7 +2,7 @@
   <section class="vendor-registration">
     <base-content-container>
       <base-card>
-        <h3 v-if="step !== 'completed'">商戶註冊</h3>
+        <h3 v-if="step !== 'completed'">{{ $t("merchant_signup") }}</h3>
         <!-- <el-form label-position="top"> -->
         <!-- <el-row :gutter="20"> -->
         <step-1 @changeStep="toggleStep" v-if="step === 'step-1'"></step-1>

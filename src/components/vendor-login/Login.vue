@@ -2,37 +2,37 @@
   <el-form label-position="top">
     <el-row :gutter="20">
       <el-col :span="12">
-        <h3>商戶登入</h3>
+        <h3>{{ $t("merchant_login") }}</h3>
       </el-col>
       <el-col :span="12">
         <p
           @click="$router.push('/vendor-registration')"
           class="merchant-registration"
         >
-          商戶註冊
+          {{ $t("merchant_signup") }}
         </p>
       </el-col>
       <el-col>
-        <el-form-item label="登入帳號">
+        <el-form-item :label="$t('sign_in')">
           <el-input
             v-model="email"
-            placeholder="輸入電郵地址或電話號碼"
+            :placeholder="$t('enter_email_address')"
           ></el-input>
         </el-form-item>
       </el-col>
       <el-col>
-        <el-form-item label="密碼">
+        <el-form-item :label="$t('password')">
           <el-input
             v-model="password"
             :type="inputType"
-            placeholder="輸入密碼"
+            :placeholder="$t('enter_password')"
           ></el-input>
           <img @click="togglePasswordVisibility" :src="passwordIcon" alt="" />
         </el-form-item>
       </el-col>
       <el-col :span="12">
         <el-form-item>
-          <el-checkbox label="記住我"></el-checkbox>
+          <el-checkbox :label="$t('remember_me')"></el-checkbox>
         </el-form-item>
       </el-col>
       <el-col :span="12">
@@ -41,12 +41,12 @@
             @click="$router.push('/vendor-forgot-password')"
             class="forgot-password"
           >
-            忘記密碼?
+            {{ $t("forgot_password") }}
           </p>
         </el-form-item>
       </el-col>
       <el-col>
-        <el-button>登入</el-button>
+        <el-button>{{ $t("menu_login") }}</el-button>
       </el-col>
     </el-row>
   </el-form>

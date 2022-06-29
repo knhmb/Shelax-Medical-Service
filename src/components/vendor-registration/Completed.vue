@@ -1,8 +1,8 @@
 <template>
   <div class="completed">
-    <h3>商戶合作申請</h3>
-    <p>我們已經收到您的商戶合作申請，本公司將有專人與閣下聯絡跟進。</p>
-    <el-button>完成</el-button>
+    <h3>{{ $t("merchant_partnership") }}</h3>
+    <p>{{ $t("merchant_partnership_submitted") }}</p>
+    <el-button>{{ $t("complete_button") }}</el-button>
   </div>
 </template>
 

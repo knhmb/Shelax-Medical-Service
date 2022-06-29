@@ -1,10 +1,11 @@
 <template>
+  <h6>{{ $t("upload_files") }}</h6>
   <el-row :gutter="20">
     <el-col :sm="24" :md="12">
       <div class="upload-card">
-        <p>商業登記證</p>
+        <p>{{ $t("business_registeration_certificate") }}</p>
         <p class="description">
-          巾福左收休鼻買早住步共止秋故苗事汁許貓頁亭功呢
+          {{ $t("upload_file_text") }}
         </p>
         <el-upload action="#" list-type="picture-card" :auto-upload="false">
           <template #default>
@@ -32,9 +33,9 @@
     </el-col>
     <el-col :sm="24" :md="12">
       <div class="upload-card">
-        <p>公司註冊證書</p>
+        <p>{{ $t("certificate_of_incorporation") }}</p>
         <p class="description">
-          巾福左收休鼻買早住步共止秋故苗事汁許貓頁亭功呢
+          {{ $t("upload_file_text") }}
         </p>
         <el-upload action="#" list-type="picture-card" :auto-upload="false">
           <template #default>
@@ -64,9 +65,9 @@
     </el-col>
     <el-col :sm="24" :md="12">
       <div class="upload-card">
-        <p>銀行月結單 (最近三個月)</p>
+        <p>{{ $t("bank_statement") }}</p>
         <p class="description">
-          巾福左收休鼻買早住步共止秋故苗事汁許貓頁亭功呢
+          {{ $t("upload_file_text") }}
         </p>
         <el-upload action="#" list-type="picture-card" :auto-upload="false">
           <template #default>
@@ -96,9 +97,9 @@
     </el-col>
     <el-col :sm="24" :md="12">
       <div class="upload-card">
-        <p>醫生執照</p>
+        <p>{{ $t("doctor_license") }}</p>
         <p class="description">
-          巾福左收休鼻買早住步共止秋故苗事汁許貓頁亭功呢
+          {{ $t("upload_file_text") }}
         </p>
         <el-upload action="#" list-type="picture-card" :auto-upload="false">
           <template #default>
@@ -128,9 +129,9 @@
     </el-col>
     <el-col :sm="24" :md="12">
       <div class="upload-card">
-        <p>服務清單</p>
+        <p>{{ $t("service_list") }}</p>
         <p class="description">
-          巾福左收休鼻買早住步共止秋故苗事汁許貓頁亭功呢
+          {{ $t("upload_file_text") }}
         </p>
         <el-upload action="#" list-type="picture-card" :auto-upload="false">
           <template #default>
@@ -160,9 +161,9 @@
     </el-col>
     <el-col :sm="24" :md="12">
       <div class="upload-card">
-        <p>公司相片 (入口與內部相片)</p>
+        <p>{{ $t("company_photos") }}</p>
         <p class="description">
-          巾福左收休鼻買早住步共止秋故苗事汁許貓頁亭功呢
+          {{ $t("upload_file_text") }}
         </p>
         <el-upload action="#" list-type="picture-card" :auto-upload="false">
           <template #default>
@@ -191,11 +192,13 @@
       </div>
     </el-col>
     <el-col :sm="24" :md="12">
-      <el-button @click="nextStep('step-2')" class="return"> 返回 </el-button>
+      <el-button @click="nextStep('step-2')" class="return">{{
+        $t("previous_button")
+      }}</el-button>
     </el-col>
     <el-col :sm="24" :md="12">
       <el-button @click="nextStep('completed')" class="next">
-        下一步
+        {{ $t("submit_button") }}
       </el-button>
     </el-col>
   </el-row>
@@ -231,6 +234,16 @@ export default {
 </script>
 
 <style scoped>
+h6 {
+  font-family: "Noto Sans HK";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28px;
+  color: #262626;
+  margin-bottom: 1rem;
+}
+
 .upload-card {
   background: #ffffff;
   border: 0.8px solid #e0e0e0;
