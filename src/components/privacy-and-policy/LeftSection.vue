@@ -5,13 +5,13 @@
         @click="$router.push('/terms-and-conditions')"
         :class="{ 'is-active': $route.path === '/terms-and-conditions' }"
       >
-        <p>使用條款</p>
+        <p>{{ $t("terms_of_use") }}</p>
       </el-col>
       <el-col
         @click="$router.push('/privacy-and-policy')"
         :class="{ 'is-active': $route.path === '/privacy-and-policy' }"
       >
-        <p>私隱條例</p>
+        <p>{{ $t("privacy_policy") }}</p>
       </el-col>
     </el-row>
   </div>

@@ -39,36 +39,43 @@
                 </el-form-item>
               </el-col>
               <el-col :sm="12" :md="9">
-                <el-form-item label="電話區號" prop="phoneAreaCode">
-                  <el-input
+                <el-form-item :label="$t('country_code')" prop="phoneAreaCode">
+                  <el-select
                     v-model="ruleForm.phoneAreaCode"
-                    placeholder="選擇電話區號"
-                  ></el-input>
+                    :placeholder="$t('country_code')"
+                  >
+                    <el-option
+                      v-for="code in countryCodes"
+                      :key="code.id"
+                      :label="code.name + '(+' + code.isd + ')'"
+                      :value="code.alphaThree"
+                    />
+                  </el-select>
                 </el-form-item>
               </el-col>
               <el-col :sm="12" :md="15">
-                <el-form-item label="電話號碼" prop="phoneNumber">
+                <el-form-item :label="$t('phone_number')" prop="phoneNumber">
                   <el-input
                     v-model="ruleForm.phoneNumber"
-                    placeholder="請輸入電話號碼"
+                    :placeholder="$t('phone_number')"
                   ></el-input>
                 </el-form-item>
               </el-col>
               <el-col :sm="12" :md="24">
-                <el-form-item label="電郵地址" prop="email">
+                <el-form-item :label="$t('email_address')" prop="email">
                   <el-input
                     v-model="ruleForm.email"
-                    placeholder="請輸入電郵地址"
+                    :placeholder="$t('email_address')"
                   ></el-input>
                 </el-form-item>
               </el-col>
               <el-col :sm="12" :md="24">
-                <el-form-item label="你的訊息" prop="message">
+                <el-form-item :label="$t('your_message')" prop="message">
                   <el-input
                     v-model="ruleForm.message"
                     type="textarea"
                     rows="7"
-                    placeholder="請輸入訊息內容"
+                    :placeholder="$t('enter_message_content')"
                   ></el-input>
                 </el-form-item>
               </el-col>
@@ -147,6 +154,11 @@ export default {
         ],
       },
     };
+  },
+  computed: {
+    countryCodes() {
+      return this.$store.getters["profile/countryCodes"];
+    },
   },
   methods: {
     submit() {

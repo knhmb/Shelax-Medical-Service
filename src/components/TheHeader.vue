@@ -233,9 +233,9 @@
         class="steps"
       >
         <el-steps :active="step" finish-status="success">
-          <el-step title="選擇訂單"></el-step>
-          <el-step title="填寫資料"></el-step>
-          <el-step title="付款"></el-step>
+          <el-step :title="$t('select_order')"></el-step>
+          <el-step :title="$t('fill_in_the_information')"></el-step>
+          <el-step :title="$t('payment')"></el-step>
         </el-steps>
       </div>
     </div>

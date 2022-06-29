@@ -9,18 +9,20 @@
         ></el-input>
       </el-col>
       <el-col :sm="24" :md="5">
-        <el-button @click="applyCoupon" :disabled="!couponCode"
-          >添加優惠碼</el-button
-        >
+        <el-button @click="applyCoupon" :disabled="!couponCode">{{
+          $t("add_promo_code")
+        }}</el-button>
       </el-col>
     </el-row>
     <shelax-points @memberPointsApplied="memberPointsApplied"></shelax-points>
     <el-row>
       <el-col :sm="24" :md="16">
-        <p>點擊按鈕後，你的訂單將會自動提交。請在下一頁選擇付款方式</p>
+        <p>{{ $t("note_shoppingcart") }}</p>
       </el-col>
       <el-col :sm="24" :md="8">
-        <el-button @click="payment" type="primary">付款</el-button>
+        <el-button @click="payment" type="primary">{{
+          $t("payment")
+        }}</el-button>
       </el-col>
     </el-row>
   </div>

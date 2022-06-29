@@ -1,13 +1,13 @@
 <template>
   <div class="total-activities">
     <div class="top">
-      <p>合計:</p>
+      <p>{{ $t("total") }}:</p>
       <p class="price">HKD {{ shoppingCartItems.totalPrice }}</p>
       <el-button @click="checkOut">{{ $t("check_out_button") }}</el-button>
     </div>
     <div class="bottom">
       <img src="../../assets/icon-bonuspoint@2x.png" alt="" />
-      <span>你可以獲得</span>
+      <span>{{ $t("you_can_earn") }}</span>
       <span class="points"
         >{{ shoppingCartItems.totalPoints }} Shelax Points</span
       >

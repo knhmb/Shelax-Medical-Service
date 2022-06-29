@@ -12,9 +12,11 @@ export default {
   },
   async getShoppingCartItems(context) {
     const userToken = localStorage.getItem("accessToken");
+    const lang = localStorage.getItem("lang") || "zh-HK";
     const response = await axios.get("/api/shopping-cart", {
       headers: {
         authorization: userToken,
+        "accept-language-code": lang,
       },
     });
     console.log(response);

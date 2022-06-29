@@ -47,10 +47,18 @@
                   v-model="item.salutation"
                   :placeholder="$t('Mr')"
                 >
-                  <el-option label="先生" value="先生">先生</el-option>
-                  <el-option label="太太" value="太太">太太</el-option>
-                  <el-option label="小姐" value="小姐">小姐</el-option>
-                  <el-option label="女士" value="女士">女士</el-option>
+                  <el-option :label="$t('Mr')" :value="$t('Mr')">{{
+                    $t("Mr")
+                  }}</el-option>
+                  <el-option :label="$t('Mrs')" :value="$t('Mrs')">{{
+                    $t("Mrs")
+                  }}</el-option>
+                  <el-option :label="$t('Miss')" :value="$t('Miss')">{{
+                    $t("Miss")
+                  }}</el-option>
+                  <el-option :label="$t('Ms')" :value="$t('Ms')">{{
+                    $t("Ms")
+                  }}</el-option>
                 </el-select>
               </el-form-item>
             </el-col>

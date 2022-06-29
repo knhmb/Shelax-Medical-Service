@@ -117,7 +117,7 @@ export default {
 .shopping-cart {
   padding-top: 2rem;
   background: #e6eaf0;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .shopping-cart h2 {

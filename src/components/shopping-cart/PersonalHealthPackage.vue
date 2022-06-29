@@ -39,15 +39,18 @@
       <el-col :xs="24" :sm="15" :md="15">
         <div class="text">
           <h3>{{ item.itemName }}</h3>
-          <p>地址: {{ item.providerName }} - {{ item.address }}</p>
           <p>
-            預約日期及時間: {{ item.reservedDateDisplay }} -
+            {{ $t("address_text") }}: {{ item.providerName }} -
+            {{ item.address }}
+          </p>
+          <p>
+            {{ $t("booking_date_and_time") }}: {{ item.reservedDateDisplay }} -
             {{ item.reservedTime }}
           </p>
         </div>
       </el-col>
       <el-col class="input-range" :xs="24" :sm="5" :md="5">
-        <p>人數</p>
+        <p>{{ $t("number_of_people") }}</p>
         <el-input-number
           @change="quantityChanged(item)"
           :min="1"
@@ -69,7 +72,7 @@
           class="delete-section"
         >
           <Delete />
-          <span>刪除</span>
+          <span>{{ $t("delete") }}</span>
         </div>
       </el-col>
       <el-col :xs="24" :sm="10">
@@ -120,11 +123,13 @@
       <el-col :xs="24" :sm="15" :md="15">
         <div class="text">
           <h3>{{ item.itemName }}</h3>
-          <p>地址: {{ item.providerName }} - {{ item.address }}</p>
+          <p>
+            {{ $t("address") }}: {{ item.providerName }} - {{ item.address }}
+          </p>
         </div>
       </el-col>
       <el-col class="input-range" :xs="24" :sm="5" :md="5">
-        <p>人數</p>
+        <p>{{ $t("number_of_people") }}</p>
         <el-input-number
           @change="quantityChanged(item)"
           :min="1"
@@ -146,7 +151,7 @@
           class="delete-section"
         >
           <Delete />
-          <span style="cursor: pointer">刪除</span>
+          <span style="cursor: pointer">{{ $t("delete") }}</span>
         </div>
         <!-- <span>更改</span> -->
         <!-- <span
@@ -187,15 +192,18 @@
         <el-col :xs="24" :sm="16" :md="16">
           <div class="text">
             <h3>{{ item.itemName }}</h3>
-            <p>地址: {{ item.providerName }} - {{ item.address }}</p>
             <p>
-              預約日期及時間: {{ item.reservedDateDisplay }} -
+              {{ $t("address") }}: {{ item.providerName }} - {{ item.address }}
+            </p>
+            <p>
+              {{ $t("booking_date_and_time") }}:
+              {{ item.reservedDateDisplay }} -
               {{ item.reservedTime }}
             </p>
           </div>
         </el-col>
         <el-col class="input-range" :xs="24" :sm="5" :md="5">
-          <p>人數</p>
+          <p>{{ $t("number_of_people") }}</p>
           <el-input-number disabled v-model="item.quantity" size="small" />
         </el-col>
       </el-row>
@@ -203,7 +211,7 @@
       <el-row class="bottom">
         <el-col :xs="24" :sm="12">
           <!-- <span class="edit">{{ $t("update_reservation_date") }}</span> -->
-          <span>刪除</span>
+          <span>{{ $t("delete") }}</span>
         </el-col>
         <el-col :xs="24" :sm="12">
           <p>{{ $t("item_invalid_text") }}</p>
@@ -229,11 +237,13 @@
         <el-col :xs="24" :sm="16" :md="16">
           <div class="text">
             <h3>{{ item.itemName }}</h3>
-            <p>地址: {{ item.providerName }} - {{ item.address }}</p>
+            <p>
+              {{ $t("address") }}: {{ item.providerName }} - {{ item.address }}
+            </p>
           </div>
         </el-col>
         <el-col class="input-range" :xs="24" :sm="5" :md="5">
-          <p>人數</p>
+          <p>{{ $t("number_of_people") }}</p>
           <el-input-number disabled v-model="item.quantity" size="small" />
         </el-col>
       </el-row>
@@ -241,7 +251,7 @@
       <el-row class="bottom">
         <el-col :xs="24" :sm="12">
           <!-- <span>更改</span> -->
-          <span>刪除</span>
+          <span>{{ $t("delete") }}</span>
         </el-col>
         <el-col :xs="24" :sm="12">
           <p>{{ $t("item_invalid_text") }}</p>
