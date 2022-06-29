@@ -12,22 +12,22 @@
             <el-input
               v-model="ruleForm.email"
               class="w-50 m-2"
-              placeholder="輸入電郵地址"
+              :placeholder="$t('enter_email_address')"
               :prefix-icon="emailIcon"
             />
           </el-form-item>
         </el-col>
         <el-col :span="7">
-          <el-button @click="sendVerificationCode" class="verification-code"
-            >獲取驗證碼</el-button
-          >
+          <el-button @click="sendVerificationCode" class="verification-code">{{
+            $t("get_verification_code")
+          }}</el-button>
         </el-col>
 
         <el-col :span="24">
           <el-form-item prop="verificationCode">
             <el-input
               v-model="ruleForm.verificationCode"
-              placeholder="輸入驗證碼"
+              :placeholder="$t('enter_verification_code')"
             />
           </el-form-item>
         </el-col>
@@ -36,7 +36,7 @@
             <el-input
               v-model="ruleForm.password"
               type="password"
-              placeholder="輸入密碼"
+              :placeholder="$t('enter_password')"
               :prefix-icon="passwordIcon"
               show-password
             />
@@ -47,7 +47,7 @@
             <el-input
               v-model="ruleForm.confirmPassword"
               type="password"
-              placeholder="確認新密碼"
+              :placeholder="$t('enter_confirm_password')"
               :prefix-icon="passwordIcon"
               show-password
             />
@@ -60,7 +60,7 @@
           <el-form-item prop="promotions">
             <el-checkbox
               v-model="ruleForm.promotions"
-              label="是的！我願意接收有關Shelax的最新優惠及其他資訊，並了解我可以隨時取消訂閱。"
+              :label="$t('get_latest_offers')"
               size="large"
             ></el-checkbox>
           </el-form-item>
@@ -69,12 +69,12 @@
 
       <el-row>
         <el-col>
-          <el-button @click="submit">註冊</el-button>
+          <el-button @click="submit">{{ $t("menu_register") }}</el-button>
         </el-col>
       </el-row>
 
-      <el-divider content-position="center">或快速登入</el-divider>
-      <p>如以已登記的電話號碼或第三方帳戶登記，將自動登入你的Shelax帳戶</p>
+      <el-divider content-position="center">{{ $t("quick_login") }}</el-divider>
+      <p>{{ $t("third_party_login") }}</p>
       <el-row :gutter="15">
         <el-col :span="12">
           <el-button type="primary">
@@ -120,8 +120,10 @@
       <el-row>
         <el-col>
           <p class="register">
-            已有Shelax帳號?
-            <span @click="changeAuthOption" class="register-link">登入</span>
+            {{ $t("already_have_an_account") }}?
+            <span @click="changeAuthOption" class="register-link">{{
+              $t("menu_login")
+            }}</span>
           </p>
         </el-col>
       </el-row>
@@ -394,6 +396,7 @@ export default {
   background: #2d99a0;
   border-radius: 4px;
   padding: 0.6rem;
+  white-space: normal;
 }
 
 .register-form .el-icon.el-input__icon {

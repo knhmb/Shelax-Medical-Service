@@ -297,5 +297,8 @@
   "products": "產品類",
   "earliest_appointment_time": "最早可預約時間",
   "shelax_points_history": "點數記錄",
-  "more_recommended_services": "更多推薦服務"
+  "more_recommended_services": "更多推薦服務",
+  "get_latest_offers": "是的！我願意接收有關Shelax的最新優惠及其他資訊，並了解我可以隨時取消訂閱。",
+  "third_party_login": "如以已登記的電話號碼或第三方帳戶登記，將自動登入你的Shelax帳戶",
+  "already_have_an_account": "已有Shelax帳號?"
 }

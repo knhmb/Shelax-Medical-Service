@@ -40,7 +40,7 @@ export default {
   data() {
     const validatePass = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("要求輸入密碼"));
+        callback(new Error(this.$t("enter_password")));
       } else {
         if (this.ruleForm.confirmPassword !== "") {
           this.$refs.ruleFormRef.validateField("confirmPassword");
@@ -51,10 +51,10 @@ export default {
 
     const validateConfirmPass = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("請重新輸入密碼"));
+        callback(new Error(this.$t("confirm_new_password")));
       } else {
         if (value !== this.ruleForm.password) {
-          callback(new Error("密碼不匹配"));
+          callback(new Error(this.$t("password_does_not_match")));
         } else {
           callback();
         }

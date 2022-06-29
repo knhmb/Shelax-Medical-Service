@@ -25,7 +25,10 @@
         @authChanged="changedAuth"
         @closeDialog="closeDialog"
       ></login-form>
-      <forgot-password @closeDialog="closeDialog" v-else></forgot-password>
+      <forgot-password
+        @closeDialog="closeDialog"
+        v-if="authTitle === $t('menu_forgot_password')"
+      ></forgot-password>
       <!-- </el-tab-pane> -->
       <!-- <el-tab-pane label="手機號碼" name="second">
           <template #label>
