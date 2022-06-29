@@ -3,9 +3,13 @@
   <section class="service">
     <base-content-container>
       <el-breadcrumb :separator-icon="ArrowRight">
-        <el-breadcrumb-item :to="{ path: '/' }">主頁 </el-breadcrumb-item>
-        <el-breadcrumb-item>身體檢查</el-breadcrumb-item>
-        <el-breadcrumb-item>綜合個人健康體檢套餐</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/' }"
+          >{{ $t("home") }}
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>{{ $t("body_checkup") }}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{
+          $t("personal_health_checkup")
+        }}</el-breadcrumb-item>
       </el-breadcrumb>
       <div class="service-carousel">
         <service-carousel></service-carousel>

@@ -7,14 +7,14 @@
           :class="{ 'is-active': $route.path === '/about-us' }"
           :span="8"
         >
-          <p>關於Shelax</p>
+          <p>{{ $t("about_shelax") }}</p>
         </el-col>
         <el-col
           @click="$router.push('/become-a-partner')"
           :class="{ 'is-active': $route.path === '/become-a-partner' }"
           :span="8"
         >
-          <p>商戶合作</p>
+          <p>{{ $t("merchant_partnership") }}</p>
         </el-col>
       </el-row>
     </base-content-container>

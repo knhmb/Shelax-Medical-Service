@@ -64,7 +64,7 @@
               "
               index="4"
             >
-              <template #title>你 人, {{ currentUser }}</template>
+              <template #title>{{ $t("user") }}, {{ currentUser }}</template>
               <el-menu-item
                 @click="$router.push({ name: 'personal-information' })"
                 index="4-1"

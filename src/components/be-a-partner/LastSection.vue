@@ -1,10 +1,10 @@
 <template>
   <div class="last-section">
-    <h2>商戶合作</h2>
-    <p>你發位王珠借立乍村文遠前把石象</p>
-    <el-button @click="$router.push('/vendor-registration')"
-      >立即申請成為合作伙伴</el-button
-    >
+    <h2>{{ $t("merchant_partnership") }}</h2>
+    <p>{{ $t("about_page_text") }}</p>
+    <el-button @click="$router.push('/vendor-registration')">{{
+      $t("become_a_partner_button")
+    }}</el-button>
   </div>
 </template>
 

@@ -1,14 +1,16 @@
 <template>
   <div class="first-section">
     <base-content-container>
-      <h2>商戶合作</h2>
-      <h4>你發位王珠借立乍村文遠前把石象</h4>
+      <h2>{{ $t("merchant_partnership") }}</h2>
+      <h4>{{ $t("about_page_text") }}</h4>
       <p>
-        吃申三旦力未歡們了同半干：十跳而菜用。到戶走封親羊英真亭現明葉飽壯童西戶友黃旁，頁己勿成新穴花春兄示鳥至四京枝昔口人士可，吧弓小高頭三水安躲食重眼元占事；寸拍日字洋也祖肉福東坡：今父小。
-        木洋習雨來尾汁布三牛金衣四道南入嗎我「以來它五」貝蝶綠哥平叫。由南細斗父條免海片記怎冬只！又會今蛋壯那波青高止像？同太刃雞菜乾原原石字牙貓叫！吉米爸家間小高冒北几百片小。
+        {{ $t("about_page_description_one") }}
+        {{ $t("about_page_description_two") }}
       </p>
       <router-link v-slot="{ navigate }" to="/vendor-registration">
-        <el-button @click="navigate">立即申請成為合作伙伴</el-button>
+        <el-button @click="navigate">{{
+          $t("become_a_partner_button")
+        }}</el-button>
       </router-link>
     </base-content-container>
   </div>

@@ -107,9 +107,9 @@
                 disabled-void-color="#c6c6c6"
               />
               <p class="price">HKD {{ item.discountedPrice }}</p>
-              <el-button @click="searchProduct(item.itemId)"
-                >Add to the cart</el-button
-              >
+              <el-button @click="searchProduct(item.itemId)">{{
+                $t("add_to_cart")
+              }}</el-button>
             </div>
           </div>
         </el-col>
@@ -149,9 +149,30 @@ export default {
         bookingTime: "-",
       };
       console.log(data);
-      this.$store.dispatch("search/getItemDetail", data).then(() => {
-        this.$router.push("/service");
-      });
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store.dispatch("search/getItemDetail", data).then(() => {
+            this.$router.push("/service");
+          });
+        })
+        .catch(() => {
+          this.$store
+            .dispatch("auth/checkRefreshToken")
+            .then(() => {
+              this.$store.dispatch("search/getItemDetail", data).then(() => {
+                this.$router.push("/service");
+              });
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+              this.$store.dispatch("auth/logout");
+            });
+        });
     },
     searchItem() {
       const data = {

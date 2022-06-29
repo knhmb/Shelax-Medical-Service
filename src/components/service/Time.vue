@@ -61,7 +61,7 @@
   <div class="time-footer" v-if="singleItemDetail.itemType === 'product'">
     <el-row>
       <el-col>
-        <p class="quantity">數量</p>
+        <p class="quantity">{{ $t("quantity") }}</p>
       </el-col>
       <el-col>
         <div class="quantity-range">

@@ -1,28 +1,28 @@
 <template>
   <div class="second-section">
     <base-content-container>
-      <h2>即南助乞門</h2>
-      <h4>你發位王珠借立乍村文遠前把石象</h4>
+      <h2>{{ $t("about_page_title") }}</h2>
+      <h4>{{ $t("about_page_text") }}</h4>
       <el-row justify="space-between">
         <el-col :sm="12" :md="4">
           <div class="img"></div>
-          <p class="title">你發位王珠借立</p>
-          <p class="desc">吃申三旦力未歡們了同半干十跳而菜用未歡</p>
+          <p class="title">{{ $t("about_page_image_title") }}</p>
+          <p class="desc">{{ $t("about_page_image_description") }}</p>
         </el-col>
         <el-col :sm="12" :md="4">
           <div class="img"></div>
-          <p class="title">你發位王珠借立</p>
-          <p class="desc">吃申三旦力未歡們了同半干十跳而菜用未歡</p>
+          <p class="title">{{ $t("about_page_image_title") }}</p>
+          <p class="desc">{{ $t("about_page_image_description") }}</p>
         </el-col>
         <el-col :sm="12" :md="4">
           <div class="img"></div>
-          <p class="title">你發位王珠借立</p>
-          <p class="desc">吃申三旦力未歡們了同半干十跳而菜用未歡</p>
+          <p class="title">{{ $t("about_page_image_title") }}</p>
+          <p class="desc">{{ $t("about_page_image_description") }}</p>
         </el-col>
         <el-col :sm="12" :md="4">
           <div class="img"></div>
-          <p class="title">你發位王珠借立</p>
-          <p class="desc">吃申三旦力未歡們了同半干十跳而菜用未歡</p>
+          <p class="title">{{ $t("about_page_image_title") }}</p>
+          <p class="desc">{{ $t("about_page_image_description") }}</p>
         </el-col>
       </el-row>
     </base-content-container>
