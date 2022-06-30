@@ -6,9 +6,11 @@
         <el-breadcrumb-item :to="{ path: '/' }"
           >{{ $t("home") }}
         </el-breadcrumb-item>
-        <el-breadcrumb-item>{{ $t("body_checkup") }}</el-breadcrumb-item>
         <el-breadcrumb-item>{{
-          $t("personal_health_checkup")
+          singleItemDetail.basicInfo.itemName
+        }}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{
+          singleItemDetail.basicInfo.providerName
         }}</el-breadcrumb-item>
       </el-breadcrumb>
       <div class="service-carousel">
@@ -69,6 +71,11 @@ export default {
     return {
       ArrowRight: ArrowRight,
     };
+  },
+  computed: {
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
   },
 };
 </script>

@@ -20,6 +20,17 @@ export default defineComponent({
 
     return { center };
   },
+  computed: {
+    singleItemDetail() {
+      return this.$store.getters["search/singleItemDetail"];
+    },
+  },
+  created() {
+    console.log(this.singleItemDetail);
+    this.center.lat = +this.singleItemDetail.basicInfo.latitude;
+    this.center.lng = +this.singleItemDetail.basicInfo.longitude;
+    console.log(this.center);
+  },
 });
 </script>
 

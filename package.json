@@ -26,6 +26,7 @@
     "vue2-google-maps": "^0.10.7",
     "vue3-carousel": "^0.1.40",
     "vue3-google-map": "^0.8.3",
+    "vue3-openlayers": "^0.1.68",
     "vuex": "^4.0.2",
     "vuex-persistedstate": "^4.1.0"
   },
