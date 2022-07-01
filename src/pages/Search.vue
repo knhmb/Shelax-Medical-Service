@@ -16,7 +16,7 @@
             <el-form-item>
               <p class="input-label">{{ $t("search_service_or_product") }}</p>
               <el-input
-                placeholder="身體檢查"
+                :placeholder="$t('body_checkup')"
                 class="service"
                 v-model="service"
               ></el-input>
@@ -61,7 +61,7 @@
 
   <section class="content" v-if="searchItems[0].searchItemType === 'service'">
     <base-content-container>
-      <h2>身體檢查</h2>
+      <h2>{{ $t("body_checkup") }}</h2>
       <el-row :gutter="30">
         <el-col :sm="24" :lg="6">
           <!-- <div class="google-maps">

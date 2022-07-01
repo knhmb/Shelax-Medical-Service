@@ -7,7 +7,7 @@
             <el-form-item>
               <p class="input-label">{{ $t("search_service_or_product") }}</p>
               <el-input
-                placeholder="身體檢查"
+                :placeholder="$t('body_checkup')"
                 class="service"
                 v-model="service"
               ></el-input>
