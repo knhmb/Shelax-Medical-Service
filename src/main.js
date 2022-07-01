@@ -14,9 +14,6 @@ import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 import "element-plus/theme-chalk/display.css";
 
-import OpenLayersMap from "vue3-openlayers";
-import "vue3-openlayers/dist/vue3-openlayers.css";
-
 import BaseContainer from "./ui/BaseContainer.vue";
 import BaseContentContainer from "./ui/BaseContentContainer.vue";
 import BaseButton from "./ui/BaseButton.vue";
@@ -35,7 +32,6 @@ app.use(ElementPlus);
 app.use(router);
 app.use(store);
 app.use(i18n);
-app.use(OpenLayersMap);
 // app.use(ElementPlus, {
 //   locale: store.state.lang === "en-US" ? en : zhCn,
 // });
