@@ -313,5 +313,9 @@
   "more_recommended_services": "More Recommended Services",
   "get_latest_offers": "Yes! I would like to receive the latest offers and other news about Shelax and understand that I can unsubscribe at any time.",
   "third_party_login": "If signed up with a registered third-party account, you will be automatically logged into your Shelax account",
-  "already_have_an_account": "Already have a Shelax account?"
+  "already_have_an_account": "Already have a Shelax account?",
+  "company_information_step": "Company Information",
+  "applicant_information_step": "Applicant Information",
+  "upload_files_step": "Upload Files",
+  "done_step": "Complete"
 }

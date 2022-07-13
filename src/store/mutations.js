@@ -21,4 +21,11 @@ export default {
   GET_LANGUAGE(state) {
     state.lang = localStorage.getItem("lang");
   },
+  TOGGLE_PASSWORD_STEP(state, payload) {
+    state.isStepOneCompleted = payload;
+    console.log("reached");
+  },
+  SET_VENDOR_STEP(state, payload) {
+    state.vendorStep = payload;
+  },
 };

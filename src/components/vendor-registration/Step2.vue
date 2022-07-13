@@ -213,5 +213,9 @@ export default {
       });
     },
   },
+  created() {
+    this.$store.commit("SET_VENDOR_STEP", 1);
+    console.log("my-vendor");
+  },
 };
 </script>

@@ -106,53 +106,6 @@
         $route.path !== '/vendor-forgot-password'
       "
     >
-      <!-- <el-radio-group
-        class="hidden-md-and-up"
-        v-model="isCollapse"
-        style="margin-bottom: 20px"
-      >
-        <el-radio-button :label="false">expand</el-radio-button>
-        <el-radio-button :label="true">collapse</el-radio-button>
-      </el-radio-group> -->
-
-      <!-- <div
-        @click="isCollapse = !isCollapse"
-        :class="{ open: openNav }"
-        class="nav hidden-md-and-up"
-      >
-        <div class="one"></div>
-        <div class="two"></div>
-        <div class="three"></div>
-      </div>
-
-      <el-menu
-        v-if="!isSteps && isCollapse"
-        class="el-menu-demo bottom-header hidden-md-and-up"
-        :ellipsis="true"
-      >
-        <template v-for="item in menuItems" :key="item.id">
-          <el-menu-item
-            @click="navigateItem(item.slug)"
-            :index="item.displayOrder"
-            v-if="item.slug !== 'servcat-genetic-testing'"
-            >{{ item.name }}</el-menu-item
-          >
-          <el-sub-menu
-            v-if="item.slug === 'servcat-genetic-testing'"
-            :index="item.displayOrder"
-          >
-            <template #title>{{ item.name }}</template>
-            <el-menu-item
-              @click="navigateItem(menuItem.slug)"
-              v-for="menuItem in subMenuItems"
-              :key="menuItem.id"
-              :index="item.id + '-' + menuItem.id"
-              >{{ menuItem.name }}</el-menu-item
-            >
-          </el-sub-menu>
-        </template>
-      </el-menu> -->
-
       <carousel :breakpoints="breakpoints" class="hidden-md-and-up">
         <slide v-for="item in menuItems" :key="item.id">
           <el-menu
@@ -225,6 +178,14 @@
           </el-sub-menu>
         </template>
       </el-menu>
+      <!-- <div class="steps" v-if="$route.path === '/vendor-registration'">
+        <el-steps align-center :active="active" finish-status="success">
+          <el-step title="Step 1" />
+          <el-step title="Step 2" />
+          <el-step title="Step 3" />
+          <el-step title="Step 4" />
+        </el-steps>
+      </div> -->
       <div
         v-if="
           $route.path === '/shopping-cart' ||
@@ -232,10 +193,20 @@
         "
         class="steps"
       >
-        <el-steps :active="step" finish-status="success">
+        <el-steps align-center :active="step" finish-status="success">
           <el-step :title="$t('select_order')"></el-step>
           <el-step :title="$t('fill_in_the_information')"></el-step>
           <el-step :title="$t('payment')"></el-step>
+        </el-steps>
+      </div>
+    </div>
+    <div class="bottom-container">
+      <div class="steps" v-if="$route.path === '/vendor-registration'">
+        <el-steps align-center :active="vendorStep" finish-status="success">
+          <el-step :title="$t('company_information_step')" />
+          <el-step :title="$t('applicant_information_step')" />
+          <el-step :title="$t('upload_files_step')" />
+          <el-step :title="$t('done_step')" />
         </el-steps>
       </div>
     </div>
@@ -294,12 +265,16 @@ export default {
       if (this.$route.path === "/reset-password") {
         this.selectedOption = "";
         this.dialogVisible = true;
+        // this.$store.commit("TOGGLE_PASSWORD_STEP", true);
       }
       console.log(this.$route);
       console.log(this.$route.path);
     },
   },
   computed: {
+    vendorStep() {
+      return this.$store.getters.vendorStep;
+    },
     isSteps() {
       return this.$store.getters.isSteps;
     },
@@ -516,7 +491,7 @@ export default {
 }
 
 .header .bottom-container .steps {
-  padding: 0 20rem;
+  padding: 0 13rem;
   margin-top: 0.5rem;
 }
 

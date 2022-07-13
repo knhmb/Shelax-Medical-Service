@@ -27,18 +27,11 @@
       ></login-form>
       <forgot-password
         @closeDialog="closeDialog"
-        v-if="authTitle === $t('menu_forgot_password')"
+        v-if="
+          authTitle === $t('menu_forgot_password') ||
+          authTitle === $t('reset_password_text')
+        "
       ></forgot-password>
-      <!-- </el-tab-pane> -->
-      <!-- <el-tab-pane label="手機號碼" name="second">
-          <template #label>
-            <span @click="selectedTab('phone')" class="label">
-              <img :src="phoneTab" style="width: 20px" alt="" />
-              手機號碼
-            </span>
-          </template></el-tab-pane
-        > -->
-      <!-- </el-tabs> -->
     </el-dialog>
   </section>
 </template>
@@ -80,13 +73,14 @@ export default {
         this.authTitle = this.$t("menu_forgot_password");
       }
     },
-    $route() {
-      if (this.$route.path === "/reset-password") {
-        this.authTitle = this.$t("menu_forgot_password");
-        this.$emit("toggleAuth", "forgotPassword");
-        this.authTitle = "忘記密碼";
-      }
-    },
+    // $route() {
+    //   if (this.$route.path === "/reset-password") {
+    //     // this.authTitle = this.$t("menu_forgot_password");
+    //     // this.$emit("toggleAuth", "forgotPassword");
+    //     // this.authTitle = "忘記密碼";
+    //     // this.authTitle = this.$t("menu_forgot_password");
+    //   }
+    // },
   },
   computed: {
     dialogVisibleIsOpen() {

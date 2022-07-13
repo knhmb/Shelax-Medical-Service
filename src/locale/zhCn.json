@@ -300,5 +300,9 @@
   "more_recommended_services": "更多推薦服務",
   "get_latest_offers": "是的！我願意接收有關Shelax的最新優惠及其他資訊，並了解我可以隨時取消訂閱。",
   "third_party_login": "如以已登記的電話號碼或第三方帳戶登記，將自動登入你的Shelax帳戶",
-  "already_have_an_account": "已有Shelax帳號?"
+  "already_have_an_account": "已有Shelax帳號?",
+  "company_information_step": "公司資料",
+  "applicant_information_step": "申請人資料",
+  "upload_files_step": "上傳文件",
+  "done_step": "完成"
 }

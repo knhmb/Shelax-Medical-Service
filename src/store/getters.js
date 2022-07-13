@@ -17,4 +17,10 @@ export default {
   time(state) {
     return state.time;
   },
+  isStepOneCompleted(state) {
+    return state.isStepOneCompleted;
+  },
+  vendorStep(state) {
+    return state.vendorStep;
+  },
 };

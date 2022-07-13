@@ -144,5 +144,8 @@ export default {
       });
     },
   },
+  created() {
+    this.$store.commit("SET_VENDOR_STEP", 0);
+  },
 };
 </script>

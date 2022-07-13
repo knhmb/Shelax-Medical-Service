@@ -13,7 +13,7 @@
         <el-button @click="send">{{ $t("forgot_password_button") }}</el-button>
       </el-form>
     </div>
-    <div class="second-step" v-if="isStepOneCompleted">
+    <div class="second-step" v-else>
       <step-2 @closeDialog="$emit('closeDialog')"></step-2>
     </div>
   </section>
@@ -47,16 +47,11 @@ export default {
       },
     };
   },
-  watch: {
-    $route: {
-      deep: true,
-      handler() {
-        if (this.$route.path === "/reset-password") {
-          this.isStepOneCompleted = true;
-        }
-      },
-    },
-  },
+  // computed: {
+  //   isStepOneCompleted() {
+  //     return this.$store.getters.isStepOneCompleted;
+  //   },
+  // },
   methods: {
     send() {
       this.$refs.ruleFormRef.validate((valid) => {

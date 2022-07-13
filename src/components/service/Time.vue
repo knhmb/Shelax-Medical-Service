@@ -5,56 +5,58 @@
       <p class="divider"><span>上午</span></p>
       <el-row :gutter="10">
         <!-- <template> -->
-        <el-col
-          v-for="time in singleItemDetail.defaultDateTimeslots.slice(0, 6)"
+        <template
+          v-for="time in singleItemDetail.defaultDateTimeslots"
           :key="time.id"
-          :sm="24"
-          :md="6"
-          :lg="6"
         >
-          <base-button
-            :class="{
-              'is-active':
-                isActive ===
-                time.sessionStart.slice(0, time.sessionStart.lastIndexOf(':')),
-            }"
-            @click="setTime(time)"
-            >{{
-              `${time.sessionStart.slice(
-                0,
-                time.sessionStart.lastIndexOf(":")
-              )}`
-            }}</base-button
-          >
-        </el-col>
+          <el-col v-if="amTiming(time)" :sm="24" :md="6" :lg="6">
+            <base-button
+              :class="{
+                'is-active':
+                  isActive ===
+                  time.sessionStart.slice(
+                    0,
+                    time.sessionStart.lastIndexOf(':')
+                  ),
+              }"
+              @click="setTime(time)"
+            >
+              {{
+                time.sessionStart.slice(0, time.sessionStart.lastIndexOf(":"))
+              }}
+            </base-button>
+          </el-col>
+        </template>
       </el-row>
     </div>
 
     <div class="pm">
       <p class="divider"><span>下午</span></p>
       <el-row :gutter="10">
-        <el-col
-          v-for="time in singleItemDetail.defaultDateTimeslots.slice(6)"
+        <template
+          v-for="time in singleItemDetail.defaultDateTimeslots"
           :key="time.id"
-          :sm="24"
-          :md="6"
-          :lg="6"
         >
-          <base-button
-            :class="{
-              'is-active':
-                isActive ===
-                time.sessionStart.slice(0, time.sessionStart.lastIndexOf(':')),
-            }"
-            @click="setTime(time)"
-            >{{
-              `${time.sessionStart.slice(
-                0,
-                time.sessionStart.lastIndexOf(":")
-              )}`
-            }}</base-button
-          >
-        </el-col>
+          <el-col v-if="pmTiming(time)" :sm="24" :md="6" :lg="6">
+            <base-button
+              :class="{
+                'is-active':
+                  isActive ===
+                  time.sessionStart.slice(
+                    0,
+                    time.sessionStart.lastIndexOf(':')
+                  ),
+              }"
+              @click="setTime(time)"
+              >{{
+                `${time.sessionStart.slice(
+                  0,
+                  time.sessionStart.lastIndexOf(":")
+                )}`
+              }}</base-button
+            >
+          </el-col>
+        </template>
       </el-row>
     </div>
   </div>
@@ -175,6 +177,21 @@ export default {
       this.$store.dispatch("search/updatePrice", data);
       console.log(this.num);
       console.log(this.singleItemDetail.basicInfo.id);
+    },
+    amTiming(time) {
+      if (
+        "12:00" > time.sessionStart.slice(0, time.sessionStart.lastIndexOf(":"))
+      ) {
+        return time.sessionStart.slice(0, time.sessionStart.lastIndexOf(":"));
+      }
+    },
+    pmTiming(time) {
+      if (
+        "12:00" <=
+        time.sessionStart.slice(0, time.sessionStart.lastIndexOf(":"))
+      ) {
+        return time.sessionStart.slice(0, time.sessionStart.lastIndexOf(":"));
+      }
     },
     setTime(time) {
       console.log(time);
@@ -350,6 +367,7 @@ export default {
   },
   created() {
     console.log(this.singleItemDetail);
+    console.log(`${"10:30" > "10:00"}`);
     if (this.singleItemDetail.itemType === "service") {
       this.isActive = this.singleItemDetail.defaultBookingTime.slice(
         0,

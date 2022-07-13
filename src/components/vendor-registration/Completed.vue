@@ -6,6 +6,14 @@
   </div>
 </template>
 
+<script>
+export default {
+  created() {
+    this.$store.commit("SET_VENDOR_STEP", 3);
+  },
+};
+</script>
+
 <style scoped>
 .completed {
   text-align: center;

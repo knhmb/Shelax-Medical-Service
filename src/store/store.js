@@ -20,6 +20,8 @@ const store = createStore({
       lang: localStorage.getItem("lang"),
       date: null,
       time: null,
+      isStepOneCompleted: true,
+      vendorStep: 0,
     };
   },
   actions,

@@ -230,6 +230,9 @@ export default {
       console.log("khaled");
     },
   },
+  created() {
+    this.$store.commit("SET_VENDOR_STEP", 2);
+  },
 };
 </script>
 
