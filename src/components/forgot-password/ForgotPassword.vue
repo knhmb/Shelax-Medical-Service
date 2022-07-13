@@ -47,6 +47,16 @@ export default {
       },
     };
   },
+  watch: {
+    $route: {
+      deep: true,
+      handler() {
+        if (this.$route.path === "/reset-password") {
+          this.isStepOneCompleted = true;
+        }
+      },
+    },
+  },
   methods: {
     send() {
       this.$refs.ruleFormRef.validate((valid) => {
@@ -59,7 +69,7 @@ export default {
                 message: this.$t("forgot_password_success"),
                 type: "success",
               });
-              this.isStepOneCompleted = true;
+              // this.isStepOneCompleted = true;
             })
             .catch(() => {
               ElNotification({
