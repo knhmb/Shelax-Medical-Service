@@ -211,6 +211,39 @@ export default {
       ],
     };
   },
+  watch: {
+    lang() {
+      const data = {
+        option: "service",
+        search: "",
+        time: "",
+        date: "",
+      };
+      console.log(data);
+      this.$store.dispatch("search/searchItem", data).then(() => {
+        this.$store.commit("SET_SEARCH_VALUES", {
+          date: this.datePicker,
+          time: this.timePicker,
+        });
+        this.$router.push({
+          path: "search",
+          query: {
+            q: `${data.search ? `search=${data.search}&` : ""}${
+              data.option && data.time && data.date
+                ? `filter=itemtype:${data.option},bookingdate:${data.date},bookingtime:${data.time}`
+                : data.option && data.date
+                ? `filter=itemtype:${data.option},bookingdate:${data.date}`
+                : data.option && data.time
+                ? `filter=itemtype:${data.option},bookingtime:${data.time}`
+                : data.option
+                ? `filter=itemtype:${data.option}`
+                : ""
+            }`,
+          },
+        });
+      });
+    },
+  },
   computed: {
     searchItems() {
       return this.$store.getters["search/searchItems"];
@@ -220,6 +253,9 @@ export default {
     },
     timeSearchValue() {
       return this.$store.getters.time;
+    },
+    lang() {
+      return this.$store.getters.lang;
     },
   },
   methods: {
@@ -262,6 +298,9 @@ export default {
             });
         });
     },
+  },
+  created() {
+    console.log(this.searchItems);
   },
 };
 </script>

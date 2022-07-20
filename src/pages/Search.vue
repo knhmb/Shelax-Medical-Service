@@ -230,6 +230,12 @@ export default {
       checkList: [],
     };
   },
+  watch: {
+    lang() {
+      this.$store.dispatch("search/getRegions");
+      this.$store.dispatch("search/getDistricts");
+    },
+  },
   computed: {
     regions() {
       return this.$store.getters["search/regions"];
@@ -239,6 +245,9 @@ export default {
     },
     searchItems() {
       return this.$store.getters["search/searchItems"];
+    },
+    lang() {
+      return this.$store.getters.lang;
     },
   },
   methods: {

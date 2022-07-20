@@ -34,6 +34,9 @@ export default {
       return this.$store.getters["profile/orderHistory"];
     },
   },
+  created() {
+    console.log(this.orderHistory);
+  },
 };
 </script>
 

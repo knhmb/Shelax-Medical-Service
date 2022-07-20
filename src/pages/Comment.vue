@@ -29,6 +29,35 @@ export default {
       activeName: "first",
     };
   },
+  watch: {
+    lang() {
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store.dispatch("profile/getComments");
+        })
+        .catch(() => {
+          this.$store
+            .dispatch("auth/checkRefreshToken")
+            .then(() => {
+              this.$store.dispatch("profile/getComments");
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+              this.$store.dispatch("auth/logout");
+            });
+        });
+    },
+  },
+  computed: {
+    lang() {
+      return this.$store.getters.lang;
+    },
+  },
   created() {
     this.$store
       .dispatch("auth/checkAccessToken")
