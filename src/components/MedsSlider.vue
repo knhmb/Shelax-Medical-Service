@@ -23,62 +23,6 @@
               </el-row>
             </div>
           </el-carousel-item>
-          <!-- <el-carousel-item>
-            <div class="slider">
-              <el-row justify="space-around">
-                <el-col :sm="24" :md="5" :lg="5">
-                  <img
-                    src="../assets/icon-product-b@2x.png"
-                    class="product-img"
-                    alt=""
-                  />
-                  <p>抗疫產品</p>
-                </el-col>
-              </el-row>
-            </div>
-          </el-carousel-item>
-          <el-carousel-item>
-            <div class="slider">
-              <el-row justify="space-around">
-                <el-col :sm="24" :md="5" :lg="5">
-                  <img
-                    src="../assets/icon-product-c@2x.png"
-                    class="product-img"
-                    alt=""
-                  />
-                  <p>抗疫產品</p>
-                </el-col>
-              </el-row>
-            </div>
-          </el-carousel-item>
-          <el-carousel-item>
-            <div class="slider">
-              <el-row justify="space-around">
-                <el-col :sm="24" :md="5" :lg="5">
-                  <img
-                    src="../assets/icon-product-d@2x.png"
-                    class="product-img"
-                    alt=""
-                  />
-                  <p>抗疫產品</p>
-                </el-col>
-              </el-row>
-            </div>
-          </el-carousel-item>
-          <el-carousel-item>
-            <div class="slider">
-              <el-row justify="space-around">
-                <el-col :sm="24" :md="5" :lg="5">
-                  <img
-                    src="../assets/icon-product-e@2x.png"
-                    class="product-img"
-                    alt=""
-                  />
-                  <p>抗疫產品</p>
-                </el-col>
-              </el-row>
-            </div>
-          </el-carousel-item> -->
         </el-carousel>
 
         <el-carousel
@@ -89,7 +33,7 @@
         >
           <el-carousel-item>
             <div class="slider">
-              <el-row justify="space-around">
+              <el-row>
                 <el-col
                   @click="searchProduct(product.slug)"
                   v-for="product in productItems"
@@ -208,16 +152,24 @@ export default {
   margin: 2rem 0;
 } */
 
+.all-content .slider .el-row {
+  justify-content: center;
+}
+
 .all-content .slider .el-col {
   margin: 1rem 0;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .all-content .slider {
   /* text-align: center; */
   /* display: flex;
   justify-content: ; */
-  padding: 1rem 0 1rem 4rem;
+  /* padding: 1rem 0 1rem 4rem; */
 }
 
 .all-content

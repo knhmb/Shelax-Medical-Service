@@ -54,6 +54,8 @@ import Appointment from "../components/service/Appointment.vue";
 import Faq from "../components/service/Faq.vue";
 import RecommendedServices from "../components/service/RecommendedServices.vue";
 import RightSection from "../components/service/RightSection.vue";
+import moment from "moment";
+import { ElNotification } from "element-plus";
 
 export default {
   components: {
@@ -72,9 +74,61 @@ export default {
       ArrowRight: ArrowRight,
     };
   },
+  watch: {
+    lang() {
+      if (this.singleItemDetail.itemType === "service") {
+        const time = this.singleItemDetail.defaultBookingTime.substring(
+          0,
+          this.singleItemDetail.defaultBookingTime.lastIndexOf(":")
+        );
+        const data = {
+          itemId: this.singleItemDetail.basicInfo.id,
+          bookingDate: moment(this.singleItemDetail.defaultBookingDate).format(
+            "YYYYMMDD"
+          ),
+          bookingTime: time.replace(":", ""),
+        };
+        console.log(data);
+        this.$store
+          .dispatch("auth/checkAccessToken")
+          .then(() => {
+            this.$store.dispatch("search/getItemDetail", data).then(() => {
+              this.$router.push("/service");
+            });
+          })
+          .catch(() => {
+            this.$store
+              .dispatch("auth/checkRefreshToken")
+              .then(() => {
+                this.$store.dispatch("search/getItemDetail", data).then(() => {
+                  this.$router.push("/service");
+                });
+              })
+              .catch((err) => {
+                ElNotification({
+                  title: "Error",
+                  message: this.$t(err.response.data.message),
+                  type: "error",
+                });
+                this.$store.dispatch("auth/logout");
+              });
+          });
+      } else if (this.singleItemDetail.itemType === "product") {
+        const data = {
+          itemId: this.singleItemDetail.basicInfo.id,
+          bookingDate: "-",
+          bookingTime: "-",
+        };
+        console.log(data);
+      }
+    },
+  },
   computed: {
     singleItemDetail() {
       return this.$store.getters["search/singleItemDetail"];
+    },
+    lang() {
+      return this.$store.getters.lang;
     },
   },
 };

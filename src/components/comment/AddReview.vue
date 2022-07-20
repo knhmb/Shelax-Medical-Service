@@ -9,11 +9,11 @@
     />
     <el-form label-position="top">
       <el-row>
-        <!-- <el-col>
+        <el-col>
           <el-form-item class="first-label" label="評論標題">
             <el-input v-model="title" placeholder="請輸入評論標題"></el-input>
           </el-form-item>
-        </el-col> -->
+        </el-col>
         <el-col>
           <el-form-item :label="$t('tell_us_what_you_think')">
             <el-input
@@ -49,7 +49,7 @@ export default {
     submit() {
       const data = {
         rating: this.value,
-        comments: this.description,
+        comments: this.title,
         itemId: this.itemId,
         orderId: this.orderId,
         orderItemId: this.orderItemId,

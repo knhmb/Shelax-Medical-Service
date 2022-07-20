@@ -97,6 +97,38 @@
     </el-col>
     <el-col :sm="24" :md="12">
       <div class="upload-card">
+        <p>{{ $t("hong_kong_identity_card") }}</p>
+        <p class="description">
+          {{ $t("upload_file_text") }}
+        </p>
+        <el-upload action="#" list-type="picture-card" :auto-upload="false">
+          <template #default>
+            <el-icon><Upload /></el-icon>
+          </template>
+          <template #file="{ file }">
+            <div>
+              <img
+                class="el-upload-list__item-thumbnail"
+                :src="file.url"
+                alt=""
+              />
+              <span class="el-upload-list__item-actions">
+                <span
+                  class="el-upload-list__item-delete"
+                  @click="handleRemove(file)"
+                >
+                  <el-icon>
+                    <circle-close-filled></circle-close-filled>
+                  </el-icon>
+                </span>
+              </span>
+            </div>
+          </template>
+        </el-upload>
+      </div>
+    </el-col>
+    <el-col :sm="24" :md="12">
+      <div class="upload-card">
         <p>{{ $t("doctor_license") }}</p>
         <p class="description">
           {{ $t("upload_file_text") }}
@@ -191,6 +223,7 @@
         </el-upload>
       </div>
     </el-col>
+    <el-col></el-col>
     <el-col :sm="24" :md="12">
       <el-button @click="nextStep('step-2')" class="return">{{
         $t("previous_button")
@@ -213,6 +246,13 @@ export default {
     CircleCloseFilled,
     Upload,
   },
+  //   setup() {
+  //     const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
+  //   fileList.value = fileList.value.slice(-3)
+  // }
+
+  // return {handleChange}
+  //   },
   data() {
     return {
       UploadFile,
@@ -228,6 +268,10 @@ export default {
       this.dialogImageUrl = UploadFile.url;
       this.dialogVisible = true;
       console.log("khaled");
+    },
+    handleRemove(file) {
+      console.log(file);
+      console.log(this.UploadFile);
     },
   },
   created() {
@@ -296,5 +340,6 @@ h6 {
 .el-button.return {
   color: #7690da;
   border-color: #7690da;
+  align-self: flex-end;
 }
 </style>

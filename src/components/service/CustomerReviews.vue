@@ -32,7 +32,7 @@
           <div class="select-input">
             <el-select class="m-2" :placeholder="$t('highest_to_lowest_score')">
               <el-option>{{ $t("highest_to_lowest_score") }}</el-option>
-              <el-option>{{ $t("highest_to_lowest_score") }}</el-option>
+              <el-option>{{ $t("lowest_to_highest_score") }}</el-option>
             </el-select>
           </div>
         </el-col>

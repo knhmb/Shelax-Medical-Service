@@ -304,5 +304,7 @@
   "company_information_step": "公司資料",
   "applicant_information_step": "申請人資料",
   "upload_files_step": "上傳文件",
-  "done_step": "完成"
+  "done_step": "完成",
+  "lowest_to_highest_score": "從最低到最高分",
+  "hong_kong_identity_card": "香港身份證"
 }

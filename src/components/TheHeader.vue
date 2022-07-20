@@ -114,16 +114,15 @@
             :ellipsis="false"
             mode="horizontal"
           >
-            <!-- <template v-for="item in menuItems" :key="item.id"> -->
             <el-menu-item
               @click="navigateItem(item.slug)"
-              :index="item.displayOrder"
+              :index="'1'"
               v-if="item.slug !== 'servcat-genetic-testing'"
               >{{ item.name }}</el-menu-item
             >
             <el-sub-menu
               v-if="item.slug === 'servcat-genetic-testing'"
-              :index="item.displayOrder"
+              :index="'2'"
             >
               <template #title>{{ item.name }}</template>
               <el-menu-item
@@ -133,20 +132,12 @@
                 :index="item.id + '-' + menuItem.id"
                 >{{ menuItem.name }}</el-menu-item
               >
-              <!-- <el-menu-item :index="item.displayOrder + '-' + '1'"
-              >DNA基因檢查</el-menu-item
-            >
-            <el-menu-item :index="item.displayOrder + '-' + '2'"
-              >腫瘤基因檢查</el-menu-item
-            > -->
             </el-sub-menu>
-            <!-- </template> -->
           </el-menu>
         </slide>
 
         <template #addons>
           <navigation />
-          <!-- <pagination /> -->
         </template>
       </carousel>
 
@@ -245,7 +236,7 @@ export default {
       breakpoints: {
         300: {
           itemsToShow: 2.5,
-          snapAlign: "center",
+          snapAlign: "start",
         },
         // 700px and up
         700: {
@@ -544,9 +535,23 @@ export default {
   margin-right: 0.2rem;
 }
 
-.header .carousel__prev,
+/* .header .carousel__prev,
 .header .carousel__next {
   display: none;
+} */
+
+.header .carousel__prev,
+.header .carousel__next {
+  background: #fff;
+}
+
+.header .carousel__prev--in-active,
+.carousel__next--in-active {
+  display: none;
+}
+
+.header .carousel__icon {
+  color: #111;
 }
 
 .el-menu--horizontal.language .el-menu-item {

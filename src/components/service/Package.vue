@@ -70,10 +70,25 @@ export default {
       wishIcon: require("../../assets/icon-wish-off@2x.png"),
     };
   },
+  // watch: {
+  //   lang() {
+  //     if (this.singleItemDetail.itemType === "service") {
+  //       const data = {
+  //         itemId: this.singleItemDetail.basicInfo.id,
+  //         bookingDate: this.singleItemDetail.defaultBookingDate,
+  //         bookingTime: this.singleItemDetail.defaultBookingTime,
+  //       };
+  //       console.log(data);
+  //     }
+  //   },
+  // },
   computed: {
     singleItemDetail() {
       return this.$store.getters["search/singleItemDetail"];
     },
+    // lang() {
+    //   return this.$store.getters.lang;
+    // },
   },
   methods: {
     imgHover() {
