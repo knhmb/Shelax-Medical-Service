@@ -7,7 +7,17 @@
         <p class="description">
           {{ $t("upload_file_text") }}
         </p>
-        <el-upload action="#" list-type="picture-card" :auto-upload="false">
+        <el-upload
+          method="get"
+          v-model:file-list="fileList"
+          action="#"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove"
+        >
+          <el-icon><Plus /></el-icon>
+        </el-upload>
+        <!-- <el-upload action="#" list-type="picture-card" :auto-upload="false">
           <template #default>
             <el-icon><Upload /></el-icon>
           </template>
@@ -28,7 +38,7 @@
               </span>
             </div>
           </template>
-        </el-upload>
+        </el-upload> -->
       </div>
     </el-col>
     <el-col :sm="24" :md="12">
@@ -37,29 +47,15 @@
         <p class="description">
           {{ $t("upload_file_text") }}
         </p>
-        <el-upload action="#" list-type="picture-card" :auto-upload="false">
-          <template #default>
-            <el-icon><Upload /></el-icon>
-          </template>
-          <template #file="{ file }">
-            <div>
-              <img
-                class="el-upload-list__item-thumbnail"
-                :src="file.url"
-                alt=""
-              />
-              <span class="el-upload-list__item-actions">
-                <span
-                  class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
-                >
-                  <el-icon>
-                    <circle-close-filled></circle-close-filled>
-                  </el-icon>
-                </span>
-              </span>
-            </div>
-          </template>
+        <el-upload
+          method="get"
+          v-model:file-list="fileList"
+          action="#"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove"
+        >
+          <el-icon><Plus /></el-icon>
         </el-upload>
       </div>
     </el-col>
@@ -69,29 +65,15 @@
         <p class="description">
           {{ $t("upload_file_text") }}
         </p>
-        <el-upload action="#" list-type="picture-card" :auto-upload="false">
-          <template #default>
-            <el-icon><Upload /></el-icon>
-          </template>
-          <template #file="{ file }">
-            <div>
-              <img
-                class="el-upload-list__item-thumbnail"
-                :src="file.url"
-                alt=""
-              />
-              <span class="el-upload-list__item-actions">
-                <span
-                  class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
-                >
-                  <el-icon>
-                    <circle-close-filled></circle-close-filled>
-                  </el-icon>
-                </span>
-              </span>
-            </div>
-          </template>
+        <el-upload
+          method="get"
+          v-model:file-list="fileList"
+          action="#"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove"
+        >
+          <el-icon><Plus /></el-icon>
         </el-upload>
       </div>
     </el-col>
@@ -101,29 +83,15 @@
         <p class="description">
           {{ $t("upload_file_text") }}
         </p>
-        <el-upload action="#" list-type="picture-card" :auto-upload="false">
-          <template #default>
-            <el-icon><Upload /></el-icon>
-          </template>
-          <template #file="{ file }">
-            <div>
-              <img
-                class="el-upload-list__item-thumbnail"
-                :src="file.url"
-                alt=""
-              />
-              <span class="el-upload-list__item-actions">
-                <span
-                  class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
-                >
-                  <el-icon>
-                    <circle-close-filled></circle-close-filled>
-                  </el-icon>
-                </span>
-              </span>
-            </div>
-          </template>
+        <el-upload
+          method="get"
+          v-model:file-list="fileList"
+          action="#"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove"
+        >
+          <el-icon><Plus /></el-icon>
         </el-upload>
       </div>
     </el-col>
@@ -133,29 +101,15 @@
         <p class="description">
           {{ $t("upload_file_text") }}
         </p>
-        <el-upload action="#" list-type="picture-card" :auto-upload="false">
-          <template #default>
-            <el-icon><Upload /></el-icon>
-          </template>
-          <template #file="{ file }">
-            <div>
-              <img
-                class="el-upload-list__item-thumbnail"
-                :src="file.url"
-                alt=""
-              />
-              <span class="el-upload-list__item-actions">
-                <span
-                  class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
-                >
-                  <el-icon>
-                    <circle-close-filled></circle-close-filled>
-                  </el-icon>
-                </span>
-              </span>
-            </div>
-          </template>
+        <el-upload
+          method="get"
+          v-model:file-list="fileList"
+          action="#"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove"
+        >
+          <el-icon><Plus /></el-icon>
         </el-upload>
       </div>
     </el-col>
@@ -165,29 +119,15 @@
         <p class="description">
           {{ $t("upload_file_text") }}
         </p>
-        <el-upload action="#" list-type="picture-card" :auto-upload="false">
-          <template #default>
-            <el-icon><Upload /></el-icon>
-          </template>
-          <template #file="{ file }">
-            <div>
-              <img
-                class="el-upload-list__item-thumbnail"
-                :src="file.url"
-                alt=""
-              />
-              <span class="el-upload-list__item-actions">
-                <span
-                  class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
-                >
-                  <el-icon>
-                    <circle-close-filled></circle-close-filled>
-                  </el-icon>
-                </span>
-              </span>
-            </div>
-          </template>
+        <el-upload
+          method="get"
+          v-model:file-list="fileList"
+          action="#"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove"
+        >
+          <el-icon><Plus /></el-icon>
         </el-upload>
       </div>
     </el-col>
@@ -197,29 +137,15 @@
         <p class="description">
           {{ $t("upload_file_text") }}
         </p>
-        <el-upload action="#" list-type="picture-card" :auto-upload="false">
-          <template #default>
-            <el-icon><Upload /></el-icon>
-          </template>
-          <template #file="{ file }">
-            <div>
-              <img
-                class="el-upload-list__item-thumbnail"
-                :src="file.url"
-                alt=""
-              />
-              <span class="el-upload-list__item-actions">
-                <span
-                  class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
-                >
-                  <el-icon>
-                    <circle-close-filled></circle-close-filled>
-                  </el-icon>
-                </span>
-              </span>
-            </div>
-          </template>
+        <el-upload
+          method="get"
+          v-model:file-list="fileList"
+          action="#"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove"
+        >
+          <el-icon><Plus /></el-icon>
         </el-upload>
       </div>
     </el-col>
@@ -238,13 +164,14 @@
 </template>
 
 <script>
-import { CircleCloseFilled, Upload } from "@element-plus/icons-vue";
+import { Plus } from "@element-plus/icons-vue";
 import { UploadFile } from "element-plus/es/components/upload/src/upload.type";
 
 export default {
   components: {
-    CircleCloseFilled,
-    Upload,
+    // CircleCloseFilled,
+    // Upload,
+    Plus,
   },
   //   setup() {
   //     const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
@@ -258,20 +185,24 @@ export default {
       UploadFile,
       dialogVisible: false,
       dialogImageUrl: "",
+      fileList: [],
     };
   },
   methods: {
     nextStep(value) {
       this.$emit("changeStep", value);
     },
-    handlePictureCardPreview(UploadFile) {
-      this.dialogImageUrl = UploadFile.url;
-      this.dialogVisible = true;
-      console.log("khaled");
-    },
     handleRemove(file) {
       console.log(file);
-      console.log(this.UploadFile);
+    },
+    handleRemoveFile(file) {
+      console.log(file);
+    },
+    handlePictureCardPreview(uploadFile) {
+      this.dialogImageUrl = uploadFile.url;
+      this.dialogVisible.value = true;
+      console.log("khaled");
+      console.log(this.dialogImageUrl);
     },
   },
   created() {
