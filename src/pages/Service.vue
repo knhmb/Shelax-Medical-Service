@@ -120,6 +120,30 @@ export default {
           bookingTime: "-",
         };
         console.log(data);
+        this.$store
+          .dispatch("auth/checkAccessToken")
+          .then(() => {
+            this.$store.dispatch("search/getItemDetail", data).then(() => {
+              this.$router.push("/service");
+            });
+          })
+          .catch(() => {
+            this.$store
+              .dispatch("auth/checkRefreshToken")
+              .then(() => {
+                this.$store.dispatch("search/getItemDetail", data).then(() => {
+                  this.$router.push("/service");
+                });
+              })
+              .catch((err) => {
+                ElNotification({
+                  title: "Error",
+                  message: this.$t(err.response.data.message),
+                  type: "error",
+                });
+                this.$store.dispatch("auth/logout");
+              });
+          });
       }
     },
   },

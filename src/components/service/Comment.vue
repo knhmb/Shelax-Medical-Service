@@ -2,7 +2,8 @@
   <div class="comment">
     <p class="comment-title">{{ $t("comment_title") }}</p>
     <p class="comment-description">
-      {{ $t("comment_description") }}
+      <!-- {{ $t("comment_description") }} -->
+      {{ comment }}
     </p>
     <p v-if="$i18n.locale === 'en-US'" class="comment-date">
       Reviewed on {{ updatedAt }}
@@ -13,7 +14,7 @@
 
 <script>
 export default {
-  props: ["updatedAt"],
+  props: ["updatedAt", "comment"],
 };
 </script>
 

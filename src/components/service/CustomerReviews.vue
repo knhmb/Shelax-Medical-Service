@@ -47,7 +47,7 @@
           <p class="avatar-name">
             {{ comment.lastName }} {{ comment.givenName }}
           </p>
-          <el-rate
+          <!-- <el-rate
             :colors="colors"
             :model-value="comment.rating"
             disabled
@@ -55,8 +55,18 @@
             show-score
             :score-template="comment.comments"
           >
+          </el-rate> -->
+          <el-rate
+            :colors="colors"
+            :model-value="comment.rating"
+            disabled
+            text-color="#8d8d8d"
+          >
           </el-rate>
-          <Comment :updated-at="comment.updatedAt" />
+          <Comment
+            :comment="comment.comments"
+            :updated-at="comment.updatedAt"
+          />
         </el-col>
       </el-row>
       <div class="submit-review-btn">
