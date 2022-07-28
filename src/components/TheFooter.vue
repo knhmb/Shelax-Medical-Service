@@ -125,7 +125,7 @@
         <el-icon><arrow-up-bold /></el-icon>
       </div>
     </el-backtop>
-    <p class="copyright">© 2021 Shelax. All Rights Reserved.</p>
+    <p class="copyright">© 2021 Shelax Limited. All Rights Reserved.</p>
   </section>
 </template>
 
