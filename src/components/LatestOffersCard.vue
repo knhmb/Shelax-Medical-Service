@@ -57,6 +57,7 @@ export default {
   border-radius: 12px !important;
   height: 100% !important;
   object-fit: contain;
+  width: 100%;
   /* min-width: 400px; */
 }
 

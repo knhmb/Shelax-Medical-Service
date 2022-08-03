@@ -10,7 +10,7 @@
         <!-- <h2 class="title">精選香港體檢中心</h2> -->
       </base-content-container>
 
-      <el-carousel
+      <!-- <el-carousel
         trigger="click"
         arrow="always"
         indicator-position="none"
@@ -36,9 +36,9 @@
             </el-row>
           </base-content-container>
         </el-carousel-item>
-      </el-carousel>
+      </el-carousel> -->
 
-      <el-carousel
+      <!-- <el-carousel
         :interval="5000"
         trigger="click"
         arrow="always"
@@ -47,7 +47,6 @@
         class="hide"
       >
         <el-carousel-item>
-          <!-- <base-container> -->
           <base-content-container>
             <el-row :gutter="12">
               <el-col
@@ -67,9 +66,27 @@
               </el-col>
             </el-row>
           </base-content-container>
-          <!-- </base-container> -->
         </el-carousel-item>
-      </el-carousel>
+      </el-carousel> -->
+      <base-content-container>
+        <Carousel :breakpoints="breakpoints">
+          <Slide v-for="theme in medicalConsultancyTheme" :key="theme.id">
+            <latest-offers-card
+              :name="theme.category"
+              :description="theme.itemName"
+              :price="theme.originalPrice"
+              :rate="theme.rating"
+              :number-of-rate="theme.reviewsCount"
+              :discount="theme.discountedPrice"
+              :image="theme.thumbnail"
+            ></latest-offers-card>
+          </Slide>
+
+          <template #addons>
+            <Navigation />
+          </template>
+        </Carousel>
+      </base-content-container>
       <div class="new-shelf-btn">
         <template v-for="theme in themes" :key="theme.id">
           <el-button
@@ -87,55 +104,35 @@
 <script>
 import LatestOffersCard from "../LatestOffersCard.vue";
 import { ElNotification } from "element-plus";
+import { Carousel, Navigation, Slide } from "vue3-carousel";
+
+import "vue3-carousel/dist/carousel.css";
 
 export default {
   components: {
     LatestOffersCard,
+    Carousel,
+    Navigation,
+    Slide,
   },
   data() {
     return {
-      products: [
-        {
-          id: 1,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
-          rate: 4,
-          numberOfRate: "(138,370)",
-          image: require("../../assets/Rectangle-77.png"),
+      breakpoints: {
+        // 300px and up
+        300: {
+          itemsToShow: 1.5,
+          snapAlign: "center",
         },
-        {
-          id: 2,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
-          rate: 4,
-          numberOfRate: "(138,370)",
-          image: require("../../assets/Rectangle-77-1.png"),
+        700: {
+          itemsToShow: 2.5,
+          snapAlign: "center",
         },
-        {
-          id: 3,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
-          rate: 4,
-          numberOfRate: "(138,370)",
-          image: require("../../assets/Rectangle-77-3.png"),
+        // 1024 and up
+        1024: {
+          itemsToShow: 4,
+          snapAlign: "start",
         },
-        {
-          id: 4,
-          name: "身體檢查",
-          price: "HK$ 570",
-          discountPrice: "HK$ 800",
-          description: "綜合個人健康體檢套餐",
-          rate: 4,
-          numberOfRate: "(138,370)",
-          image: require("../../assets/Rectangle-77-2.png"),
-        },
-      ],
+      },
     };
   },
   watch: {
