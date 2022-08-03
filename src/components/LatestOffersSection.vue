@@ -18,10 +18,7 @@
         indicator-position="none"
         class="hidden-sm-and-up"
       >
-        <el-carousel-item
-          v-for="product in cervicalCancerTheme"
-          :key="product.id"
-        >
+        <el-carousel-item v-for="theme in cervicalCancerTheme" :key="theme.id">
           <base-content-container>
             <el-row :gutter="12">
               <el-col :sm="6" :lg="6">
@@ -96,50 +93,7 @@ export default {
     LatestOffersCard,
   },
   data() {
-    return {
-      // products: [
-      //   {
-      //     id: 1,
-      //     name: "身體檢查",
-      //     price: "HK$ 570",
-      //     discountPrice: "HK$ 800",
-      //     description: "綜合個人健康體檢套餐",
-      //     rate: 4,
-      //     numberOfRate: "(138,370)",
-      //     image: require("../assets/Rectangle-77.png"),
-      //   },
-      //   {
-      //     id: 2,
-      //     name: "身體檢查",
-      //     price: "HK$ 570",
-      //     discountPrice: "HK$ 800",
-      //     description: "綜合個人健康體檢套餐",
-      //     rate: 4,
-      //     numberOfRate: "(138,370)",
-      //     image: require("../assets/Rectangle-77-1.png"),
-      //   },
-      //   {
-      //     id: 3,
-      //     name: "身體檢查",
-      //     price: "HK$ 570",
-      //     discountPrice: "HK$ 800",
-      //     description: "綜合個人健康體檢套餐",
-      //     rate: 4,
-      //     numberOfRate: "(138,370)",
-      //     image: require("../assets/Rectangle-77-3.png"),
-      //   },
-      //   {
-      //     id: 4,
-      //     name: "身體檢查",
-      //     price: "HK$ 570",
-      //     discountPrice: "HK$ 800",
-      //     description: "綜合個人健康體檢套餐",
-      //     rate: 4,
-      //     numberOfRate: "(138,370)",
-      //     image: require("../assets/Rectangle-77-2.png"),
-      //   },
-      // ],
-    };
+    return {};
   },
   watch: {
     lang() {
@@ -181,6 +135,7 @@ export default {
   },
   created() {
     console.log(this.getSlug);
+    console.log(this.cervicalCancerTheme);
     this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
   },
 };

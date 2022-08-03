@@ -1,6 +1,6 @@
 <template>
   <el-card class="box-card">
-    <img :src="image" style="width: 100%" alt="" />
+    <img :src="image" alt="" />
     <div class="content">
       <p class="latest-offers-img-text">{{ name }}</p>
       <p class="latest-offers-desc">
@@ -60,6 +60,16 @@ export default {
   /* min-width: 400px; */
 }
 
+.latest-offers .box-card img,
+.popular-clinics .box-card img,
+.new-shelf .box-card img,
+.recommended-services .box-card img {
+  width: 100%;
+  height: 10rem;
+  /* height: 11rem; */
+  object-fit: cover;
+}
+
 .latest-offers p,
 .popular-clinics p,
 .new-shelf p,
@@ -72,6 +82,7 @@ export default {
 .new-shelf .content,
 .recommended-services .content {
   padding: 0.5rem 1rem;
+  text-align: start;
 }
 
 .latest-offers .latest-offers-img-text,
