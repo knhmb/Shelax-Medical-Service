@@ -61,7 +61,7 @@
       </p>
       <el-row :gutter="15">
         <el-col :span="12">
-          <el-button type="primary">
+          <el-button @click="logInWithFacebook" type="primary">
             <img
               src="../../assets/icon-facebook@2x.png"
               style="width: 24px"
@@ -181,23 +181,6 @@ export default {
           this.$emit("closeDialog");
         });
       });
-      // googleSdkLoaded((google) => {
-      //   google.accounts.oauth2
-      //     .initCodeClient({
-      //       apiKey: "AIzaSyC7B_fGxboPSr8iSPW_dq6J5GJ-PdgVEJg",
-      //       client_id:
-      //         "145313498532-mbtkbu2ncbjcrddqcngeii997qlu6a1n.apps.googleusercontent.com",
-      //       scope: "openid",
-      //       // scope: "email profile openid",
-      //       // scope: "https://www.googleapis.com/auth/drive.metadata.readonly",
-      //       callback: (response) => {
-      //         console.log("Handle the response", response);
-      //         const res = response;
-      //         console.log(res);
-      //       },
-      //     })
-      //     .requestCode();
-      // });
     },
     login() {
       const data = {
@@ -222,6 +205,40 @@ export default {
             });
         }
       });
+    },
+    async logInWithFacebook() {
+      await this.loadFacebookSDK(document, "script", "facebook-jssdk");
+      await this.initFacebook();
+      window.FB.login(function (response) {
+        if (response.authResponse) {
+          alert("You are logged in &amp; cookie set!");
+          // Now you can redirect the user or do an AJAX request to
+          // a PHP script that grabs the signed request from the cookie.
+        } else {
+          alert("User cancelled login or did not fully authorize.");
+        }
+      });
+      return false;
+    },
+    async initFacebook() {
+      window.fbAsyncInit = function () {
+        window.FB.init({
+          appId: "3312594352352328", //You will need to change this
+          cookie: true, // This is important, it's not enabled by default
+          version: "v14.0",
+        });
+      };
+    },
+    async loadFacebookSDK(d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
     },
   },
 };
