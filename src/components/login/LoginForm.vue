@@ -207,11 +207,12 @@ export default {
       });
     },
     async logInWithFacebook() {
-      await this.loadFacebookSDK(document, "script", "facebook-jssdk");
-      await this.initFacebook();
+      // await this.loadFacebookSDK(document, "script", "facebook-jssdk");
+      // await this.initFacebook();
       window.FB.login(function (response) {
         if (response.authResponse) {
           alert("You are logged in &amp; cookie set!");
+          console.log(response);
           // Now you can redirect the user or do an AJAX request to
           // a PHP script that grabs the signed request from the cookie.
         } else {
@@ -225,7 +226,7 @@ export default {
         window.FB.init({
           appId: "3312594352352328", //You will need to change this
           cookie: true, // This is important, it's not enabled by default
-          version: "v14.0",
+          version: "v8.0",
         });
       };
     },
@@ -240,6 +241,10 @@ export default {
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     },
+  },
+  async created() {
+    await this.loadFacebookSDK(document, "script", "facebook-jssdk");
+    await this.initFacebook();
   },
 };
 </script>
