@@ -14,6 +14,13 @@ import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 import "element-plus/theme-chalk/display.css";
 
+import vue3GoogleLogin from "vue3-google-login";
+
+// import gAuthPlugin from "vue3-google-oauth2";
+let gAuthClientId =
+  "145313498532-mbtkbu2ncbjcrddqcngeii997qlu6a1n.apps.googleusercontent.com";
+// let apiKey = "AIzaSyC7B_fGxboPSr8iSPW_dq6J5GJ-PdgVEJg";
+
 import BaseContainer from "./ui/BaseContainer.vue";
 import BaseContentContainer from "./ui/BaseContentContainer.vue";
 import BaseButton from "./ui/BaseButton.vue";
@@ -32,8 +39,23 @@ app.use(ElementPlus);
 app.use(router);
 app.use(store);
 app.use(i18n);
-// app.use(ElementPlus, {
-//   locale: store.state.lang === "en-US" ? en : zhCn,
+app.use(vue3GoogleLogin, {
+  clientId: gAuthClientId,
+});
+// const gAuthOptions = {
+//   clientId: gAuthClientId,
+//   scope: "email",
+//   prompt: "consent",
+//   fetch_basic_profile: false,
+// };
+// app.use(gAuthPlugin, gAuthOptions);
+// app.use(gAuthPlugin, {
+//   apiKey: apiKey,
+//   clientId: gAuthClientId,
+//   scope: "https://www.googleapis.com/auth/drive.metadata.readonly",
+//   scope: "email",
+//   prompt: "consent",
+//   discoverDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
 // });
 
 app.component("base-container", BaseContainer);

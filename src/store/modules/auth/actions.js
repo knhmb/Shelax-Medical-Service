@@ -23,6 +23,19 @@ export default {
     });
     context.commit("SET_LOGIN", {}, { root: true });
   },
+  async googleLogin(context, payload) {
+    const response = await axios.post(
+      "/api/authenticate/oauth2/google",
+      payload
+    );
+    console.log(response);
+    context.commit("LOGGEDIN", {
+      accessToken: response.data.accessToken,
+      refreshToken: response.data.refreshToken,
+      currentUser: response.data.item.username,
+    });
+    context.commit("SET_LOGIN", {}, { root: true });
+  },
   logout(context) {
     context.commit("LOGOUT");
     context.commit("REMOVE_LOGIN", {}, { root: true });

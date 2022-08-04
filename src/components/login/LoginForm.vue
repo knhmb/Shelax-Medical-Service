@@ -71,7 +71,17 @@
           </el-button>
         </el-col>
         <el-col :span="12">
-          <el-button type="primary">
+          <!-- <GoogleLogin :callback="loginWithGoogle">
+            <el-button type="primary">
+              <img
+                src="../../assets/icon-google@2x.png"
+                style="width: 24px"
+                alt=""
+              />
+              <p>{{ $t("login_google") }}</p>
+            </el-button>
+          </GoogleLogin> -->
+          <el-button @click="loginWithGoogle" type="primary">
             <img
               src="../../assets/icon-google@2x.png"
               style="width: 24px"
@@ -120,6 +130,9 @@
 <script>
 import { Message, Lock } from "@element-plus/icons-vue";
 import { ElNotification } from "element-plus";
+// import { googleSdkLoaded } from "vue3-google-login";
+import { googleTokenLogin } from "vue3-google-login";
+// import { googleAuthCodeLogin } from "vue3-google-login";
 
 export default {
   // props: ["authOption"],
@@ -159,6 +172,31 @@ export default {
       // this.$emit("authChanged", {
       //   changedAuthOption: "register",
       //   authTitle: "註冊",
+      // });
+    },
+    loginWithGoogle() {
+      googleTokenLogin().then((response) => {
+        console.log("Handle the response", response);
+        this.$store.dispatch("auth/googleLogin", response).then(() => {
+          this.$emit("closeDialog");
+        });
+      });
+      // googleSdkLoaded((google) => {
+      //   google.accounts.oauth2
+      //     .initCodeClient({
+      //       apiKey: "AIzaSyC7B_fGxboPSr8iSPW_dq6J5GJ-PdgVEJg",
+      //       client_id:
+      //         "145313498532-mbtkbu2ncbjcrddqcngeii997qlu6a1n.apps.googleusercontent.com",
+      //       scope: "openid",
+      //       // scope: "email profile openid",
+      //       // scope: "https://www.googleapis.com/auth/drive.metadata.readonly",
+      //       callback: (response) => {
+      //         console.log("Handle the response", response);
+      //         const res = response;
+      //         console.log(res);
+      //       },
+      //     })
+      //     .requestCode();
       // });
     },
     login() {
@@ -302,5 +340,9 @@ export default {
   letter-spacing: 0.1px;
   color: #a8a8a8;
   font-size: 12px;
+}
+
+.login-form .g-btn-wrapper {
+  width: 100%;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <!-- <the-header></the-header> -->
+  <!-- <VFacebookLogin /> -->
   <carousel></carousel>
   <search-section></search-section>
   <popular-clinics-section></popular-clinics-section>
@@ -16,9 +17,13 @@ import PopularClinicsSection from "../components/popular-clinics/PopularClinicsS
 import NewShelfSection from "../components/new-shelf/NewShelfSection.vue";
 import FourthSection from "../components/new-shelf/FourthSection.vue";
 // import TheFooter from "../components/TheFooter.vue";
+// import VFacebookLogin from "vue-facebook-login-component-next";
+
+// import { inject } from "vue";
 
 export default {
   components: {
+    // VFacebookLogin,
     // TheHeader,
     Carousel,
     SearchSection,
