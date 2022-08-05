@@ -42,6 +42,7 @@ app.use(i18n);
 app.use(vue3GoogleLogin, {
   clientId: gAuthClientId,
 });
+
 // const gAuthOptions = {
 //   clientId: gAuthClientId,
 //   scope: "email",

@@ -57,6 +57,7 @@ export default {
       selectedAuthOption: "register",
       // authTitle: "登入",
       authTitle: this.$t("menu_login"),
+      // authTitle: this.$t("menu_login"),
     };
   },
   watch: {
@@ -73,6 +74,9 @@ export default {
         this.authTitle = this.$t("menu_forgot_password");
       }
     },
+    lang() {
+      this.authTitle = this.$t("menu_login");
+    },
     // $route() {
     //   if (this.$route.path === "/reset-password") {
     //     // this.authTitle = this.$t("menu_forgot_password");
@@ -85,6 +89,9 @@ export default {
   computed: {
     dialogVisibleIsOpen() {
       return this.dialogVisible;
+    },
+    lang() {
+      return this.$store.getters.lang;
     },
   },
   methods: {

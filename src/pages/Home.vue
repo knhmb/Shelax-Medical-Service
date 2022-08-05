@@ -1,4 +1,5 @@
 <template>
+  <vue-apple-signin></vue-apple-signin>
   <carousel></carousel>
   <search-section></search-section>
   <popular-clinics-section></popular-clinics-section>

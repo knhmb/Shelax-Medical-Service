@@ -2,7 +2,7 @@
   <section class="q-and-a">
     <Banner />
     <base-content-container>
-      <p>常見問題</p>
+      <p>{{ $t("common_problem") }}</p>
       <el-collapse
         v-for="question in questions"
         :key="question.id"
