@@ -29,6 +29,7 @@ export default {
       payload
     );
     console.log(response);
+
     context.commit("LOGGEDIN", {
       accessToken: response.data.accessToken,
       refreshToken: response.data.refreshToken,
@@ -36,7 +37,51 @@ export default {
     });
     context.commit("SET_LOGIN", {}, { root: true });
   },
-  logout(context) {
+  async facebookLogin(context, payload) {
+    const response = await axios.post(
+      "/api/authenticate/oauth2/facebook",
+      payload
+    );
+    console.log(response);
+    if (response.data.statusCode === 200) {
+      context.commit("LOGGEDIN", {
+        accessToken: response.data.accessToken,
+        refreshToken: response.data.refreshToken,
+        currentUser: response.data.item.username,
+      });
+      context.commit("SET_LOGIN", {}, { root: true });
+    }
+    // context.commit("LOGGEDIN", {
+    //   accessToken: response.data.accessToken,
+    //   refreshToken: response.data.refreshToken,
+    //   currentUser: response.data.item.username,
+    // });
+    // context.commit("SET_LOGIN", {}, { root: true });
+  },
+  async appleLogin(context, payload) {
+    const response = await axios.post(
+      "/api/authenticate/ouath2/apple",
+      payload
+    );
+    console.log(response);
+    if (response.status === 200) {
+      context.commit("LOGGEDIN", {
+        accessToken: response.data.accessToken,
+        refreshToken: response.data.refreshToken,
+        currentUser: response.data.item.username,
+      });
+      context.commit("SET_LOGIN", {}, { root: true });
+    }
+  },
+  async logout(context) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.delete("/api/authenticate", {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
     context.commit("LOGOUT");
     context.commit("REMOVE_LOGIN", {}, { root: true });
     router.replace("/");

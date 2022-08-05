@@ -12,6 +12,8 @@ import TheFooter from "./components/TheFooter.vue";
 // import { ElConfigProvider } from "element-plus";
 // import zhCn from "element-plus/es/locale/lang/zh-cn";
 // import en from "element-plus/es/locale/lang/en";
+import initiFacebookSdk from "./plugins/initi-facebook-sdk";
+import initAppleSdk from "./plugins/init-apple-sdk";
 
 export default {
   components: {
@@ -43,7 +45,7 @@ export default {
   beforeCreate() {
     localStorage.setItem("lang", "zh-HK");
   },
-  created() {
+  async created() {
     this.$store.commit("GET_LANGUAGE");
     if (this.language === "en-US") {
       // this.locale = en;
@@ -52,6 +54,15 @@ export default {
       // this.locale = zhTw;
       this.$i18n.locale = "zh-HK";
     }
+    // console.log(initiFacebookSdk);
+    await initiFacebookSdk.loadFacebookSDK(
+      document,
+      "script",
+      "facebook-jssdk"
+    );
+    await initiFacebookSdk.initFacebook();
+    await initAppleSdk.loadAppleSDK(document, "script", "apple-jssdk");
+    await initAppleSdk.initApple();
   },
 };
 </script>

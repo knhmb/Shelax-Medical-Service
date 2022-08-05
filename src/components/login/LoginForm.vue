@@ -101,7 +101,7 @@
           </el-button>
         </el-col>
         <el-col :span="12">
-          <el-button type="primary">
+          <el-button @click="appleLogin" type="primary">
             <img
               src="../../assets/icon-apple@2x.png"
               style="width: 24px"
@@ -133,6 +133,7 @@ import { ElNotification } from "element-plus";
 // import { googleSdkLoaded } from "vue3-google-login";
 import { googleTokenLogin } from "vue3-google-login";
 // import { googleAuthCodeLogin } from "vue3-google-login";
+import initiFacebookSdk from "../../plugins/initi-facebook-sdk";
 
 export default {
   // props: ["authOption"],
@@ -182,6 +183,21 @@ export default {
         });
       });
     },
+    async appleLogin() {
+      try {
+        const data = await window.AppleID.auth.signIn();
+        console.log(data);
+        this.$store
+          .dispatch("auth/appleLogin", {
+            id_token: data.authorization.id_token,
+          })
+          .then(() => {
+            this.$emit("closeDialog");
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
     login() {
       const data = {
         username: this.ruleForm.email,
@@ -207,44 +223,13 @@ export default {
       });
     },
     async logInWithFacebook() {
-      // await this.loadFacebookSDK(document, "script", "facebook-jssdk");
-      // await this.initFacebook();
-      window.FB.login(function (response) {
-        if (response.authResponse) {
-          alert("You are logged in &amp; cookie set!");
-          console.log(response);
-          // Now you can redirect the user or do an AJAX request to
-          // a PHP script that grabs the signed request from the cookie.
-        } else {
-          alert("User cancelled login or did not fully authorize.");
-        }
+      await initiFacebookSdk.logInWithFacebook().then(() => {
+        this.$emit("closeDialog");
       });
-      return false;
+      // await initFacebookSdk().then(() => {
+      //   this.$emit("closeDialog");
+      // });
     },
-    async initFacebook() {
-      window.fbAsyncInit = function () {
-        window.FB.init({
-          appId: "3312594352352328", //You will need to change this
-          cookie: true, // This is important, it's not enabled by default
-          version: "v8.0",
-        });
-      };
-    },
-    async loadFacebookSDK(d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    },
-  },
-  async created() {
-    await this.loadFacebookSDK(document, "script", "facebook-jssdk");
-    await this.initFacebook();
   },
 };
 </script>
