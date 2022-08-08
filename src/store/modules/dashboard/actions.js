@@ -134,4 +134,96 @@ export default {
     console.log(response);
     context.commit("SET_PRODUCT_ITEMS", response.data.items);
   },
+  async getAboutUsContent(context) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/cms-page/about-shelax", {
+      headers: {
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_ABOUT_US_CONTENT", response.data.item);
+  },
+  async getBeAPartnerContent(context) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/cms-page/to-be-partner", {
+      headers: {
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_BE_A_PARTNER_CONTENT", response.data.item);
+  },
+  async getShelaxPointsContent(context) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/cms-page/about-shelax-points", {
+      headers: {
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_SHELAX_POINTS_CONTENT", response.data.item);
+  },
+  async getTAndCContent(context) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/cms-page/t-and-c", {
+      headers: {
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_T_AND_C_CONTENT", response.data.item);
+  },
+  async getPrivacyPolicyContent(context) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/cms-page/privacy-policy", {
+      headers: {
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_PRIVACY_POLICY_CONTENT", response.data.item);
+  },
+  async getFaq(context) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/cms-page/faq", {
+      headers: {
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_FAQ", response.data.item);
+  },
+  async getFaqContent(context) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/faq", {
+      headers: {
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_FAQ_CONTENT", response.data.items);
+  },
+  async getContactUsContent(context) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/cms-page/contact-us", {
+      headers: {
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_CONTACT_US_CONTENT", response.data.item);
+  },
+  async contactUs(_, payload) {
+    const response = await axios.post("/api/contact-us", payload);
+    console.log(response);
+  },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="second-section">
-    <base-content-container>
+    <!-- <base-content-container>
       <h2>{{ $t("about_page_title") }}</h2>
       <h4>{{ $t("about_page_text") }}</h4>
       <el-row justify="space-between">
@@ -25,14 +25,14 @@
           <p class="desc">{{ $t("about_page_image_description") }}</p>
         </el-col>
       </el-row>
-    </base-content-container>
+    </base-content-container> -->
   </div>
 </template>
 
 <style scoped>
 .second-section {
   background-color: #e6eaf0;
-  padding: 4rem 0;
+  /* padding: 4rem 0; */
 }
 
 .second-section .el-col {

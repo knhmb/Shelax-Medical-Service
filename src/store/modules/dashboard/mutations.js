@@ -34,4 +34,28 @@ export default {
   SET_OTHER_THEME(state, payload) {
     state.otherTheme = payload;
   },
+  SET_ABOUT_US_CONTENT(state, payload) {
+    state.aboutUsContent = payload;
+  },
+  SET_BE_A_PARTNER_CONTENT(state, payload) {
+    state.beAPartnerContent = payload;
+  },
+  SET_SHELAX_POINTS_CONTENT(state, payload) {
+    state.shelaxPointsContent = payload;
+  },
+  SET_T_AND_C_CONTENT(state, payload) {
+    state.tAndCContent = payload;
+  },
+  SET_PRIVACY_POLICY_CONTENT(state, payload) {
+    state.privacyPolicyContent = payload;
+  },
+  SET_FAQ(state, payload) {
+    state.faq = payload;
+  },
+  SET_FAQ_CONTENT(state, payload) {
+    state.faqContent = payload;
+  },
+  SET_CONTACT_US_CONTENT(state, payload) {
+    state.contactUsContent = payload;
+  },
 };

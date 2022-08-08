@@ -1,8 +1,19 @@
 <template>
   <div class="banner">
-    <img src="../../assets/banner-partner.jpg" alt="" />
+    <img :src="beAPartnerContent.thumbnail" alt="" />
+    <!-- <img src="../../assets/banner-partner.jpg" alt="" /> -->
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    beAPartnerContent() {
+      return this.$store.getters["dashboard/beAPartnerContent"];
+    },
+  },
+};
+</script>
 
 <style scoped>
 .banner img {

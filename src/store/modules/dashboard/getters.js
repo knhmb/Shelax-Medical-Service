@@ -32,4 +32,28 @@ export default {
   otherTheme(state) {
     return state.otherTheme;
   },
+  aboutUsContent(state) {
+    return state.aboutUsContent;
+  },
+  beAPartnerContent(state) {
+    return state.beAPartnerContent;
+  },
+  shelaxPointsContent(state) {
+    return state.shelaxPointsContent;
+  },
+  tAndCContent(state) {
+    return state.tAndCContent;
+  },
+  privacyPolicyContent(state) {
+    return state.privacyPolicyContent;
+  },
+  faq(state) {
+    return state.faq;
+  },
+  faqContent(state) {
+    return state.faqContent;
+  },
+  contactUsContent(state) {
+    return state.contactUsContent;
+  },
 };

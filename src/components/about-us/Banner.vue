@@ -1,8 +1,19 @@
 <template>
   <div class="banner">
-    <img src="../../assets/banner-about.jpg" alt="" />
+    <img :src="aboutUsContent.thumbnail" alt="" />
+    <!-- <img src="../../assets/banner-about.jpg" alt="" /> -->
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    aboutUsContent() {
+      return this.$store.getters["dashboard/aboutUsContent"];
+    },
+  },
+};
+</script>
 
 <style scoped>
 .banner img {

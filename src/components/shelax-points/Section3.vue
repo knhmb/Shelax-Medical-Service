@@ -1,6 +1,6 @@
 <template>
   <section class="third-section">
-    <base-content-container>
+    <!-- <base-content-container>
       <el-row :gutter="40">
         <el-col :sm="24" :md="13">
           <div class="box"></div>
@@ -13,14 +13,14 @@
           </p>
         </el-col>
       </el-row>
-    </base-content-container>
+    </base-content-container> -->
   </section>
 </template>
 
 <style scoped>
 .third-section {
   background: #e6eaf0;
-  padding: 3rem 0;
+  /* padding: 3rem 0; */
 }
 
 .third-section .el-row {

@@ -22,8 +22,18 @@ export default {
     LeftSection,
     RightSection,
   },
+  watch: {
+    lang() {
+      this.$store.dispatch("dashboard/getPrivacyPolicyContent");
+    },
+  },
+  computed: {
+    lang() {
+      return this.$store.getters.lang;
+    },
+  },
   created() {
-    console.log(this.$route);
+    this.$store.dispatch("dashboard/getPrivacyPolicyContent");
   },
 };
 </script>

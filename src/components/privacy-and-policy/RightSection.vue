@@ -1,10 +1,12 @@
 <template>
   <div class="policy-info">
     <div class="header">
-      <h3>{{ $t("privacy_policy") }}</h3>
+      <h3>{{ privacyPolicyContent.title }}</h3>
+      <!-- <h3>{{ $t("privacy_policy") }}</h3> -->
     </div>
     <div class="body">
-      <div class="policy-content">
+      <div v-html="privacyPolicyContent.content"></div>
+      <!-- <div class="policy-content">
         <h4>1.{{ $t("that_is_to_say") }}</h4>
         <p>
           {{ $t("privacy_policy_description") }}
@@ -31,10 +33,20 @@
         <p>
           {{ $t("privacy_policy_description") }}
         </p>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    privacyPolicyContent() {
+      return this.$store.getters["dashboard/privacyPolicyContent"];
+    },
+  },
+};
+</script>
 
 .<style scoped>
 .policy-info {

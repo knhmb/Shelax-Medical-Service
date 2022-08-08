@@ -1,6 +1,6 @@
 <template>
   <div class="fourth-section">
-    <base-content-container>
+    <!-- <base-content-container>
       <el-row :gutter="40">
         <el-col :sm="24" :md="12">
           <div class="img"></div>
@@ -13,13 +13,13 @@
           </p>
         </el-col>
       </el-row>
-    </base-content-container>
+    </base-content-container> -->
   </div>
 </template>
 
 <style scoped>
 .fourth-section {
-  padding: 4rem 0;
+  /* padding: 4rem 0; */
   background-color: #e6eaf0;
 }
 

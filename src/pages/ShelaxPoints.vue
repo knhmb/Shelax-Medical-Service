@@ -17,5 +17,18 @@ export default {
     Section2,
     Section3,
   },
+  watch: {
+    lang() {
+      this.$store.dispatch("dashboard/getShelaxPointsContent");
+    },
+  },
+  computed: {
+    lang() {
+      return this.$store.getters.lang;
+    },
+  },
+  created() {
+    this.$store.dispatch("dashboard/getShelaxPointsContent");
+  },
 };
 </script>

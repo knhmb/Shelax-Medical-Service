@@ -1,7 +1,8 @@
 <template>
   <div class="first-section">
     <base-content-container>
-      <el-row>
+      <div v-html="aboutUsContent.content"></div>
+      <!-- <el-row>
         <el-col>
           <h2>{{ $t("about_shelax") }}</h2>
           <h4>{{ $t("about_page_text") }}</h4>
@@ -18,10 +19,20 @@
             {{ $t("about_page_description_three") }}
           </p>
         </el-col>
-      </el-row>
+      </el-row> -->
     </base-content-container>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    aboutUsContent() {
+      return this.$store.getters["dashboard/aboutUsContent"];
+    },
+  },
+};
+</script>
 
 <style scoped>
 .first-section {

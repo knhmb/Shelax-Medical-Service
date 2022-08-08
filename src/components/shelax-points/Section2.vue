@@ -1,6 +1,6 @@
 <template>
   <section class="second-section">
-    <base-content-container>
+    <!-- <base-content-container>
       <el-row :gutter="40">
         <el-col :sm="24" :md="11">
           <h3>{{ $t("about_page_title") }}</h3>
@@ -13,14 +13,14 @@
           <div class="box"></div>
         </el-col>
       </el-row>
-    </base-content-container>
+    </base-content-container> -->
   </section>
 </template>
 
 <style scoped>
 .second-section {
   background: #e5e5e5;
-  padding: 3rem 0;
+  /* padding: 3rem 0; */
 }
 
 .second-section .el-row {

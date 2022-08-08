@@ -2,8 +2,19 @@
   <section class="q-and-a">
     <Banner />
     <base-content-container>
-      <p>{{ $t("common_problem") }}</p>
+      <!-- <p>{{ $t("common_problem") }}</p> -->
+      <p>{{ faq.title }}</p>
       <el-collapse
+        v-for="(item, index) in faqContent"
+        :key="item"
+        v-model="activeName"
+        accordion
+      >
+        <el-collapse-item :title="item.question" :name="index">
+          <p>{{ item.answer }}</p>
+        </el-collapse-item>
+      </el-collapse>
+      <!-- <el-collapse
         v-for="question in questions"
         :key="question.id"
         v-model="activeName"
@@ -12,7 +23,7 @@
         <el-collapse-item :title="question.title" :name="question.name">
           <p>{{ question.text }}</p>
         </el-collapse-item>
-      </el-collapse>
+      </el-collapse> -->
     </base-content-container>
   </section>
 </template>
@@ -99,6 +110,8 @@ export default {
     lang: {
       deep: true,
       handler() {
+        this.$store.dispatch("dashboard/getFaq");
+        this.$store.dispatch("dashboard/getFaqContent");
         this.questions = [
           {
             id: 1,
@@ -168,6 +181,16 @@ export default {
     lang() {
       return this.$store.getters.lang;
     },
+    faqContent() {
+      return this.$store.getters["dashboard/faqContent"];
+    },
+    faq() {
+      return this.$store.getters["dashboard/faq"];
+    },
+  },
+  created() {
+    this.$store.dispatch("dashboard/getFaq");
+    this.$store.dispatch("dashboard/getFaqContent");
   },
 };
 </script>

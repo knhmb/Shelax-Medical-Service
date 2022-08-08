@@ -1,7 +1,8 @@
 <template>
   <div class="first-section">
     <base-content-container>
-      <h2>{{ $t("merchant_partnership") }}</h2>
+      <div v-html="beAPartnerContent.content"></div>
+      <!-- <h2>{{ $t("merchant_partnership") }}</h2>
       <h4>{{ $t("about_page_text") }}</h4>
       <p>
         {{ $t("about_page_description_one") }}
@@ -11,10 +12,20 @@
         <el-button @click="navigate">{{
           $t("become_a_partner_button")
         }}</el-button>
-      </router-link>
+      </router-link> -->
     </base-content-container>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    beAPartnerContent() {
+      return this.$store.getters["dashboard/beAPartnerContent"];
+    },
+  },
+};
+</script>
 
 <style scoped>
 .first-section {

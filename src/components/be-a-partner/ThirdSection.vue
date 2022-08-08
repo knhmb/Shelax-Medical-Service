@@ -1,6 +1,6 @@
 <template>
   <div class="third-section">
-    <base-content-container>
+    <!-- <base-content-container>
       <el-row :gutter="40">
         <el-col :sm="24" :md="12">
           <h4>{{ $t("about_page_title") }}</h4>
@@ -13,13 +13,13 @@
           <div class="img"></div>
         </el-col>
       </el-row>
-    </base-content-container>
+    </base-content-container> -->
   </div>
 </template>
 
 <style scoped>
 .third-section {
-  padding: 4rem 0;
+  /* padding: 4rem 0; */
   /* background-color: #e6eaf0; */
 }
 

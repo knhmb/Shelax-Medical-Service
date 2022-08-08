@@ -1,8 +1,19 @@
 <template>
   <div class="q-and-a-banner">
-    <img src="../../assets/banner-q&a.jpg" alt="" />
+    <img :src="faq.thumbnail" alt="" />
+    <!-- <img src="../../assets/banner-q&a.jpg" alt="" /> -->
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    faq() {
+      return this.$store.getters["dashboard/faq"];
+    },
+  },
+};
+</script>
 
 <style scoped>
 .q-and-a-banner {

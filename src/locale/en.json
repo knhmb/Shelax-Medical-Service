@@ -320,5 +320,6 @@
   "upload_files_step": "Upload Files",
   "done_step": "Complete",
   "hong_kong_identity_card": "Hong Kong Identity Card",
-  "common_problem": "Common Problem"
+  "common_problem": "Common Problem",
+  "message_sent": "Message has been sent!"
 }

@@ -29,6 +29,19 @@ export default {
     FourthSection,
     LastSection,
   },
+  watch: {
+    lang() {
+      this.$store.dispatch("dashboard/getBeAPartnerContent");
+    },
+  },
+  computed: {
+    lang() {
+      return this.$store.getters.lang;
+    },
+  },
+  created() {
+    this.$store.dispatch("dashboard/getBeAPartnerContent");
+  },
 };
 </script>
 

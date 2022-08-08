@@ -3,7 +3,8 @@
     <el-row :gutter="20">
       <el-col :sm="24" :md="12">
         <div class="contact-us-content">
-          <h2>{{ $t("contact_us") }}</h2>
+          <h2>{{ contactUsContent.title }}</h2>
+          <!-- <h2>{{ $t("contact_us") }}</h2> -->
           <el-form
             label-position="top"
             :model="ruleForm"
@@ -90,13 +91,16 @@
       </el-col>
       <el-col :sm="24" :md="12">
         <!-- <Banner /> -->
-        <img src="../assets/asian-woman-call-center-2.png" alt="" />
+        <img :src="contactUsContent.thumbnail" alt="" />
+        <!-- <img src="../assets/asian-woman-call-center-2.png" alt="" /> -->
       </el-col>
     </el-row>
   </section>
 </template>
 
 <script>
+import { ElNotification } from "element-plus";
+
 export default {
   data() {
     return {
@@ -155,19 +159,49 @@ export default {
       },
     };
   },
+  watch: {
+    lang() {
+      this.$store.dispatch("dashboard/getContactUsContent");
+    },
+  },
   computed: {
     countryCodes() {
       return this.$store.getters["profile/countryCodes"];
+    },
+    lang() {
+      return this.$store.getters.lang;
+    },
+    contactUsContent() {
+      return this.$store.getters["dashboard/contactUsContent"];
     },
   },
   methods: {
     submit() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          console.log("valid");
+          const data = {
+            salutation: this.ruleForm.title,
+            name: this.ruleForm.name,
+            phoneCode: this.ruleForm.phoneAreaCode,
+            phoneNo: this.ruleForm.phoneNumber,
+            email: this.ruleForm.email,
+            message: this.ruleForm.message,
+          };
+          console.log(data);
+          this.$store.dispatch("dashboard/contactUs", data).then(() => {
+            ElNotification({
+              title: "Success",
+              message: this.$t("message_sent"),
+              type: "success",
+            });
+            this.$refs.ruleFormRef.resetFields();
+          });
         }
       });
     },
+  },
+  created() {
+    this.$store.dispatch("dashboard/getContactUsContent");
   },
 };
 </script>

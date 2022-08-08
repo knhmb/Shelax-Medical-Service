@@ -23,5 +23,18 @@ export default {
     SecondSection,
     ThirdSection,
   },
+  watch: {
+    lang() {
+      this.$store.dispatch("dashboard/getAboutUsContent");
+    },
+  },
+  computed: {
+    lang() {
+      return this.$store.getters.lang;
+    },
+  },
+  created() {
+    this.$store.dispatch("dashboard/getAboutUsContent");
+  },
 };
 </script>
