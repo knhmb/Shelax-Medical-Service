@@ -133,7 +133,8 @@ export default {
     nextStep(value) {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          this.$emit("changeStep", value);
+          this.$emit("changeStep", { value: value, formData: this.ruleForm });
+          console.log(this.ruleForm);
         } else {
           ElNotification({
             title: "Error",

@@ -32,6 +32,8 @@ import "v-calendar/dist/style.css";
 
 const app = createApp(App);
 
+app.config.globalProperties.window = window;
+
 library.add(faChevronRight, faChevronLeft);
 app.component("font-awesome-icon", FontAwesomeIcon);
 

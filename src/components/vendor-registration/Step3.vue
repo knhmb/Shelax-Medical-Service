@@ -8,12 +8,14 @@
           {{ $t("upload_file_text") }}
         </p>
         <el-upload
-          method="get"
-          v-model:file-list="fileList"
-          action="#"
+          v-model:file-list="fileListBusiness"
+          :action="`http://localhost:8080/api/upload/vendor-registration`"
           list-type="picture-card"
-          :on-preview="handlePictureCardPreview"
           :on-remove="handleRemove"
+          :on-success="handleSuccess"
+          :on-preview="handlePictureCardPreview"
+          :on-change="change"
+          ref="upload"
         >
           <el-icon><Plus /></el-icon>
         </el-upload>
@@ -48,12 +50,13 @@
           {{ $t("upload_file_text") }}
         </p>
         <el-upload
-          method="get"
-          v-model:file-list="fileList"
-          action="#"
+          v-model:file-list="fileListCompany"
+          :action="`http://localhost:8080/api/upload/vendor-registration`"
           list-type="picture-card"
-          :on-preview="handlePictureCardPreview"
+          :on-success="handleSuccessCompany"
           :on-remove="handleRemove"
+          :on-preview="handlePictureCardPreview"
+          ref="uploadCompany"
         >
           <el-icon><Plus /></el-icon>
         </el-upload>
@@ -66,12 +69,13 @@
           {{ $t("upload_file_text") }}
         </p>
         <el-upload
-          method="get"
-          v-model:file-list="fileList"
-          action="#"
+          v-model:file-list="fileListBank"
+          :action="`http://localhost:8080/api/upload/vendor-registration`"
           list-type="picture-card"
-          :on-preview="handlePictureCardPreview"
+          :on-success="handleSuccessBank"
           :on-remove="handleRemove"
+          :on-preview="handlePictureCardPreview"
+          ref="uploadBank"
         >
           <el-icon><Plus /></el-icon>
         </el-upload>
@@ -84,12 +88,13 @@
           {{ $t("upload_file_text") }}
         </p>
         <el-upload
-          method="get"
-          v-model:file-list="fileList"
-          action="#"
+          v-model:file-list="fileListHKID"
+          :action="`http://localhost:8080/api/upload/vendor-registration`"
           list-type="picture-card"
-          :on-preview="handlePictureCardPreview"
+          :on-success="handleSuccessHKID"
           :on-remove="handleRemove"
+          :on-preview="handlePictureCardPreview"
+          ref="uploadHKID"
         >
           <el-icon><Plus /></el-icon>
         </el-upload>
@@ -102,12 +107,13 @@
           {{ $t("upload_file_text") }}
         </p>
         <el-upload
-          method="get"
-          v-model:file-list="fileList"
-          action="#"
+          v-model:file-list="fileListDoctor"
+          :action="`http://localhost:8080/api/upload/vendor-registration`"
           list-type="picture-card"
-          :on-preview="handlePictureCardPreview"
+          :on-success="handleSuccessDoctor"
           :on-remove="handleRemove"
+          :on-preview="handlePictureCardPreview"
+          ref="uploadDoctor"
         >
           <el-icon><Plus /></el-icon>
         </el-upload>
@@ -120,12 +126,13 @@
           {{ $t("upload_file_text") }}
         </p>
         <el-upload
-          method="get"
-          v-model:file-list="fileList"
-          action="#"
+          v-model:file-list="fileListDocument"
+          :action="`http://localhost:8080/api/upload/vendor-registration`"
           list-type="picture-card"
-          :on-preview="handlePictureCardPreview"
+          :on-success="handleSuccessDocument"
           :on-remove="handleRemove"
+          :on-preview="handlePictureCardPreview"
+          ref="uploadDocument"
         >
           <el-icon><Plus /></el-icon>
         </el-upload>
@@ -138,12 +145,13 @@
           {{ $t("upload_file_text") }}
         </p>
         <el-upload
-          method="get"
-          v-model:file-list="fileList"
-          action="#"
+          v-model:file-list="fileListCompanyPhoto"
+          :action="`http://localhost:8080/api/upload/vendor-registration`"
           list-type="picture-card"
-          :on-preview="handlePictureCardPreview"
+          :on-success="handleSuccessCompanyPhoto"
           :on-remove="handleRemove"
+          :on-preview="handlePictureCardPreview"
+          ref="uploadCompanyPhoto"
         >
           <el-icon><Plus /></el-icon>
         </el-upload>
@@ -166,37 +174,206 @@
 <script>
 import { Plus } from "@element-plus/icons-vue";
 import { UploadFile } from "element-plus/es/components/upload/src/upload.type";
+import moment from "moment";
 
 export default {
   components: {
-    // CircleCloseFilled,
-    // Upload,
     Plus,
   },
-  //   setup() {
-  //     const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
-  //   fileList.value = fileList.value.slice(-3)
-  // }
-
-  // return {handleChange}
-  //   },
+  props: ["formData"],
   data() {
     return {
       UploadFile,
       dialogVisible: false,
       dialogImageUrl: "",
-      fileList: [],
+      fileListBusiness: [],
+      fileListCompany: [],
+      fileListBank: [],
+      fileListHKID: [],
+      fileListDoctor: [],
+      fileListDocument: [],
+      fileListCompanyPhoto: [],
+      category: "",
+      documents: [],
     };
   },
   methods: {
     nextStep(value) {
-      this.$emit("changeStep", value);
+      console.log(this.formData);
+      console.log(value);
+      const clonedArray = this.documents.map((a) => {
+        return { ...a };
+      });
+      clonedArray.forEach((object) => {
+        delete object["uId"];
+      });
+      console.log(this.documents);
+      console.log(clonedArray);
+      const data = {
+        companyName: this.formData.companyName,
+        contactPerson: this.formData.contactName,
+        contactNo: this.formData.companyPhone,
+        companyAddress: this.formData.companyAddress,
+        bankName: this.formData.bankName,
+        bankAccNo: this.formData.bankNumber,
+        applicantName: this.formData.name,
+        dateOfBirth: moment(this.formData.dob).format("YYYYMMDD"),
+        idNo: this.formData.idCardNumber,
+        email: this.formData.email,
+        otp: this.formData.verificationCode,
+        password: this.formData.password,
+        isAgreePrivacyNotice: this.formData.checkbox,
+        memberRegistration: false,
+        vendorRegistration: true,
+        platformAdmin: false,
+        document: clonedArray,
+      };
+      console.log(data);
+      // this.$emit("changeStep", value);
     },
     handleRemove(file) {
       console.log(file);
+      this.documents = this.documents.filter((item) => item.uId !== file.uid);
+      //       const indexOfObject = this.documents.findIndex(object => {
+      //   return object.uId === file.uid;
+      // });
+      console.log(this.documents);
+
+      // console.log(indexOfObject); // 👉️ 1
+
+      // arr.splice(indexOfObject, 1);
+
+      // console.log(arr);
     },
     handleRemoveFile(file) {
       console.log(file);
+    },
+    handleSuccess() {
+      // this.documents = [];
+      // console.log(this.$refs);
+      this.fileListBusiness = [];
+      this.fileListBusiness = this.$refs.upload.uploadFiles;
+      console.log(this.$refs.khaled);
+      console.log(this.fileListBusiness);
+
+      this.fileListBusiness.find((item) => {
+        this.documents.push({
+          uId: item.raw.uid,
+          isBR: true,
+          filePath: item.response.item,
+        });
+      });
+      this.documents = this.documents.filter(
+        (value, index, self) =>
+          index === self.findIndex((t) => t.uId === value.uId)
+      );
+
+      console.log(this.documents);
+    },
+    handleSuccessCompany() {
+      this.fileListCompany = this.$refs.uploadCompany.uploadFiles;
+
+      this.fileListCompany.find((item) => {
+        this.documents.push({
+          uId: item.raw.uid,
+          isCI: true,
+          filePath: item.response.item,
+        });
+      });
+      this.documents = this.documents.filter(
+        (value, index, self) =>
+          index === self.findIndex((t) => t.uId === value.uId)
+      );
+      console.log(this.documents);
+    },
+    handleSuccessBank() {
+      this.fileListBank = this.$refs.uploadBank.uploadFiles;
+
+      this.fileListBank.find((item) => {
+        this.documents.push({
+          uId: item.raw.uid,
+          isBankStatement: true,
+          filePath: item.response.item,
+        });
+      });
+      this.documents = this.documents.filter(
+        (value, index, self) =>
+          index === self.findIndex((t) => t.uId === value.uId)
+      );
+      console.log(this.documents);
+    },
+    handleSuccessHKID() {
+      this.fileListHKID = this.$refs.uploadHKID.uploadFiles;
+
+      this.fileListHKID.find((item) => {
+        this.documents.push({
+          uId: item.raw.uid,
+          isIdNo: true,
+          filePath: item.response.item,
+        });
+      });
+      this.documents = this.documents.filter(
+        (value, index, self) =>
+          index === self.findIndex((t) => t.uId === value.uId)
+      );
+      console.log(this.documents);
+    },
+    handleSuccessDoctor() {
+      this.fileListDoctor = this.$refs.uploadDoctor.uploadFiles;
+
+      this.fileListDoctor.find((item) => {
+        this.documents.push({
+          uId: item.raw.uid,
+          isDoctorLicense: true,
+          filePath: item.response.item,
+        });
+      });
+      this.documents = this.documents.filter(
+        (value, index, self) =>
+          index === self.findIndex((t) => t.uId === value.uId)
+      );
+      console.log(this.documents);
+    },
+    handleSuccessDocument() {
+      this.fileListDocument = this.$refs.uploadDocument.uploadFiles;
+
+      this.fileListDocument.find((item) => {
+        this.documents.push({
+          uId: item.raw.uid,
+          isServiceList: true,
+          filePath: item.response.item,
+        });
+      });
+      this.documents = this.documents.filter(
+        (value, index, self) =>
+          index === self.findIndex((t) => t.uId === value.uId)
+      );
+      console.log(this.documents);
+    },
+    handleSuccessCompanyPhoto() {
+      this.fileListCompanyPhoto = this.$refs.uploadCompanyPhoto.uploadFiles;
+
+      this.fileListCompanyPhoto.find((item) => {
+        this.documents.push({
+          uId: item.raw.uid,
+          isCompanyPhotos: true,
+          filePath: item.response.item,
+        });
+      });
+      this.documents = this.documents.filter(
+        (value, index, self) =>
+          index === self.findIndex((t) => t.uId === value.uId)
+      );
+      console.log(this.documents);
+    },
+    change() {
+      // this.fileList = this.$refs.upload.uploadFiles;
+      // console.log(this.fileList);
+      // const arr = [];
+      // this.fileList.find((item) => {
+      //   arr.push({ isBR: true, filePath: item.response.item });
+      // });
+      // console.log(arr);
     },
     handlePictureCardPreview(uploadFile) {
       this.dialogImageUrl = uploadFile.url;

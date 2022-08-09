@@ -7,7 +7,11 @@
         <!-- <el-row :gutter="20"> -->
         <step-1 @changeStep="toggleStep" v-if="step === 'step-1'"></step-1>
         <step-2 @changeStep="toggleStep" v-if="step === 'step-2'"></step-2>
-        <step-3 @changeStep="toggleStep" v-if="step === 'step-3'"></step-3>
+        <step-3
+          @changeStep="toggleStep"
+          :form-data="formData"
+          v-if="step === 'step-3'"
+        ></step-3>
         <Completed v-if="step === 'completed'" />
         <!-- </el-row> -->
         <!-- </el-form> -->
@@ -33,11 +37,15 @@ export default {
   data() {
     return {
       step: "step-1",
+      formData: {},
     };
   },
   methods: {
-    toggleStep(step) {
-      this.step = step;
+    toggleStep({ value, formData }) {
+      this.step = value;
+      this.formData = Object.assign(this.formData, formData);
+      // this.formData = formData;
+      console.log(this.formData);
     },
   },
 };

@@ -19,10 +19,15 @@
       </el-col>
       <el-col :sm="24" :md="12">
         <el-form-item :label="$t('dob')" prop="dob">
-          <el-input
+          <el-date-picker
             v-model="ruleForm.dob"
             :placeholder="$t('enter_dob')"
-          ></el-input>
+            type="date"
+          ></el-date-picker>
+          <!-- <el-input
+            v-model="ruleForm.dob"
+            :placeholder="$t('enter_dob')"
+          ></el-input> -->
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="24">
@@ -200,9 +205,14 @@ export default {
   },
   methods: {
     nextStep(value) {
+      if (value === "step-1") {
+        this.$emit("changeStep", { value: value, formData: {} });
+        return;
+      }
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          this.$emit("changeStep", value);
+          this.$emit("changeStep", { value: value, formData: this.ruleForm });
+          console.log(this.ruleForm);
         } else {
           ElNotification({
             title: "Error",
@@ -239,3 +249,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.el-form :deep(.el-input) {
+  width: 100%;
+}
+</style>
