@@ -44,17 +44,17 @@ export function initApple() {
     // };
 
     // load apple sdk script
-    (function (d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src =
-        "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, "script", "apple-jssdk");
+    // (function (d, s, id) {
+    //   var js,
+    //     fjs = d.getElementsByTagName(s)[0];
+    //   if (d.getElementById(id)) {
+    //     return;
+    //   }
+    //   js = d.createElement(s);
+    //   js.id = id;
+    //   js.src =
+    //     "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js";
+    //   fjs.parentNode.insertBefore(js, fjs);
+    // })(document, "script", "apple-jssdk");
   });
 }

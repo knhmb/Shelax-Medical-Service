@@ -15,7 +15,7 @@ import TheFooter from "./components/TheFooter.vue";
 // import initiFacebookSdk from "./plugins/initi-facebook-sdk";
 // import initAppleSdk from "./plugins/init-apple-sdk";
 import { initApple } from "./plugins/init-apple-sdk";
-// import { initFacebookSdk } from "./plugins/initi-facebook-sdk.js";
+import { initFacebookSdk } from "./plugins/initi-facebook-sdk.js";
 
 export default {
   components: {
@@ -48,7 +48,7 @@ export default {
     localStorage.setItem("lang", "zh-HK");
   },
   mounted() {
-    // initFacebookSdk();
+    initFacebookSdk();
     initApple();
   },
   async created() {
