@@ -223,6 +223,7 @@ export default {
       });
     },
     async logInWithFacebook() {
+      const vueWindow = this;
       // await initiFacebookSdk.logInWithFacebook().then(() => {
       //   this.$emit("closeDialog");
       // });
@@ -230,9 +231,13 @@ export default {
         if (response.authResponse) {
           // alert("You are logged in &amp; cookie set!");
           // console.log(response);
-          this.$store.dispatch("auth/facebookLogin", {
-            access_token: response.authResponse.accessToken,
-          });
+          vueWindow.$store
+            .dispatch("auth/facebookLogin", {
+              access_token: response.authResponse.accessToken,
+            })
+            .then(() => {
+              vueWindow.$emit("closeDialog");
+            });
           // Now you can redirect the user or do an AJAX request to
           // a PHP script that grabs the signed request from the cookie.
         } else {

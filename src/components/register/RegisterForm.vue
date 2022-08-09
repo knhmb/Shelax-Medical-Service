@@ -244,12 +244,23 @@ export default {
       }
     },
     async logInWithFacebook() {
-      // await initiFacebookSdk.logInWithFacebook().then(() => {
-      //   this.$emit("closeDialog");
-      // });
-      // await initFacebookSdk().then(() => {
-      //   this.$emit("closeDialog");
-      // });
+      const vueWindow = this;
+      window.FB.login(function (response) {
+        if (response.authResponse) {
+          vueWindow.$store
+            .dispatch("auth/facebookLogin", {
+              access_token: response.authResponse.accessToken,
+            })
+            .then(() => {
+              vueWindow.$emit("closeDialog");
+            });
+          // Now you can redirect the user or do an AJAX request to
+          // a PHP script that grabs the signed request from the cookie.
+        } else {
+          alert("User cancelled login or did not fully authorize.");
+        }
+      });
+      return false;
     },
     savedData() {
       const data = {

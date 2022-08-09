@@ -7,7 +7,11 @@
       label-position="top"
     >
       <template v-for="(item, index) in ruleForm.dynamicItem" :key="index">
-        <div class="dynamic-form" v-if="isService.isService">
+        <!-- <div class="dynamic-form" v-if="isService.isService"> -->
+        <div
+          class="dynamic-form"
+          v-if="filterData.searchItemType === 'service'"
+        >
           <p>{{ $t("information_of_service_user", { index: index + 1 }) }}</p>
           <el-row :gutter="10">
             <el-col>
@@ -349,6 +353,12 @@ export default {
       });
       return data;
     },
+    searchItems() {
+      return this.$store.getters["search/searchItems"];
+    },
+    filterData() {
+      return this.searchItems.find((itemId) => this.id === itemId.itemId);
+    },
   },
   methods: {
     addItem(item) {
@@ -512,6 +522,7 @@ export default {
     this.$store.dispatch("profile/getCountryCode");
     // console.log(this.singleItemDetail);
     console.log(this.orderItem);
+    console.log(this.searchItems);
   },
 };
 </script>
