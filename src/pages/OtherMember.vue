@@ -41,33 +41,59 @@
               >
                 <el-row :gutter="20">
                   <el-col :sm="12" :md="3">
-                    <!-- <el-avatar :size="50">
-                      <el-icon class="form-icon"><camera /></el-icon>
-                    </el-avatar> -->
-                    <el-avatar
-                      :src="item.imgSrc"
-                      icon
-                      :size="50"
-                      shape="circle"
+                    <el-upload
+                      class="avatar-uploader"
+                      action="http://localhost:8080/api/upload/avatar"
+                      :show-file-list="false"
+                      :on-success="handleAvatarSuccess"
                     >
-                      <img class="image-avatar" :src="item.avatar" alt="" />
-                      <!-- <img
-                        v-if="item.imgSrc"
-                        class="image-avatar"
-                        :src="item.imgSrc"
-                        alt=""
-                      /> -->
                       <label for="member-image">
                         <el-icon class="form-icon" style="cursor: pointer"
                           ><camera
                         /></el-icon>
                       </label>
-                    </el-avatar>
-                    <input
+                      <el-avatar
+                        :src="imgSrc ? imgSrc : item.avatar"
+                        icon
+                        :size="50"
+                        shape="circle"
+                      >
+                        <img class="image-avatar" :src="item.avatar" alt="" />
+                        <!-- <img
+                        v-if="item.imgSrc"
+                        class="image-avatar"
+                        :src="item.imgSrc"
+                        alt=""
+                      /> -->
+                      </el-avatar>
+                    </el-upload>
+                    <!-- <el-avatar :size="50">
+                      <el-icon class="form-icon"><camera /></el-icon>
+                    </el-avatar> -->
+                    <!-- <el-avatar
+                      :src="item.imgSrc"
+                      icon
+                      :size="50"
+                      shape="circle"
+                    >
+                      <img class="image-avatar" :src="item.avatar" alt="" /> -->
+                    <!-- <img
+                        v-if="item.imgSrc"
+                        class="image-avatar"
+                        :src="item.imgSrc"
+                        alt=""
+                      /> -->
+                    <!-- <label for="member-image">
+                        <el-icon class="form-icon" style="cursor: pointer"
+                          ><camera
+                        /></el-icon>
+                      </label>
+                    </el-avatar> -->
+                    <!-- <input
                       id="member-image"
                       @change="onFileChange($event, item)"
                       type="file"
-                    />
+                    /> -->
                   </el-col>
                   <el-col :sm="12" :md="5">
                     <el-form-item
@@ -594,6 +620,11 @@ export default {
           this.$store.dispatch("auth/logout");
         });
     },
+    handleAvatarSuccess(response) {
+      console.log(response);
+      this.imgSrc = response.item;
+      // this.sendAvatar(this.imgSrc);
+    },
     submit(item) {
       this.$refs.ruleFormRefAdd[0].validate((valid) => {
         if (valid) {
@@ -629,6 +660,7 @@ export default {
               message: this.$t("member_updated"),
               type: "success",
             });
+            this.imgSrc = null;
             this.$store.dispatch("profile/getServiceUsers");
           });
         })
@@ -646,6 +678,7 @@ export default {
               message: this.$t("member_updated"),
               type: "success",
             });
+            this.imgSrc = null;
             this.$store.dispatch("profile/getServiceUsers");
           });
         })
@@ -671,7 +704,8 @@ export default {
             phoneNo: item.phoneNo,
             email: item.email,
             placeOfResidence: item.placeOfResidence,
-            avatar: item.imgSrc,
+            avatar: this.imgSrc,
+            // avatar: item.imgSrc,
           };
           console.log(item);
           console.log(data);
@@ -955,6 +989,7 @@ input[type="file"] {
   border-radius: 100px;
   padding: 10px;
   font-size: 13px;
+  z-index: 1;
 }
 
 .other-member .box-2 .box-content .el-icon svg {
@@ -1036,6 +1071,10 @@ input[type="file"] {
 .other-member .el-avatar > img {
   width: 100%;
   border-radius: 100%;
+}
+
+.other-member .avatar-uploader {
+  position: relative;
 }
 
 .animate-enter-active {

@@ -197,4 +197,14 @@ export default {
     });
     console.log(response);
   },
+  async uploadAvatar(_, payload) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.post("/api/upload/avatar", payload, {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+  },
 };

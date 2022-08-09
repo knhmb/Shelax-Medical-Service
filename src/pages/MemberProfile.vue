@@ -4,16 +4,36 @@
       <el-row :gutter="20">
         <el-col :sm="24" :lg="6">
           <div class="member-card-avatar">
+            <el-upload
+              class="avatar-uploader"
+              action="http://localhost:8080/api/upload/avatar"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+            >
+              <label for="file-upload">
+                <el-icon style="cursor: pointer"><camera /></el-icon>
+              </label>
+              <el-avatar :src="imgSrc" icon :size="100" shape="circle">
+                <img class="image-avatar" :src="userDetails.avatar" alt="" />
+                <!-- <label for="file-upload">
+                  <el-icon style="cursor: pointer"><camera /></el-icon>
+                </label> -->
+              </el-avatar>
+              <!-- <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+              <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon> -->
+            </el-upload>
+            <p>{{ userDetails.givenName }}</p>
+          </div>
+          <!-- <div class="member-card-avatar">
             <el-avatar icon :size="100" shape="circle">
               <img class="image-avatar" :src="userDetails.avatar" alt="" />
-              <!-- <img v-if="imgSrc" class="image-avatar" :src="imgSrc" alt="" /> -->
               <label for="file-upload">
                 <el-icon style="cursor: pointer"><camera /></el-icon>
               </label>
             </el-avatar>
             <input id="file-upload" @change="onFileChange" type="file" />
             <p>{{ userDetails.givenName }}</p>
-          </div>
+          </div> -->
           <div class="member-card-options">
             <ul>
               <router-link
@@ -136,15 +156,18 @@
 
 <script>
 import { Camera } from "@element-plus/icons-vue";
+// import { Plus } from "@element-plus/icons-vue";
 import { ElNotification } from "element-plus";
 
 export default {
   components: {
     Camera,
+    // Plus,/
   },
   data() {
     return {
       imgSrc: null,
+      imageUrl: "",
       infoImg: require("../assets/icon-infomation-default@2x.png"),
       otherMemberImg: require("../assets/icon-member-default@2x.png"),
       commentImg: require("../assets/icon-comment-default@2x.png"),
@@ -213,24 +236,18 @@ export default {
     },
   },
   methods: {
-    onFileChange(event) {
-      console.log(event);
-      console.log(event.target.files[0]);
-      const file = event.target.files[0];
-
-      // if (file.type !== "image/jpeg" && file.type !== "image/png") {
-      //   ElMessage({
-      //     message: "Image must be in jpeg or png format",
-      //     type: "error",
-      //   });
-      // } else {
-      this.imgSrc = URL.createObjectURL(file);
-      console.log(this.imgSrc);
+    handleAvatarSuccess(response, uploadFile) {
+      console.log(response);
+      this.imgSrc = response.item;
+      this.sendAvatar(this.imgSrc);
+      console.log(uploadFile);
+    },
+    sendAvatar(data) {
       this.$store
         .dispatch("auth/checkAccessToken")
         .then(() => {
           this.$store
-            .dispatch("profile/updateAccount", { avatar: this.imgSrc })
+            .dispatch("profile/updateAccount", { avatar: data })
             .then(() => {
               this.$store.dispatch("profile/getAccount").then(() => {
                 this.imgSrc = this.userDetails.avatar;
@@ -242,7 +259,7 @@ export default {
             .dispatch("auth/checkRefreshToken")
             .then(() => {
               this.$store
-                .dispatch("profile/updateAccount", { avatar: this.imgSrc })
+                .dispatch("profile/updateAccount", { avatar: data })
                 .then(() => {
                   this.$store.dispatch("profile/getAccount").then(() => {
                     this.imgSrc = this.userDetails.avatar;
@@ -259,8 +276,55 @@ export default {
               this.$store.dispatch("auth/logout");
             });
         });
-      // }
     },
+    // onFileChange(event) {
+    // console.log(event.target.files[0]);
+    // const file = event.target.files[0];
+
+    // if (file.type !== "image/jpeg" && file.type !== "image/png") {
+    //   ElMessage({
+    //     message: "Image must be in jpeg or png format",
+    //     type: "error",
+    //   });
+    // } else {
+
+    // this.imgSrc = URL.createObjectURL(file);
+    // console.log(this.imgSrc);
+    // this.$store
+    //   .dispatch("auth/checkAccessToken")
+    //   .then(() => {
+    //     this.$store
+    //       .dispatch("profile/updateAccount", { avatar: this.imgSrc })
+    //       .then(() => {
+    //         this.$store.dispatch("profile/getAccount").then(() => {
+    //           this.imgSrc = this.userDetails.avatar;
+    //         });
+    //       });
+    //   })
+    //   .catch(() => {
+    //     this.$store
+    //       .dispatch("auth/checkRefreshToken")
+    //       .then(() => {
+    //         this.$store
+    //           .dispatch("profile/updateAccount", { avatar: this.imgSrc })
+    //           .then(() => {
+    //             this.$store.dispatch("profile/getAccount").then(() => {
+    //               this.imgSrc = this.userDetails.avatar;
+    //             });
+    //           });
+    //       })
+    //       .catch((err) => {
+    //         ElNotification({
+    //           title: "Error",
+    //           message: this.$t(err.response.data.message),
+    //           type: "error",
+    //         });
+    //         // this.$router.replace("/");
+    //         this.$store.dispatch("auth/logout");
+    //       });
+    //   });
+    // }
+    // },
     hover(option) {
       if (option === "info") {
         this.infoImg = require("../assets/icon-infomation-pressed@2x.png");
@@ -392,6 +456,7 @@ input[type="file"] {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
   border-radius: 100px;
   padding: 13px;
+  z-index: 1;
 }
 
 .member-profile .member-card-avatar .el-icon svg {
@@ -469,6 +534,20 @@ input[type="file"] {
   height: 25px;
   margin-right: 0.5rem;
 }
+.member-profile :deep(.el-avatar > img) {
+  width: 100%;
+  border-radius: 100%;
+}
+
+.member-profile .avatar-uploader :deep(.el-upload.el-upload--text) {
+  position: relative;
+}
+
+/* .member-profile .avatar-uploader .avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+} */
 
 @media screen and (max-width: 1199px) {
   .member-profile .member-card-options {
@@ -476,3 +555,26 @@ input[type="file"] {
   }
 }
 </style>
+
+<!-- <style>
+.avatar-uploader .el-upload {
+  border: 1px dashed var(--el-border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: var(--el-transition-duration-fast);
+}
+
+.avatar-uploader .el-upload:hover {
+  border-color: var(--el-color-primary);
+}
+
+.el-icon.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  text-align: center;
+}
+</style> -->
