@@ -45,7 +45,7 @@
         </el-form-item>
       </el-col>
       <el-col :sm="24" :md="6">
-        <el-button class="verification-code">{{
+        <el-button @click="getVerificationCode" class="verification-code">{{
           $t("get_verification_code")
         }}</el-button>
       </el-col>
@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { ElNotification } from "element-plus";
+import { ElNotification, ElMessage } from "element-plus";
 
 export default {
   data() {
@@ -209,6 +209,26 @@ export default {
             message: "Please fill all the fields",
             type: "error",
           });
+        }
+      });
+    },
+    getVerificationCode() {
+      this.$refs.ruleFormRef.validateField("email", (valid) => {
+        if (valid) {
+          ElMessage.error(this.$t("enter_email"));
+        } else {
+          this.$store
+            .dispatch("auth/receiveOtp", this.ruleForm.email)
+            .then(() => {
+              ElMessage.success(this.$t("code_sent"));
+            })
+            .catch(() => {
+              ElNotification({
+                title: "Error",
+                message: this.$t("account_exists"),
+                type: "error",
+              });
+            });
         }
       });
     },

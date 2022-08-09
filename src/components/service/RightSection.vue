@@ -32,7 +32,7 @@
             />
           </el-col>
           <el-col>
-            <el-button>{{ $t("book_button") }}</el-button>
+            <el-button @click="bookNow">{{ $t("book_button") }}</el-button>
           </el-col>
         </el-row>
       </div>
@@ -50,6 +50,9 @@
 </template>
 
 <script>
+import moment from "moment";
+import { ElNotification } from "element-plus";
+
 export default {
   data() {
     return {
@@ -59,6 +62,92 @@ export default {
   computed: {
     singleItemDetail() {
       return this.$store.getters["search/singleItemDetail"];
+    },
+  },
+  methods: {
+    bookNow() {
+      let data = {};
+      if (this.singleItemDetail.itemType === "service") {
+        data = {
+          itemId: this.singleItemDetail.basicInfo.id,
+          itemName: this.singleItemDetail.basicInfo.itemName,
+          isService:
+            this.singleItemDetail.itemType === "service" ? true : false,
+          isProduct:
+            this.singleItemDetail.itemType === "product" ? true : false,
+          bookingDate: moment(this.singleItemDetail.defaultBookingDate).format(
+            "YYYYMMDD"
+          ),
+          bookingTime: this.singleItemDetail.defaultBookingTime.substr(
+            0,
+            this.singleItemDetail.defaultBookingTime.lastIndexOf(":")
+          ),
+          timeslotId: this.singleItemDetail.selectedTimeslotId,
+          quantity: 1,
+          price: this.singleItemDetail.discountedPrice + ".00",
+        };
+        console.log(data);
+      } else if (this.singleItemDetail.itemType === "product") {
+        data = {
+          itemId: this.singleItemDetail.basicInfo.id,
+          itemName: this.singleItemDetail.basicInfo.itemName,
+          isService:
+            this.singleItemDetail.itemType === "service" ? true : false,
+          isProduct:
+            this.singleItemDetail.itemType === "product" ? true : false,
+          quantity: 1,
+          price: this.singleItemDetail.discountedPrice + ".00",
+        };
+      }
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store
+            .dispatch("order/createOrder", {
+              orderingItems: [data],
+              totalPrice: this.singleItemDetail.discountedPrice + ".00",
+            })
+            .then(() => {
+              this.$router.push("/shopping-cart-step-2");
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+            });
+        })
+        .catch(() => {
+          this.$store
+            .dispatch("auth/checkRefreshToken")
+            .then(() => {
+              this.$store
+                .dispatch("order/createOrder", {
+                  orderingItems: [data],
+                  totalPrice: this.singleItemDetail.discountedPrice + ".00",
+                })
+                .then(() => {
+                  this.$router.push("/shopping-cart-step-2");
+                })
+                .catch((err) => {
+                  ElNotification({
+                    title: "Error",
+                    message: this.$t(err.response.data.message),
+                    type: "error",
+                  });
+                });
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+              // this.$router.replace("/");
+              this.$store.dispatch("auth/logout");
+            });
+        });
     },
   },
   created() {

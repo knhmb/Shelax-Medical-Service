@@ -17,7 +17,7 @@
         >
           <el-row>
             <el-col :xs="24" :sm="12">
-              <el-avatar :size="50" />
+              <el-avatar :src="item.avatar" :size="50" />
               <span>{{ item.givenName }}</span>
             </el-col>
             <el-col :xs="24" :sm="12">
@@ -44,13 +44,19 @@
                     <!-- <el-avatar :size="50">
                       <el-icon class="form-icon"><camera /></el-icon>
                     </el-avatar> -->
-                    <el-avatar icon :size="50" shape="circle">
-                      <img
+                    <el-avatar
+                      :src="item.imgSrc"
+                      icon
+                      :size="50"
+                      shape="circle"
+                    >
+                      <img class="image-avatar" :src="item.avatar" alt="" />
+                      <!-- <img
                         v-if="item.imgSrc"
                         class="image-avatar"
                         :src="item.imgSrc"
                         alt=""
-                      />
+                      /> -->
                       <label for="member-image">
                         <el-icon class="form-icon" style="cursor: pointer"
                           ><camera
@@ -252,11 +258,16 @@
                     <!-- <el-avatar :size="50">
                       <el-icon class="form-icon"><camera /></el-icon>
                     </el-avatar> -->
-                    <el-avatar icon :size="50" shape="circle">
+                    <el-avatar
+                      :src="item.imgSrc"
+                      icon
+                      :size="50"
+                      shape="circle"
+                    >
                       <img
                         v-if="item.imgSrc"
                         class="image-avatar"
-                        :src="item.imgSrc"
+                        :src="item.avatar"
                         alt=""
                       />
                       <label for="member-image">
@@ -596,6 +607,7 @@ export default {
             phoneNo: item.phoneNo,
             email: item.email,
             placeOfResidence: item.placeOfResidence,
+            avatar: item.imgSrc,
           };
           this.checkAccessTokenMember(data);
           // this.ruleForm.members.push({ ...item, memberEdit: false });
@@ -659,6 +671,7 @@ export default {
             phoneNo: item.phoneNo,
             email: item.email,
             placeOfResidence: item.placeOfResidence,
+            avatar: item.imgSrc,
           };
           console.log(item);
           console.log(data);
@@ -1018,6 +1031,11 @@ input[type="file"] {
   height: 1px;
   bottom: 5rem;
   left: 0;
+}
+
+.other-member .el-avatar > img {
+  width: 100%;
+  border-radius: 100%;
 }
 
 .animate-enter-active {

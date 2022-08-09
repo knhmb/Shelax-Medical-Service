@@ -5,7 +5,8 @@
         <el-col :sm="24" :lg="6">
           <div class="member-card-avatar">
             <el-avatar icon :size="100" shape="circle">
-              <img v-if="imgSrc" class="image-avatar" :src="imgSrc" alt="" />
+              <img class="image-avatar" :src="userDetails.avatar" alt="" />
+              <!-- <img v-if="imgSrc" class="image-avatar" :src="imgSrc" alt="" /> -->
               <label for="file-upload">
                 <el-icon style="cursor: pointer"><camera /></el-icon>
               </label>
@@ -135,7 +136,7 @@
 
 <script>
 import { Camera } from "@element-plus/icons-vue";
-import { ElMessage, ElNotification } from "element-plus";
+import { ElNotification } from "element-plus";
 
 export default {
   components: {
@@ -217,14 +218,48 @@ export default {
       console.log(event.target.files[0]);
       const file = event.target.files[0];
 
-      if (file.type !== "image/jpeg" && file.type !== "image/png") {
-        ElMessage({
-          message: "Image must be in jpeg or png format",
-          type: "error",
+      // if (file.type !== "image/jpeg" && file.type !== "image/png") {
+      //   ElMessage({
+      //     message: "Image must be in jpeg or png format",
+      //     type: "error",
+      //   });
+      // } else {
+      this.imgSrc = URL.createObjectURL(file);
+      console.log(this.imgSrc);
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store
+            .dispatch("profile/updateAccount", { avatar: this.imgSrc })
+            .then(() => {
+              this.$store.dispatch("profile/getAccount").then(() => {
+                this.imgSrc = this.userDetails.avatar;
+              });
+            });
+        })
+        .catch(() => {
+          this.$store
+            .dispatch("auth/checkRefreshToken")
+            .then(() => {
+              this.$store
+                .dispatch("profile/updateAccount", { avatar: this.imgSrc })
+                .then(() => {
+                  this.$store.dispatch("profile/getAccount").then(() => {
+                    this.imgSrc = this.userDetails.avatar;
+                  });
+                });
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+              // this.$router.replace("/");
+              this.$store.dispatch("auth/logout");
+            });
         });
-      } else {
-        this.imgSrc = URL.createObjectURL(file);
-      }
+      // }
     },
     hover(option) {
       if (option === "info") {
@@ -307,6 +342,7 @@ export default {
   created() {
     this.checkAccessToken();
     this.$store.dispatch("profile/getCountryCode");
+    // this.imgSrc = this.userDetails.avatar;
   },
 };
 </script>
