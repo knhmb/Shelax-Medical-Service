@@ -1,4 +1,5 @@
 import axios from "axios";
+// import router from "../../../route.js";
 
 export default {
   async createOrder(context, payload) {
@@ -74,5 +75,17 @@ export default {
       },
     });
     console.log(response);
+  },
+  async checkOut(_, payload) {
+    const userToken = localStorage.getItem("accessToken");
+
+    const response = await axios.post("/api/checkout", payload, {
+      headers: {
+        authorization: userToken,
+      },
+    });
+    console.log(response);
+    // router.push(response.data.item);
+    window.location.href = response.data.item;
   },
 };

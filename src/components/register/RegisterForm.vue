@@ -77,7 +77,7 @@
       <p>{{ $t("third_party_login") }}</p>
       <el-row :gutter="15">
         <el-col :span="12">
-          <el-button type="primary">
+          <el-button @click="logInWithFacebook" type="primary">
             <img
               src="../../assets/icon-facebook@2x.png"
               style="width: 24px"
@@ -87,7 +87,7 @@
           </el-button>
         </el-col>
         <el-col :span="12">
-          <el-button type="primary">
+          <el-button @click="registerWithGoogle" type="primary">
             <img
               src="../../assets/icon-google@2x.png"
               style="width: 24px"
@@ -107,7 +107,7 @@
           </el-button>
         </el-col>
         <el-col :span="12">
-          <el-button type="primary">
+          <el-button @click="appleLogin" type="primary">
             <img
               src="../../assets/icon-apple@2x.png"
               style="width: 24px"
@@ -134,6 +134,8 @@
 <script>
 import { Message, Lock } from "@element-plus/icons-vue";
 import { ElMessage, ElNotification } from "element-plus";
+import { googleTokenLogin } from "vue3-google-login";
+// import initiFacebookSdk from "../../plugins/initi-facebook-sdk";
 
 export default {
   // props: ["authOption"],
@@ -217,6 +219,37 @@ export default {
         changedAuthOption: "login",
         authTitle: "登入",
       });
+    },
+    registerWithGoogle() {
+      googleTokenLogin().then((response) => {
+        console.log("Handle the response", response);
+        this.$store.dispatch("auth/googleLogin", response).then(() => {
+          this.$emit("closeDialog");
+        });
+      });
+    },
+    async appleLogin() {
+      try {
+        const data = await window.AppleID.auth.signIn();
+        console.log(data);
+        this.$store
+          .dispatch("auth/appleLogin", {
+            id_token: data.authorization.id_token,
+          })
+          .then(() => {
+            this.$emit("closeDialog");
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async logInWithFacebook() {
+      // await initiFacebookSdk.logInWithFacebook().then(() => {
+      //   this.$emit("closeDialog");
+      // });
+      // await initFacebookSdk().then(() => {
+      //   this.$emit("closeDialog");
+      // });
     },
     savedData() {
       const data = {

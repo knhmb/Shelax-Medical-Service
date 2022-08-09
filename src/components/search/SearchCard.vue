@@ -127,6 +127,7 @@ export default {
           this.$store
             .dispatch("order/createOrder", {
               orderingItems: [data],
+              totalPrice: this.discountPrice + ".00",
             })
             .then(() => {
               this.$router.push("/shopping-cart-step-2");
@@ -146,6 +147,7 @@ export default {
               this.$store
                 .dispatch("order/createOrder", {
                   orderingItems: [data],
+                  totalPrice: this.discountPrice + ".00",
                 })
                 .then(() => {
                   this.$router.push("/shopping-cart-step-2");

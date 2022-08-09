@@ -133,7 +133,7 @@ import { ElNotification } from "element-plus";
 // import { googleSdkLoaded } from "vue3-google-login";
 import { googleTokenLogin } from "vue3-google-login";
 // import { googleAuthCodeLogin } from "vue3-google-login";
-import initiFacebookSdk from "../../plugins/initi-facebook-sdk";
+// import initiFacebookSdk from "../../plugins/initi-facebook-sdk";
 
 export default {
   // props: ["authOption"],
@@ -223,12 +223,24 @@ export default {
       });
     },
     async logInWithFacebook() {
-      await initiFacebookSdk.logInWithFacebook().then(() => {
-        this.$emit("closeDialog");
-      });
-      // await initFacebookSdk().then(() => {
+      // await initiFacebookSdk.logInWithFacebook().then(() => {
       //   this.$emit("closeDialog");
       // });
+      window.FB.login(function (response) {
+        if (response.authResponse) {
+          // alert("You are logged in &amp; cookie set!");
+          // console.log(response);
+          this.$store.dispatch("auth/facebookLogin", {
+            access_token: response.authResponse.accessToken,
+          });
+          // Now you can redirect the user or do an AJAX request to
+          // a PHP script that grabs the signed request from the cookie.
+        } else {
+          alert("User cancelled login or did not fully authorize.");
+          // console.log(response);
+        }
+      });
+      return false;
     },
   },
 };

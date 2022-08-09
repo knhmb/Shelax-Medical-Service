@@ -20,9 +20,12 @@
         <p>{{ $t("note_shoppingcart") }}</p>
       </el-col>
       <el-col :sm="24" :md="8">
-        <el-button @click="payment" type="primary">{{
+        <el-button @click="checkOut" type="primary">{{
           $t("payment")
         }}</el-button>
+        <!-- <el-button @click="payment" type="primary">{{
+          $t("payment")
+        }}</el-button> -->
       </el-col>
     </el-row>
   </div>
@@ -157,6 +160,7 @@ export default {
         orderItems: orderItems,
         couponId: this.isCouponApplied ? this.couponDetails.couponId : null,
         totalPrice: this.orderItem.totalPrice,
+        // totalPrice: this.shoppingCartItems.totalPrice,
         discount: this.isMemberPointsApplied
           ? this.couponDetails.newTotalDiscount
           : this.isCouponApplied
@@ -172,19 +176,21 @@ export default {
           : null,
         paymentMethod: [
           {
-            transactionRefNo: "sddhfdkfdfklr8t9853495749534",
-            paymentMethod: "pymtmethod-visa",
+            transactionRefNo: this.$route.query.session,
+            paymentMethod: "pymtmethod-card",
+            // paymentMethod: "pymtmethod-visa",
             amount: finalPrice === null ? 0 : finalPrice,
           },
         ],
       };
+      console.log("before data", data);
       Object.keys(data).forEach((key) => {
         if (data[key] === null) {
           delete data[key];
         }
       });
 
-      console.log(data);
+      console.log("after data", data);
       this.$store
         .dispatch("auth/checkAccessToken")
         .then(() => {
@@ -200,7 +206,7 @@ export default {
         })
         .catch(() => {
           this.$store
-            .dispatch("checkRefreshToken")
+            .dispatch("auth/checkRefreshToken")
             .then(() => {
               this.$store.dispatch("order/confirmOrder", data).then(() => {
                 ElNotification({
@@ -223,10 +229,52 @@ export default {
             });
         });
     },
+    checkOut() {
+      const finalPrice = this.isMemberPointsApplied
+        ? this.couponDetails.amountToBePaid
+        : this.isCouponApplied
+        ? this.couponDetails.amountToBePaid
+        : this.orderItem.totalPrice;
+
+      const data = {
+        orderId: this.orderItem.orderId,
+        orderNo: this.orderItem.orderNo,
+        finalPrice: finalPrice,
+      };
+      console.log(data);
+      this.$store
+        .dispatch("auth/checkAccessToken")
+        .then(() => {
+          this.$store.dispatch("order/checkOut", data);
+        })
+        .catch(() => {
+          this.$store
+            .dispatch("auth/checkRefreshToken")
+            .then(() => {
+              this.$store.dispatch("order/checkOut", data);
+            })
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: err.response.data.message,
+                type: "error",
+              });
+              this.$store.dispatch("auth/logout");
+            });
+        });
+    },
+  },
+  mounted() {
+    if (this.$route.query.success === "true") {
+      this.payment();
+    }
   },
   created() {
     console.log(this.orderItem);
     console.log(this.orderData);
+    this.$route.params;
+    console.log(this.$route);
+    console.log(this.$route.query);
   },
 };
 </script>

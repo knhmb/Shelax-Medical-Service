@@ -12,8 +12,10 @@ import TheFooter from "./components/TheFooter.vue";
 // import { ElConfigProvider } from "element-plus";
 // import zhCn from "element-plus/es/locale/lang/zh-cn";
 // import en from "element-plus/es/locale/lang/en";
-import initiFacebookSdk from "./plugins/initi-facebook-sdk";
-import initAppleSdk from "./plugins/init-apple-sdk";
+// import initiFacebookSdk from "./plugins/initi-facebook-sdk";
+// import initAppleSdk from "./plugins/init-apple-sdk";
+import { initApple } from "./plugins/init-apple-sdk";
+// import { initFacebookSdk } from "./plugins/initi-facebook-sdk.js";
 
 export default {
   components: {
@@ -45,6 +47,10 @@ export default {
   beforeCreate() {
     localStorage.setItem("lang", "zh-HK");
   },
+  mounted() {
+    // initFacebookSdk();
+    initApple();
+  },
   async created() {
     this.$store.commit("GET_LANGUAGE");
     if (this.language === "en-US") {
@@ -55,14 +61,14 @@ export default {
       this.$i18n.locale = "zh-HK";
     }
     // console.log(initiFacebookSdk);
-    await initiFacebookSdk.loadFacebookSDK(
-      document,
-      "script",
-      "facebook-jssdk"
-    );
-    await initiFacebookSdk.initFacebook();
-    await initAppleSdk.loadAppleSDK(document, "script", "apple-jssdk");
-    await initAppleSdk.initApple();
+    // await initAppleSdk.loadAppleSDK(document, "script", "apple-jssdk");
+    // await initAppleSdk.initApple();
+    // await initiFacebookSdk.loadFacebookSDK(
+    //   document,
+    //   "script",
+    //   "facebook-jssdk"
+    // );
+    // await initiFacebookSdk.initFacebook();
   },
 };
 </script>
