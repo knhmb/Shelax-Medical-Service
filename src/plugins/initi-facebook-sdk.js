@@ -93,7 +93,9 @@ export function initFacebookSdk() {
       }
       js = d.createElement(s);
       js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0";
+      js.src = `https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v8.0`;
+      // js.src = `https://connect.facebook.net/${navigator.language}/sdk.js#xfbml=1&version=v8.0`;
+      // js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0";
       fjs.parentNode.insertBefore(js, fjs);
     })(document, "script", "facebook-jssdk");
   });

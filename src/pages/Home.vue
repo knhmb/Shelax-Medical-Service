@@ -25,19 +25,32 @@ export default {
     // TheFooter,
   },
   watch: {
-    lang() {
+    async lang() {
       this.$store.dispatch("dashboard/getServiceCategory");
       this.$store.dispatch("dashboard/getProductCategory");
-      this.$store.dispatch("dashboard/getThemes");
+      await this.$store.dispatch("dashboard/getThemes");
+      this.themes.filter((item) => {
+        this.$store.dispatch("dashboard/getSingleTheme", item);
+      });
     },
   },
   computed: {
     lang() {
       return this.$store.getters.lang;
     },
+    themes() {
+      return this.$store.getters["dashboard/themes"];
+    },
+    getSlug() {
+      return this.themes.filter((item) => item);
+    },
   },
-  created() {
-    this.$store.dispatch("dashboard/getThemes");
+  async created() {
+    await this.$store.dispatch("dashboard/getThemes");
+    this.themes.filter((item) => {
+      this.$store.dispatch("dashboard/getSingleTheme", item);
+    });
+    // this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
     this.$store.dispatch("dashboard/getServiceCategory");
     this.$store.dispatch("dashboard/getProductCategory");
     this.$store.dispatch("toggleSteps", false);

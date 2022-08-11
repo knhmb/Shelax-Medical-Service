@@ -45,26 +45,25 @@ app.use(vue3GoogleLogin, {
   clientId: gAuthClientId,
 });
 
-// const gAuthOptions = {
-//   clientId: gAuthClientId,
-//   scope: "email",
-//   prompt: "consent",
-//   fetch_basic_profile: false,
-// };
-// app.use(gAuthPlugin, gAuthOptions);
-// app.use(gAuthPlugin, {
-//   apiKey: apiKey,
-//   clientId: gAuthClientId,
-//   scope: "https://www.googleapis.com/auth/drive.metadata.readonly",
-//   scope: "email",
-//   prompt: "consent",
-//   discoverDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-// });
-
 app.component("base-container", BaseContainer);
 app.component("base-content-container", BaseContentContainer);
 app.component("base-button", BaseButton);
 app.component("base-card", BaseCard);
 app.component("base-member-card", BaseMemberCard);
 
-app.mount("#app");
+const asyncLocalStorage = {
+  setItem: async function (key, value) {
+    await null;
+    return localStorage.setItem(key, value);
+  },
+  getItem: async function (key) {
+    await null;
+    return localStorage.getItem(key);
+  },
+};
+
+asyncLocalStorage.setItem("lang", "zh-HK").then(() => {
+  app.mount("#app");
+});
+
+// app.mount("#app");

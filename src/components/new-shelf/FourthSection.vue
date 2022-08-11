@@ -129,11 +129,11 @@ export default {
       },
     };
   },
-  watch: {
-    lang() {
-      this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
-    },
-  },
+  // watch: {
+  //   lang() {
+  //     this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
+  //   },
+  // },
   computed: {
     themes() {
       return this.$store.getters["dashboard/themes"];
@@ -167,7 +167,7 @@ export default {
   },
   mounted() {
     console.log(this.getSlug);
-    this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
+    // this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
   },
 };
 </script>

@@ -308,5 +308,7 @@
   "lowest_to_highest_score": "從最低到最高分",
   "hong_kong_identity_card": "香港身份證",
   "common_problem": "常見問題",
-  "message_sent": "信息已發送！"
+  "message_sent": "信息已發送！",
+  "comment_title_text": "評論標題",
+  "comment_title_placeholder": "請輸入評論標題"
 }

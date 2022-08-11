@@ -10,8 +10,11 @@
     <el-form label-position="top">
       <el-row>
         <el-col>
-          <el-form-item class="first-label" label="評論標題">
-            <el-input v-model="title" placeholder="請輸入評論標題"></el-input>
+          <el-form-item class="first-label" :label="$t('comment_title_text')">
+            <el-input
+              v-model="title"
+              :placeholder="$t('comment_title_placeholder')"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col>
@@ -49,7 +52,8 @@ export default {
     submit() {
       const data = {
         rating: this.value,
-        comments: this.title,
+        comments: this.description,
+        // comments: this.title,
         itemId: this.itemId,
         orderId: this.orderId,
         orderItemId: this.orderItemId,
@@ -95,6 +99,7 @@ export default {
     cancel() {
       this.value = 3;
       this.description = "";
+      this.title = "";
       this.$emit("closeAddReview");
     },
   },

@@ -44,14 +44,16 @@ export default {
       return this.$store.getters.lang;
     },
   },
-  beforeCreate() {
-    localStorage.setItem("lang", "zh-HK");
-  },
+  // beforeCreate() {
+  //   localStorage.setItem("lang", "zh-HK");
+  // },
   mounted() {
+    console.log("me");
     initFacebookSdk();
     initApple();
   },
   async created() {
+    // localStorage.setItem('lang')
     this.$store.commit("GET_LANGUAGE");
     if (this.language === "en-US") {
       // this.locale = en;

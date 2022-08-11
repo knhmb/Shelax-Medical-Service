@@ -121,7 +121,7 @@ export default {
         // 300px and up
         300: {
           itemsToShow: 1.5,
-          snapAlign: "center",
+          snapAlign: "start",
         },
         700: {
           itemsToShow: 2.5,
@@ -135,11 +135,11 @@ export default {
       },
     };
   },
-  watch: {
-    lang() {
-      this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
-    },
-  },
+  // watch: {
+  //   lang() {
+  //     this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
+  //   },
+  // },
   computed: {
     themes() {
       return this.$store.getters["dashboard/themes"];
@@ -173,10 +173,23 @@ export default {
         });
     },
   },
+  // beforeMount() {
+  //   console.log(this.getSlug);
+
+  //   this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
+  // },
   created() {
+    // this.$store.dispatch("dashboard/getThemes").then(() => {
+    //   this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
+    // });
+
     console.log(this.getSlug);
-    console.log(this.cervicalCancerTheme);
-    this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
+    console.log(this.themes);
+    // if (this.getSlug.length <= 0) {
+    //   console.log("empty Array");
+    // } else {
+    //   this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
+    // }
   },
 };
 </script>

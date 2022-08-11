@@ -12,6 +12,7 @@ export default {
   },
   SET_THEMES(state, paylaod) {
     state.themes = paylaod;
+    console.log(state.themes);
   },
   SET_SERVICE_CATEGORY(state, payload) {
     state.serviceCategory = payload;

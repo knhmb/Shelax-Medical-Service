@@ -9,7 +9,7 @@
         </p>
         <el-upload
           v-model:file-list="fileListBusiness"
-          :action="`http://localhost:8080/api/upload/vendor-registration`"
+          :action="`${window.location.protocol}//${window.location.hostname}/api/upload/vendor-registration`"
           list-type="picture-card"
           :on-remove="handleRemove"
           :on-success="handleSuccess"
@@ -51,7 +51,7 @@
         </p>
         <el-upload
           v-model:file-list="fileListCompany"
-          :action="`http://localhost:8080/api/upload/vendor-registration`"
+          :action="`${window.location.protocol}//${window.location.hostname}/api/upload/vendor-registration`"
           list-type="picture-card"
           :on-success="handleSuccessCompany"
           :on-remove="handleRemove"
@@ -70,7 +70,7 @@
         </p>
         <el-upload
           v-model:file-list="fileListBank"
-          :action="`http://localhost:8080/api/upload/vendor-registration`"
+          :action="`${window.location.protocol}//${window.location.hostname}/api/upload/vendor-registration`"
           list-type="picture-card"
           :on-success="handleSuccessBank"
           :on-remove="handleRemove"
@@ -89,7 +89,7 @@
         </p>
         <el-upload
           v-model:file-list="fileListHKID"
-          :action="`http://localhost:8080/api/upload/vendor-registration`"
+          :action="`${window.location.protocol}//${window.location.hostname}/api/upload/vendor-registration`"
           list-type="picture-card"
           :on-success="handleSuccessHKID"
           :on-remove="handleRemove"
@@ -108,7 +108,7 @@
         </p>
         <el-upload
           v-model:file-list="fileListDoctor"
-          :action="`http://localhost:8080/api/upload/vendor-registration`"
+          :action="`${window.location.protocol}//${window.location.hostname}/api/upload/vendor-registration`"
           list-type="picture-card"
           :on-success="handleSuccessDoctor"
           :on-remove="handleRemove"
@@ -127,7 +127,7 @@
         </p>
         <el-upload
           v-model:file-list="fileListDocument"
-          :action="`http://localhost:8080/api/upload/vendor-registration`"
+          :action="`${window.location.protocol}//${window.location.hostname}/api/upload/vendor-registration`"
           list-type="picture-card"
           :on-success="handleSuccessDocument"
           :on-remove="handleRemove"
@@ -146,7 +146,7 @@
         </p>
         <el-upload
           v-model:file-list="fileListCompanyPhoto"
-          :action="`http://localhost:8080/api/upload/vendor-registration`"
+          :action="`${window.location.protocol}//${window.location.hostname}/api/upload/vendor-registration`"
           list-type="picture-card"
           :on-success="handleSuccessCompanyPhoto"
           :on-remove="handleRemove"
@@ -175,6 +175,7 @@
 import { Plus } from "@element-plus/icons-vue";
 import { UploadFile } from "element-plus/es/components/upload/src/upload.type";
 import moment from "moment";
+import { ElNotification } from "element-plus";
 
 export default {
   components: {
@@ -199,6 +200,10 @@ export default {
   },
   methods: {
     nextStep(value) {
+      if (value === "step-2") {
+        this.$emit("changeStep", { value: value, formData: {} });
+        return;
+      }
       console.log(this.formData);
       console.log(value);
       const clonedArray = this.documents.map((a) => {
@@ -226,9 +231,25 @@ export default {
         memberRegistration: false,
         vendorRegistration: true,
         platformAdmin: false,
+        // document: [],
         document: clonedArray,
       };
       console.log(data);
+      this.$store
+        .dispatch("auth/register", data)
+        .then(() => {
+          this.$emit("changeStep", { value: value, formData: {} });
+        })
+        .catch((err) => {
+          ElNotification({
+            title: "Error",
+            message: this.$t(err.response.data.message),
+            type: "error",
+          });
+        });
+      // this.$store.dispatch("auth/vendorRegistration", data).then(() => {
+      //   this.$emit("changeStep", value);
+      // });
       // this.$emit("changeStep", value);
     },
     handleRemove(file) {

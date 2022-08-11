@@ -43,7 +43,7 @@
                   <el-col :sm="12" :md="3">
                     <el-upload
                       class="avatar-uploader"
-                      action="http://localhost:8080/api/upload/avatar"
+                      :action="`${window.location.protocol}//${window.location.hostname}/api/upload/avatar`"
                       :show-file-list="false"
                       :on-success="handleAvatarSuccess"
                     >

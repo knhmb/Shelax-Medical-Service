@@ -224,6 +224,7 @@ export default {
     },
     async logInWithFacebook() {
       const vueWindow = this;
+      console.log(navigator.languages[2]);
       // await initiFacebookSdk.logInWithFacebook().then(() => {
       //   this.$emit("closeDialog");
       // });

@@ -60,7 +60,7 @@ export default {
   },
   async appleLogin(context, payload) {
     const response = await axios.post(
-      "/api/authenticate/ouath2/apple",
+      "/api/authenticate/oauth2/apple",
       payload
     );
     console.log(response);
@@ -124,6 +124,13 @@ export default {
   },
   async resetPassword(_, payload) {
     const response = await axios.post("/api/account/reset-password", payload);
+    console.log(response);
+  },
+  async vendorRegistration(_, payload) {
+    const response = await axios.post(
+      "/api/upload/vendor-registration",
+      payload
+    );
     console.log(response);
   },
 };

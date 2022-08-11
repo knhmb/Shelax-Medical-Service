@@ -231,6 +231,9 @@ export default {
       isService: false,
     };
   },
+  unmounted() {
+    this.$store.commit("order/DISABLE_PROMO", false);
+  },
   computed: {
     orderItem() {
       return this.$store.getters["order/orderItem"];
