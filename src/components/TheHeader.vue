@@ -107,10 +107,13 @@
         $route.path !== '/vendor-forgot-password'
       "
     >
-      <carousel :breakpoints="breakpoints" class="hidden-md-and-up">
+      <carousel
+        v-if="!isSteps && menuItems.length > 0"
+        :breakpoints="breakpoints"
+        class="hidden-md-and-up"
+      >
         <slide v-for="item in menuItems" :key="item.id">
           <el-menu
-            v-if="!isSteps"
             class="el-menu-demo bottom-header"
             :ellipsis="false"
             mode="horizontal"
@@ -143,7 +146,7 @@
       </carousel>
 
       <el-menu
-        v-if="!isSteps"
+        v-if="!isSteps && menuItems.length > 0"
         class="el-menu-demo bottom-header hidden-sm-and-down"
         mode="horizontal"
         :ellipsis="false"
@@ -300,20 +303,20 @@ export default {
     changeAuth(event) {
       this.selectedOption = event;
     },
-    getMenuItems() {
-      this.$store.dispatch("dashboard/getMenuItems");
+    async getMenuItems() {
+      await this.$store.dispatch("dashboard/getMenuItems");
     },
-    getSubMenuItems() {
-      this.$store.dispatch("dashboard/getGenericTestingSubMenuItem");
+    async getSubMenuItems() {
+      await this.$store.dispatch("dashboard/getGenericTestingSubMenuItem");
     },
-    setLanguage({ option, lang }) {
+    async setLanguage({ option, lang }) {
       this.menuVal = option;
       // this.lang = lang;
       this.$store.commit("SET_LANG", lang);
       localStorage.setItem("lang", lang);
       this.$i18n.locale = lang;
-      this.getMenuItems();
-      this.getSubMenuItems();
+      await this.getMenuItems();
+      await this.getSubMenuItems();
     },
     logout() {
       this.$store.dispatch("auth/logout");
@@ -337,7 +340,7 @@ export default {
         });
     },
   },
-  created() {
+  async created() {
     const language = localStorage.getItem("lang");
     if (language === "zh-HK") {
       this.menuVal = "繁體中文";
@@ -346,8 +349,8 @@ export default {
     } else if (language === "en-US") {
       this.menuVal = "English";
     }
-    this.getMenuItems();
-    this.getSubMenuItems();
+    await this.getMenuItems();
+    await this.getSubMenuItems();
     console.log(this.isSteps);
   },
 };

@@ -2,25 +2,26 @@ import axios from "axios";
 // import i18n from "../../../i18n";
 
 export default {
-  getMenuItems(context) {
+  async getMenuItems(context) {
     const lang = localStorage.getItem("lang") || "zh-HK";
-    axios
+    await axios
       .get("/api/codex?filter=codexTypeCode:SERV_CAT&sort=+displayOrder", {
         headers: {
           "accept-language-code": lang,
         },
       })
       .then((res) => {
-        // console.log(res);
+        console.log("lkjdfhgkjhf");
+        console.log(res);
         context.commit("SET_MENU_ITEMS", res.data.items);
       })
       .catch((err) => {
         console.log(err);
       });
   },
-  getGenericTestingSubMenuItem(context) {
+  async getGenericTestingSubMenuItem(context) {
     const lang = localStorage.getItem("lang") || "zh-HK";
-    axios
+    await axios
       .get(
         "/api/codex?filter=parentCodexSlug:servcat-genetic-testing&sort=+displayOrder",
         {
