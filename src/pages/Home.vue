@@ -46,10 +46,12 @@ export default {
     },
   },
   async created() {
+    console.log("YYYYTEEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSSSSSSS");
     await this.$store.dispatch("dashboard/getThemes");
     this.themes.filter((item) => {
       this.$store.dispatch("dashboard/getSingleTheme", item);
     });
+    console.log(this.themes);
     // this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
     this.$store.dispatch("dashboard/getServiceCategory");
     this.$store.dispatch("dashboard/getProductCategory");

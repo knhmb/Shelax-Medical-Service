@@ -65,9 +65,9 @@ export default {
         console.log(err);
       });
   },
-  getSingleTheme(context, item) {
+  async getSingleTheme(context, item) {
     const lang = localStorage.getItem("lang") || "zh-HK";
-    axios
+    await axios
       .get(`/api/item?filter=theme:${item.slug}&pagesize=4`, {
         headers: {
           "accept-language-code": lang,
@@ -78,6 +78,7 @@ export default {
         if (item.slug === "theme-prevent-cervical-cancer") {
           context.commit("SET_CERVICAL_CANCER_THEME", res.data.items);
           console.log("Cancer");
+          console.log(res.data.items);
         }
         if (item.slug === "theme-medical-consultancy") {
           context.commit("SET_MEDICAL_CONSULTANCY_THEME", res.data.items);

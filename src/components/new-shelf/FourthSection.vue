@@ -62,7 +62,7 @@
         </el-carousel-item>
       </el-carousel> -->
       <base-content-container>
-        <Carousel :breakpoints="breakpoints">
+        <Carousel v-if="otherTheme.length > 0" :breakpoints="breakpoints">
           <Slide v-for="theme in otherTheme" :key="theme.id">
             <!-- <div class="carousel__item">{{ slide }}</div> -->
             <latest-offers-card

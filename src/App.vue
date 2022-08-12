@@ -48,7 +48,6 @@ export default {
   //   localStorage.setItem("lang", "zh-HK");
   // },
   mounted() {
-    console.log("me");
     initFacebookSdk();
     initApple();
   },

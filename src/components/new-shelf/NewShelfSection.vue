@@ -69,7 +69,10 @@
         </el-carousel-item>
       </el-carousel> -->
       <base-content-container>
-        <Carousel :breakpoints="breakpoints">
+        <Carousel
+          v-if="medicalConsultancyTheme.length > 0"
+          :breakpoints="breakpoints"
+        >
           <Slide v-for="theme in medicalConsultancyTheme" :key="theme.id">
             <latest-offers-card
               :name="theme.category"

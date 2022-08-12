@@ -31,7 +31,7 @@ export default {
       return this.$store.getters["dashboard/promoBanners"];
     },
   },
-  created() {
+  async created() {
     this.$store.dispatch("dashboard/getPromoBanner");
   },
 };

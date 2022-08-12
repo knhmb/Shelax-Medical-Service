@@ -68,7 +68,10 @@
         </el-carousel-item>
       </el-carousel> -->
       <base-content-container>
-        <Carousel :breakpoints="breakpoints">
+        <Carousel
+          v-if="cervicalCancerTheme.length > 0"
+          :breakpoints="breakpoints"
+        >
           <Slide v-for="theme in cervicalCancerTheme" :key="theme.id">
             <!-- <div class="carousel__item">{{ slide }}</div> -->
             <latest-offers-card
@@ -173,18 +176,13 @@ export default {
         });
     },
   },
-  // beforeMount() {
-  //   console.log(this.getSlug);
-
-  //   this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
-  // },
   created() {
     // this.$store.dispatch("dashboard/getThemes").then(() => {
     //   this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
     // });
 
-    console.log(this.getSlug);
     console.log(this.themes);
+    console.log(this.cervicalCancerTheme);
     // if (this.getSlug.length <= 0) {
     //   console.log("empty Array");
     // } else {
