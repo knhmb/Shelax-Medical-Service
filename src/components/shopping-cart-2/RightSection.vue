@@ -1,14 +1,15 @@
 <template>
   <div class="right-section">
-    <h2 v-if="isService">
+    <h2>
       {{ $t("service_type") }}
     </h2>
+
     <template v-for="item in orderItem.orderingItems" :key="item.itemId">
-      <!-- {{ filterData(item.itemId) }} -->
-      <div
+      <!-- <div
         v-if="filterData(item.itemId).searchItemType === 'service'"
         class="card"
-      >
+      > -->
+      <div class="card">
         <div class="header">
           <h3>{{ item.itemName }}</h3>
           <p>{{ item.providerName }}</p>
@@ -101,14 +102,15 @@
       </div>
     </div> -->
 
-    <h2 v-if="!isService">
-      {{ $t("product_type") }}
-    </h2>
+    <h2 v-if="!isService">{{ $t("product_type") }}</h2>
     <template v-for="item in orderItem.orderingItems" :key="item.itemId">
-      <div
+      {{ filterData }}
+
+      <!-- <div
         v-if="filterData(item.itemId).searchItemType === 'product'"
         class="card"
-      >
+      > -->
+      <div class="card">
         <div class="header">
           <h3>{{ item.itemName }}</h3>
           <p>{{ item.providerName }}</p>
@@ -259,13 +261,15 @@ export default {
   },
   methods: {
     filterData(id) {
-      const data = this.searchItems.find((itemId) => id === itemId.itemId);
+      const data = this.orderItem.orderingItems.find(
+        (itemId) => id === itemId.itemId
+      );
       console.log(data);
-      if (data.searchItemType === "service") {
-        this.isService = true;
-      } else {
-        this.isService = false;
-      }
+      // if (data.searchItemType === "service") {
+      //   this.isService = true;
+      // } else {
+      //   this.isService = false;
+      // }
       return data;
     },
   },

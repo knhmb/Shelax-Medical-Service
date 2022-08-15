@@ -75,7 +75,7 @@
               <li @click="navigate('/vendor-registration')">
                 {{ $t("shop_vendor_signup") }}
               </li>
-              <li @click="navigate('/vendor-login')">
+              <li @click="navigate('/admin-login')">
                 {{ $t("shop_vendor_login") }}
               </li>
             </ul>

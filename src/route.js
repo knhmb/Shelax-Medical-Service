@@ -51,7 +51,7 @@ const router = createRouter({
     { path: "/product-detail", component: ProductDetail },
     { path: "/product-search", component: ProductSearch },
     { path: "/vendor-registration", component: VendorRegistration },
-    { path: "/vendor-login", component: VendorLogin },
+    { path: "/admin-login", component: VendorLogin },
     { path: "/vendor-forgot-password", component: VendorForgotPassword },
     { path: "/shelax-points", component: ShelaxPoints },
     {

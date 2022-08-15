@@ -53,7 +53,8 @@ export default {
 .latest-offers .box-card,
 .popular-clinics .box-card,
 .new-shelf .box-card,
-.recommended-services .box-card {
+.recommended-services .box-card,
+.theme-x .box-card .theme-8 .box-card {
   border-radius: 12px !important;
   height: 100% !important;
   object-fit: contain;
@@ -64,6 +65,8 @@ export default {
 .latest-offers .box-card img,
 .popular-clinics .box-card img,
 .new-shelf .box-card img,
+.theme-8 .box-card img,
+.theme-x .box-card img,
 .recommended-services .box-card img {
   width: 100%;
   height: 10rem;
@@ -74,6 +77,8 @@ export default {
 .latest-offers p,
 .popular-clinics p,
 .new-shelf p,
+.theme-8 p,
+.theme-x p,
 .recommended-services p {
   margin: 0;
 }
@@ -81,6 +86,8 @@ export default {
 .latest-offers .content,
 .popular-clinics .content,
 .new-shelf .content,
+.theme-8 .content,
+.theme-x .content,
 .recommended-services .content {
   padding: 0.5rem 1rem;
   text-align: start;
@@ -89,6 +96,8 @@ export default {
 .latest-offers .latest-offers-img-text,
 .popular-clinics .latest-offers-img-text,
 .new-shelf .latest-offers-img-text,
+.theme-8 .latest-offers-img-text,
+.theme-x .latest-offers-img-text,
 .recommended-services .latest-offers-img-text {
   font-size: 12px;
   color: #8d8d8d;
@@ -98,6 +107,8 @@ export default {
 .latest-offers .latest-offers-desc,
 .popular-clinics .latest-offers-desc,
 .new-shelf .latest-offers-desc,
+.theme-8 .latest-offers-desc,
+.theme-x .latest-offers-desc,
 .recommended-services .latest-offers-desc {
   font-size: 14px;
   line-height: 20px;
@@ -109,6 +120,8 @@ export default {
 .latest-offers .el-rate .el-rate__text,
 .popular-clinics .el-rate .el-rate__text,
 .new-shelf .el-rate .el-rate__text,
+.theme-8 .el-rate .el-rate__text,
+.theme-x .el-rate .el-rate__text,
 .recommended-services .el-rate .el-rate__text {
   font-size: 10px !important;
   color: #7e7e7e !important;
@@ -117,6 +130,8 @@ export default {
 .latest-offers .el-rate,
 .popular-clinics .el-rate,
 .new-shelf .el-rate,
+.theme-8 .el-rate,
+.theme-x .el-rate,
 .recommended-services .el-rate {
   margin-bottom: 2rem;
 }
@@ -124,6 +139,8 @@ export default {
 .latest-offers .discount,
 .popular-clinics .discount,
 .new-shelf .discount,
+.theme-8 .discount,
+.theme-x .discount,
 .recommended-services .discount {
   text-decoration: line-through;
   color: #8d8d8d;
@@ -133,6 +150,8 @@ export default {
 .latest-offers .latest-offers-price,
 .popular-clinics .latest-offers-price,
 .new-shelf .latest-offers-price,
+.theme-8 .latest-offers-price,
+.theme-x .latest-offers-price,
 .recommended-services .latest-offers-price {
   font-size: 16px;
   font-weight: bold;
@@ -142,7 +161,9 @@ export default {
 .latest-offers .latest-offers-price small,
 .popular-clinics .latest-offers-price small,
 .new-shelf .latest-offers-price small,
-.recommended-services .small {
+.theme-8 .latest-offers-price small,
+.theme-x .latest-offers-price small,
+.recommended-services small {
   font-size: 12px;
   color: #7e7e7e;
 }
@@ -150,6 +171,8 @@ export default {
 .latest-offers .el-carousel__arrow,
 .popular-clinics .el-carousel__arrow,
 .new-shelf .el-carousel__arrow,
+.theme-8 .el-carousel__arrow,
+.theme-x .el-carousel__arrow,
 .recommended-services .el-carousel__arrow {
   background-color: #fff !important;
   color: black !important;
@@ -158,6 +181,8 @@ export default {
 .latest-offers .el-carousel__arrow.el-carousel__arrow--left,
 .popular-clinics .el-carousel__arrow.el-carousel__arrow--left,
 .new-shelf .el-carousel__arrow.el-carousel__arrow--left,
+.theme-8 .el-carousel__arrow.el-carousel__arrow--left,
+.theme-x .el-carousel__arrow.el-carousel__arrow--left,
 .recommended-services .el-carousel__arrow.el-carousel__arrow--left {
   /* left: 140px !important; */
   left: 10% !important;
@@ -168,6 +193,8 @@ export default {
 .latest-offers .el-carousel__arrow.el-carousel__arrow--left:hover,
 .popular-clinics .el-carousel__arrow.el-carousel__arrow--left:hover,
 .new-shelf .el-carousel__arrow.el-carousel__arrow--left:hover,
+.theme-8 .el-carousel__arrow.el-carousel__arrow--left:hover,
+.theme-x .el-carousel__arrow.el-carousel__arrow--left:hover,
 .recommended-services .el-carousel__arrow.el-carousel__arrow--left:hover {
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.898);
 }
@@ -175,6 +202,8 @@ export default {
 .latest-offers .el-carousel__arrow.el-carousel__arrow--right,
 .popular-clinics .el-carousel__arrow.el-carousel__arrow--right,
 .new-shelf .el-carousel__arrow.el-carousel__arrow--right,
+.theme-8 .el-carousel__arrow.el-carousel__arrow--right,
+.theme-x .el-carousel__arrow.el-carousel__arrow--right,
 .recommended-services .el-carousel__arrow.el-carousel__arrow--right {
   right: 10% !important;
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.33);
@@ -183,6 +212,8 @@ export default {
 .latest-offers .el-carousel__arrow.el-carousel__arrow--right:hover,
 .popular-clinics .el-carousel__arrow.el-carousel__arrow--right:hover,
 .new-shelf .el-carousel__arrow.el-carousel__arrow--right:hover,
+.theme-8 .el-carousel__arrow.el-carousel__arrow--right:hover,
+.theme-x .el-carousel__arrow.el-carousel__arrow--right:hover,
 .recommended-services .el-carousel__arrow.el-carousel__arrow--right:hover {
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.898);
 }
@@ -190,6 +221,8 @@ export default {
 .latest-offers .el-card__body,
 .popular-clinics .el-card__body,
 .new-shelf .el-card__body,
+.theme-8 .el-card__body,
+.theme-x .el-card__body,
 .recommended-services .el-card__body {
   padding: 0;
 }
@@ -200,6 +233,8 @@ export default {
   .latest-offers .latest-offers-desc,
   .popular-clinics .latest-offers-desc,
   .new-shelf .latest-offers-desc,
+  .theme-8 .latest-offers-desc,
+  .theme-x .latest-offers-desc,
   .recommended-services .latest-offers-desc {
     font-size: 10px;
   }
@@ -207,6 +242,8 @@ export default {
   .latest-offers .el-rate .el-icon.el-rate__icon,
   .popular-clinics .el-rate .el-icon.el-rate__icon,
   .new-shelf .el-rate .el-icon.el-rate__icon,
+  .theme-8 .el-rate .el-icon.el-rate__icon,
+  .theme-x .el-rate .el-icon.el-rate__icon,
   .recommended-services .el-rate .el-icon.el-rate__icon {
     margin-right: 0;
   }
@@ -216,6 +253,8 @@ export default {
   .latest-offers .el-carousel__arrow.el-carousel__arrow--right,
   .popular-clinics .el-carousel__arrow.el-carousel__arrow--right,
   .new-shelf .el-carousel__arrow.el-carousel__arrow--right,
+  .theme-8 .el-carousel__arrow.el-carousel__arrow--right,
+  .theme-x .el-carousel__arrow.el-carousel__arrow--right,
   .recommended-services .el-carousel__arrow.el-carousel__arrow--right {
     right: 1% !important;
   }
@@ -223,6 +262,8 @@ export default {
   .latest-offers .el-carousel__arrow.el-carousel__arrow--left,
   .popular-clinics .el-carousel__arrow.el-carousel__arrow--left,
   .new-shelf .el-carousel__arrow.el-carousel__arrow--left,
+  .theme-8 .el-carousel__arrow.el-carousel__arrow--left,
+  .theme-x .el-carousel__arrow.el-carousel__arrow--left,
   .recommended-services .el-carousel__arrow.el-carousel__arrow--left {
     left: 1% !important;
   }
@@ -231,6 +272,8 @@ export default {
   .latest-offers .el-carousel__arrow.el-carousel__arrow--right,
   .popular-clinics .el-carousel__arrow.el-carousel__arrow--right,
   .new-shelf .el-carousel__arrow.el-carousel__arrow--right,
+  .theme-8 .el-carousel__arrow.el-carousel__arrow--right,
+  .theme-x .el-carousel__arrow.el-carousel__arrow--right,
   .recommended-services .el-carousel__arrow.el-carousel__arrow--right {
     right: 1% !important;
   }
@@ -238,6 +281,8 @@ export default {
   .latest-offers .el-carousel__arrow.el-carousel__arrow--left,
   .popular-clinics .el-carousel__arrow.el-carousel__arrow--left,
   .new-shelf .el-carousel__arrow.el-carousel__arrow--left,
+  .theme-8 .el-carousel__arrow.el-carousel__arrow--left,
+  .theme-x .el-carousel__arrow.el-carousel__arrow--left,
   .recommended-services .el-carousel__arrow.el-carousel__arrow--left {
     left: 1% !important;
   }

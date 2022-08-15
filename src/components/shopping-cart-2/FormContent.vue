@@ -8,10 +8,11 @@
     >
       <template v-for="(item, index) in ruleForm.dynamicItem" :key="index">
         <!-- <div class="dynamic-form" v-if="isService.isService"> -->
-        <div
+        <div class="dynamic-form">
+          <!-- <div
           class="dynamic-form"
           v-if="filterData.searchItemType === 'service'"
-        >
+        > -->
           <p>{{ $t("information_of_service_user", { index: index + 1 }) }}</p>
           <el-row :gutter="10">
             <el-col>
@@ -244,7 +245,9 @@ export default {
         placeOfResidence: "",
         specialRequest: "",
         dynamicItem: [
+          {},
           // {
+
           //   avatarSelect: "Chan Tai Man",
           //   title: "Mr.",
           //   lastName: "Tai Man",

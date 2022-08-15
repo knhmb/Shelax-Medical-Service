@@ -65,4 +65,20 @@ export default {
   SET_THEME_THEME_8(state, payload) {
     state.themeTheme8 = payload;
   },
+  // SET_ALL_THEMES(state, payload) {
+  //   const arr = [];
+  //   payload.forEach((item) => {
+  //     arr.push(item);
+  //     state.allThemes.push(arr);
+  //     // arr.forEach((item) => {
+  //     //   state.allThemes.push(item);
+  //     // });
+  //   });
+  //   console.log(arr);
+  //   console.log(state.allThemes);
+
+  // },
+  // RESET_THEMES(state) {
+  //   state.allThemes = [];
+  // },
 };

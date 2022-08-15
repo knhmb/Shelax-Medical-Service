@@ -12,7 +12,6 @@
       <base-content-container>
         <Carousel v-if="themeTheme8.length > 0" :breakpoints="breakpoints">
           <Slide v-for="theme in themeTheme8" :key="theme.id">
-            {{ theme }}
             <latest-offers-card
               :name="theme.category"
               :description="theme.itemName"

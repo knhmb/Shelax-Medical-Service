@@ -75,6 +75,7 @@ export default {
         },
       })
       .then((res) => {
+        // context.commit("SET_ALL_THEMES", res.data.items);
         if (item.slug === "theme-prevent-cervical-cancer") {
           context.commit("SET_CERVICAL_CANCER_THEME", res.data.items);
         }

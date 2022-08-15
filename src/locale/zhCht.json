@@ -323,5 +323,7 @@
   "common_problem": "常見問題",
   "message_sent": "信息已發送！",
   "comment_title_text": "評論標題",
-  "comment_title_placeholder": "請輸入評論標題"
+  "comment_title_placeholder": "請輸入評論標題",
+  "number_of__people": "人數",
+  "appointment_date_time": "預約日期及時間"
 }

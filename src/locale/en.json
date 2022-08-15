@@ -323,5 +323,7 @@
   "common_problem": "Common Problem",
   "message_sent": "Message has been sent!",
   "comment_title_text": "Comment Title",
-  "comment_title_placeholder": "Please enter a comment title"
+  "comment_title_placeholder": "Please enter a comment title",
+  "number_of__people": "Number of people",
+  "appointment_date_time": "appointment_date_timeF"
 }

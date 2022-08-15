@@ -16,12 +16,15 @@
         </el-col>
         <el-col :sm="24" :md="21">
           <h3>{{ item.itemName }}</h3>
-          <p>地址: {{ item.providerName }} - {{ item.providerAddress }}</p>
           <p>
-            預約日期及時間: {{ item.bookingDateDisplay }} -
+            {{ $t("address_text") }}: {{ item.providerName }} -
+            {{ item.providerAddress }}
+          </p>
+          <p>
+            {{ $t("appointment_date_time") }}: {{ item.bookingDateDisplay }} -
             {{ item.bookingTime }}
           </p>
-          <p>人數: {{ item.quantity }}人</p>
+          <p>{{ $t("number_of_people") }}: {{ item.quantity }}人</p>
         </el-col>
       </el-row>
     </div>
