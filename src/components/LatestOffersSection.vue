@@ -3,17 +3,51 @@
     <section class="latest-offers-content">
       <base-content-container>
         <template v-for="theme in themes" :key="theme.id">
-          <h2
+          <h2 class="title">
+            {{ theme.slug }}
+          </h2>
+          <Carousel
+            v-if="cervicalCancerTheme.length > 0"
+            :breakpoints="breakpoints"
+          >
+            <template v-for="item in allThemes" :key="item.id">
+              <Slide v-for="data in item.data" :key="data.id">
+                <latest-offers-card
+                  v-if="theme.slug === item.slug"
+                  :name="data.category"
+                  :description="data.itemName"
+                  :price="data.originalPrice"
+                  :rate="data.rating"
+                  :number-of-rate="data.reviewsCount"
+                  :discount="data.discountedPrice"
+                  :image="data.thumbnail"
+                ></latest-offers-card>
+              </Slide>
+            </template>
+
+            <template #addons>
+              <Navigation />
+            </template>
+          </Carousel>
+          <div class="latest-offers-btn">
+            <el-button
+              v-if="theme.slug === 'theme-prevent-cervical-cancer'"
+              @click="submit(theme.slug)"
+              class="btn"
+              >{{ $t("show_more_button") }}</el-button
+            >
+          </div>
+          <!-- <h2
             v-if="theme.slug === 'theme-prevent-cervical-cancer'"
             class="title"
           >
             {{ theme.name }}
-          </h2>
+          </h2> -->
         </template>
       </base-content-container>
 
       <base-content-container>
-        <Carousel
+        <!-- <Carousel
           v-if="cervicalCancerTheme.length > 0"
           :breakpoints="breakpoints"
         >
@@ -32,9 +66,9 @@
           <template #addons>
             <Navigation />
           </template>
-        </Carousel>
+        </Carousel> -->
       </base-content-container>
-      <div class="latest-offers-btn">
+      <!-- <div class="latest-offers-btn">
         <template v-for="theme in themes" :key="theme.id">
           <el-button
             v-if="theme.slug === 'theme-prevent-cervical-cancer'"
@@ -43,7 +77,7 @@
             >{{ $t("show_more_button") }}</el-button
           >
         </template>
-      </div>
+      </div> -->
     </section>
   </div>
 </template>

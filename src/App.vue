@@ -53,7 +53,6 @@ export default {
   },
   async created() {
     // localStorage.setItem('lang')
-    this.$store.commit("dashboard/RESET_THEMES");
     this.$store.commit("GET_LANGUAGE");
     if (this.language === "en-US") {
       // this.locale = en;

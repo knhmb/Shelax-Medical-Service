@@ -75,7 +75,12 @@
               <li @click="navigate('/vendor-registration')">
                 {{ $t("shop_vendor_signup") }}
               </li>
-              <li @click="navigate('/admin-login')">
+              <li
+                @click="
+                  window.location.href =
+                    'https://shelax-medical-cms.dev.marvelconnect.com/admin-login'
+                "
+              >
                 {{ $t("shop_vendor_login") }}
               </li>
             </ul>

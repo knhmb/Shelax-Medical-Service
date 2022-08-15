@@ -65,20 +65,19 @@ export default {
   SET_THEME_THEME_8(state, payload) {
     state.themeTheme8 = payload;
   },
-  // SET_ALL_THEMES(state, payload) {
-  //   const arr = [];
-  //   payload.forEach((item) => {
-  //     arr.push(item);
-  //     state.allThemes.push(arr);
-  //     // arr.forEach((item) => {
-  //     //   state.allThemes.push(item);
-  //     // });
-  //   });
-  //   console.log(arr);
-  //   console.log(state.allThemes);
-
-  // },
-  // RESET_THEMES(state) {
-  //   state.allThemes = [];
-  // },
+  SET_ALL_THEMES(state, payload) {
+    const arr = [];
+    arr.push({ data: payload.data, slug: payload.slug });
+    arr.forEach((item) => state.allThemes.push(item));
+    // state.allThemes.push
+    // payload.data.forEach((item) => {
+    //   arr.push({ data: item, slug: payload.slug });
+    //   state.allThemes.push(arr);
+    // });
+    console.log(arr);
+    console.log(state.allThemes);
+  },
+  RESET_THEMES(state) {
+    state.allThemes = [];
+  },
 };

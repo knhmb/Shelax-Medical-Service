@@ -11,8 +11,6 @@ export default {
         },
       })
       .then((res) => {
-        console.log("lkjdfhgkjhf");
-        console.log(res);
         context.commit("SET_MENU_ITEMS", res.data.items);
       })
       .catch((err) => {
@@ -31,7 +29,6 @@ export default {
         }
       )
       .then((res) => {
-        console.log(res);
         context.commit("setSubMenuItems", res.data.items);
       })
       .catch((err) => {
@@ -42,7 +39,6 @@ export default {
     axios
       .get("/api/promo-banner")
       .then((res) => {
-        // console.log(res);
         context.commit("SET_PROMO_BANNERS", res.data.items);
       })
       .catch((err) => {
@@ -75,7 +71,10 @@ export default {
         },
       })
       .then((res) => {
-        // context.commit("SET_ALL_THEMES", res.data.items);
+        context.commit("SET_ALL_THEMES", {
+          data: res.data.items,
+          slug: item.slug,
+        });
         if (item.slug === "theme-prevent-cervical-cancer") {
           context.commit("SET_CERVICAL_CANCER_THEME", res.data.items);
         }
@@ -137,7 +136,6 @@ export default {
         },
       }
     );
-    console.log(response);
     context.commit("SET_SERVICE_CATEGORY", response.data.items);
   },
   async getProductCategory(context) {
@@ -150,7 +148,6 @@ export default {
         },
       }
     );
-    console.log(response);
     context.commit("SET_PRODUCT_CATEGORY", response.data.items);
   },
   async getProductItems(context) {
@@ -163,7 +160,6 @@ export default {
         },
       }
     );
-    console.log(response);
     context.commit("SET_PRODUCT_ITEMS", response.data.items);
   },
   async getAboutUsContent(context) {
@@ -174,7 +170,6 @@ export default {
         "accept-language-code": lang,
       },
     });
-    console.log(response);
     context.commit("SET_ABOUT_US_CONTENT", response.data.item);
   },
   async getBeAPartnerContent(context) {
@@ -196,7 +191,6 @@ export default {
         "accept-language-code": lang,
       },
     });
-    console.log(response);
     context.commit("SET_SHELAX_POINTS_CONTENT", response.data.item);
   },
   async getTAndCContent(context) {
@@ -207,7 +201,6 @@ export default {
         "accept-language-code": lang,
       },
     });
-    console.log(response);
     context.commit("SET_T_AND_C_CONTENT", response.data.item);
   },
   async getPrivacyPolicyContent(context) {
@@ -218,7 +211,6 @@ export default {
         "accept-language-code": lang,
       },
     });
-    console.log(response);
     context.commit("SET_PRIVACY_POLICY_CONTENT", response.data.item);
   },
   async getFaq(context) {
@@ -229,7 +221,6 @@ export default {
         "accept-language-code": lang,
       },
     });
-    console.log(response);
     context.commit("SET_FAQ", response.data.item);
   },
   async getFaqContent(context) {
@@ -240,7 +231,6 @@ export default {
         "accept-language-code": lang,
       },
     });
-    console.log(response);
     context.commit("SET_FAQ_CONTENT", response.data.items);
   },
   async getContactUsContent(context) {
@@ -251,7 +241,6 @@ export default {
         "accept-language-code": lang,
       },
     });
-    console.log(response);
     context.commit("SET_CONTACT_US_CONTENT", response.data.item);
   },
   async contactUs(_, payload) {
