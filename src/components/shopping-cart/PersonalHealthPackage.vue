@@ -5,7 +5,7 @@
       @change="handleCheckAllChangeService({ type: 'service' })"
       v-model="checkAllService"
     ></el-checkbox>
-    <span
+    <span v-if="shoppingCartItems.validServiceItems.length > 0"
       >{{ $t("select_all") }} ({{
         shoppingCartItems.validServiceItems.length
       }})</span
@@ -92,7 +92,7 @@
       v-model="checkAllProduct"
       @change="handleCheckAllChangeProduct({ type: 'product' })"
     ></el-checkbox>
-    <span
+    <span v-if="shoppingCartItems.validProductItems.length > 0"
       >{{ $t("select_all") }} ({{
         shoppingCartItems.validProductItems.length
       }})</span
@@ -211,7 +211,9 @@
       <el-row class="bottom">
         <el-col :xs="24" :sm="12">
           <!-- <span class="edit">{{ $t("update_reservation_date") }}</span> -->
-          <span>{{ $t("delete") }}</span>
+          <span @click="deleteSingleProduct(item.shoppingCartItemId)">{{
+            $t("delete")
+          }}</span>
         </el-col>
         <el-col :xs="24" :sm="12">
           <p>{{ $t("item_invalid_text") }}</p>
@@ -251,7 +253,9 @@
       <el-row class="bottom">
         <el-col :xs="24" :sm="12">
           <!-- <span>更改</span> -->
-          <span>{{ $t("delete") }}</span>
+          <span @click="deleteSingleProduct(item.shoppingCartItemId)">{{
+            $t("delete")
+          }}</span>
         </el-col>
         <el-col :xs="24" :sm="12">
           <p>{{ $t("item_invalid_text") }}</p>
@@ -323,6 +327,9 @@ export default {
         this.firstProductCheckbox = false;
         this.secondProductCheckbox = false;
       }
+    },
+    testDelete(item) {
+      console.log(item);
     },
     valChanged() {
       if (!this.firstProductCheckbox || !this.secondProductCheckbox) {
@@ -748,6 +755,7 @@ export default {
   line-height: 20px;
   letter-spacing: 0.1px;
   color: #262626;
+  cursor: pointer;
 }
 
 .shopping-cart .packages .bottom span:last-of-type {

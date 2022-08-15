@@ -75,23 +75,23 @@ export default {
         },
       })
       .then((res) => {
-        console.log(res);
         if (item.slug === "theme-prevent-cervical-cancer") {
           context.commit("SET_CERVICAL_CANCER_THEME", res.data.items);
-          console.log("Cancer");
-          console.log(res.data.items);
         }
         if (item.slug === "theme-medical-consultancy") {
           context.commit("SET_MEDICAL_CONSULTANCY_THEME", res.data.items);
-          console.log("Medical");
         }
         if (item.slug === "theme-pre-pregnancy-check-up") {
           context.commit("SET_PREGNANCY_THEME", res.data.items);
-          console.log("Pregnancy");
         }
         if (item.slug === "theme-other") {
           context.commit("SET_OTHER_THEME", res.data.items);
-          console.log("OTHER");
+        }
+        if (item.slug === "theme-xx") {
+          context.commit("SET_THEME_X", res.data.items);
+        }
+        if (item.slug === "theme-theme-8") {
+          context.commit("SET_THEME_THEME_8", res.data.items);
         }
       })
       .catch((err) => {

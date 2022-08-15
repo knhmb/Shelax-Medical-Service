@@ -101,24 +101,24 @@ export default {
       if (this.itemType === "service") {
         data = {
           itemId: this.id,
-          itemName: this.name,
-          isService: this.itemType === "service" ? true : false,
-          isProduct: this.itemType === "product" ? true : false,
-          bookingDate: moment(this.date).format("YYYYMMDD"),
+          // itemName: this.name,
+          // isService: this.itemType === "service" ? true : false,
+          // isProduct: this.itemType === "product" ? true : false,
+          bookingDate: moment(this.date).format("YYYY-MM-DD"),
           bookingTime: this.time.substr(0, this.time.lastIndexOf(":")),
           timeslotId: this.timeslotId,
           quantity: 1,
-          price: this.discountPrice + ".00",
+          // price: this.discountPrice + ".00",
         };
         console.log(data);
       } else if (this.itemType === "product") {
         data = {
           itemId: this.id,
-          itemName: this.name,
-          isService: this.itemType === "service" ? true : false,
-          isProduct: this.itemType === "product" ? true : false,
+          // itemName: this.name,
+          // isService: this.itemType === "service" ? true : false,
+          // isProduct: this.itemType === "product" ? true : false,
           quantity: 1,
-          price: this.discountPrice + ".00",
+          // price: this.discountPrice + ".00",
         };
       }
       this.$store
@@ -127,7 +127,7 @@ export default {
           this.$store
             .dispatch("order/createOrder", {
               orderingItems: [data],
-              totalPrice: this.discountPrice + ".00",
+              // totalPrice: this.discountPrice + ".00",
             })
             .then(() => {
               this.$router.push("/shopping-cart-step-2");
@@ -147,7 +147,7 @@ export default {
               this.$store
                 .dispatch("order/createOrder", {
                   orderingItems: [data],
-                  totalPrice: this.discountPrice + ".00",
+                  // totalPrice: this.discountPrice + ".00",
                 })
                 .then(() => {
                   this.$router.push("/shopping-cart-step-2");

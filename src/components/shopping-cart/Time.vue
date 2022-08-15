@@ -151,7 +151,7 @@ export default {
           updatedReservedDate: moment(this.date).format("YYYYMMDD"),
           updatedReservedTime: this.isActive,
           updatedTimeslotId: this.timeslotId,
-          totalPrice: this.singleItemDetail.discountedPrice,
+          // totalPrice: this.singleItemDetail.discountedPrice,
           selected: true,
         },
       ];

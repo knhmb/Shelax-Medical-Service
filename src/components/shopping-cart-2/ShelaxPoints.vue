@@ -1,5 +1,5 @@
 <template>
-  <section v-if="memberPoints >= 100" class="apply-shelax-points">
+  <section class="apply-shelax-points">
     <h3>{{ $t("use_shelax_points") }} Shelax Points</h3>
     <div class="shelax-points-section">
       <div class="content">
@@ -16,7 +16,7 @@
         <p v-if="isChecked" class="remaining-points">
           {{
             $t("member_points_used", {
-              memberPointsUsed: memberPointsDetails.memberPointsUsed,
+              memberPointsUsed: memberPointsDetails,
             })
           }}
         </p>
@@ -51,21 +51,28 @@ export default {
     applyMemberPoints() {
       this.$emit("memberPointsApplied", this.isChecked);
       if (this.isChecked) {
+        // const data = {
+        //   totalPrice: this.orderItem.totalPrice,
+        //   currentTotalDiscount: this.couponDetails.newTotalDiscount,
+        // };
         const data = {
-          totalPrice: this.orderItem.totalPrice,
-          currentTotalDiscount: this.couponDetails.newTotalDiscount,
+          orderId: this.orderItem.orderId,
+          // couponCode: this.couponCode,
+          applyMemberPoints: true,
         };
         console.log(data);
         this.$store
           .dispatch("auth/checkAccessToken")
           .then(() => {
-            this.$store.dispatch("order/applyMemberPoints", data);
+            // this.$store.dispatch("order/applyMemberPoints", data);
+            this.$store.dispatch("order/applyCoupon", data);
           })
           .catch(() => {
             this.$store
               .dispatch("auth/checkRefreshToken")
               .then(() => {
-                this.$store.dispatch("order/applyMemberPoints", data);
+                // this.$store.dispatch("order/applyMemberPoints", data);
+                this.$store.dispatch("order/applyCoupon", data);
               })
               .catch((err) => {
                 ElNotification({
@@ -77,11 +84,16 @@ export default {
               });
           });
       } else {
+        // const data = {
+        //   totalPrice: this.orderItem.totalPrice,
+        //   currentTotalDiscount: this.couponDetails.newTotalDiscount,
+        //   memberPointsToPriceAmount:
+        //     this.memberPointsDetails.memberPointsToPriceAmount,
+        // };
         const data = {
-          totalPrice: this.orderItem.totalPrice,
-          currentTotalDiscount: this.couponDetails.newTotalDiscount,
-          memberPointsToPriceAmount:
-            this.memberPointsDetails.memberPointsToPriceAmount,
+          orderId: this.orderItem.orderId,
+          // couponCode: this.couponCode,
+          applyMemberPoints: false,
         };
         console.log(data);
         console.log(this.memberPointsDetails);
@@ -89,13 +101,15 @@ export default {
         this.$store
           .dispatch("auth/checkAccessToken")
           .then(() => {
-            this.$store.dispatch("order/cancelMemberPoints", data);
+            // this.$store.dispatch("order/cancelMemberPoints", data);
+            this.$store.dispatch("order/applyCoupon", data);
           })
           .catch(() => {
             this.$store
               .dispatch("auth/checkRefreshToken")
               .then(() => {
-                this.$store.dispatch("order/cancelMemberPoints", data);
+                // this.$store.dispatch("order/cancelMemberPoints", data);
+                this.$store.dispatch("order/applyCoupon", data);
               })
               .catch((err) => {
                 ElNotification({

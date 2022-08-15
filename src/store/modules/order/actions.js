@@ -27,7 +27,7 @@ export default {
   },
   async applyCoupon(context, payload) {
     const userToken = localStorage.getItem("accessToken");
-    const response = await axios.post("/api/coupon/apply-coupon", payload, {
+    const response = await axios.post("/api/order/discount", payload, {
       headers: {
         authorization: userToken,
       },
@@ -35,6 +35,16 @@ export default {
     console.log(response);
     context.commit("SET_NEW_COUPON", response.data.item);
   },
+  // async applyCoupon(context, payload) {
+  //   const userToken = localStorage.getItem("accessToken");
+  //   const response = await axios.post("/api/coupon/apply-coupon", payload, {
+  //     headers: {
+  //       authorization: userToken,
+  //     },
+  //   });
+  //   console.log(response);
+  //   context.commit("SET_NEW_COUPON", response.data.item);
+  // },
   async getMemberPoints(context) {
     const userToken = localStorage.getItem("accessToken");
     const response = await axios.get("/api/member-points", {

@@ -191,7 +191,7 @@
           </el-col>
           <el-col :span="12">
             <p class="value discount">
-              -HKD{{ isPromoApplied ? couponDetails.newTotalDiscount : 0 }}
+              -HKD{{ isPromoApplied ? couponDetails.discount : 0 }}
             </p>
           </el-col>
           <el-col :span="12">
@@ -199,10 +199,13 @@
           </el-col>
           <el-col :span="12">
             <p v-if="!isPromoApplied" class="value payment-amount">
-              HKD{{ orderItem.totalPrice }}
+              <!-- HKD{{ orderItem.totalPrice }} -->
+              HKD{{ orderItem.finalPrice }}
             </p>
             <p v-else class="value payment-amount">
-              HKD{{ couponDetails.amountToBePaid }}
+              <!-- HKD{{ couponDetails.amountToBePaid }} -->
+              <!-- HKD{{ couponDetails.totalPrice }} -->
+              HKD{{ orderItem.finalPrice }}
             </p>
           </el-col>
         </el-row>

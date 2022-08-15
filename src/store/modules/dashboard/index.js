@@ -25,6 +25,9 @@ export default {
       faq: {},
       faqContent: {},
       contactUsContent: {},
+      allThemes: [],
+      themeTheme8: [],
+      themeX: [],
     };
   },
   getters,

@@ -34,12 +34,12 @@ export default {
           arr.push({
             shoppingCartItemId: item.shoppingCartItemId,
             itemId: item.reservedItemId,
-            itemName: item.itemName,
-            isService: item.isService,
-            isProduct: item.isProduct,
+            // itemName: item.itemName,
+            // isService: item.isService,
+            // isProduct: item.isProduct,
             quantity: item.quantity,
-            price: item.price,
-            bookingDate: moment(item.reservedDate).format("YYYYMMDD"),
+            // price: item.price,
+            bookingDate: moment(item.reservedDate).format("YYYY-MM-DD"),
             bookingTime: item.reservedTime,
             timeslotId: item.timeslotId,
           });
@@ -50,11 +50,11 @@ export default {
           arr.push({
             shoppingCartItemId: item.shoppingCartItemId,
             itemId: item.reservedItemId,
-            itemName: item.itemName,
-            isService: item.isService,
-            isProduct: item.isProduct,
+            // itemName: item.itemName,
+            // isService: item.isService,
+            // isProduct: item.isProduct,
             quantity: item.quantity,
-            price: item.price,
+            // price: item.price,
           });
         }
       });
@@ -65,7 +65,7 @@ export default {
           this.$store
             .dispatch("order/createOrder", {
               orderingItems: arr,
-              totalPrice: this.shoppingCartItems.totalPrice,
+              // totalPrice: this.shoppingCartItems.totalPrice,
             })
             .then(() => {
               this.$router.push("/shopping-cart-step-2");
@@ -85,7 +85,7 @@ export default {
               this.$store
                 .dispatch("order/createOrder", {
                   orderingItems: arr,
-                  totalPrice: this.shoppingCartItems.totalPrice,
+                  // totalPrice: this.shoppingCartItems.totalPrice,
                 })
                 .then(() => {
                   this.$router.push("/shopping-cart-step-2");

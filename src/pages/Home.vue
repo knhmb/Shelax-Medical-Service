@@ -4,6 +4,8 @@
   <popular-clinics-section></popular-clinics-section>
   <new-shelf-section></new-shelf-section>
   <fourth-section></fourth-section>
+  <theme-x></theme-x>
+  <Theme8 />
 </template>
 
 <script>
@@ -12,6 +14,8 @@ import SearchSection from "../components/SearchSection.vue";
 import PopularClinicsSection from "../components/popular-clinics/PopularClinicsSection.vue";
 import NewShelfSection from "../components/new-shelf/NewShelfSection.vue";
 import FourthSection from "../components/new-shelf/FourthSection.vue";
+import ThemeX from "../components/theme-x/ThemeX.vue";
+import Theme8 from "../components/theme-8/Theme8.vue";
 
 export default {
   components: {
@@ -22,6 +26,8 @@ export default {
     PopularClinicsSection,
     NewShelfSection,
     FourthSection,
+    ThemeX,
+    Theme8,
     // TheFooter,
   },
   watch: {
@@ -46,7 +52,6 @@ export default {
     },
   },
   async created() {
-    console.log("YYYYTEEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSSSSSSS");
     await this.$store.dispatch("dashboard/getThemes");
     this.themes.filter((item) => {
       this.$store.dispatch("dashboard/getSingleTheme", item);

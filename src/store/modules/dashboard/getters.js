@@ -56,4 +56,13 @@ export default {
   contactUsContent(state) {
     return state.contactUsContent;
   },
+  allThemes(state) {
+    return state.allThemes;
+  },
+  themeTheme8(state) {
+    return state.themeTheme8;
+  },
+  themeX(state) {
+    return state.themeX;
+  },
 };

@@ -59,4 +59,10 @@ export default {
   SET_CONTACT_US_CONTENT(state, payload) {
     state.contactUsContent = payload;
   },
+  SET_THEME_X(state, payload) {
+    state.themeX = payload;
+  },
+  SET_THEME_THEME_8(state, payload) {
+    state.themeTheme8 = payload;
+  },
 };

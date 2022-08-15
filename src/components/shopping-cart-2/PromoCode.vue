@@ -65,23 +65,43 @@ export default {
     },
   },
   methods: {
+    // applyCoupon() {
+    //   const items = [];
+    //   this.orderItem.orderingItems.filter((order) => {
+    //     items.push({
+    //       id: order.itemId,
+    //       price: order.price * order.quantity,
+    //     });
+    //   });
+    //   const data = {
+    //     couponCode: this.couponCode,
+    //     totalPrice: this.orderItem.totalPrice,
+    //     currentCouponDiscount: 0,
+    //     currentTotalDiscount: 0,
+    //     items: items,
+    //   };
+    //   console.log(data);
+    //   console.log(this.orderItem);
+    //   this.$store
+    //     .dispatch("order/applyCoupon", data)
+    //     .then(() => {
+    //       this.isCouponApplied = true;
+    //     })
+    //     .catch((err) => {
+    //       ElNotification({
+    //         title: "Error",
+    //         message: this.$t(err.response.data.message),
+    //         type: "error",
+    //       });
+    //     });
+    // },
     applyCoupon() {
-      const items = [];
-      this.orderItem.orderingItems.filter((order) => {
-        items.push({
-          id: order.itemId,
-          price: order.price * order.quantity,
-        });
-      });
       const data = {
+        orderId: this.orderItem.orderId,
         couponCode: this.couponCode,
-        totalPrice: this.orderItem.totalPrice,
-        currentCouponDiscount: 0,
-        currentTotalDiscount: 0,
-        items: items,
+        applyMemberPoints: false,
       };
       console.log(data);
-      console.log(this.orderItem);
       this.$store
         .dispatch("order/applyCoupon", data)
         .then(() => {
@@ -126,7 +146,7 @@ export default {
             orderItemId: item.orderItemId,
             orderItemPartcp: orderItemPartcp,
             specialRequest: this.specialRequest,
-            shoppingCartItemId: item.shoppingCartItemId,
+            // shoppingCartItemId: item.shoppingCartItemId,
           });
         } else {
           orderItems.push({
@@ -149,39 +169,41 @@ export default {
         address: this.orderData.address,
         isUpdatedProfile: this.orderData.updateProfile,
       };
-      const finalPrice = this.isMemberPointsApplied
-        ? this.couponDetails.amountToBePaid
-        : this.isCouponApplied
-        ? this.couponDetails.amountToBePaid
-        : this.orderItem.totalPrice;
+      // const finalPrice = this.isMemberPointsApplied
+      //   ? this.couponDetails.amountToBePaid
+      //   : this.isCouponApplied
+      //   ? this.couponDetails.amountToBePaid
+      //   : this.orderItem.totalPrice;
       const data = {
         orderId: this.orderItem.orderId,
         customerInfo: customerInfo,
         orderItems: orderItems,
-        couponId: this.isCouponApplied ? this.couponDetails.couponId : null,
-        totalPrice: this.orderItem.totalPrice,
+        // couponId: this.isCouponApplied ? this.couponDetails.couponId : null,
+        // totalPrice: this.orderItem.totalPrice,
         // totalPrice: this.shoppingCartItems.totalPrice,
-        discount: this.isMemberPointsApplied
-          ? this.couponDetails.newTotalDiscount
-          : this.isCouponApplied
-          ? this.couponDetails.newTotalDiscount
-          : 0,
-        finalPrice: finalPrice === null ? 0 : finalPrice,
-        memberPointsRewarded: this.orderItem.totalPointsRewarded,
+        // discount: this.isMemberPointsApplied
+        //   ? this.couponDetails.newTotalDiscount
+        //   : this.isCouponApplied
+        //   ? this.couponDetails.newTotalDiscount
+        //   : 0,
+        // finalPrice: finalPrice === null ? 0 : finalPrice,
+        // memberPointsRewarded: this.orderItem.totalPointsRewarded,
         memberPointsUsed: this.isMemberPointsApplied
           ? this.memberPointsDetails.memberPointsUsed
           : null,
         memberPointsToPriceAmount: this.isMemberPointsApplied
           ? this.memberPointsDetails.memberPointsToPriceAmount
           : null,
-        paymentMethod: [
-          {
-            transactionRefNo: this.$route.query.session,
-            paymentMethod: "pymtmethod-card",
-            // paymentMethod: "pymtmethod-visa",
-            amount: finalPrice === null ? 0 : finalPrice,
-          },
-        ],
+        transactionRefNo: this.$route.query.session,
+        paymentMethod: "pymtmethod-card",
+        // paymentMethod: [
+        //   {
+        //     transactionRefNo: this.$route.query.session,
+        //     paymentMethod: "pymtmethod-card",
+        //     // paymentMethod: "pymtmethod-visa",
+        //     amount: finalPrice === null ? 0 : finalPrice,
+        //   },
+        // ],
       };
       console.log("before data", data);
       Object.keys(data).forEach((key) => {
@@ -230,16 +252,25 @@ export default {
         });
     },
     checkOut() {
-      const finalPrice = this.isMemberPointsApplied
-        ? this.couponDetails.amountToBePaid
-        : this.isCouponApplied
-        ? this.couponDetails.amountToBePaid
-        : this.orderItem.totalPrice;
+      // const finalPrice = this.isMemberPointsApplied
+      //   ? this.couponDetails.amountToBePaid
+      //   : this.isCouponApplied
+      //   ? this.couponDetails.amountToBePaid
+      //   : this.orderItem.totalPrice;
 
+      // const data = {
+      //   orderId: this.orderItem.orderId,
+      //   orderNo: this.orderItem.orderNo,
+      //   finalPrice: finalPrice,
+      // };
+      const arr = [];
+      this.orderItem.orderingItems.forEach((item) => {
+        arr.push({ orderItemId: item.orderItemId });
+      });
       const data = {
         orderId: this.orderItem.orderId,
         orderNo: this.orderItem.orderNo,
-        finalPrice: finalPrice,
+        orderItems: arr,
       };
       console.log(data);
       this.$store

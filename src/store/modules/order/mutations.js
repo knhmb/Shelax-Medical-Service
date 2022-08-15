@@ -9,6 +9,11 @@ export default {
     console.log(state.orderItem);
     console.log(payload);
     state.couponDetails = payload;
+    state.memberPoints = payload.memberPointsBalance;
+    state.memberPointsDetails = payload.memberPointsUsed;
+    state.orderItem.discount = payload.discount;
+    state.orderItem.totalPrice = payload.totalPrice;
+    state.orderItem.finalPrice = payload.finalPrice;
     state.isPromoApplied = true;
   },
   SET_MEMBER_POINTS(state, payload) {

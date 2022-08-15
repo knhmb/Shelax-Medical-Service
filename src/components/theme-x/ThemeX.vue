@@ -1,23 +1,18 @@
 <template>
-  <div class="latest-offers">
-    <section class="latest-offers-content">
+  <div class="theme-x">
+    <section class="theme-x-content">
       <base-content-container>
         <template v-for="theme in themes" :key="theme.id">
-          <h2
-            v-if="theme.slug === 'theme-prevent-cervical-cancer'"
-            class="title"
-          >
+          <h2 v-if="theme.slug === 'theme-xx'" class="title">
             {{ theme.name }}
           </h2>
         </template>
       </base-content-container>
 
       <base-content-container>
-        <Carousel
-          v-if="cervicalCancerTheme.length > 0"
-          :breakpoints="breakpoints"
-        >
-          <Slide v-for="theme in cervicalCancerTheme" :key="theme.id">
+        <Carousel v-if="themeX.length > 0" :breakpoints="breakpoints">
+          <Slide v-for="theme in themeX" :key="theme.id">
+            {{ theme }}
             <latest-offers-card
               :name="theme.category"
               :description="theme.itemName"
@@ -34,10 +29,10 @@
           </template>
         </Carousel>
       </base-content-container>
-      <div class="latest-offers-btn">
+      <div class="theme-x-btn">
         <template v-for="theme in themes" :key="theme.id">
           <el-button
-            v-if="theme.slug === 'theme-prevent-cervical-cancer'"
+            v-if="theme.slug === 'theme-xx'"
             @click="submit(theme.slug)"
             class="btn"
             >{{ $t("show_more_button") }}</el-button
@@ -49,8 +44,8 @@
 </template>
 
 <script>
+import LatestOffersCard from "../LatestOffersCard.vue";
 import { ElNotification } from "element-plus";
-import LatestOffersCard from "./LatestOffersCard.vue";
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 
 import "vue3-carousel/dist/carousel.css";
@@ -68,7 +63,7 @@ export default {
         // 300px and up
         300: {
           itemsToShow: 1.5,
-          snapAlign: "start",
+          snapAlign: "center",
         },
         700: {
           itemsToShow: 2.5,
@@ -91,16 +86,8 @@ export default {
     themes() {
       return this.$store.getters["dashboard/themes"];
     },
-    allThemes() {
-      return this.$store.getters["dashboard/allThemes"];
-    },
-    getSlug() {
-      return this.themes.filter(
-        (item) => item.slug === "theme-prevent-cervical-cancer"
-      );
-    },
-    cervicalCancerTheme() {
-      return this.$store.getters["dashboard/cervicalCancerTheme"];
+    themeX() {
+      return this.$store.getters["dashboard/themeX"];
     },
     lang() {
       return this.$store.getters.lang;
@@ -124,23 +111,13 @@ export default {
     },
   },
   created() {
-    // this.$store.dispatch("dashboard/getThemes").then(() => {
-    //   this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
-    // });
-
-    console.log(this.themes);
-    console.log(this.cervicalCancerTheme);
-    // if (this.getSlug.length <= 0) {
-    //   console.log("empty Array");
-    // } else {
-    //   this.$store.dispatch("dashboard/getSingleTheme", this.getSlug);
-    // }
+    console.log(this.getSlug);
   },
 };
 </script>
 
 <style>
-.latest-offers {
+.theme-x {
   background-color: #e6eaf0;
   padding: 2rem 0;
   /* min-width: 320px; */
@@ -150,19 +127,19 @@ export default {
   margin-top: 3rem;
 } */
 
-.latest-offers .title {
+.theme-x .title {
   font-weight: 700;
   font-size: 32px;
-  text-align: center;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
-.latest-offers .latest-offers-btn {
+.theme-x .theme-x-btn {
   text-align: center;
   margin-top: 1rem;
 }
 
-.latest-offers .btn {
+.theme-x .btn {
   /* margin-top: 0.5rem; */
   padding: 8px 120px;
   border-radius: 8px;
@@ -172,26 +149,26 @@ export default {
   color: #fff;
 }
 
-.latest-offers .el-carousel.el-carousel--horizontal .el-carousel__container {
-  height: 70vh !important;
+.theme-x .el-carousel.el-carousel--horizontal .el-carousel__container {
+  height: 60vh !important;
 }
 
-.latest-offers .latest-offers-content .carousel .carousel__slide {
+.theme-x .theme-x-content .carousel .carousel__slide {
   margin-right: 0.7rem;
 }
 
-.latest-offers .latest-offers-content .carousel .carousel__next,
-.latest-offers .latest-offers-content .carousel .carousel__prev {
+.theme-x .theme-x-content .carousel .carousel__next,
+.theme-x .theme-x-content .carousel .carousel__prev {
   background: #fff;
   color: black;
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.33);
 }
 
-.latest-offers .latest-offers-content .carousel .carousel__prev {
+.theme-x .theme-x-content .carousel .carousel__prev {
   left: -2rem;
 }
 
-.latest-offers .latest-offers-content .carousel .carousel__next {
+.theme-x .theme-x-content .carousel .carousel__next {
   right: -2rem;
 }
 
@@ -199,11 +176,11 @@ export default {
   .hide {
     display: none;
   }
-  .latest-offers .latest-offers-content .carousel .carousel__prev {
+  .theme-x .theme-x-content .carousel .carousel__prev {
     left: 0rem;
   }
 
-  .latest-offers .latest-offers-content .carousel .carousel__next {
+  .theme-x .theme-x-content .carousel .carousel__next {
     right: 0rem;
   }
 }

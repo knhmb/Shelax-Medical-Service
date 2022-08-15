@@ -238,7 +238,7 @@ export default {
           reservedTime: this.isActive.replace(":", ""),
           timeslotId: this.timeslotId,
           quantity: this.noOfPeople,
-          totalPrice: this.singleItemDetail.discountedPrice + ".00",
+          // totalPrice: this.singleItemDetail.discountedPrice + ".00",
         };
         console.log(data);
         this.checkAccessToken(data);
@@ -246,7 +246,7 @@ export default {
         const data = {
           itemId: this.singleItemDetail.basicInfo.id,
           quantity: this.num,
-          totalPrice: this.singleItemDetail.originalPrice + ".00",
+          // totalPrice: this.singleItemDetail.originalPrice + ".00",
         };
         console.log(data);
         this.checkAccessToken(data);
@@ -257,28 +257,28 @@ export default {
       if (this.singleItemDetail.itemType === "service") {
         data = {
           itemId: this.singleItemDetail.basicInfo.id,
-          itemName: this.singleItemDetail.basicInfo.itemName,
-          isService:
-            this.singleItemDetail.itemType === "service" ? true : false,
-          isProduct:
-            this.singleItemDetail.itemType === "product" ? true : false,
+          // itemName: this.singleItemDetail.basicInfo.itemName,
+          // isService:
+          //   this.singleItemDetail.itemType === "service" ? true : false,
+          // isProduct:
+          //   this.singleItemDetail.itemType === "product" ? true : false,
           bookingDate: this.selectedDate,
           bookingTime: this.isActive,
           timeslotId: this.timeslotId,
           quantity: this.noOfPeople,
-          price: this.singleItemDetail.discountedPrice + ".00",
+          // price: this.singleItemDetail.discountedPrice + ".00",
         };
         console.log(data);
       } else if (this.singleItemDetail.itemType === "product") {
         data = {
           itemId: this.singleItemDetail.basicInfo.id,
-          itemName: this.singleItemDetail.basicInfo.itemName,
-          isService:
-            this.singleItemDetail.itemType === "service" ? true : false,
-          isProduct:
-            this.singleItemDetail.itemType === "product" ? true : false,
+          // itemName: this.singleItemDetail.basicInfo.itemName,
+          // isService:
+          //   this.singleItemDetail.itemType === "service" ? true : false,
+          // isProduct:
+          //   this.singleItemDetail.itemType === "product" ? true : false,
           quantity: this.noOfPeople,
-          price: this.singleItemDetail.discountedPrice + ".00",
+          // price: this.singleItemDetail.discountedPrice + ".00",
         };
       }
       this.$store
@@ -287,7 +287,7 @@ export default {
           this.$store
             .dispatch("order/createOrder", {
               orderingItems: [data],
-              totalPrice: this.singleItemDetail.discountedPrice + ".00",
+              // totalPrice: this.singleItemDetail.discountedPrice + ".00",
             })
             .then(() => {
               this.$router.push("/shopping-cart-step-2");
@@ -307,7 +307,7 @@ export default {
               this.$store
                 .dispatch("order/createOrder", {
                   orderingItems: [data],
-                  totalPrice: this.singleItemDetail.discountedPrice + ".00",
+                  // totalPrice: this.singleItemDetail.discountedPrice + ".00",
                 })
                 .then(() => {
                   this.$router.push("/shopping-cart-step-2");
