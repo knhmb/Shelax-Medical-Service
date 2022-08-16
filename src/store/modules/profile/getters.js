@@ -26,4 +26,7 @@ export default {
   tableData(state) {
     return state.tableData;
   },
+  instructions(state) {
+    return state.instructions;
+  },
 };

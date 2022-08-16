@@ -207,4 +207,15 @@ export default {
     });
     console.log(response);
   },
+  async getInstructions(context) {
+    const lang = localStorage.getItem("lang") || "zh-HK";
+
+    const response = await axios.get("/api/cms-page/about-shelax-points", {
+      headers: {
+        "accept-language-code": lang,
+      },
+    });
+    console.log(response);
+    context.commit("SET_INTRUCTIONS", response.data.item);
+  },
 };

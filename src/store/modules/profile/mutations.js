@@ -48,4 +48,7 @@ export default {
   RESET_TABLE_DATA(state) {
     state.tableData = [];
   },
+  SET_INTRUCTIONS(state, payload) {
+    state.instructions = payload;
+  },
 };

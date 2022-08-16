@@ -1,7 +1,8 @@
 <template>
   <section class="how-to-use">
     <base-member-card :invisible="true">
-      <h3>{{ $t("how_to_use_shelax_points") }}</h3>
+      <div v-html="instructions.content"></div>
+      <!-- <h3>{{ $t("how_to_use_shelax_points") }}</h3>
       <p>{{ $t("shelax_point_usage") }}</p>
       <p>{{ $t("how_to_get_shelax_points") }}</p>
       <el-row :gutter="10">
@@ -23,10 +24,31 @@
             <p>{{ $t("how_much_to_use_text") }}</p>
           </div>
         </el-col>
-      </el-row>
+      </el-row> -->
     </base-member-card>
   </section>
 </template>
+
+<script>
+export default {
+  watch: {
+    lang() {
+      this.$store.dispatch("profile/getInstructions");
+    },
+  },
+  computed: {
+    instructions() {
+      return this.$store.getters["profile/instructions"];
+    },
+    lang() {
+      return this.$store.getters.lang;
+    },
+  },
+  created() {
+    this.$store.dispatch("profile/getInstructions");
+  },
+};
+</script>
 
 <style scoped>
 .how-to-use {
