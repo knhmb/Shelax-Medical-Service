@@ -92,7 +92,7 @@
 
       <el-row :gutter="10">
         <el-col v-for="item in searchItems" :key="item.id" :sm="12" :md="5">
-          <div class="product-card">
+          <div class="product-card" @click="searchProduct(item.itemId)">
             <img :src="item.thumbnail" alt="" />
             <div class="product-card-content">
               <h5>{{ item.itemName }}</h5>
@@ -107,7 +107,7 @@
                 disabled-void-color="#c6c6c6"
               />
               <p class="price">HKD {{ item.discountedPrice }}</p>
-              <el-button @click="searchProduct(item.itemId)">{{
+              <el-button @click.stop="searchProduct(item.itemId)">{{
                 $t("add_to_cart")
               }}</el-button>
             </div>
@@ -141,6 +141,22 @@ export default {
     setOption(option) {
       this.$emit("changedSort", option);
     },
+    // addToShoppingCart(item) {
+    //   const data = {
+    //     itemId: item.itemId,
+    //     quantity: 1,
+    //   };
+    //   console.log(data);
+    //   this.$store.dispatch('auth/checkAccessToken').then(() => {
+    //     this.$store.dispatch("shoppingCart/addToShoppingCart", data).then(() => {
+    //     ElNotification({
+    //       title: "Success",
+    //       message: this.$t("added_to_shopping_cart"),
+    //       type: "success",
+    //     });
+    //   });
+    //   })
+    // },
     searchProduct(itemId) {
       console.log(itemId);
       const data = {
@@ -149,30 +165,33 @@ export default {
         bookingTime: "-",
       };
       console.log(data);
-      this.$store
-        .dispatch("auth/checkAccessToken")
-        .then(() => {
-          this.$store.dispatch("search/getItemDetail", data).then(() => {
-            this.$router.push("/service");
-          });
-        })
-        .catch(() => {
-          this.$store
-            .dispatch("auth/checkRefreshToken")
-            .then(() => {
-              this.$store.dispatch("search/getItemDetail", data).then(() => {
-                this.$router.push("/service");
-              });
-            })
-            .catch((err) => {
-              ElNotification({
-                title: "Error",
-                message: this.$t(err.response.data.message),
-                type: "error",
-              });
-              this.$store.dispatch("auth/logout");
-            });
-        });
+      this.$store.dispatch("search/getItemDetail", data).then(() => {
+        this.$router.push("/service");
+      });
+      // this.$store
+      //   .dispatch("auth/checkAccessToken")
+      //   .then(() => {
+      //     this.$store.dispatch("search/getItemDetail", data).then(() => {
+      //       this.$router.push("/service");
+      //     });
+      //   })
+      //   .catch(() => {
+      //     this.$store
+      //       .dispatch("auth/checkRefreshToken")
+      //       .then(() => {
+      //         this.$store.dispatch("search/getItemDetail", data).then(() => {
+      //           this.$router.push("/service");
+      //         });
+      //       })
+      //       .catch((err) => {
+      //         ElNotification({
+      //           title: "Error",
+      //           message: this.$t(err.response.data.message),
+      //           type: "error",
+      //         });
+      //         this.$store.dispatch("auth/logout");
+      //       });
+      //   });
     },
     searchItem() {
       const data = {
@@ -365,6 +384,7 @@ export default {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
   border-radius: 8px;
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .product-search-content img {

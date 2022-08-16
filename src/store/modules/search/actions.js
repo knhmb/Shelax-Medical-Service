@@ -70,22 +70,43 @@ export default {
   async searchSpecificItem(context, payload) {
     const lang = localStorage.getItem("lang") || "zh-HK";
     const response = await axios
-      .get(
-        `/api/item?${payload.query}${
-          payload.location ? `,location:${payload.location}` : ""
-        }${
-          payload.price ? `,price:${payload.price[0]}-${payload.price[1]}` : ""
-        }${payload.sort ? `&sort=${payload.sort}` : ""}`,
-        {
-          headers: {
-            "accept-language-code": lang,
-          },
-        }
-      )
+      .get(`/api/item`, {
+        headers: {
+          "accept-language-code": lang,
+        },
+        params: {
+          filter: `${
+            payload.query.includes("theme")
+              ? `theme:${payload.query}`
+              : `${payload.query}`
+          }${payload.location ? `,location:${payload.location}` : ""}${
+            payload.price
+              ? `,price:${payload.price[0]}-${payload.price[1]}`
+              : ""
+          }${payload.sort ? `&sort=${payload.sort}` : ""}`,
+        },
+      })
       .catch((err) => {
         context.commit("SET_SEARCH_ITEMS", []);
         throw err;
       });
+    // const response = await axios
+    //   .get(
+    //     `/api/item?${payload.query}${
+    //       payload.location ? `,location:${payload.location}` : ""
+    //     }${
+    //       payload.price ? `,price:${payload.price[0]}-${payload.price[1]}` : ""
+    //     }${payload.sort ? `&sort=${payload.sort}` : ""}`,
+    //     {
+    //       headers: {
+    //         "accept-language-code": lang,
+    //       },
+    //     }
+    //   )
+    //   .catch((err) => {
+    //     context.commit("SET_SEARCH_ITEMS", []);
+    //     throw err;
+    //   });
     console.log(response);
     context.commit("SET_SEARCH_ITEMS", response.data.items);
   },
@@ -127,9 +148,9 @@ export default {
       {
         headers: {
           "accept-language-code": lang,
-          authorization: localStorage.getItem("accessToken")
-            ? localStorage.getItem("accessToken")
-            : "",
+          // authorization: localStorage.getItem("accessToken")
+          //   ? localStorage.getItem("accessToken")
+          //   : "",
         },
       }
     );

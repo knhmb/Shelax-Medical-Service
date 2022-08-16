@@ -70,7 +70,7 @@
 <script>
 import SearchCard from "./SearchCard.vue";
 import moment from "moment";
-import { ElNotification } from "element-plus";
+// import { ElNotification } from "element-plus";
 
 export default {
   props: ["isActive", "date", "time"],
@@ -276,30 +276,33 @@ export default {
           : "-",
       };
       console.log(data);
-      this.$store
-        .dispatch("auth/checkAccessToken")
-        .then(() => {
-          this.$store.dispatch("search/getItemDetail", data).then(() => {
-            this.$router.push("/service");
-          });
-        })
-        .catch(() => {
-          this.$store
-            .dispatch("auth/checkRefreshToken")
-            .then(() => {
-              this.$store.dispatch("search/getItemDetail", data).then(() => {
-                this.$router.push("/service");
-              });
-            })
-            .catch((err) => {
-              ElNotification({
-                title: "Error",
-                message: this.$t(err.response.data.message),
-                type: "error",
-              });
-              this.$store.dispatch("auth/logout");
-            });
-        });
+      this.$store.dispatch("search/getItemDetail", data).then(() => {
+        this.$router.push("/service");
+      });
+      // this.$store
+      //   .dispatch("auth/checkAccessToken")
+      //   .then(() => {
+      //     this.$store.dispatch("search/getItemDetail", data).then(() => {
+      //       this.$router.push("/service");
+      //     });
+      //   })
+      //   .catch(() => {
+      //     this.$store
+      //       .dispatch("auth/checkRefreshToken")
+      //       .then(() => {
+      //         this.$store.dispatch("search/getItemDetail", data).then(() => {
+      //           this.$router.push("/service");
+      //         });
+      //       })
+      //       .catch((err) => {
+      //         ElNotification({
+      //           title: "Error",
+      //           message: this.$t(err.response.data.message),
+      //           type: "error",
+      //         });
+      //         this.$store.dispatch("auth/logout");
+      //       });
+      //   });
     },
   },
   created() {

@@ -9,7 +9,7 @@
     v-if="searchItems.length > 0 && searchItems[0].searchItemType === 'service'"
     class="search-section"
   > -->
-  <section class="search-section">
+  <section class="search-section" v-if="isService">
     <base-content-container>
       <el-form label-position="top">
         <el-row :gutter="10">
@@ -64,7 +64,7 @@
     class="content"
     v-if="searchItems.length > 0 && searchItems[0].searchItemType === 'service'"
   > -->
-  <section class="content">
+  <section class="content" v-if="isService">
     <base-content-container>
       <h2>{{ $t("body_checkup") }}</h2>
       <el-row :gutter="30">
@@ -253,6 +253,12 @@ export default {
     },
     lang() {
       return this.$store.getters.lang;
+    },
+    isService() {
+      if (this.searchItems.length > 0) {
+        return this.searchItems[0].searchItemType === "service";
+      }
+      return true;
     },
   },
   methods: {
