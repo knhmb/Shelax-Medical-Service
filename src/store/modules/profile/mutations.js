@@ -1,3 +1,5 @@
+import i18n from "../../../i18n";
+
 export default {
   SET_ACCOUNT(state, payload) {
     state.userDetails = payload;
@@ -25,5 +27,25 @@ export default {
   },
   SET_COMMENTS(state, payload) {
     state.comments = payload;
+  },
+  SET_TABLE_DATA(state, payload) {
+    payload.forEach((order) => {
+      state.tableData.push({
+        orderNumber: order.orderNo,
+        earnPoints:
+          order.transactionType === "DEPOSIT" ? order.pointsRewarded : "",
+        pointsUsed:
+          order.transactionType === "WITHDRAWAL" ? order.pointsUsed : "",
+        validUntil: order.expiryDate,
+        expired: order.expired
+          ? i18n.global.$t("expired")
+          : order.invalid
+          ? ""
+          : "",
+      });
+    });
+  },
+  RESET_TABLE_DATA(state) {
+    state.tableData = [];
   },
 };

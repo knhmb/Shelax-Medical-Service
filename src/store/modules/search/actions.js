@@ -69,18 +69,23 @@ export default {
   },
   async searchSpecificItem(context, payload) {
     const lang = localStorage.getItem("lang") || "zh-HK";
-    const response = await axios.get(
-      `/api/item?${payload.query}${
-        payload.location ? `,location:${payload.location}` : ""
-      }${
-        payload.price ? `,price:${payload.price[0]}-${payload.price[1]}` : ""
-      }${payload.sort ? `,sort=${payload.sort}` : ""}`,
-      {
-        headers: {
-          "accept-language-code": lang,
-        },
-      }
-    );
+    const response = await axios
+      .get(
+        `/api/item?${payload.query}${
+          payload.location ? `,location:${payload.location}` : ""
+        }${
+          payload.price ? `,price:${payload.price[0]}-${payload.price[1]}` : ""
+        }${payload.sort ? `&sort=${payload.sort}` : ""}`,
+        {
+          headers: {
+            "accept-language-code": lang,
+          },
+        }
+      )
+      .catch((err) => {
+        context.commit("SET_SEARCH_ITEMS", []);
+        throw err;
+      });
     console.log(response);
     context.commit("SET_SEARCH_ITEMS", response.data.items);
   },

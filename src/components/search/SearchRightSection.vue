@@ -27,8 +27,8 @@
           <p>{{ $t("price_high_to_low") }}</p>
         </el-col>
         <el-col
-          @click="setOption('rating')"
-          :class="{ 'is-selected': isActive === 'rating' }"
+          @click="setOption('-rating')"
+          :class="{ 'is-selected': isActive === '-rating' }"
           :sm="12"
           :md="6"
         >
@@ -43,6 +43,9 @@
       :key="item.itemId"
     >
       <search-card
+        v-if="
+          searchItems.length > 0 && searchItems[0].searchItemType === 'service'
+        "
         :id="item.itemId"
         :name="item.itemName"
         :description="item.address"

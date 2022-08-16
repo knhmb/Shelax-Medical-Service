@@ -23,4 +23,7 @@ export default {
   comments(state) {
     return state.comments;
   },
+  tableData(state) {
+    return state.tableData;
+  },
 };

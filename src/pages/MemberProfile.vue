@@ -34,7 +34,7 @@
             <input id="file-upload" @change="onFileChange" type="file" />
             <p>{{ userDetails.givenName }}</p>
           </div> -->
-          <div class="member-card-options">
+          <div class="member-card-options" v-if="memberPoints">
             <ul>
               <router-link
                 :to="{ name: 'personal-information' }"
@@ -404,6 +404,26 @@ export default {
     },
   },
   created() {
+    this.$store
+      .dispatch("auth/checkAccessToken")
+      .then(() => {
+        this.$store.dispatch("profile/getMemberPoints");
+      })
+      .catch(() => {
+        this.$store
+          .dispatch("auth/checkRefreshToken")
+          .then(() => {
+            this.$store.dispatch("profile/getMemberPoints");
+          })
+          .catch((err) => {
+            ElNotification({
+              title: "Error",
+              message: this.$t(err.response.data.message),
+              type: "error",
+            });
+            this.$store.dispatch("auth/logout");
+          });
+      });
     this.checkAccessToken();
     this.$store.dispatch("profile/getCountryCode");
     // this.imgSrc = this.userDetails.avatar;

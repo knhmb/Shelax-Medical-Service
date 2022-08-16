@@ -80,8 +80,8 @@
             <p>{{ $t("price_high_to_low") }}</p>
           </el-col>
           <el-col
-            @click="setOption('rating')"
-            :class="{ 'is-selected': isActive === 'rating' }"
+            @click="setOption('-rating')"
+            :class="{ 'is-selected': isActive === '-rating' }"
             :sm="12"
             :md="6"
           >

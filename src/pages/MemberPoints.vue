@@ -2,7 +2,7 @@
   <section class="member-points">
     <base-member-card :invisible="true">
       <h3>{{ $t("shelax_points") }}</h3>
-      <p>
+      <p v-if="memberPoints">
         {{ $t("current_valid_points") }}:
         <img src="../assets/Group-110.png" alt="" />
         <span>{{ memberPoints }}</span>
@@ -27,39 +27,54 @@ export default {
     memberPoints() {
       return this.$store.getters["profile/memberPoints"];
     },
+    memberPointsHistory() {
+      return this.$store.getters["profile/memberPointsHistory"];
+    },
   },
   created() {
-    this.$store
-      .dispatch("auth/checkAccessToken")
-      .then(() => {
-        this.$store.dispatch("profile/getMemberPoints");
-      })
-      .catch(() => {
-        this.$store
-          .dispatch("auth/checkRefreshToken")
-          .then(() => {
-            this.$store.dispatch("profile/getMemberPoints");
-          })
-          .catch((err) => {
-            ElNotification({
-              title: "Error",
-              message: this.$t(err.response.data.message),
-              type: "error",
-            });
-            this.$store.dispatch("auth/logout");
-          });
-      });
+    // this.$store
+    //   .dispatch("auth/checkAccessToken")
+    //   .then(() => {
+    //     this.$store.dispatch("profile/getMemberPoints");
+    //   })
+    //   .catch(() => {
+    //     this.$store
+    //       .dispatch("auth/checkRefreshToken")
+    //       .then(() => {
+    //         this.$store.dispatch("profile/getMemberPoints");
+    //       })
+    //       .catch((err) => {
+    //         ElNotification({
+    //           title: "Error",
+    //           message: this.$t(err.response.data.message),
+    //           type: "error",
+    //         });
+    //         this.$store.dispatch("auth/logout");
+    //       });
+    //   });
+    this.$store.commit("profile/RESET_TABLE_DATA");
+    console.log(this.memberPoints);
 
     this.$store
       .dispatch("auth/checkAccessToken")
       .then(() => {
-        this.$store.dispatch("profile/getMemberPointsHistory");
+        this.$store.dispatch("profile/getMemberPointsHistory").then(() => {
+          this.$store.commit(
+            "profile/SET_TABLE_DATA",
+            this.memberPointsHistory
+          );
+        });
       })
       .catch(() => {
         this.$store
           .dispatch("auth/checkRefreshToken")
           .then(() => {
-            this.$store.dispatch("profile/getMemberPointsHistory");
+            this.$store.dispatch("profile/getMemberPointsHistory").then(() => {
+              this.$store.commit(
+                "profile/SET_TABLE_DATA",
+                this.memberPointsHistory
+              );
+            });
           })
           .catch((err) => {
             ElNotification({

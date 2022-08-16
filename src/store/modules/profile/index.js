@@ -14,6 +14,7 @@ export default {
       memberPoints: null,
       memberPointsHistory: [],
       comments: [],
+      tableData: [],
     };
   },
   getters,

@@ -1,5 +1,5 @@
 <template>
-  <section class="table">
+  <section class="table" v-if="Object.keys(memberPointsHistory).length > 0">
     <base-member-card>
       <h3>{{ $t("shelax_points_history") }}</h3>
       <el-table :data="tableData" style="width: 100%">
@@ -26,45 +26,49 @@
 export default {
   data() {
     return {
-      tableData: [
-        // {
-        //   orderNumber: "651535",
-        //   earnPoints: "400",
-        //   validUntil: "2022/10/10",
-        // },
-        // {
-        //   orderNumber: "267400",
-        //   earnPoints: "400",
-        //   validUntil: "2022/10/10",
-        // },
-        // {
-        //   orderNumber: "449003",
-        //   earnPoints: "400",
-        //   validUntil: "2022/10/10",
-        // },
-      ],
+      // tableData: [
+      // {
+      //   orderNumber: "651535",
+      //   earnPoints: "400",
+      //   validUntil: "2022/10/10",
+      // },
+      // {
+      //   orderNumber: "267400",
+      //   earnPoints: "400",
+      //   validUntil: "2022/10/10",
+      // },
+      // {
+      //   orderNumber: "449003",
+      //   earnPoints: "400",
+      //   validUntil: "2022/10/10",
+      // },
+      // ],
     };
   },
   computed: {
     memberPointsHistory() {
       return this.$store.getters["profile/memberPointsHistory"];
     },
+    tableData() {
+      return this.$store.getters["profile/tableData"];
+    },
   },
   created() {
     console.log(this.memberPointsHistory);
-    this.memberPointsHistory.forEach((order) => {
-      console.log(order);
-      this.tableData.push({
-        orderNumber: order.orderNo,
-        earnPoints:
-          order.transactionType === "DEPOSIT" ? order.pointsRewarded : "",
-        pointsUsed:
-          order.transactionType === "WITHDRAWAL" ? order.pointsUsed : "",
-        validUntil: order.expiryDate,
-        expired: order.expired ? this.$t("expired") : order.invalid ? "" : "",
-      });
-    });
-    console.log(this.tableData);
+    console.log(Object.keys(this.memberPointsHistory).length > 0);
+    // this.memberPointsHistory.forEach((order) => {
+    //   console.log(order);
+    //   this.tableData.push({
+    //     orderNumber: order.orderNo,
+    //     earnPoints:
+    //       order.transactionType === "DEPOSIT" ? order.pointsRewarded : "",
+    //     pointsUsed:
+    //       order.transactionType === "WITHDRAWAL" ? order.pointsUsed : "",
+    //     validUntil: order.expiryDate,
+    //     expired: order.expired ? this.$t("expired") : order.invalid ? "" : "",
+    //   });
+    // });
+    // console.log(this.tableData);
   },
 };
 </script>

@@ -3,12 +3,13 @@
   <Product
     @changedSort="setOption"
     :is-active="isActive"
-    v-if="searchItems[0].searchItemType === 'product'"
+    v-if="searchItems.length > 0 && searchItems[0].searchItemType === 'product'"
   />
-  <section
-    v-if="searchItems[0].searchItemType === 'service'"
+  <!-- <section
+    v-if="searchItems.length > 0 && searchItems[0].searchItemType === 'service'"
     class="search-section"
-  >
+  > -->
+  <section class="search-section">
     <base-content-container>
       <el-form label-position="top">
         <el-row :gutter="10">
@@ -59,7 +60,11 @@
     </base-content-container>
   </section>
 
-  <section class="content" v-if="searchItems[0].searchItemType === 'service'">
+  <!-- <section
+    class="content"
+    v-if="searchItems.length > 0 && searchItems[0].searchItemType === 'service'"
+  > -->
+  <section class="content">
     <base-content-container>
       <h2>{{ $t("body_checkup") }}</h2>
       <el-row :gutter="30">
