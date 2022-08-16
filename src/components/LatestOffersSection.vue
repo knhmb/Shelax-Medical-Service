@@ -4,38 +4,41 @@
       <base-content-container>
         <template v-for="theme in themes" :key="theme.id">
           <h2 class="title">
-            {{ theme.slug }}
+            {{ theme.name }}
           </h2>
-          <Carousel
+          <!-- <Carousel
             v-if="cervicalCancerTheme.length > 0"
             :breakpoints="breakpoints"
-          >
+          > -->
+          <!-- <template v-for="item in allThemes" :key="item.id"> -->
+          <!-- <template v-for="data in item.data" :key="data.id"> -->
+          <Carousel v-if="allThemes.length > 0" :breakpoints="breakpoints">
             <template v-for="item in allThemes" :key="item.id">
-              <Slide v-for="data in item.data" :key="data.id">
-                <latest-offers-card
-                  v-if="theme.slug === item.slug"
-                  :name="data.category"
-                  :description="data.itemName"
-                  :price="data.originalPrice"
-                  :rate="data.rating"
-                  :number-of-rate="data.reviewsCount"
-                  :discount="data.discountedPrice"
-                  :image="data.thumbnail"
-                ></latest-offers-card>
-              </Slide>
+              <template v-for="data in item.data" :key="data.id">
+                <Slide v-if="item.slug === theme.slug">
+                  <latest-offers-card
+                    :name="data.category"
+                    :description="data.itemName"
+                    :price="data.originalPrice"
+                    :rate="data.rating"
+                    :number-of-rate="data.reviewsCount"
+                    :discount="data.discountedPrice"
+                    :image="data.thumbnail"
+                  ></latest-offers-card>
+                </Slide>
+              </template>
             </template>
 
             <template #addons>
               <Navigation />
             </template>
           </Carousel>
+          <!-- </template> -->
+          <!-- </template> -->
           <div class="latest-offers-btn">
-            <el-button
-              v-if="theme.slug === 'theme-prevent-cervical-cancer'"
-              @click="submit(theme.slug)"
-              class="btn"
-              >{{ $t("show_more_button") }}</el-button
-            >
+            <el-button @click="submit(theme.slug)" class="btn">{{
+              $t("show_more_button")
+            }}</el-button>
           </div>
           <!-- <h2
             v-if="theme.slug === 'theme-prevent-cervical-cancer'"
@@ -194,6 +197,11 @@ export default {
 .latest-offers .latest-offers-btn {
   text-align: center;
   margin-top: 1rem;
+  margin-bottom: 5rem;
+}
+
+.latest-offers .latest-offers-btn:last-of-type {
+  margin-bottom: 1rem;
 }
 
 .latest-offers .btn {
@@ -227,6 +235,10 @@ export default {
 
 .latest-offers .latest-offers-content .carousel .carousel__next {
   right: -2rem;
+}
+
+.carousel-hidden {
+  display: none;
 }
 
 @media screen and (max-width: 767px) {
