@@ -116,35 +116,35 @@ export default {
         title: [
           {
             required: true,
-            message: "選擇稱謂",
+            message: this.$t("choose_title"),
             trigger: "blur",
           },
         ],
         name: [
           {
             required: true,
-            message: "請輸入姓名",
+            message: this.$t("enter_name"),
             trigger: "blur",
           },
         ],
         phoneAreaCode: [
           {
             required: true,
-            message: "選擇電話區號",
+            message: this.$t("select_phone_area_code"),
             trigger: "blur",
           },
         ],
         phoneNumber: [
           {
             required: true,
-            message: "請輸入電話號碼",
+            message: this.$t("enter_phone_number"),
             trigger: "blur",
           },
         ],
         email: [
           {
             required: true,
-            message: "請輸入電郵地址",
+            message: this.$t("enter_email_address"),
             type: "email",
             trigger: "blur",
           },
@@ -152,7 +152,7 @@ export default {
         message: [
           {
             required: true,
-            message: "請輸入訊息內容",
+            message: this.$t("enter_message_content"),
             trigger: "blur",
           },
         ],
