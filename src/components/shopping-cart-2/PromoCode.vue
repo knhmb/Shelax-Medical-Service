@@ -63,6 +63,9 @@ export default {
     shoppingCartItems() {
       return this.$store.getters["shoppingCart/shoppingCartItems"];
     },
+    userData() {
+      return this.$store.getters["order/userData"];
+    },
   },
   methods: {
     // applyCoupon() {
@@ -120,6 +123,7 @@ export default {
     },
     payment() {
       console.log(this.shoppingCartItems);
+      console.log("here", this.serviceUsers);
       let orderItems = [];
       const orderItemPartcp = [];
       this.serviceUsers.filter((user) => {
@@ -137,6 +141,7 @@ export default {
           // ).specialRequest,
         });
       });
+      console.log("heresssss", orderItemPartcp);
       console.log(this.orderData);
       this.orderItem.orderingItems.forEach((item) => {
         console.log(item);
@@ -157,17 +162,31 @@ export default {
         }
       });
       console.log(orderItems);
+      // const customerInfo = {
+      //   salutation: this.orderData.title,
+      //   lastName: this.orderData.lastName,
+      //   givenName: this.orderData.firstName,
+      //   phoneCode: this.orderData.areaCode,
+      //   phoneNo: this.orderData.phoneNumber,
+      //   placeOfResidence: this.orderData.cityOfResidence,
+      //   region: this.orderData.region,
+      //   district: this.orderData.district,
+      //   address: this.orderData.address,
+      //   isUpdatedProfile: this.orderData.updateProfile,
+      //   email: this.orderData.emailAddress,
+      // };
       const customerInfo = {
-        salutation: this.orderData.title,
-        lastName: this.orderData.lastName,
-        givenName: this.orderData.firstName,
-        phoneCode: this.orderData.areaCode,
-        phoneNo: this.orderData.phoneNumber,
-        placeOfResidence: this.orderData.cityOfResidence,
-        region: this.orderData.region,
-        district: this.orderData.district,
-        address: this.orderData.address,
-        isUpdatedProfile: this.orderData.updateProfile,
+        salutation: this.userData.title,
+        lastName: this.userData.lastName,
+        givenName: this.userData.firstName,
+        phoneCode: this.userData.areaCode,
+        phoneNo: this.userData.phoneNumber,
+        placeOfResidence: this.userData.cityOfResidence,
+        region: this.userData.region,
+        district: this.userData.district,
+        address: this.userData.address,
+        isUpdatedProfile: this.userData.updateProfile,
+        email: this.userData.emailAddress,
       };
       // const finalPrice = this.isMemberPointsApplied
       //   ? this.couponDetails.amountToBePaid
@@ -213,43 +232,43 @@ export default {
       });
 
       console.log("after data", data);
-      this.$store
-        .dispatch("auth/checkAccessToken")
-        .then(() => {
-          this.$store.dispatch("order/confirmOrder", data).then(() => {
-            ElNotification({
-              title: "Success",
-              message: "Order Confirmed",
-              type: "success",
-            });
-            this.$store.commit("order/DISABLE_PROMO", false);
-            this.$router.replace("/");
-          });
-        })
-        .catch(() => {
-          this.$store
-            .dispatch("auth/checkRefreshToken")
-            .then(() => {
-              this.$store.dispatch("order/confirmOrder", data).then(() => {
-                ElNotification({
-                  title: "Success",
-                  message: "Order Confirmed",
-                  type: "success",
-                });
-                this.$store.commit("order/DISABLE_PROMO", false);
+      // this.$store
+      //   .dispatch("auth/checkAccessToken")
+      //   .then(() => {
+      //     this.$store.dispatch("order/confirmOrder", data).then(() => {
+      //       ElNotification({
+      //         title: "Success",
+      //         message: "Order Confirmed",
+      //         type: "success",
+      //       });
+      //       this.$store.commit("order/DISABLE_PROMO", false);
+      //       this.$router.replace("/");
+      //     });
+      //   })
+      //   .catch(() => {
+      //     this.$store
+      //       .dispatch("auth/checkRefreshToken")
+      //       .then(() => {
+      //         this.$store.dispatch("order/confirmOrder", data).then(() => {
+      //           ElNotification({
+      //             title: "Success",
+      //             message: "Order Confirmed",
+      //             type: "success",
+      //           });
+      //           this.$store.commit("order/DISABLE_PROMO", false);
 
-                this.$router.replace("/");
-              });
-            })
-            .catch((err) => {
-              ElNotification({
-                title: "Error",
-                message: err.response.data.message,
-                type: "error",
-              });
-              this.$store.dispatch("auth/logout");
-            });
-        });
+      //           this.$router.replace("/");
+      //         });
+      //       })
+      //       .catch((err) => {
+      //         ElNotification({
+      //           title: "Error",
+      //           message: err.response.data.message,
+      //           type: "error",
+      //         });
+      //         this.$store.dispatch("auth/logout");
+      //       });
+      //   });
     },
     checkOut() {
       // const finalPrice = this.isMemberPointsApplied
@@ -267,12 +286,28 @@ export default {
       this.orderItem.orderingItems.forEach((item) => {
         arr.push({ orderItemId: item.orderItemId });
       });
+      const customerInfo = {
+        salutation: this.userData.title,
+        lastName: this.userData.lastName,
+        givenName: this.userData.firstName,
+        phoneCode: this.userData.areaCode,
+        phoneNo: this.userData.phoneNumber,
+        placeOfResidence: this.userData.cityOfResidence,
+        region: this.userData.region,
+        district: this.userData.district,
+        address: this.userData.address,
+        isUpdatedProfile: this.userData.updateProfile,
+        email: this.userData.emailAddress,
+      };
       const data = {
         orderId: this.orderItem.orderId,
         orderNo: this.orderItem.orderNo,
         orderItems: arr,
+        customerInfo: customerInfo,
       };
+
       console.log(data);
+      console.log(this.orderData);
       this.$store
         .dispatch("auth/checkAccessToken")
         .then(() => {

@@ -29,4 +29,7 @@ export default {
   DISABLE_PROMO(state, payload) {
     state.isPromoApplied = payload;
   },
+  STORE_USER_DATA(state, payload) {
+    state.userData = payload;
+  },
 };

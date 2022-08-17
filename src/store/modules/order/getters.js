@@ -17,4 +17,7 @@ export default {
   memberPointsDetails(state) {
     return state.memberPointsDetails;
   },
+  userData(state) {
+    return state.userData;
+  },
 };

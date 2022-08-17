@@ -261,6 +261,7 @@ export default {
     },
     changed() {
       this.$emit("orderInformation", this.ruleForm);
+      this.$store.commit("order/STORE_USER_DATA", this.ruleForm);
     },
   },
   created() {
@@ -297,6 +298,7 @@ export default {
       console.log(this.regions);
     });
     this.$emit("orderInformation", this.ruleForm);
+    this.$store.commit("order/STORE_USER_DATA", this.ruleForm);
   },
 };
 </script>

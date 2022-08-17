@@ -102,10 +102,9 @@
       </div>
     </div> -->
 
-    <h2 v-if="!isService">{{ $t("product_type") }}</h2>
+    <!-- <h2 v-if="!isService">{{ $t("product_type") }}</h2> -->
+    <h2>{{ $t("product_type") }}</h2>
     <template v-for="item in orderItem.orderingItems" :key="item.itemId">
-      {{ filterData }}
-
       <!-- <div
         v-if="filterData(item.itemId).searchItemType === 'product'"
         class="card"

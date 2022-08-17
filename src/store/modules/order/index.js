@@ -12,6 +12,7 @@ export default {
       isPromoApplied: false,
       memberPoints: "",
       memberPointsDetails: [],
+      userData: [],
     };
   },
   getters,
