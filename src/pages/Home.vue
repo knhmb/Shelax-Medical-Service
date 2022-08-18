@@ -53,6 +53,8 @@ export default {
     },
   },
   async created() {
+    this.$store.commit("order/RESET_SELECTED_USER");
+
     this.$store.commit("dashboard/RESET_THEMES");
 
     await this.$store.dispatch("dashboard/getThemes");

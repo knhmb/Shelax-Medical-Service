@@ -429,9 +429,12 @@ export default {
       // });
     },
     changeUser({ item, index }) {
+      console.log(item);
       const currentUser = this.serviceUsers.find(
         (user) => user.givenName === item.givenName
       );
+      currentUser.selectedUser = true;
+      this.$store.commit("order/SET_SELECTED_USER", currentUser);
       console.log(currentUser);
 
       this.ruleForm.dynamicItem[index].salutation = currentUser.salutation;
@@ -458,11 +461,12 @@ export default {
       .dispatch("auth/checkAccessToken")
       .then(() => {
         this.$store.dispatch("profile/getServiceUsers").then(() => {
+          this.$store.commit("order/SET_PARTICIPATED_USERS", this.serviceUsers);
           this.serviceUsers.forEach((item) => {
-            this.ruleForm.dynamicItem.push({
-              ...item,
-              // specialRequest: "",
-            });
+            // this.ruleForm.dynamicItem.push({
+            //   ...item,
+            //   // specialRequest: "",
+            // });
             this.arr = this.arr.filter((a) => a.id !== item.id);
             this.arr.push({ ...item });
             console.log(this.arr);
@@ -490,9 +494,9 @@ export default {
           .dispatch("auth/checkRefreshToken")
           .then(() => {
             this.$store.dispatch("profile/getServiceUsers").then(() => {
-              this.serviceUsers.forEach((item) => {
-                this.ruleForm.dynamicItem.push(item);
-              });
+              // this.serviceUsers.forEach((item) => {
+              //   this.ruleForm.dynamicItem.push(item);
+              // });
               for (let i = 1; i < this.quantity; i++) {
                 this.ruleForm.dynamicItem.push({
                   avatarSelect: "",

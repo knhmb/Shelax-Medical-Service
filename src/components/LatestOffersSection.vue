@@ -18,7 +18,7 @@
                 <Slide v-if="item.slug === theme.slug">
                   <latest-offers-card
                     style="cursor: pointer"
-                    @click="submit(theme.slug)"
+                    @click="getItemDetail(data)"
                     :name="data.category"
                     :description="data.itemName"
                     :price="data.originalPrice"
@@ -90,6 +90,7 @@
 <script>
 import { ElNotification } from "element-plus";
 import LatestOffersCard from "./LatestOffersCard.vue";
+import moment from "moment";
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 
 import "vue3-carousel/dist/carousel.css";
@@ -160,6 +161,21 @@ export default {
             type: "error",
           });
         });
+    },
+    getItemDetail(item) {
+      const data = {
+        itemId: item.itemId,
+        bookingDate: item.earliestBookingDate
+          ? moment(item.earliestBookingDate).format("YYYYMMDD")
+          : moment(new Date()).format("YYYYMMDD"),
+        bookingTime: item.earliestBookingTime
+          ? item.earliestBookingTime.replace(":", "")
+          : "-",
+      };
+      console.log(data);
+      this.$store.dispatch("search/getItemDetail", data).then(() => {
+        this.$router.push("/service");
+      });
     },
   },
   created() {

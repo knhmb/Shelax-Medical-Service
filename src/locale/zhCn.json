@@ -326,5 +326,8 @@
   "comment_title_placeholder": "请输入评论标题",
   "choose_title": "選擇稱謂",
   "select_phone_area_code": "選擇電話區號",
-  "enter_phone_number": "請輸入電話號碼"
+  "enter_phone_number": "請輸入電話號碼",
+  "error.order.email-invalid": "电邮地址无效",
+  "error.order.missing-parameter": "请输入有效的电邮地址",
+  "error.order.email-missing": "请输入有效的电邮地址"
 }

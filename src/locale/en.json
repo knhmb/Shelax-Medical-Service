@@ -326,5 +326,8 @@
   "comment_title_placeholder": "Please enter a comment title",
   "choose_title": "Choose a title",
   "select_phone_area_code": "Select phone area code",
-  "enter_phone_number": "Enter phone number"
+  "enter_phone_number": "Enter phone number",
+  "error.order.email-invalid": "Email address is invalid",
+  "error.order.missing-parameter": "Please input valid email address",
+  "error.order.email-missing": "Please input valid email address"
 }

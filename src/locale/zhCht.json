@@ -326,5 +326,8 @@
   "comment_title_placeholder": "請輸入評論標題",
   "choose_title": "選擇稱謂",
   "select_phone_area_code": "選擇電話區號",
-  "enter_phone_number": "請輸入電話號碼"
+  "enter_phone_number": "請輸入電話號碼",
+  "error.order.email-invalid": "電郵地址無效",
+  "error.order.missing-parameter": "請輸入有效的電郵地址",
+  "error.order.email-missing": "請輸入有效的電郵地址"
 }

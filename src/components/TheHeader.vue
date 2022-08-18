@@ -328,7 +328,7 @@ export default {
           this.isCollapse = false;
           this.$router.push({
             name: "search",
-            query: { q: `?filter=servicecat:${slug}` },
+            query: { q: `filter=servicecat:${slug}` },
           });
         })
         .catch((err) => {

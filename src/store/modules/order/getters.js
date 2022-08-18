@@ -20,4 +20,10 @@ export default {
   userData(state) {
     return state.userData;
   },
+  participatedUsers(state) {
+    return state.participatedUsers;
+  },
+  selectedUser(state) {
+    return state.selectedUser;
+  },
 };

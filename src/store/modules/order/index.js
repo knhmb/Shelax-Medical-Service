@@ -13,6 +13,8 @@ export default {
       memberPoints: "",
       memberPointsDetails: [],
       userData: [],
+      participatedUsers: [],
+      selectedUser: [],
     };
   },
   getters,

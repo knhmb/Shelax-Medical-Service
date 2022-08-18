@@ -81,6 +81,7 @@ export default {
   },
   async searchSpecificItem(context, payload) {
     const lang = localStorage.getItem("lang") || "zh-HK";
+    console.log(payload);
     // const response = await axios
     //   .get(`/api/item`, {
     //     headers: {

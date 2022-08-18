@@ -32,4 +32,15 @@ export default {
   STORE_USER_DATA(state, payload) {
     state.userData = payload;
   },
+  SET_PARTICIPATED_USERS(state, payload) {
+    state.participatedUsers = payload;
+    console.log(state);
+  },
+  SET_SELECTED_USER(state, payload) {
+    state.selectedUser.push(payload);
+    console.log(state.selectedUser);
+  },
+  RESET_SELECTED_USER(state) {
+    state.selectedUser = [];
+  },
 };

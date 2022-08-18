@@ -66,6 +66,12 @@ export default {
     userData() {
       return this.$store.getters["order/userData"];
     },
+    participatedUsers() {
+      return this.$store.getters["order/participatedUsers"];
+    },
+    selectedUser() {
+      return this.$store.getters["order/selectedUser"];
+    },
   },
   methods: {
     // applyCoupon() {
@@ -122,27 +128,62 @@ export default {
       this.isMemberPointsApplied = value;
     },
     payment() {
-      console.log(this.shoppingCartItems);
-      console.log("here", this.serviceUsers);
+      // console.log(this.participatedUsers);
+      // console.log(this.serviceUsers);
+      // console.log(this.shoppingCartItems);
+      // console.log("here", this.serviceUsers);
+      console.log(this.selectedUser);
       let orderItems = [];
       const orderItemPartcp = [];
-      this.serviceUsers.filter((user) => {
-        orderItemPartcp.push({
-          serviceUserId: user.id,
-          salutation: user.salutation,
-          lastName: user.lastName,
-          givenName: user.givenName,
-          phoneCode: user.phoneCode,
-          phoneNo: user.phoneNo,
-          email: user.email,
-          placeOfResidence: user.placeOfResidence,
-          // specialRequest: this.singleOrderInformation.find(
-          //   (order) => order.id === user.id
-          // ).specialRequest,
-        });
+      this.participatedUsers.filter((user) => {
+        if (user.selectedUser) {
+          orderItemPartcp.push({
+            serviceUserId: user.id,
+            salutation: user.salutation,
+            lastName: user.lastName,
+            givenName: user.givenName,
+            phoneCode: user.phoneCode,
+            phoneNo: user.phoneNo,
+            email: user.email,
+            placeOfResidence: user.placeOfResidence,
+            // specialRequest: this.singleOrderInformation.find(
+            //   (order) => order.id === user.id
+            // ).specialRequest,
+          });
+        }
+        // orderItemPartcp.push({
+        //   serviceUserId: user.id,
+        //   salutation: user.salutation,
+        //   lastName: user.lastName,
+        //   givenName: user.givenName,
+        //   phoneCode: user.phoneCode,
+        //   phoneNo: user.phoneNo,
+        //   email: user.email,
+        //   placeOfResidence: user.placeOfResidence,
+        //   // specialRequest: this.singleOrderInformation.find(
+        //   //   (order) => order.id === user.id
+        //   // ).specialRequest,
+        // });
       });
+      // this.serviceUsers.filter((user) => {
+      //   orderItemPartcp.push({
+      //     serviceUserId: user.id,
+      //     salutation: user.salutation,
+      //     lastName: user.lastName,
+      //     givenName: user.givenName,
+      //     phoneCode: user.phoneCode,
+      //     phoneNo: user.phoneNo,
+      //     email: user.email,
+      //     placeOfResidence: user.placeOfResidence,
+      //     // specialRequest: this.singleOrderInformation.find(
+      //     //   (order) => order.id === user.id
+      //     // ).specialRequest,
+      //   });
+      // });
       console.log("heresssss", orderItemPartcp);
-      console.log(this.orderData);
+      console.log(this.participatedUsers);
+      console.log(this.serviceUsers);
+      // console.log(this.orderData);
       this.orderItem.orderingItems.forEach((item) => {
         console.log(item);
         // orderItems.filter((order) => order.orderItemId !== item.orderItemId);
@@ -283,6 +324,8 @@ export default {
       //   orderNo: this.orderItem.orderNo,
       //   finalPrice: finalPrice,
       // };
+      console.log(this.selectedUser);
+
       const arr = [];
       this.orderItem.orderingItems.forEach((item) => {
         arr.push({ orderItemId: item.orderItemId });
@@ -312,13 +355,31 @@ export default {
       this.$store
         .dispatch("auth/checkAccessToken")
         .then(() => {
-          this.$store.dispatch("order/checkOut", data);
+          this.$store
+            .dispatch("order/checkOut", data)
+            .then(() => {})
+            .catch((err) => {
+              ElNotification({
+                title: "Error",
+                message: this.$t(err.response.data.message),
+                type: "error",
+              });
+            });
         })
         .catch(() => {
           this.$store
             .dispatch("auth/checkRefreshToken")
             .then(() => {
-              this.$store.dispatch("order/checkOut", data);
+              this.$store
+                .dispatch("order/checkOut", data)
+                .then(() => {})
+                .catch((err) => {
+                  ElNotification({
+                    title: "Error",
+                    message: this.$t(err.response.data.message),
+                    type: "error",
+                  });
+                });
             })
             .catch((err) => {
               ElNotification({
