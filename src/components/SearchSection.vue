@@ -331,28 +331,28 @@ export default {
         this.$router.push({
           path: "search",
           query: {
-            q: `${data.search ? `search=${data.search}&` : ""}${
-              data.option && data.time && data.date
-                ? `itemtype:${data.option},bookingdate:${data.date},bookingtime:${data.time}`
-                : data.option && data.date
-                ? `itemtype:${data.option},bookingdate:${data.date}`
-                : data.option && data.time
-                ? `itemtype:${data.option},bookingtime:${data.time}`
-                : data.option
-                ? `itemtype:${data.option}`
-                : ""
-            }`,
             // q: `${data.search ? `search=${data.search}&` : ""}${
             //   data.option && data.time && data.date
-            //     ? `filter=itemtype:${data.option},bookingdate:${data.date},bookingtime:${data.time}`
+            //     ? `itemtype:${data.option},bookingdate:${data.date},bookingtime:${data.time}`
             //     : data.option && data.date
-            //     ? `filter=itemtype:${data.option},bookingdate:${data.date}`
+            //     ? `itemtype:${data.option},bookingdate:${data.date}`
             //     : data.option && data.time
-            //     ? `filter=itemtype:${data.option},bookingtime:${data.time}`
+            //     ? `itemtype:${data.option},bookingtime:${data.time}`
             //     : data.option
-            //     ? `filter=itemtype:${data.option}`
+            //     ? `itemtype:${data.option}`
             //     : ""
             // }`,
+            q: `${data.search ? `search=${data.search}&` : ""}${
+              data.option && data.time && data.date
+                ? `filter=itemtype:${data.option},bookingdate:${data.date},bookingtime:${data.time}`
+                : data.option && data.date
+                ? `filter=itemtype:${data.option},bookingdate:${data.date}`
+                : data.option && data.time
+                ? `filter=itemtype:${data.option},bookingtime:${data.time}`
+                : data.option
+                ? `filter=itemtype:${data.option}`
+                : ""
+            }`,
           },
         });
         this.resetFields();

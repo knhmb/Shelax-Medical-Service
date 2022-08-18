@@ -52,6 +52,9 @@
                 alt=""
               />
             </span>
+            <a class="email-address" href="mailto:shelaxlimited@gmail.com"
+              >shelaxlimited@gmail.com</a
+            >
           </el-col>
           <el-col class="first" :sm="24" :md="5">
             <p>{{ $t("about_shelax") }}</p>
@@ -255,6 +258,12 @@ export default {
   border-right: 5px solid red;
 } */
 
+.footer a.email-address {
+  color: #c6c6c6;
+  display: block;
+  margin-top: 1.5rem;
+}
+
 @media screen and (max-width: 991px) {
   .el-col:not(:first-of-type) {
     align-items: center;
@@ -290,6 +299,10 @@ export default {
     from(#fff),
     to(#5d6478)
   ); */
+}
+
+.footer a.email-address {
+  display: block;
 }
 
 @media screen and (max-width: 991px) {

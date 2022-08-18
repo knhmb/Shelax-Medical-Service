@@ -16,8 +16,10 @@
         :score-template="numberOfRate"
       >
       </el-rate>
-      <small class="discount">HK${{ discount }}</small>
-      <p class="latest-offers-price">HK${{ price }}</p>
+      <small class="discount">HK${{ price }}</small>
+      <p class="latest-offers-price">HK${{ discount }}</p>
+      <!-- <small class="discount">HK${{ discount }}</small>
+      <p class="latest-offers-price">HK${{ price }}</p> -->
     </div>
   </el-card>
 </template>

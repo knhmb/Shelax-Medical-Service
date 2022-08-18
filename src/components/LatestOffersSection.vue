@@ -17,6 +17,8 @@
               <template v-for="data in item.data" :key="data.id">
                 <Slide v-if="item.slug === theme.slug">
                   <latest-offers-card
+                    style="cursor: pointer"
+                    @click="submit(theme.slug)"
                     :name="data.category"
                     :description="data.itemName"
                     :price="data.originalPrice"

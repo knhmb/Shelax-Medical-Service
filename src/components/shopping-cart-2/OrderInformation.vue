@@ -264,8 +264,8 @@ export default {
       this.$store.commit("order/STORE_USER_DATA", this.ruleForm);
     },
   },
-  created() {
-    this.$store
+  async created() {
+    await this.$store
       .dispatch("auth/checkAccessToken")
       .then(() => {
         this.$store.dispatch("profile/getAccount").then(() => {
@@ -277,13 +277,24 @@ export default {
           this.ruleForm.emailAddress = this.userDetails.email;
           this.ruleForm.cityOfResidence = this.userDetails.placeOfResidence;
           this.ruleForm.phoneNumber = this.userDetails.phoneNo;
+          this.$store.commit("order/STORE_USER_DATA", this.ruleForm);
         });
       })
       .catch(() => {
         this.$store
           .dispatch("auth/checkRefreshToken")
           .then(() => {
-            this.$store.dispatch("profile/getAccount");
+            this.$store.dispatch("profile/getAccount").then(() => {
+              console.log(this.userDetails);
+              this.ruleForm.title = this.userDetails.salutation;
+              this.ruleForm.lastName = this.userDetails.lastName;
+              this.ruleForm.firstName = this.userDetails.givenName;
+              this.ruleForm.areaCode = this.userDetails.phoneCode;
+              this.ruleForm.emailAddress = this.userDetails.email;
+              this.ruleForm.cityOfResidence = this.userDetails.placeOfResidence;
+              this.ruleForm.phoneNumber = this.userDetails.phoneNo;
+              this.$store.commit("order/STORE_USER_DATA", this.ruleForm);
+            });
           })
           .catch((err) => {
             ElNotification({
@@ -298,7 +309,7 @@ export default {
       console.log(this.regions);
     });
     this.$emit("orderInformation", this.ruleForm);
-    this.$store.commit("order/STORE_USER_DATA", this.ruleForm);
+    // this.$store.commit("order/STORE_USER_DATA", this.ruleForm);
   },
 };
 </script>

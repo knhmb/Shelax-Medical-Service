@@ -3,6 +3,18 @@ import axios from "axios";
 export default {
   async searchItem(context, payload) {
     const lang = localStorage.getItem("lang") || "zh-HK";
+    // const response = await axios.get(
+    //   `/api/item?${payload.search ? `search=${payload.search}&` : ""}${
+    //     payload.option && payload.time && payload.date
+    //       ? `filter=itemtype:${payload.option},bookingdate:${payload.date},bookingtime:${payload.time}`
+    //       : payload.option && payload.date
+    //       ? `filter=itemtype:${payload.option},bookingdate:${payload.date}`
+    //       : payload.option && payload.time
+    //       ? `filter=itemtype:${payload.option},bookingtime:${payload.time}`
+    //       : payload.option
+    //       ? `filter=itemtype:${payload.option}`
+    //       : ""
+    //   }`,
     const response = await axios.get(
       `/api/item?${payload.search ? `search=${payload.search}&` : ""}${
         payload.option && payload.time && payload.date
@@ -90,11 +102,14 @@ export default {
     //     context.commit("SET_SEARCH_ITEMS", []);
     //     throw err;
     //   });
+    console.log(payload.query);
     const response = await axios
       .get(
         `/api/item?${
           payload.query.includes("theme")
             ? `filter=theme:${payload.query}`
+            : payload.query.includes("filter")
+            ? `${payload.query}`
             : `filter=${payload.query}`
         }${payload.location ? `,location:${payload.location}` : ""}${
           payload.price ? `,price:${payload.price[0]}-${payload.price[1]}` : ""

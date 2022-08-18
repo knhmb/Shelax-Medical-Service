@@ -459,9 +459,6 @@ export default {
       .then(() => {
         this.$store.dispatch("profile/getServiceUsers").then(() => {
           this.serviceUsers.forEach((item) => {
-            // console.log(item);
-            // console.log(this.ruleForm.dynamicItem);
-            // this.ruleForm.dynamicItem
             this.ruleForm.dynamicItem.push({
               ...item,
               // specialRequest: "",
@@ -486,8 +483,6 @@ export default {
               // specialRequest: "",
             });
           }
-          // console.log(this.ruleForm.dynamicItem);
-          // console.log(this.serviceUsers);
         });
       })
       .catch(() => {
