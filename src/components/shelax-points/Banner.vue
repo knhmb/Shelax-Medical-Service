@@ -1,26 +1,26 @@
 <template>
   <section class="shelax-banner">
     <base-content-container>
-      <div v-html="shelaxPointsContent.content"></div>
-      <!-- <h3>{{ $t("shelax_points") }}</h3>
-      <p>{{ $t("about_page_text") }}</p>
+      <!-- <div v-html="shelaxPointsContent.content"></div> -->
+      <h3>{{ $t("shelax_points") }}</h3>
+      <!-- <p>{{ $t("about_page_text") }}</p> -->
       <el-row justify="space-between">
         <el-col :sm="10" :md="5">
           <img src="../../assets/visual-sample1.png" alt="" />
           <p>{{ $t("become_a_member") }}</p>
-          <p>{{ $t("about_page_image_description") }}</p>
+          <!-- <p>{{ $t("about_page_image_description") }}</p> -->
         </el-col>
         <el-col :sm="10" :md="5">
           <img src="../../assets/visual-sample1.png" alt="" />
           <p>{{ $t("accumulate_points") }}</p>
-          <p>{{ $t("about_page_image_description") }}</p>
+          <!-- <p>{{ $t("about_page_image_description") }}</p> -->
         </el-col>
         <el-col :sm="10" :md="5">
           <img src="../../assets/visual-sample1.png" alt="" />
           <p>{{ $t("gift_exchange") }}</p>
-          <p>{{ $t("about_page_image_description") }}</p>
+          <!-- <p>{{ $t("about_page_image_description") }}</p> -->
         </el-col>
-      </el-row> -->
+      </el-row>
     </base-content-container>
   </section>
 </template>
@@ -49,6 +49,7 @@ export default {
   line-height: 2.5rem;
   color: #ffffff;
   text-align: center;
+  margin-bottom: 6rem;
 }
 
 .shelax-banner p {

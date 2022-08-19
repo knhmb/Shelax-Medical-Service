@@ -1,5 +1,7 @@
 <template>
   <section class="second-section">
+    <div v-html="shelaxPointsContent.content"></div>
+
     <!-- <base-content-container>
       <el-row :gutter="40">
         <el-col :sm="24" :md="11">
@@ -17,10 +19,21 @@
   </section>
 </template>
 
+<script>
+export default {
+  computed: {
+    shelaxPointsContent() {
+      return this.$store.getters["dashboard/shelaxPointsContent"];
+    },
+  },
+};
+</script>
+
 <style scoped>
 .second-section {
-  background: #e5e5e5;
-  /* padding: 3rem 0; */
+  background: #fff;
+  /* background: #e5e5e5; */
+  padding: 5rem 0;
 }
 
 .second-section .el-row {
